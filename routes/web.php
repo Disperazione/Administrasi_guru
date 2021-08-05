@@ -9,6 +9,7 @@ use App\Http\Controllers\auth\AuthController;
 use App\Http\Controllers\admin\TargetPembelajaranController as LK1;
 use App\Http\Controllers\admin\StrategiPembelajaranController as LK2;
 use App\Http\Controllers\admin\IndikatorKetercapaianController as LK3;
+use App\Http\Controllers\admin\Kompetensi_dasarController;
 use App\Http\Controllers\admin\MateriBahanAjarController AS LK4;
 use App\Http\Controllers\admin\RencanaPelaksanaanPembelajaranController as RPP;
 
@@ -34,6 +35,7 @@ Route::get('/logout',[AuthController::class,'logout'])->name('logout');
 Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () {
     Route::resource('guru', GuruController::class)->parameters(['guru' => 'Guru']);
     Route::resource('jurusan', JurusanController::class)->parameters(['jurusan' => 'Jurusan']);
+    Route::resource('kompetensi_dasar', Kompetensi_dasarController::class);
     Route::resource('target_pembelajaran', LK1::class);
     Route::resource('strategi_pembelajaran', LK2::class);
     Route::resource('indikator_ketercapaian', LK3::class);

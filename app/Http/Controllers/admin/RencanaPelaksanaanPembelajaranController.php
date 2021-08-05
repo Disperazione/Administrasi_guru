@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Bidang_keahlian;
+use App\Models\Kompetensi_dasar;
 use Illuminate\Http\Request;
-
+use Illuminate\Database\Eloquent\Builder;
 class RencanaPelaksanaanPembelajaranController extends Controller
 {
     /**
@@ -12,9 +14,35 @@ class RencanaPelaksanaanPembelajaranController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        if ($request->ajax()) {
+            $id = auth()->id();
+            // nkompetensi dasar yang mempunyai bidang keahlian dan mempunyai rpp
+            $data = Kompetensi_dasar::whereHas('bidang_keahlian', function (Builder $query) use ($id) {
+                $query->where('id_guru', $id);
+            })->has('rencana_pelaksanaan_pembelajaran')->get();
+            return datatables()->of($data)
+                ->addColumns('bidang_studi', function($data){
+                    $data->bidang_keahlian->bidang_studi;
+                })
+                ->addColumns('mapel', function ($data) {
+                    $data->bidang_keahlian->mapael;
+                })
+                ->addColumns('action', function ($data) {
+                    $button = '<a href="' . $data->id . '"   id="' . $data->id . '" class="edit btn btn-primary btn-sm"><i class="fas fa-search"></i></a>';
+                    $button .= '&nbsp';
+                    $button .= '<a href="/admin/target_pembelajaran/detail/' . $data->id . '"   id="' . $data->id . '" class="edit btn btn-primary btn-sm"><i class="fas fa-search"></i></a>';
+                    $button .= '&nbsp';
+                    $button .= '<a  href="/admin/target_pembelajaran/edit/' . $data->id . '" id="edit" data-toggle="tooltip"  data-id="' . $data->id . '" data-original-title="Edit" class="edit btn btn-warning btn-sm edit-post"><i class="fas fa-pencil-alt"></i></a>';
+                    $button .= '&nbsp';
+                    $button .= '<button type="button" name="delete" id="hapus" data-id="' . $data->id . '" class="delete btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>';
+                    return $button;
+                })
+                ->rawColumns(['action'])
+                ->addIndex()->make(true);
+        }
+        return view('admin.materi_bahan_ajar.index');
     }
 
     /**
@@ -80,6 +108,8 @@ class RencanaPelaksanaanPembelajaranController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $kd = Kompetensi_dasar::where('id',$id)->first();
+        $kd->rencana_pelaksanaan_pembelajaran->delete();
+        return response()->json($data = 'berhasil');
     }
 }

@@ -14,12 +14,7 @@ class JurusanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        return view('admin.jurusan.index');
-    }
-
-    public function ajax(Request $request)
+    public function index(Request $request)
     {
         if ($request->ajax()) {
             $jurusan = Jurusan::all();
@@ -35,7 +30,9 @@ class JurusanController extends Controller
                 ->rawColumns(['action'])
                 ->addindex()->make(true);
         }
+        return view('admin.jurusan.index');
     }
+
     /**
      * Show the form for creating a new resource.
      *

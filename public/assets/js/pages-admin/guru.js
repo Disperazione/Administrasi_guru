@@ -18,7 +18,7 @@ $(document).ready( function () {
         "responsive": true,
         "autoWidth": false,
         ajax:{
-        url: root + "/admin/guru/index/",
+        url: root + "/admin/guru/",
         type: "get",
         },
         columns:[
@@ -58,7 +58,7 @@ $('body').on('click','#hapus', function () {
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
-                    url: root+"/admin/guru/delete/"+ id,
+                    url: root+"/admin/guru/"+ id,
                     type: "DELETE",
                     data:'',
                     success: function (data) {

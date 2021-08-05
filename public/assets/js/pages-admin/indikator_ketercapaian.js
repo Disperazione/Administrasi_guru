@@ -1,4 +1,4 @@
-$(document).ready( function () {
+$(document).ready(function () {
     root = window.location.protocol + '//' + window.location.host;
     var filter = $('#search').val();
     console.log('filter');
@@ -18,28 +18,21 @@ $(document).ready( function () {
         "responsive": true,
         "autoWidth": false,
         ajax:{
-        url: root + "/admin/jurusan",
+        url: root + "/admin/indikator_ketercapaian",
         type: "get",
         },
         columns:[
         { data: 'DT_RowIndex', name: 'DT_RowIndex'},
-        { data: 'nama_jurusan', name:'nama_jurusan'},
-        { data: 'singkatan_jurusan', name:'singkatan_jurusan'},
+        { data: 'bidang_studi', name:'bidang_studi'},
+        { data: 'kelas', kelas:'kelas'},
+        { data: 'jam_pelajaran', name:'jam_pelajaran'},
+        { data: 'mapel',name:'mapel'},
+        { data: 'total_waktu_jam_pelajaran',name:'total_waktu_jam_pelajaran'},
+        { data: 'action',name:'action'}
         ],
     });
-    // $('.btn-table').append(
-    //     '<a href="'+root+'/admin/guru/tambah"class="btn btn-primary "> Tambah Data <i class="fas fa-plus"></i></button></a>'
-    // );
-    // $('#table1_filter').prepend('<a href="'+root+'/admin/export/excel/guru"class="btn btn-success mr-3  ml-2"> Excel <i class="fas fa-cloud-download-alt"></i></button></a>'
-    // );
 
-// search engine
-$("#search").keyup(function () {
-    table.search( this.value ).draw();
-})
-
-    // hapus data
-$('body').on('click','#hapus', function () {
+    $('body').on('click','#hapus', function () {
 // sweet alert
     Swal.fire({
     title: 'Apa anda yakin?',
@@ -54,7 +47,7 @@ $('body').on('click','#hapus', function () {
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
-                    url: root+"/admin/jurusan/"+ id,
+                    url: root+"/admin/indikator_ketercapaian/"+ id,
                     type: "DELETE",
                     data:'',
                     success: function (data) {
@@ -73,4 +66,4 @@ $('body').on('click','#hapus', function () {
         } else if (result.dismiss === Swal.DismissReason.cancel) {}
     })
 });
-});
+})

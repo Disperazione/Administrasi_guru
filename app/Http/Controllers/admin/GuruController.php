@@ -17,12 +17,7 @@ class GuruController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        return view('admin.guru.index');
-    }
-
-    public function ajax(Request $request)
+    public function index(Request $request)
     {
         if ($request->ajax()) {
             $guru = guru::all();
@@ -45,7 +40,9 @@ class GuruController extends Controller
                 ->rawColumns(['action'])
                 ->addIndexColumn()->make(true);
         }
+        return view('admin.guru.index');
     }
+
     /**
      * Show the form for creating a new resource.
      *
