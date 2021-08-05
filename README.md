@@ -51,7 +51,7 @@ You can now access the server at http://localhost:8000
     php artisan serve
 
 ## credit
-- [volar template](https://getstisla.com/)
+- [Stisla Template](https://getstisla.com/)
 - [framework laravel](https://laravel.com/)
 - [bootstrap](https://getbootstrap.com/docs/4.6/getting-started/introduction/)
 - [SweetAlert](https://sweetalert2.github.io/)
