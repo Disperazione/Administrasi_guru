@@ -10,7 +10,7 @@ use App\Http\Controllers\admin\TargetPembelajaranController as LK1;
 use App\Http\Controllers\admin\StrategiPembelajaranController as LK2;
 use App\Http\Controllers\admin\IndikatorKetercapaianController as LK3;
 use App\Http\Controllers\admin\Kompetensi_dasarController;
-use App\Http\Controllers\admin\MateriBahanAjarController AS LK4;
+use App\Http\Controllers\admin\MateriBahanAjarController as LK4;
 use App\Http\Controllers\admin\RencanaPelaksanaanPembelajaranController as RPP;
 
 /*
@@ -24,12 +24,12 @@ use App\Http\Controllers\admin\RencanaPelaksanaanPembelajaranController as RPP;
 |
 */
 
-Route::get('/', function () {
-    return view('layout.master');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
-// Route::get('/',[AuthController::class,'login'])->name('login');
-// Route::get('/logout',[AuthController::class,'logout'])->name('logout');
+Route::get('/', [AuthController::class, 'login'])->name('login');
+Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::resource('guru', GuruController::class)->parameters(['guru' => 'Guru']);
 // admin
