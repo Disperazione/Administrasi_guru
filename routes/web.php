@@ -24,12 +24,12 @@ use App\Http\Controllers\admin\RencanaPelaksanaanPembelajaranController as RPP;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::get('/', function () {
+    return view('layout.master');
+});
 
-Route::get('/',[AuthController::class,'login'])->name('login');
-Route::get('/logout',[AuthController::class,'logout'])->name('logout');
+// Route::get('/',[AuthController::class,'login'])->name('login');
+// Route::get('/logout',[AuthController::class,'logout'])->name('logout');
 
 
 Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () {
