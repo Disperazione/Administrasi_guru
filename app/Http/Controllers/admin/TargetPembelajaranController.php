@@ -18,8 +18,15 @@ class TargetPembelajaranController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $data = Bidang_keahlian::has('target_pembelajaran')->where('id_guru', Auth()->id())->first();
+            if (Auth::user()->role == 'guru') {
+                $data = Bidang_keahlian::has('target_pembelajaran')->where('id_guru', Auth()->id())->first();
+            }else if(Auth::user()->role == 'admin'){
+                $data = Bidang_keahlian::has('target_pembelajaran')->where('id_guru', Auth()->id())->first();
+            }
             return datatables()->of($data)
+                ->addColumns('guru', function($data){
+                    return $data->guru->name;
+                })
                 ->addColumns('action', function ($data) {
                     $button = '<a href="/admin/target_pembelajaran/detail/' . $data->id . '"   id="' . $data->id . '" class="edit btn btn-primary btn-sm"><i class="fas fa-search"></i></a>';
                     $button .= '&nbsp';
@@ -41,7 +48,7 @@ class TargetPembelajaranController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.target_pembelajaran.tambah');
     }
 
     /**
@@ -63,7 +70,12 @@ class TargetPembelajaranController extends Controller
      */
     public function show($id)
     {
-        //
+        if (Auth::user()->role == 'guru') {
+            $target = Bidang_keahlian::has('target_pembelajaran')->where(['id_guru', Auth()->id()],['id',$id])->first();
+        } else if (Auth::user()->role == 'admin') {
+            $target = Bidang_keahlian::has('target_pembelajaran')->where('id',$id)->first();
+        }
+        return view('admin.target_pembelajaran.detail', compact('target'));
     }
 
     /**
@@ -74,7 +86,12 @@ class TargetPembelajaranController extends Controller
      */
     public function edit($id)
     {
-        //
+        if (Auth::user()->role == 'guru') {
+            $target = Bidang_keahlian::has('target_pembelajaran')->where(['id_guru', Auth()->id()], ['id', $id])->first();
+        } else if (Auth::user()->role == 'admin') {
+            $target = Bidang_keahlian::has('target_pembelajaran')->where('id', $id)->first();
+        }
+        return view('admin.target_pembelajaran.edit', compact('target'));
     }
 
     /**

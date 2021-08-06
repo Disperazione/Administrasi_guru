@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\admin;
 
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\Bidang_keahlian;
 use App\Models\Kompetensi_dasar;
@@ -23,8 +24,17 @@ class MateriBahanAjarController extends Controller
             foreach ($kompetensi as $key => $value) {
                 $id_keahlian[] = $value->id_bidang_keahlian;
             }
-            $data = Bidang_keahlian::has('kompetensi_dasar')->whereIn('id',  $id_keahlian)->where('id_guru', auth()->id())->get();
+
+            if (Auth::user()->role == 'guru') {
+                $data = Bidang_keahlian::has('kompetensi_dasar')->whereIn('id',  $id_keahlian)->where('id_guru', auth()->id())->get();
+            } else if (Auth::user()->role == 'ad,om') {
+                $data = Bidang_keahlian::has('kompetensi_dasar')->whereIn('id',  $id_keahlian)->get();
+            }
+
             return datatables()->of($data)
+                ->addColumns('guru', function ($data) {
+                    return $data->guru->name;
+                })
                 ->addColumns('action', function ($data) {
                     $button = '<a href="' . $data->id . '"   id="' . $data->id . '" class="edit btn btn-primary btn-sm"><i class="fas fa-search"></i></a>';
                     $button .= '&nbsp';
@@ -48,7 +58,7 @@ class MateriBahanAjarController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.materi_bahan_ajar.tambah');
     }
 
     /**
@@ -70,7 +80,12 @@ class MateriBahanAjarController extends Controller
      */
     public function show($id)
     {
-        //
+        if (Auth::user()->role == 'guru') {
+            $materi = Bidang_keahlian::has('kompetensi_dasar')->where(['id_guru', auth()->id()],['id',$id])->get();
+        } else if (Auth::user()->role == 'ad,om') {
+            $materi = Bidang_keahlian::has('kompetensi_dasar')->where('id',  $id)->get();
+        }
+        return view('admin.materi_bahan_ajar.detail', compact('materi'));
     }
 
     /**
@@ -81,7 +96,12 @@ class MateriBahanAjarController extends Controller
      */
     public function edit($id)
     {
-        //
+        if (Auth::user()->role == 'guru') {
+            $materi = Bidang_keahlian::has('kompetensi_dasar')->where(['id_guru', auth()->id()], ['id', $id])->get();
+        } else if (Auth::user()->role == 'ad,om') {
+            $materi = Bidang_keahlian::has('kompetensi_dasar')->where('id',  $id)->get();
+        }
+        return view('admin.materi_bahan_ajar.detail', compact('materi'));
     }
 
     /**

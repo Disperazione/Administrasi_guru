@@ -2,6 +2,38 @@ $(document).ready(function () {
     root = window.location.protocol + '//' + window.location.host;
     var filter = $('#search').val();
     console.log('filter');
+
+    role = $('#data').data('role');
+
+    // untuk column nya
+    function column(role)
+    {
+        switch (role) {
+        case 'guru':
+            return [
+                    { data: 'DT_RowIndex', name: 'DT_RowIndex'},
+                    { data: 'bidang_studi', name:'bidang_studi'},
+                    // { data: 'kelas', kelas:'kelas'},
+                    // { data: 'jam_pelajaran', name:'jam_pelajaran'},
+                    { data: 'mapel',name:'mapel'},
+                    // { data: 'total_waktu_jam_pelajaran',name:'total_waktu_jam_pelajaran'},
+                    { data: 'action',name:'action'}
+                ];
+            break;
+        case 'admin':
+                return [
+                        { data: 'DT_RowIndex', name: 'DT_RowIndex'},
+                        {data:'guru', name: 'guru'},
+                        { data: 'bidang_studi', name:'bidang_studi'},
+                        // { data: 'kelas', kelas:'kelas'},
+                        // { data: 'jam_pelajaran', name:'jam_pelajaran'},
+                        { data: 'mapel',name:'mapel'},
+                        // { data: 'total_waktu_jam_pelajaran',name:'total_waktu_jam_pelajaran'},
+                        { data: 'action',name:'action'}
+                    ];
+                break;
+        }
+    }
     var table = $('#table1').DataTable({
         dom:
         "<'row'<'ol-sm-12 col-md-6 btn-table'><'col-sm-12 col-md-6  pdf-button'f>>" +
@@ -21,13 +53,7 @@ $(document).ready(function () {
         url: root + "/admin/rpp",
         type: "get",
         },
-        columns:[
-        { data: 'DT_RowIndex', name: 'DT_RowIndex'},
-        { data: 'bidang_studi', name:'bidang_studi'},
-        { data: 'keterangan_pengetahuan',name:'keterangan_pengetahuan'},
-        { data: 'keterangan_ketrampilan',name:'keterangan_ketrampilan'},
-        { data: 'action',name:'action'}
-        ],
+        columns:column(role),
     });
 
     $('body').on('click','#hapus', function () {

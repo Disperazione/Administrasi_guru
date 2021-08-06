@@ -8,8 +8,6 @@
 @endsection
 @section('content')
     {{-- content here --}}
-    {{-- harus make ini --}}
-    <span data-role="{{ Auth::user()->role }}"></span>
 @endsection
 @push('js')
 

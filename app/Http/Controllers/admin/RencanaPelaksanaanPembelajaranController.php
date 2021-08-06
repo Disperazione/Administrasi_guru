@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\admin;
 
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\Bidang_keahlian;
 use App\Models\Kompetensi_dasar;
@@ -19,15 +20,23 @@ class RencanaPelaksanaanPembelajaranController extends Controller
         if ($request->ajax()) {
             $id = auth()->id();
             // nkompetensi dasar yang mempunyai bidang keahlian dan mempunyai rpp
-            $data = Kompetensi_dasar::whereHas('bidang_keahlian', function (Builder $query) use ($id) {
-                $query->where('id_guru', $id);
-            })->has('rencana_pelaksanaan_pembelajaran')->get();
+            if (Auth::user()->role == 'guru') {
+                $data = Kompetensi_dasar::whereHas('bidang_keahlian', function (Builder $query) use ($id) {
+                    $query->where('id_guru', $id);
+                })->has('rencana_pelaksanaan_pembelajaran')->get();
+            }else if(Auth::user()->role == 'admin') {
+                $data = Kompetensi_dasar::has('bidang_keahlian')->has('rencana_pelaksanaan_pembelajaran')->get();
+            }
+
             return datatables()->of($data)
                 ->addColumns('bidang_studi', function($data){
                     $data->bidang_keahlian->bidang_studi;
                 })
                 ->addColumns('mapel', function ($data) {
                     $data->bidang_keahlian->mapael;
+                })
+                ->addColumns('guru', function ($data) {
+                    return $data->bidang_keahlian->guru->name;
                 })
                 ->addColumns('action', function ($data) {
                     $button = '<a href="' . $data->id . '"   id="' . $data->id . '" class="edit btn btn-primary btn-sm"><i class="fas fa-search"></i></a>';
@@ -42,7 +51,7 @@ class RencanaPelaksanaanPembelajaranController extends Controller
                 ->rawColumns(['action'])
                 ->addIndex()->make(true);
         }
-        return view('admin.materi_bahan_ajar.index');
+        return view('admin.rpp.index');
     }
 
     /**
@@ -52,7 +61,7 @@ class RencanaPelaksanaanPembelajaranController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.rpp.tambah');
     }
 
     /**
@@ -74,7 +83,14 @@ class RencanaPelaksanaanPembelajaranController extends Controller
      */
     public function show($id)
     {
-        //
+        if (Auth::user()->role == 'guru') {
+            $rpp = Kompetensi_dasar::whereHas('bidang_keahlian', function (Builder $query) use ($id) {
+                $query->where('id_guru', $id);
+            })->has('rencana_pelaksanaan_pembelajaran')->where('id', $id)->get();
+        } else if (Auth::user()->role == 'admin') {
+            $rpp = Kompetensi_dasar::has('bidang_keahlian')->has('rencana_pelaksanaan_pembelajaran')->where('id',$id)->get();
+        }
+        return view('admin.rpp.detail', compact('rpp'));
     }
 
     /**
@@ -85,7 +101,14 @@ class RencanaPelaksanaanPembelajaranController extends Controller
      */
     public function edit($id)
     {
-        //
+        if (Auth::user()->role == 'guru') {
+            $rpp = Kompetensi_dasar::whereHas('bidang_keahlian', function (Builder $query) use ($id) {
+                $query->where('id_guru', $id);
+            })->has('rencana_pelaksanaan_pembelajaran')->where('id', $id)->get();
+        } else if (Auth::user()->role == 'admin') {
+            $rpp = Kompetensi_dasar::has('bidang_keahlian')->has('rencana_pelaksanaan_pembelajaran')->where('id', $id)->get();
+        }
+        return view('admin.rpp.edit', compact('rpp'));
     }
 
     /**

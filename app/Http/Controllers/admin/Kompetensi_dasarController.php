@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\admin;
 
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\Bidang_keahlian;
 use Illuminate\Http\Request;
@@ -16,10 +17,21 @@ class Kompetensi_dasarController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $data = Bidang_keahlian::has('kompetensi_dasar')->get();
+            if (Auth::user()->role == 'guru') {
+                $data = Bidang_keahlian::where('id_guru',Auth::user()->id)->has('kompetensi_dasar')->get();
+            }else if(Auth::user()->role == 'admin'){
+                $data = Bidang_keahlian::has('kompetensi_dasar')->get();
+            }
+
             return datatables()->of($data)
+                ->addColumns('guru', function ($data) {
+                    return $data->guru->name;
+                })
+                ->addColumns('guru', function ($data) {
+                    return $data->bidang_studi->guru->name;
+                })
                 ->addColumn('action', function ($data) {
-                    $button = '<a href="/admin/guru/detail/' . $data->id . '"   id="' . $data->id . '" class="edit btn btn-primary btn-sm"><i class="fas fa-search"></i></a>';
+                    $button = '<a href="' . $data->id . '"   id="' . $data->id . '" class="btn btn-success btn-sm"><i class="fas fa-download"></i></a>';
                     $button .= '&nbsp';
                     $button .= '<a  href="/admin/guru/edit/' . $data->id . '" id="edit" data-toggle="tooltip"  data-id="' . $data->id . '" data-original-title="Edit" class="edit btn btn-warning btn-sm edit-post"><i class="fas fa-pencil-alt"></i></a>';
                     $button .= '&nbsp';
@@ -39,7 +51,7 @@ class Kompetensi_dasarController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.kompetensi_dasar.tambah');
     }
 
     /**
@@ -61,7 +73,8 @@ class Kompetensi_dasarController extends Controller
      */
     public function show($id)
     {
-        //
+        $bidang = Bidang_keahlian::find($id)->first();
+        return view('admin.kompetensi_dasar.detail', compact('bidang'));
     }
 
     /**
@@ -72,7 +85,8 @@ class Kompetensi_dasarController extends Controller
      */
     public function edit($id)
     {
-        //
+        $bidang = Bidang_keahlian::find($id)->first();
+        return view('admin.kompetensi_dasar.edit', compact('bidang'));
     }
 
     /**

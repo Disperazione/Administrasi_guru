@@ -31,10 +31,15 @@ Route::get('/', function () {
 // Route::get('/',[AuthController::class,'login'])->name('login');
 // Route::get('/logout',[AuthController::class,'logout'])->name('logout');
 
-
+Route::resource('guru', GuruController::class)->parameters(['guru' => 'Guru']);
+// admin
 Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () {
-    Route::resource('guru', GuruController::class)->parameters(['guru' => 'Guru']);
+    // Route::resource('guru', GuruController::class)->parameters(['guru' => 'Guru']);
     Route::resource('jurusan', JurusanController::class)->parameters(['jurusan' => 'Jurusan']);
+});
+
+// guru
+Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () {
     Route::resource('kompetensi_dasar', Kompetensi_dasarController::class);
     Route::resource('target_pembelajaran', LK1::class);
     Route::resource('strategi_pembelajaran', LK2::class);

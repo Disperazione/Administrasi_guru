@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\admin;
 
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\Bidang_keahlian;
 use App\Models\Kompetensi_dasar;
@@ -26,9 +27,18 @@ class StrategiPembelajaranController extends Controller
             foreach ($kompetensi as $key => $value) {
                 $id_keahlian[] = $value->id_bidang_keahlian;
             }
-            // mencari bidang keahlian yang idnya sama kaya id_bidang keahlian di table bidang kompetensi tadi dan id guru nya == 1
-            $data = Bidang_keahlian::has('kompetensi_dasar')->whereIn('id',  $id_keahlian)->where('id_guru', auth()->id())->get();
+            // jika role nya guru
+            if (Auth::user()->role == 'guru') {
+                // mencari bidang keahlian yang idnya sama kaya id_bidang keahlian di table bidang kompetensi tadi dan id guru nya == 1
+                $data = Bidang_keahlian::has('kompetensi_dasar')->whereIn('id',  $id_keahlian)->where('id_guru', auth()->id())->get();
+            }else{
+                $data = Bidang_keahlian::has('kompetensi_dasar')->whereIn('id',  $id_keahlian)->get();
+            }
+
             return datatables()->of($data)
+                ->addColumns('guru', function ($data) {
+                    return $data->guru->name;
+                })
                 ->addColumns('action', function ($data) {
                     $button = '<a href="' . $data->id . '"   id="' . $data->id . '" class="edit btn btn-primary btn-sm"><i class="fas fa-search"></i></a>';
                     $button .= '&nbsp';
@@ -52,7 +62,7 @@ class StrategiPembelajaranController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.strategi_pembelajaran.tambah');
     }
 
     /**
@@ -74,7 +84,13 @@ class StrategiPembelajaranController extends Controller
      */
     public function show($id)
     {
-        //
+        if (Auth::user()->role == 'guru') {
+            // menambil bidang keahlian yang sudah di filter di table / datatable ajax yang di atas
+            $strategi = Bidang_keahlian::has('kompetensi_dasar')->where(['id_guru', auth()->id()],['id',$id])->get();
+        } else {
+            $strategi = Bidang_keahlian::has('kompetensi_dasar')->where('id',  $id)->get();
+        }
+        return view('admin.guru.detail', compact('strategi'));
     }
 
     /**
@@ -85,7 +101,13 @@ class StrategiPembelajaranController extends Controller
      */
     public function edit($id)
     {
-        //
+        if (Auth::user()->role == 'guru') {
+            // menambil bidang keahlian yang sudah di filter di table / datatable ajax yang di atas
+            $strategi = Bidang_keahlian::has('kompetensi_dasar')->where(['id_guru', auth()->id()], ['id', $id])->get();
+        } else {
+            $strategi = Bidang_keahlian::has('kompetensi_dasar')->where('id',  $id)->get();
+        }
+        return view('admin.guru.edit', compact('strategi'));
     }
 
     /**

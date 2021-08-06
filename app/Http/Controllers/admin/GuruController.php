@@ -70,7 +70,7 @@ class GuruController extends Controller
         ]);
         $request->reuqest->add(['id_user', $user->id]);
         Guru::create($request->all());
-        return redirect()->route('guru.index');
+        return redirect()->route('guru.index')->with('berhasil','data berhasil di tambahkan');
     }
 
     /**
@@ -79,9 +79,9 @@ class GuruController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Guru $guru)
+    public function show($id)
     {
-        // $guru = Guru::where('id', $id)->first();
+        $guru = Guru::where('id', $id)->first();
         return view('admin.guru.detail', compact($guru));
     }
 
@@ -92,9 +92,9 @@ class GuruController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Guru $guru)
+    public function edit($id)
     {
-        // $guru = Guru::where('id', $id)->first();
+        $guru = Guru::where('id', $id)->first();
         return view('admin.guru.edit', compact($guru));
     }
 
@@ -105,11 +105,11 @@ class GuruController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(GuruRequest $request, Guru $guru)
+    public function update(GuruRequest $request, $id)
     {
         //$guru->update($request->all());
         $request->validated();
-        // $guru = Guru::where('id', $id)->first();
+        $guru = Guru::where('id', $id)->first();
         $user = User::where('id', $guru->id)->first();
         // jika usernnya kosong
         if (!empty($user)) {
@@ -131,7 +131,7 @@ class GuruController extends Controller
         $request->reuqest->add(['id_user',$user->id]);
         // update
         Guru::where('id',$guru->id)->update($request->all());
-        return redirect()->route('guru.index');
+        return redirect()->route('guru.index')->with('Berhasil','Data berhasil di update');
     }
 
     /**
@@ -140,8 +140,9 @@ class GuruController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Guru $guru)
+    public function destroy($id)
     {
+        $guru = Guru::where('id', $id)->first();
         $guru->user->delete;
         $guru->delete();
         return response()->json(['data' => 'data anda berhasil di hapus']);
