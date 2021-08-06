@@ -31,10 +31,10 @@ use App\Http\Controllers\admin\RencanaPelaksanaanPembelajaranController as RPP;
 Route::get('/', [AuthController::class, 'login'])->name('login');
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
-Route::resource('guru', GuruController::class)->parameters(['guru' => 'Guru']);
+
 // admin
 Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () {
-    // Route::resource('guru', GuruController::class)->parameters(['guru' => 'Guru']);
+    Route::resource('guru', GuruController::class)->parameters(['guru' => 'Guru']);
     Route::resource('jurusan', JurusanController::class)->parameters(['jurusan' => 'Jurusan']);
 });
 
