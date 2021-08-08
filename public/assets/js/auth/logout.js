@@ -11,7 +11,7 @@ $(document).ready(function () {
             timer: 1500,
         }).then((result) => {
             if (result.isConfirmed) {
-                window.location.href = '/logout';
+                //window.location.href = '/logout';
                 $.ajax({
                     header: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
