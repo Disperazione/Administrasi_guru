@@ -24,13 +24,15 @@ use App\Http\Controllers\admin\RencanaPelaksanaanPembelajaranController as RPP;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
 
-Route::get('/', [AuthController::class, 'login'])->name('login');
-Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+Route::get('/login', [AuthController::class, 'login'])->name('login');
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
+/*
+note
+kalau belom bisa login taro route resource nya di luar
+cara ngeliat route di resource make php artisan route:list
+*/
 
 // admin
 Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () {

@@ -6,7 +6,7 @@
 @section('breadcrump')
     {{-- breadcrump here --}}
 @endsection
-@section('content')
+@section('main')
     {{-- content here --}}
     {{-- harus make ini --}}
     <span data-role="{{ Auth::user()->role }}"></span>
