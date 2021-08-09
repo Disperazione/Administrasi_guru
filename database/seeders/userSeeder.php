@@ -19,6 +19,7 @@ class userSeeder extends Seeder
         $faker = Faker::create('id_ID');
         DB::table('users')->insert([
             'name' => 'Guru',
+            'role' => 'guru',
             'email' => $faker->email,
             'password' => Hash::make('password'),
         ]);

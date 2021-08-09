@@ -6,9 +6,9 @@ $(document).ready( function () {
         dom:
         "<'row'<'ol-sm-12 col-md-6 btn-table'><'col-sm-12 col-md-6  pdf-button'f>>" +
         "<'row'<'col-sm-12'tr>>" +
-        "<'row'<'col-sm-5'i><'col-sm-7'p>>",
-        bLengthChange: false,
-        ordering:false,
+        "<'row'<'col-sm-5'i><'col-sm-3'l><'col-sm-4'p>>",
+        bLengthChange: true,
+        ordering:true,
         info: true,
         filtering:false,
         searching: true,
@@ -25,13 +25,14 @@ $(document).ready( function () {
         { data: 'DT_RowIndex', name: 'DT_RowIndex'},
         { data: 'nama_jurusan', name:'nama_jurusan'},
         { data: 'singkatan_jurusan', name:'singkatan_jurusan'},
+          { data: 'action', name:'action'},
         ],
     });
-    // $('.btn-table').append(
-    //     '<a href="'+root+'/admin/guru/tambah"class="btn btn-primary "> Tambah Data <i class="fas fa-plus"></i></button></a>'
-    // );
-    // $('#table1_filter').prepend('<a href="'+root+'/admin/export/excel/guru"class="btn btn-success mr-3  ml-2"> Excel <i class="fas fa-cloud-download-alt"></i></button></a>'
-    // );
+    $('.btn-table').append(
+        '<a href="'+root+'/admin/jurusan/create"class="btn btn-primary "> Tambah Data <i class="fas fa-plus"></i></button></a>'
+    );
+    $('#table1_filter').prepend('<a href="'+root+'/admin/export/excel/guru"class="btn btn-success mr-3  ml-2"> Excel <i class="fas fa-cloud-download-alt"></i></button></a>'
+    );
 
 // search engine
 $("#search").keyup(function () {

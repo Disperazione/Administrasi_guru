@@ -1,16 +1,17 @@
 $(document).ready( function () {
+    console.log('test');
     root = window.location.protocol + '//' + window.location.host;
     var filter = $('#search').val();
     console.log('filter');
-    var table = $('#table1').DataTable({
+    var table = $('#table-1').DataTable({
         dom:
         "<'row'<'ol-sm-12 col-md-6 btn-table'><'col-sm-12 col-md-6  pdf-button'f>>" +
         "<'row'<'col-sm-12'tr>>" +
-        "<'row'<'col-sm-5'i><'col-sm-7'p>>",
-        bLengthChange: false,
-        ordering:false,
+        "<'row'<'col-sm-5'i><'col-sm-3'l><'col-sm-4'p>>",
+        bLengthChange: true,
+        ordering:true,
         info: true,
-        filtering:false,
+        filtering:true,
         searching: true,
         serverside: true,
         processing: true,
@@ -31,11 +32,11 @@ $(document).ready( function () {
         { data: 'action',name:'action'}
         ],
     });
-    // $('.btn-table').append(
-    //     '<a href="'+root+'/admin/guru/tambah"class="btn btn-primary "> Tambah Data <i class="fas fa-plus"></i></button></a>'
-    // );
-    // $('#table1_filter').prepend('<a href="'+root+'/admin/export/excel/guru"class="btn btn-success mr-3  ml-2"> Excel <i class="fas fa-cloud-download-alt"></i></button></a>'
-    // );
+    $('.btn-table').append(
+        '<a href="'+root+'/admin/guru/create"class="btn btn-primary "> Tambah Data <i class="fas fa-plus"></i></button></a>'
+    );
+    $('#table-1_filter').prepend('<a href="'+root+'/admin/export/excel/guru"class="btn btn-success mr-3  ml-2"> Excel <i class="fas fa-cloud-download-alt"></i></button></a>'
+    );
 
 // search engine
 $("#search").keyup(function () {

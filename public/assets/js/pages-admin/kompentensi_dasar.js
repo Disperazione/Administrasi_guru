@@ -5,6 +5,7 @@ $(document).ready(function () {
 
 
     role = $('#data').data('role');
+    console.log(role);
     // untuk column nya
     function column(role)
     {
@@ -19,7 +20,6 @@ $(document).ready(function () {
                     { data: 'total_waktu_jam_pelajaran',name:'total_waktu_jam_pelajaran'},
                     { data: 'action',name:'action'}
                 ];
-            break;
         case 'admin':
                 return [
                         { data: 'DT_RowIndex', name: 'DT_RowIndex'},
@@ -34,11 +34,11 @@ $(document).ready(function () {
                 break;
         }
     }
-    var table = $('#table1').DataTable({
+    var table = $('#table-1').DataTable({
         dom:
-        "<'row'<'ol-sm-12 col-md-6 btn-table'><'col-sm-12 col-md-6  pdf-button'f>>" +
+       "<'row'<'ol-sm-12 col-md-6 btn-table'><'col-sm-12 col-md-6  pdf-button'f>>" +
         "<'row'<'col-sm-12'tr>>" +
-        "<'row'<'col-sm-5'i><'col-sm-7'p>>",
+        "<'row'<'col-sm-5'i><'col-sm-3'l><'col-sm-4'p>>",
         bLengthChange: false,
         ordering:false,
         info: true,
@@ -55,6 +55,13 @@ $(document).ready(function () {
         },
         columns:column(role),
     });
+
+    // button tambah & excel
+       $('.btn-table').append(
+        '<a href="'+root+'/admin/kompetensi_dasar/create"class="btn btn-primary "> Tambah Data <i class="fas fa-plus"></i></button></a>'
+    );
+    $('#table-1_filter').prepend('<a href="'+root+'/admin/export/excel/kompetensi_dasar"class="btn btn-success mr-3  ml-2"> Excel <i class="fas fa-cloud-download-alt"></i></button></a>'
+    );
 
     $('body').on('click','#hapus', function () {
 // sweet alert

@@ -3,10 +3,11 @@
 
 @endpush
 @section('title', 'App')
+@section('judul','Lembar Kerja 2')
 @section('breadcrump')
     {{-- breadcrump here --}}
      <div class="breadcrumb-item active"><a href="{{ route('admin.dashboard') }}">Dashboard</a></div>
-    <div class="breadcrumb-item">Table Kompetensi Dasar</div>
+<div class="breadcrumb-item">LK 2</div>
 @endsection
 @section('main')
     {{-- content here --}}
@@ -44,5 +45,5 @@
     <span  id="data" data-role="{{ Auth::user()->role }}"></span>
 @endsection
 @push('js')
-<script src="{{ asset('assets/js/pages-admin/kompentensi_dasar.js') }}"></script>
+<script src="{{ asset('assets/js/pages-admin/LembarKerjaDua.js') }}"></script>
 @endpush

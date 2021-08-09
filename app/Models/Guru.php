@@ -9,7 +9,7 @@ class Guru extends Model
 {
     use HasFactory;
     protected $table = 'guru';
-    protected $guarded = ['name','email','password','_token'];
+    protected $guarded = ['email','password','_token'];
     // protected $filable =  [
     //     'nik',
     //     'jabatan',

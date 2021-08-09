@@ -1,16 +1,15 @@
 <?php
 
-namespace App\Http\Controllers\admin;
+namespace App\Http\Controllers\admin\lembar_kerja;
 
-use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\Bidang_keahlian;
+use App\Models\Indikator_ketercapaian;
 use App\Models\Kompetensi_dasar;
-use App\Models\Strategi_pembelajaran;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
-
-class StrategiPembelajaranController extends Controller
+class LembarKerjaTiga extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -20,29 +19,26 @@ class StrategiPembelajaranController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            // mencari distinct/unique id_bidag_keahlian koompetensi dasar yang punya strategi
-            $kompetensi = Kompetensi_dasar::select('id_bidang_keahlian')->has('strategi_pembelajaran')->get()->unique();
+            // mencari distinct/unique id_bidag_keahlian koompetensi dasar yang punya  indikator_ketercapaian
+            $kompetensi = Kompetensi_dasar::select('id_bidang_keahlian')->has('indikator_ketercapaian')->get()->unique();
             $id_keahlian = [];
-            // loop kompetensi lalu ambil bidang keahlian abis itu masukin ke array
             foreach ($kompetensi as $key => $value) {
                 $id_keahlian[] = $value->id_bidang_keahlian;
             }
-            // jika role nya guru
             if (Auth::user()->role == 'guru') {
-                // mencari bidang keahlian yang idnya sama kaya id_bidang keahlian di table bidang kompetensi tadi dan id guru nya == 1
                 $data = Bidang_keahlian::has('kompetensi_dasar')->whereIn('id',  $id_keahlian)->where('id_guru', auth()->id())->get();
-            }else{
+            } else if (Auth::user()->role == 'admin') {
                 $data = Bidang_keahlian::has('kompetensi_dasar')->whereIn('id',  $id_keahlian)->get();
             }
 
             return datatables()->of($data)
-                ->addColumns('guru', function ($data) {
+                ->addColumn('guru', function ($data) {
                     return $data->guru->name;
                 })
-                ->addColumns('action', function ($data) {
-                    $button = '<a href="' . $data->id . '"   id="' . $data->id . '" class="edit btn btn-primary btn-sm"><i class="fas fa-search"></i></a>';
-                    $button .= '&nbsp';
-                    $button .= '<a href="/admin/target_pembelajaran/detail/' . $data->id . '"   id="' . $data->id . '" class="edit btn btn-primary btn-sm"><i class="fas fa-search"></i></a>';
+                ->addColumn('action', function ($data) {
+                $button = '<a href="' . $data->id . '"   id="' . $data->id . '" class="edit btn btn-success btn-sm"><i class="fas fa-download"></i></a>';
+                $button .= '&nbsp';
+                    $button .= '<a href="' . $data->id . '"   id="' . $data->id . '" class="edit btn btn-primary btn-sm"><i class="fas fa-search"></i></a>';
                     $button .= '&nbsp';
                     $button .= '<a  href="/admin/target_pembelajaran/edit/' . $data->id . '" id="edit" data-toggle="tooltip"  data-id="' . $data->id . '" data-original-title="Edit" class="edit btn btn-warning btn-sm edit-post"><i class="fas fa-pencil-alt"></i></a>';
                     $button .= '&nbsp';
@@ -50,9 +46,9 @@ class StrategiPembelajaranController extends Controller
                     return $button;
                 })
                 ->rawColumns(['action'])
-                ->addIndex()->make(true);
+                ->addIndexColumn()->make(true);
         }
-        return view('admin.strategi_pembelajaran.index');
+        return view('admin.lembar_kerja_tiga.index');
     }
 
     /**
@@ -62,7 +58,7 @@ class StrategiPembelajaranController extends Controller
      */
     public function create()
     {
-        return view('admin.strategi_pembelajaran.tambah');
+        return view('admin.lembar_kerja_tiga.tambah');
     }
 
     /**
@@ -85,12 +81,11 @@ class StrategiPembelajaranController extends Controller
     public function show($id)
     {
         if (Auth::user()->role == 'guru') {
-            // menambil bidang keahlian yang sudah di filter di table / datatable ajax yang di atas
-            $strategi = Bidang_keahlian::has('kompetensi_dasar')->where(['id_guru', auth()->id()],['id',$id])->get();
-        } else {
-            $strategi = Bidang_keahlian::has('kompetensi_dasar')->where('id',  $id)->get();
+            $indikator = Bidang_keahlian::has('kompetensi_dasar')->where(['id_guru', auth()->id()], ['id', $id])->get();
+        } else if (Auth::user()->role == 'ad,om') {
+            $indikator = Bidang_keahlian::has('kompetensi_dasar')->where('id', $id)->get();
         }
-        return view('admin.guru.detail', compact('strategi'));
+        return view('admin.lembar_kerja_tiga.detail', compact('indikator'));
     }
 
     /**
@@ -102,12 +97,11 @@ class StrategiPembelajaranController extends Controller
     public function edit($id)
     {
         if (Auth::user()->role == 'guru') {
-            // menambil bidang keahlian yang sudah di filter di table / datatable ajax yang di atas
-            $strategi = Bidang_keahlian::has('kompetensi_dasar')->where(['id_guru', auth()->id()], ['id', $id])->get();
-        } else {
-            $strategi = Bidang_keahlian::has('kompetensi_dasar')->where('id',  $id)->get();
+            $indikator = Bidang_keahlian::has('kompetensi_dasar')->where(['id_guru', auth()->id()], ['id', $id])->get();
+        } else if (Auth::user()->role == 'ad,om') {
+            $indikator = Bidang_keahlian::has('kompetensi_dasar')->where('id', $id)->get();
         }
-        return view('admin.guru.edit', compact('strategi'));
+        return view('admin.lembar_kerja_tiga.detail', compact('indikator'));
     }
 
     /**
@@ -130,10 +124,10 @@ class StrategiPembelajaranController extends Controller
      */
     public function destroy($id)
     {
-        $kom = Kompetensi_dasar::where('id_bidang_keahlian',$id)->get();
-        foreach ($kom as $key => $value) {
-            $value->strategi_pembelajaran->delete();
+        $kd = Kompetensi_dasar::where('id_bidang_keahlian', $id)->first();
+        foreach ($kd as $key => $value) {
+            $value->indikator_ketercapaian->delete();
         }
-        return response()->jsonp($data = 'berhasil');
+        return response()->json($data = 'berhasil');
     }
 }

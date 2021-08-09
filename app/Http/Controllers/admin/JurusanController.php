@@ -22,13 +22,13 @@ class JurusanController extends Controller
                 ->addColumn('action', function ($data) {
                     $button = '<a href="/admin/jurusan/detail/' . $data->id . '"   id="' . $data->id . '" class="edit btn btn-primary btn-sm"><i class="fas fa-search"></i></a>';
                     $button .= '&nbsp';
-                    $button .= '<a  href="/admin/jurusan/edit/' . $data->id . '" id="edit" data-toggle="tooltip"  data-id="' . $data->id . '" data-original-title="Edit" class="edit btn btn-warning btn-sm edit-post"><i class="fas fa-pencil-alt"></i></a>';
+                    $button .= '<a  href="/admin/jurusan/' . $data->id . '/edit" id="edit" data-toggle="tooltip"  data-id="' . $data->id . '" data-original-title="Edit" class="edit btn btn-warning btn-sm edit-post"><i class="fas fa-pencil-alt"></i></a>';
                     $button .= '&nbsp';
                     $button .= '<button type="button" name="delete" id="hapus" data-id="' . $data->id . '" class="delete btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>';
                     return $button;
                 })
                 ->rawColumns(['action'])
-                ->addindex()->make(true);
+                ->addIndexColumn()->make(true);
         }
         return view('admin.jurusan.index');
     }
@@ -40,7 +40,7 @@ class JurusanController extends Controller
      */
     public function create()
     {
-        return view('admin.jurusan.create');
+        return view('admin.jurusan.tambah');
     }
 
     /**
@@ -65,7 +65,7 @@ class JurusanController extends Controller
     public function show($id)
     {
         $jurusan = jurusan::where('id', $id)->first();
-        return view('admin.guru.detail', compact('jurusan'));
+        return view('admin.jurusan.detail', compact('jurusan'));
     }
 
     /**
@@ -77,7 +77,7 @@ class JurusanController extends Controller
     public function edit($id)
     {
         $jurusan = jurusan::where('id', $id)->first();
-        return view('admin.guru.edit', compact('jurusan'));
+        return view('admin.jurusan.edit', compact('jurusan'));
     }
 
     /**
@@ -90,8 +90,10 @@ class JurusanController extends Controller
     public function update(JurusanRequest $request, $id)
     {
         $request->validated();
-        Jurusan::where('id',$id)->update($request->all());
-        return redirect()->route('admin.guru.index')->with('berhasil','Data berhasil di update');
+        $data = $request->all();
+        unset($data['_token'], $data['_method']);
+        Jurusan::where('id',$id)->update($data);
+        return redirect()->route('admin.jurusan.index')->with('berhasil','Data berhasil di update');
     }
 
     /**

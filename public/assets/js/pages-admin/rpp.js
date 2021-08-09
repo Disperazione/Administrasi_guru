@@ -6,74 +6,113 @@ $(document).ready(function () {
     role = $('#data').data('role');
 
     // untuk column nya
-    function column(role)
-    {
+    function column(role) {
         switch (role) {
-        case 'guru':
-            return [
-                    { data: 'DT_RowIndex', name: 'DT_RowIndex'},
-                    { data: 'bidang_studi', name:'bidang_studi'},
-                    // { data: 'kelas', kelas:'kelas'},
-                    // { data: 'jam_pelajaran', name:'jam_pelajaran'},
-                    { data: 'mapel',name:'mapel'},
-                    // { data: 'total_waktu_jam_pelajaran',name:'total_waktu_jam_pelajaran'},
-                    { data: 'action',name:'action'}
+            case 'guru':
+                return [{
+                        data: 'DT_RowIndex',
+                        name: 'DT_RowIndex'
+                    },
+                    {
+                        data: 'bidang_studi',
+                        name: 'bidang_studi'
+                    },
+
+                    {
+                        data: 'mapel',
+                        name: 'mapel'
+                    },
+                    {
+                        data: 'kd_ketrampilan',
+                        name: 'kd_ketrampilan'
+                    },
+                    {
+                        data: 'kd_pengetahuan',
+                        name: 'kd_pengetahuan'
+                    },
+                    {
+                        data: 'action',
+                        name: 'action'
+                    }
+
                 ];
-            break;
-        case 'admin':
-                return [
-                        { data: 'DT_RowIndex', name: 'DT_RowIndex'},
-                        {data:'guru', name: 'guru'},
-                        { data: 'bidang_studi', name:'bidang_studi'},
-                        // { data: 'kelas', kelas:'kelas'},
-                        // { data: 'jam_pelajaran', name:'jam_pelajaran'},
-                        { data: 'mapel',name:'mapel'},
-                        // { data: 'total_waktu_jam_pelajaran',name:'total_waktu_jam_pelajaran'},
-                        { data: 'action',name:'action'}
-                    ];
+                break;
+            case 'admin':
+                return [{
+                        data: 'DT_RowIndex',
+                        name: 'DT_RowIndex'
+                    },
+                    {
+                        data: 'guru',
+                        name: 'guru'
+                    },
+                    {
+                        data: 'bidang_studi',
+                        name: 'bidang_studi'
+                    },
+
+                    {
+                        data: 'mapel',
+                        name: 'mapel'
+                    },
+                    {
+                        data: 'kd_kerampilan',
+                        name: 'kd_kerampilan'
+                    },
+                    {
+                        data: 'kd_pengetahuan',
+                        name: 'kd_pengetahuan'
+                    },
+                    {
+                        data: 'action',
+                        name: 'action'
+                    }
+                ];
                 break;
         }
     }
-    var table = $('#table1').DataTable({
-        dom:
-        "<'row'<'ol-sm-12 col-md-6 btn-table'><'col-sm-12 col-md-6  pdf-button'f>>" +
-        "<'row'<'col-sm-12'tr>>" +
-        "<'row'<'col-sm-5'i><'col-sm-7'p>>",
-        bLengthChange: false,
-        ordering:false,
+
+    var table = $('#table-1').DataTable({
+        dom: "<'row'<'ol-sm-12 col-md-6 btn-table'><'col-sm-12 col-md-6  pdf-button'f>>" +
+            "<'row'<'col-sm-12'tr>>" +
+            "<'row'<'col-sm-5'i><'col-sm-7'p>>",
+        bLengthChange: true,
+        ordering: false,
         info: true,
-        filtering:false,
+        filtering: false,
         searching: true,
         serverside: true,
         processing: true,
         serverSide: true,
         "responsive": true,
         "autoWidth": false,
-        ajax:{
-        url: root + "/admin/rpp",
-        type: "get",
+        ajax: {
+            url: root + "/admin/RPP",
+            type: "get",
         },
-        columns:column(role),
+        columns: column(role),
     });
-
-    $('body').on('click','#hapus', function () {
-// sweet alert
-    Swal.fire({
-    title: 'Apa anda yakin?',
-    icon: 'warning',
-    showCancelButton: true,
-    confirmButtonText: 'Hapus',
-    cancelButtonText: 'Batal'
-    }).then((result) => {
-        if (result.value) {
-            id = $(this).data('id');
-            $.ajax({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                    url: root+"/admin/rpp/"+ id,
+    $('.btn-table').append('<a href="' + root + '/admin/RPP/create" class="btn btn-primary">Tambah Data +</a>');
+      $('#table-1_filter').prepend('<a href="'+root+'/admin/export/excel/kompetensi_dasar"class="btn btn-success mr-3  ml-2"> Excel <i class="fas fa-cloud-download-alt"></i></button></a>'
+    );
+    $('body').on('click', '#hapus', function () {
+        // sweet alert
+        Swal.fire({
+            title: 'Apa anda yakin?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Hapus',
+            cancelButtonText: 'Batal'
+        }).then((result) => {
+            if (result.value) {
+                id = $(this).data('id');
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    url: root + "/admin/RPP/" + id,
                     type: "DELETE",
-                    data:'',
+                    data: '',
                     success: function (data) {
                         console.log(data);
                         table.draw();
@@ -86,8 +125,8 @@ $(document).ready(function () {
                     error: function (data) {
                         console.log('Error:', data);
                     }
-            });
-        } else if (result.dismiss === Swal.DismissReason.cancel) {}
-    })
-});
+                });
+            } else if (result.dismiss === Swal.DismissReason.cancel) {}
+        })
+    });
 })

@@ -1,14 +1,15 @@
 <?php
 
-namespace App\Http\Controllers\admin;
+namespace App\Http\Controllers\admin\lembar_kerja;
 
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\Bidang_keahlian;
 use App\Models\Kompetensi_dasar;
+use App\Models\Strategi_pembelajaran;
 use Illuminate\Http\Request;
 
-class MateriBahanAjarController extends Controller
+class LembarKerjaDua extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,25 +19,27 @@ class MateriBahanAjarController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            // mencari distinct/unique id_bidag_keahlian koompetensi dasar yang punya  indikator_ketercapaian
-            $kompetensi = Kompetensi_dasar::select('id_bidang_keahlian')->has('materi_bahan_ajar')->get()->unique();
+            // mencari distinct/unique id_bidag_keahlian koompetensi dasar yang punya strategi
+            $kompetensi = Kompetensi_dasar::select('id_bidang_keahlian')->has('strategi_pembelajaran')->get()->unique();
             $id_keahlian = [];
+            // loop kompetensi lalu ambil bidang keahlian abis itu masukin ke array
             foreach ($kompetensi as $key => $value) {
                 $id_keahlian[] = $value->id_bidang_keahlian;
             }
-
+            // jika role nya guru
             if (Auth::user()->role == 'guru') {
+                // mencari bidang keahlian yang idnya sama kaya id_bidang keahlian di table bidang kompetensi tadi dan id guru nya == 1
                 $data = Bidang_keahlian::has('kompetensi_dasar')->whereIn('id',  $id_keahlian)->where('id_guru', auth()->id())->get();
-            } else if (Auth::user()->role == 'ad,om') {
+            } else {
                 $data = Bidang_keahlian::has('kompetensi_dasar')->whereIn('id',  $id_keahlian)->get();
             }
 
             return datatables()->of($data)
-                ->addColumns('guru', function ($data) {
+                ->addColumn('guru', function ($data) {
                     return $data->guru->name;
                 })
-                ->addColumns('action', function ($data) {
-                    $button = '<a href="' . $data->id . '"   id="' . $data->id . '" class="edit btn btn-primary btn-sm"><i class="fas fa-search"></i></a>';
+                ->addColumn('action', function ($data) {
+                    $button = '<a href="' . $data->id . '"   id="' . $data->id . '" class="edit btn btn-success btn-sm"><i class="fas fa-download"></i></a>';
                     $button .= '&nbsp';
                     $button .= '<a href="/admin/target_pembelajaran/detail/' . $data->id . '"   id="' . $data->id . '" class="edit btn btn-primary btn-sm"><i class="fas fa-search"></i></a>';
                     $button .= '&nbsp';
@@ -46,9 +49,9 @@ class MateriBahanAjarController extends Controller
                     return $button;
                 })
                 ->rawColumns(['action'])
-                ->addIndex()->make(true);
+                ->addIndexColumn()->make(true);
         }
-        return view('admin.materi_bahan_ajar.index');
+        return view('admin.lembar_kerja_dua.index');
     }
 
     /**
@@ -58,7 +61,7 @@ class MateriBahanAjarController extends Controller
      */
     public function create()
     {
-        return view('admin.materi_bahan_ajar.tambah');
+        return view('admin.lembar_kerja_dua.tambah');
     }
 
     /**
@@ -81,11 +84,12 @@ class MateriBahanAjarController extends Controller
     public function show($id)
     {
         if (Auth::user()->role == 'guru') {
-            $materi = Bidang_keahlian::has('kompetensi_dasar')->where(['id_guru', auth()->id()],['id',$id])->get();
-        } else if (Auth::user()->role == 'ad,om') {
-            $materi = Bidang_keahlian::has('kompetensi_dasar')->where('id',  $id)->get();
+            // menambil bidang keahlian yang sudah di filter di table / datatable ajax yang di atas
+            $strategi = Bidang_keahlian::has('kompetensi_dasar')->where(['id_guru', auth()->id()], ['id', $id])->get();
+        } else {
+            $strategi = Bidang_keahlian::has('kompetensi_dasar')->where('id',  $id)->get();
         }
-        return view('admin.materi_bahan_ajar.detail', compact('materi'));
+        return view('admin.lembar_kerja_dua.detail', compact('strategi'));
     }
 
     /**
@@ -97,11 +101,12 @@ class MateriBahanAjarController extends Controller
     public function edit($id)
     {
         if (Auth::user()->role == 'guru') {
-            $materi = Bidang_keahlian::has('kompetensi_dasar')->where(['id_guru', auth()->id()], ['id', $id])->get();
-        } else if (Auth::user()->role == 'ad,om') {
-            $materi = Bidang_keahlian::has('kompetensi_dasar')->where('id',  $id)->get();
+            // menambil bidang keahlian yang sudah di filter di table / datatable ajax yang di atas
+            $strategi = Bidang_keahlian::has('kompetensi_dasar')->where(['id_guru', auth()->id()], ['id', $id])->get();
+        } else {
+            $strategi = Bidang_keahlian::has('kompetensi_dasar')->where('id',  $id)->get();
         }
-        return view('admin.materi_bahan_ajar.detail', compact('materi'));
+        return view('admin.lembar_kerja_dua.edit', compact('strategi'));
     }
 
     /**
@@ -124,10 +129,10 @@ class MateriBahanAjarController extends Controller
      */
     public function destroy($id)
     {
-        $kd = Kompetensi_dasar::where('id_bidang_keahlian',$id)->get();
-        foreach ($kd as $key => $value) {
-            $kd->materi_bahan_ajar->delete();
+        $kom = Kompetensi_dasar::where('id_bidang_keahlian', $id)->get();
+        foreach ($kom as $key => $value) {
+            $value->strategi_pembelajaran->delete();
         }
-        return response()->json($data = 'berhasil');
+        return response()->jsonp($data = 'berhasil');
     }
 }

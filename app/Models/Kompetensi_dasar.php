@@ -21,7 +21,7 @@ class Kompetensi_dasar extends Model
     }
     public function indikator_ketercapaian()
     {
-        return $this->hasOne(Indikator_ketercapaian::class,'id_konpetensi_dasar','id');
+        return $this->hasOne(Indikator_ketercapaian::class, 'id_kompetensi_dasar','id');
     }
     public function materi_bahan_ajar()
     {

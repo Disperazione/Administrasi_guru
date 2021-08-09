@@ -4,14 +4,15 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\admin\GuruController;
 use App\Http\Controllers\admin\JurusanController;
+use App\Http\Controllers\admin\Kompetensi_dasarController;
 use App\Http\Controllers\auth\AuthController;
 
-use App\Http\Controllers\admin\TargetPembelajaranController as LK1;
-use App\Http\Controllers\admin\StrategiPembelajaranController as LK2;
-use App\Http\Controllers\admin\IndikatorKetercapaianController as LK3;
-use App\Http\Controllers\admin\Kompetensi_dasarController;
-use App\Http\Controllers\admin\MateriBahanAjarController as LK4;
-use App\Http\Controllers\admin\RencanaPelaksanaanPembelajaranController as RPP;
+use App\Http\Controllers\admin\lembar_kerja\LembarKerjaSatu as LK1;
+use App\Http\Controllers\admin\lembar_kerja\LembarKerjaDua as LK2;
+use App\Http\Controllers\admin\lembar_kerja\LembarKerjaTiga as LK3;
+use App\Http\Controllers\admin\lembar_kerja\LembarKerjaEmpat as LK4;
+use App\Http\Controllers\admin\lembar_kerja\RPPController as RPP;
+use App\Http\Controllers\ViewController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,6 +27,7 @@ use App\Http\Controllers\admin\RencanaPelaksanaanPembelajaranController as RPP;
 
 
 Route::get('/login', [AuthController::class, 'login'])->name('login');
+Route::post('/PostLogin', [AuthController::class, 'PostLogin'])->name('api.login');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 /*
@@ -42,10 +44,11 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () 
 
 // guru
 Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () {
+    Route::get('/dashboard', [ViewController::class,'dashboard'])->name('dashboard');
     Route::resource('kompetensi_dasar', Kompetensi_dasarController::class);
-    Route::resource('target_pembelajaran', LK1::class);
-    Route::resource('strategi_pembelajaran', LK2::class);
-    Route::resource('indikator_ketercapaian', LK3::class);
-    Route::resource('materi_bahan_ajar', LK4::class);
-    Route::resource('rpp', RPP::class);
+    Route::resource('Lembar-kerja-1', LK1::class);
+    Route::resource('Lembar-kerja-2', LK2::class);
+    Route::resource('Lembar-kerja-3', LK3::class);
+    Route::resource('Lembar-kerja-4', LK4::class);
+    Route::resource('RPP', RPP::class);
 });

@@ -9,7 +9,7 @@ class Jurusan extends Model
 {
     use HasFactory;
     protected $table = 'jurusan';
-    protected $guarded = [];
+    protected $guarded = ['_token'];
 
     public function guru()
     {

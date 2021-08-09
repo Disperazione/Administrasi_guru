@@ -13,15 +13,17 @@ $(document).ready(function () {
             if (result.isConfirmed) {
                 //window.location.href = '/logout';
                 $.ajax({
-                    header: {
+                    headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
                     url: '/logout',
                     type: 'POST',
                     data: '',
                     success : function(){
+                        window.location.href = '/login';
                     },
                     fail : function (param) {
+                        console.log(param);
                     }
                 })
             } else if (result.isDenied) {

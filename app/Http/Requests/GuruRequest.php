@@ -41,11 +41,11 @@ class GuruRequest extends FormRequest
         return [
             'name.required' => 'Nama tidak boleh kosong',
             'email.required' => 'Email tidak boleh kosong',
-            'password.required' => 'password tidak boleh kosong',
-            'nik.required' => 'nik tisak boleh koosng',
-            'jabatan.required' => 'jabatan tidak boleh koosng',
-            'alamat.required' => 'alamat tidak boleh kosong',
-            'fax.required' => 'fax tidak boleh koosng',
+            'password.required' => 'Password tidak boleh kosong',
+            'nik.required' => 'Nik tidak boleh koosng',
+            'jabatan.required' => 'Jabatan tidak boleh koosng',
+            'alamat.required' => 'Alamat tidak boleh kosong',
+            'fax.required' => 'Fax tidak boleh koosng',
             'no_telp.required' => 'Nomor telepon tidak boleh koosng',
             'id_jurusan.required' => 'Jurusan tidak boleh'
         ];

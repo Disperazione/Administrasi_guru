@@ -1,15 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\admin;
+namespace App\Http\Controllers\admin\lembar_kerja;
 
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\Bidang_keahlian;
-use App\Models\Indikator_ketercapaian;
 use App\Models\Kompetensi_dasar;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
-class IndikatorKetercapaianController extends Controller
+class LembarKerjaEmpat extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -20,24 +19,26 @@ class IndikatorKetercapaianController extends Controller
     {
         if ($request->ajax()) {
             // mencari distinct/unique id_bidag_keahlian koompetensi dasar yang punya  indikator_ketercapaian
-            $kompetensi = Kompetensi_dasar::select('id_bidang_keahlian')->has('indikator_ketercapaian')->get()->unique();
+            $kompetensi = Kompetensi_dasar::select('id_bidang_keahlian')->has('materi_bahan_ajar')->get()->unique();
             $id_keahlian = [];
             foreach ($kompetensi as $key => $value) {
                 $id_keahlian[] = $value->id_bidang_keahlian;
             }
+
             if (Auth::user()->role == 'guru') {
+                // mendapat bidang keahlian yang sudah mempunyai kompetensi dasar yang mempunyai materi bahan ajar
                 $data = Bidang_keahlian::has('kompetensi_dasar')->whereIn('id',  $id_keahlian)->where('id_guru', auth()->id())->get();
-            }else if(Auth::user()->role == 'ad,om'){
+            } else if (Auth::user()->role == 'ad,om') {
                 $data = Bidang_keahlian::has('kompetensi_dasar')->whereIn('id',  $id_keahlian)->get();
             }
 
             return datatables()->of($data)
-                ->addColumns('guru', function ($data) {
+                ->addColumn('guru', function ($data) {
                     return $data->guru->name;
                 })
-                ->addColumns('action', function ($data) {
-                    $button = '<a href="' . $data->id . '"   id="' . $data->id . '" class="edit btn btn-primary btn-sm"><i class="fas fa-search"></i></a>';
-                    $button .= '&nbsp';
+            ->addColumn('action', function ($data) {
+                $button = '<a href="' . $data->id . '"   id="' . $data->id . '" class="edit btn btn-success btn-sm"><i class="fas fa-download"></i></a>';
+                $button .= '&nbsp';
                     $button .= '<a href="/admin/target_pembelajaran/detail/' . $data->id . '"   id="' . $data->id . '" class="edit btn btn-primary btn-sm"><i class="fas fa-search"></i></a>';
                     $button .= '&nbsp';
                     $button .= '<a  href="/admin/target_pembelajaran/edit/' . $data->id . '" id="edit" data-toggle="tooltip"  data-id="' . $data->id . '" data-original-title="Edit" class="edit btn btn-warning btn-sm edit-post"><i class="fas fa-pencil-alt"></i></a>';
@@ -46,9 +47,9 @@ class IndikatorKetercapaianController extends Controller
                     return $button;
                 })
                 ->rawColumns(['action'])
-                ->addIndex()->make(true);
+                ->addIndexColumn()->make(true);
         }
-        return view('admin.strategi_pembelajaran.index');
+        return view('admin.lembar_kerja_empat.index');
     }
 
     /**
@@ -58,7 +59,7 @@ class IndikatorKetercapaianController extends Controller
      */
     public function create()
     {
-        return view('admin.indikator_ketercapaian.tambah');
+        return view('admin.lembar_kerja_empat.tambah');
     }
 
     /**
@@ -81,11 +82,11 @@ class IndikatorKetercapaianController extends Controller
     public function show($id)
     {
         if (Auth::user()->role == 'guru') {
-            $indikator = Bidang_keahlian::has('kompetensi_dasar')->where(['id_guru', auth()->id()],['id',$id])->get();
+            $materi = Bidang_keahlian::has('kompetensi_dasar')->where(['id_guru', auth()->id()], ['id', $id])->get();
         } else if (Auth::user()->role == 'ad,om') {
-            $indikator = Bidang_keahlian::has('kompetensi_dasar')->where('id',$id)->get();
+            $materi = Bidang_keahlian::has('kompetensi_dasar')->where('id',  $id)->get();
         }
-        return view('admin.indikator_ketercapaian.detail', compact('indikator'));
+        return view('admin.lembar_kerja_empat.detail', compact('materi'));
     }
 
     /**
@@ -97,11 +98,11 @@ class IndikatorKetercapaianController extends Controller
     public function edit($id)
     {
         if (Auth::user()->role == 'guru') {
-            $indikator = Bidang_keahlian::has('kompetensi_dasar')->where(['id_guru', auth()->id()], ['id', $id])->get();
+            $materi = Bidang_keahlian::has('kompetensi_dasar')->where(['id_guru', auth()->id()], ['id', $id])->get();
         } else if (Auth::user()->role == 'ad,om') {
-            $indikator = Bidang_keahlian::has('kompetensi_dasar')->where('id', $id)->get();
+            $materi = Bidang_keahlian::has('kompetensi_dasar')->where('id',  $id)->get();
         }
-        return view('admin.indikator_ketercapaian.detail', compact('indikator'));
+        return view('admin.lembar_kerja_empat.detail', compact('materi'));
     }
 
     /**
@@ -124,9 +125,9 @@ class IndikatorKetercapaianController extends Controller
      */
     public function destroy($id)
     {
-        $kd = Kompetensi_dasar::where('id_bidang_keahlian',$id)->first();
+        $kd = Kompetensi_dasar::where('id_bidang_keahlian', $id)->get();
         foreach ($kd as $key => $value) {
-            $value->indikator_ketercapaian->delete();
+            $kd->materi_bahan_ajar->delete();
         }
         return response()->json($data = 'berhasil');
     }

@@ -24,16 +24,16 @@ class Kompetensi_dasarController extends Controller
             }
 
             return datatables()->of($data)
-                ->addColumns('guru', function ($data) {
+                ->addColumn('guru', function ($data) {
                     return $data->guru->name;
                 })
-                ->addColumns('guru', function ($data) {
-                    return $data->bidang_studi->guru->name;
-                })
+                // ->addColumns('guru', function ($data) {
+                //     return $data->bidang_studi->guru->name;
+                // })
                 ->addColumn('action', function ($data) {
-                    $button = '<a href="' . $data->id . '"   id="' . $data->id . '" class="btn btn-success btn-sm"><i class="fas fa-download"></i></a>';
+                    $button = '<a href="' . $data->id . '"   id="' . $data->id . '" class="btn btn-primary btn-sm"><i class="fas fa-search"></i></a>';
                     $button .= '&nbsp';
-                    $button .= '<a  href="/admin/guru/edit/' . $data->id . '" id="edit" data-toggle="tooltip"  data-id="' . $data->id . '" data-original-title="Edit" class="edit btn btn-warning btn-sm edit-post"><i class="fas fa-pencil-alt"></i></a>';
+                    $button .= '<a  href="/admin/guru/' . $data->id . '/edit" id="edit" data-toggle="tooltip"  data-id="' . $data->id . '" data-original-title="Edit" class="edit btn btn-warning btn-sm edit-post"><i class="fas fa-pencil-alt"></i></a>';
                     $button .= '&nbsp';
                     $button .= '<button type="button" name="delete" id="hapus" data-id="' . $data->id . '" class="delete btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>';
                     return $button;

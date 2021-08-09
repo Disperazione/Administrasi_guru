@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UserRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Session\Session;
@@ -14,23 +15,24 @@ class AuthController extends Controller
         return view('auth.login');
     }
 
-    public function PostLogin(Request $request)
+    public function PostLogin(UserRequest $request)
     {
+        $request->validated();
         $rememberme = ($request->rememberme) ? true : false;
         if(Auth::attempt(['name' => $request, 'password' => $request->password], $rememberme)){
             if (Auth::user()->role === 'admin' or Auth::user()->role === 'guru') {
                 session()->regenerate();
-                return redirect()->route('admin.dashboard')->with('anda berhasil login');
+                return redirect()->route('admin.dashboard')->with('success','anda berhasil login');
             }
         }else {
-            return redirect('/')->with('username or password salah');
+            return redirect('/login')->withErrors(['username' => 'Wrong username or password','password' => 'Wrong username or password']);
         }
     }
 
-    public function logout()
+    public function logout(Request $request)
     {
         session()->flush();
         Auth::logout();
-        return redirect('/');
+        return response()->json($data = 'berhasil');;
     }
 }

@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" >
+    <meta charset="UTF-8">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
     <title>@yield('title')</title>
@@ -14,13 +14,15 @@
         integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 
     <!-- CSS Libraries -->
+     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap4.min.css">
 
+    @stack('css')
     <!-- Template CSS -->
     <link rel="stylesheet" href="{{ asset('/assets/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('/assets/css/components.css') }}">
     <style>
 
-</style>
+    </style>
 </head>
 
 
@@ -69,16 +71,19 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.7.6/jquery.nicescroll.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <script src="{{ asset('/assets/js/stisla.js') }}"></script>
-    <script src="{{ asset('/assets/js/scripts.js') }}"></script>
-     <script src="{{ asset('/assets/js/auth/logout.js') }}"></script>
+    <script src="{{ asset('/assets/js/auth/logout.js') }}"></script>
     <!-- JS Libraies -->
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap4.min.js"></script>
+
 
     <!-- Template JS File -->
     <script src="{{ asset('/assets/js/scripts.js') }}"></script>
     <script src="{{ asset('/assets/js/custom.js') }}"></script>
 
     <!-- Page Specific JS File -->
+    @stack('js')
 </body>
 
 </html>
