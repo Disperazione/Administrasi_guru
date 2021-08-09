@@ -23,5 +23,12 @@ class userSeeder extends Seeder
             'email' => $faker->email,
             'password' => Hash::make('password'),
         ]);
+
+        DB::table('users')->insert([
+            'name' => 'Admin',
+            'role' => 'admin',
+            'email' => $faker->email,
+            'password' => Hash::make('password'),
+        ]);
     }
 }

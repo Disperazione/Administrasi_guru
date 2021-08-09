@@ -56,8 +56,8 @@ $(document).ready(function () {
                         name: 'mapel'
                     },
                     {
-                        data: 'kd_kerampilan',
-                        name: 'kd_kerampilan'
+                        data: 'kd_ketrampilan',
+                        name: 'kd_ketrampilan'
                     },
                     {
                         data: 'kd_pengetahuan',

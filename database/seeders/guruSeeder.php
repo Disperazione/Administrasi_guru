@@ -19,12 +19,23 @@ class guruSeeder extends Seeder
         DB::table('guru')->insert([
             'name' => $faker->name,
             'nik' => '0000000',
-            'jabatan' => 'Kejuruan',
+            'jabatan' => 'Guru',
             'alamat' => $faker->address(),
             'fax' => '00',
             'no_telp' => $faker->phoneNumber(),
             'id_jurusan' => 1,
             'id_user' => 1
+        ]);
+
+        DB::table('guru')->insert([
+            'name' => $faker->name,
+            'nik' => '0000000',
+            'jabatan' => 'Admin',
+            'alamat' => $faker->address(),
+            'fax' => '00',
+            'no_telp' => $faker->phoneNumber(),
+            'id_jurusan' => 1,
+            'id_user' => 2
         ]);
     }
 }

@@ -3,11 +3,11 @@
 
 @endpush
 @section('title', 'App')
-@section('judul','Lembar Kerja 4')
+@section('judul','Lembar Kerja 3')
 @section('breadcrump')
     {{-- breadcrump here --}}
      <div class="breadcrumb-item active"><a href="{{ route('admin.dashboard') }}">Dashboard</a></div>
-<div class="breadcrumb-item">LK 4</div>
+<div class="breadcrumb-item">LK 3</div>
 @endsection
 @section('main')
     {{-- content here --}}
@@ -25,6 +25,9 @@
         <thead>
             <tr>
                 <th>#</th>
+                @if (Auth::user()->role == 'admin')
+                    <th>Nama guru</th>
+                @endif
                 <th>Bidang Studi</th>
                 <th>kelas</th>
                 <th>jam pelajaran</th>

@@ -20,7 +20,7 @@ $(document).ready(function () {
                     type: 'POST',
                     data: '',
                     success : function(){
-                        window.location.href = '/login';
+                        window.location.href = '/';
                     },
                     fail : function (param) {
                         console.log(param);

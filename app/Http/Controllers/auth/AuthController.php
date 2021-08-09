@@ -25,7 +25,7 @@ class AuthController extends Controller
                 return redirect()->route('admin.dashboard')->with('success','anda berhasil login');
             }
         }else {
-            return redirect('/login')->withErrors(['username' => 'Wrong username or password','password' => 'Wrong username or password']);
+            return redirect('/')->withErrors(['username' => 'Wrong username or password','password' => 'Wrong username or password']);
         }
     }
 

@@ -26,7 +26,7 @@ use App\Http\Controllers\ViewController;
 */
 
 
-Route::get('/login', [AuthController::class, 'login'])->name('login');
+Route::get('/', [AuthController::class, 'login'])->name('login');
 Route::post('/PostLogin', [AuthController::class, 'PostLogin'])->name('api.login');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
@@ -37,13 +37,13 @@ cara ngeliat route di resource make php artisan route:list
 */
 
 // admin
-Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () {
+Route::prefix('admin')->name('admin.')->middleware(['auth','roles:admin'])->group(function () {
     Route::resource('guru', GuruController::class)->parameters(['guru' => 'Guru']);
     Route::resource('jurusan', JurusanController::class)->parameters(['jurusan' => 'Jurusan']);
 });
 
 // guru
-Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () {
+Route::prefix('admin')->name('admin.')->middleware(['auth','roles:guru,admin'])->group(function () {
     Route::get('/dashboard', [ViewController::class,'dashboard'])->name('dashboard');
     Route::resource('kompetensi_dasar', Kompetensi_dasarController::class);
     Route::resource('Lembar-kerja-1', LK1::class);

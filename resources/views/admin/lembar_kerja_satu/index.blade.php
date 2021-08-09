@@ -25,6 +25,9 @@
         <thead>
             <tr>
                 <th>#</th>
+                 @if (Auth::user()->role == 'admin')
+                    <th>Nama guru</th>
+                @endif
                 <th>Bidang Studi</th>
                 <th>kelas</th>
                 <th>jam pelajaran</th>

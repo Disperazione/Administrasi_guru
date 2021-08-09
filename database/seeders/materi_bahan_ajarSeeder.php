@@ -36,5 +36,6 @@ class materi_bahan_ajarSeeder extends Seeder
         }
 
 
+
     }
 }

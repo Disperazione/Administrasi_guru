@@ -39,9 +39,6 @@ class RPPController extends Controller
                 ->addColumn('guru', function ($data) {
                     return $data->bidang_keahlian->guru->name;
                 })
-                ->addColumn('guru', function ($data) {
-                    return $data->bidang_keahlian->guru->jurusan->singkatan_jurusan;
-                })
                 ->addColumn('action', function ($data) {
                 $button = '<a href="' . $data->id . '"   id="' . $data->id . '" class="edit btn btn-success btn-sm"><i class="fas fa-download"></i></a>';
                 $button .= '&nbsp';

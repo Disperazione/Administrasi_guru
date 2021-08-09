@@ -21,7 +21,7 @@ class kompetensi_dasarSeeder extends Seeder
                 $kd_ketrampilan = "4.$i";
             }else{
                 $kd_pengetahuan = "3.0$i";
-                $kd_ketrampilan = "3.0$i";
+                $kd_ketrampilan = "4.0$i";
             }
 
             DB::table('kompetensi_dasar')->insert([
@@ -82,5 +82,7 @@ class kompetensi_dasarSeeder extends Seeder
                 'id_bidang_keahlian' => 1
             ]);
         }
+
+
     }
 }

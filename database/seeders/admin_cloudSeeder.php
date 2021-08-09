@@ -19,5 +19,10 @@ class admin_cloudSeeder extends Seeder
             'path' => 'file/surat/surat.pdf',
             'id_guru' => 1
         ]);
+        DB::table('admin_cloud')->insert([
+            'nama' => "Surat",
+            'path' => 'file/surat/surat.pdf',
+            'id_guru' => 2
+        ]);
     }
 }

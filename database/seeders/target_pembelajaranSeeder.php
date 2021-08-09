@@ -17,6 +17,5 @@ class target_pembelajaranSeeder extends Seeder
             DB::table('target_pembelajaran')->insert([
             'id_bidang_keahlian' => 1
             ]);
-
     }
 }

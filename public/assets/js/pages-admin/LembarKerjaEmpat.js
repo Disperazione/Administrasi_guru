@@ -12,7 +12,7 @@ $(document).ready(function () {
             return [
                     { data: 'DT_RowIndex', name: 'DT_RowIndex'},
                     { data: 'bidang_studi', name:'bidang_studi'},
-                    { data: 'kelas', kelas:'kelas'},
+                    { data: 'kelas', name:'kelas'},
                     { data: 'jam_pelajaran', name:'jam_pelajaran'},
                     { data: 'mapel',name:'mapel'},
                     { data: 'total_waktu_jam_pelajaran',name:'total_waktu_jam_pelajaran'},
@@ -24,7 +24,7 @@ $(document).ready(function () {
                         { data: 'DT_RowIndex', name: 'DT_RowIndex'},
                         {data:'guru', name: 'guru'},
                         { data: 'bidang_studi', name:'bidang_studi'},
-                        { data: 'kelas', kelas:'kelas'},
+                        { data: 'kelas', name:'kelas'},
                         { data: 'jam_pelajaran', name:'jam_pelajaran'},
                         { data: 'mapel',name:'mapel'},
                         { data: 'total_waktu_jam_pelajaran',name:'total_waktu_jam_pelajaran'},

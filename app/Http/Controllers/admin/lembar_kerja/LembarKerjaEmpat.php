@@ -28,7 +28,7 @@ class LembarKerjaEmpat extends Controller
             if (Auth::user()->role == 'guru') {
                 // mendapat bidang keahlian yang sudah mempunyai kompetensi dasar yang mempunyai materi bahan ajar
                 $data = Bidang_keahlian::has('kompetensi_dasar')->whereIn('id',  $id_keahlian)->where('id_guru', auth()->id())->get();
-            } else if (Auth::user()->role == 'ad,om') {
+            } else if (Auth::user()->role == 'admin') {
                 $data = Bidang_keahlian::has('kompetensi_dasar')->whereIn('id',  $id_keahlian)->get();
             }
 

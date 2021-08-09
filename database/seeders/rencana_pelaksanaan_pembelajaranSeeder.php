@@ -20,6 +20,8 @@ class rencana_pelaksanaan_pembelajaranSeeder extends Seeder
             'alokasi_waktu' => '4 JP',
             'id_kompetensi_dasar' => 1
         ]);
+
+
     }
 }
 
