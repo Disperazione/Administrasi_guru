@@ -51,11 +51,11 @@
                         <a href="{{ route('admin.Lembar-kerja-4.index') }}" class="nav-link "><i
                                 class="fas fa fa-tasks"></i><span>LK 4</span></a>
                     </li>
-                    <li class="  @if(Request::is('admin/RPP','admin/RPP/*')) active @endif">
-                        <a href="{{ route('admin.RPP.index') }}" class="nav-link "><i
-                                class="fas fa fa-tasks"></i><span>RPP</span></a>
-                    </li>
                 </ul>
+            </li>
+            <li class="  @if(Request::is('admin/RPP','admin/RPP/*')) active @endif">
+                <a href="{{ route('admin.RPP.index') }}" class="nav-link "><i
+                        class="fas fa fa-tasks"></i><span>RPP</span></a>
             </li>
         </ul>
 

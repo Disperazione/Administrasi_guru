@@ -12,6 +12,7 @@ use App\Http\Controllers\admin\lembar_kerja\LembarKerjaDua as LK2;
 use App\Http\Controllers\admin\lembar_kerja\LembarKerjaTiga as LK3;
 use App\Http\Controllers\admin\lembar_kerja\LembarKerjaEmpat as LK4;
 use App\Http\Controllers\admin\lembar_kerja\RPPController as RPP;
+use App\Http\Controllers\PDF\PDFController;
 use App\Http\Controllers\ViewController;
 
 /*
@@ -51,4 +52,11 @@ Route::prefix('admin')->name('admin.')->middleware(['auth','roles:guru,admin'])-
     Route::resource('Lembar-kerja-3', LK3::class);
     Route::resource('Lembar-kerja-4', LK4::class);
     Route::resource('RPP', RPP::class);
+
+    // route for pdf here
+    Route::get('/lk_1/{id}/pdf',[PDFController::class,'LK_1'])->name('pdf.lk_1');
+    Route::get('/lk_2/{id}/pdf', [PDFController::class, 'LK_2'])->name('pdf.lk_2');
+    Route::get('/lk_3/{id}/pdf', [PDFController::class, 'LK_3'])->name('pdf.lk_3');
+    Route::get('/lk_4/{id}/pdf', [PDFController::class, 'LK_4'])->name('pdf.lk_4');
+    Route::get('/rpp/{id}/pdf', [PDFController::class, 'rpp'])->name('pdf.rpp');
 });

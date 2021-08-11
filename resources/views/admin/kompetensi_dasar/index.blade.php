@@ -2,7 +2,7 @@
 @push('css')
 
 @endpush
-@section('title', 'App')
+@section('title', 'SIFOS | Table KD')
 @section('breadcrump')
     {{-- breadcrump here --}}
      <div class="breadcrumb-item active"><a href="{{ route('admin.dashboard') }}">Dashboard</a></div>

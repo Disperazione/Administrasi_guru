@@ -2,7 +2,7 @@
 @push('css')
 
 @endpush
-@section('title', 'App')
+@section('title', 'SIFOS | Table LK 1')
 @section('judul','Lembar Kerja 1')
 @section('breadcrump')
     {{-- breadcrump here --}}
