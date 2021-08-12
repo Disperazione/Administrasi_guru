@@ -93,7 +93,7 @@ class GuruController extends Controller
     public function show($id)
     {
         $guru = Guru::where('id', $id)->first();
-        return view('admin.guru.detail', compact($guru));
+        return view('admin.guru.detail', compact('guru'));
     }
 
 
@@ -165,5 +165,10 @@ class GuruController extends Controller
         $guru->user->delete;
         $guru->delete();
         return response()->json(['data' => 'data anda berhasil di hapus']);
+    }
+
+    public function export()
+    {
+        return 'export';
     }
 }

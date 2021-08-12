@@ -1,13 +1,11 @@
 @extends('layout.master')
-@push('css')
-
-@endpush
-@section('title', 'App')
+@section('title')
+@section('judul')
 @section('breadcrump')
-    {{-- breadcrump here --}}
+
 @endsection
-@section('content')
-    {{-- content here --}}
+@section('main')
+
 @endsection
 @push('js')
 

@@ -59,4 +59,9 @@ Route::prefix('admin')->name('admin.')->middleware(['auth','roles:guru,admin'])-
     Route::get('/lk_3/{id}/pdf', [PDFController::class, 'LK_3'])->name('pdf.lk_3');
     Route::get('/lk_4/{id}/pdf', [PDFController::class, 'LK_4'])->name('pdf.lk_4');
     Route::get('/rpp/{id}/pdf', [PDFController::class, 'rpp'])->name('pdf.rpp');
+
+    // export route
+    Route::get('/guru/excel',[GuruController::class,'export'])->name('export.guru');
+    Route::get('/jurusan/excel', [JurusanController::class, 'export'])->name('export.jurusan');
+
 });

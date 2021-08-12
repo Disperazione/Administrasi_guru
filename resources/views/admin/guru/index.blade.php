@@ -33,13 +33,13 @@
             </tr>
         </thead>
         <tbody>
-               <tr>
-                <td>#</td>
+            <tr>
+                {{-- <td>#</td>
                 <td>nik</td>
                 <td>Nama</td>
                 <td>jabatan</td>
                 <td>kelas</td>
-                <td>jurusan</td>
+                <td>jurusan</td> --}}
             </tr>
         </tbody>
     </table>

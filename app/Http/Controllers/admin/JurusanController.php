@@ -107,4 +107,9 @@ class JurusanController extends Controller
         Jurusan::find($id)->delete();
         return response()->json($data = 'berhasil');
     }
+
+     public function export()
+    {
+        return 'export';
+    }
 }

@@ -10,9 +10,12 @@
 <div class="breadcrumb-item">Tambah Guru</div>
 @endsection
 @section('main')
-<h2 class="section-title">Tambah Guru</h2>
-<p class="section-lead">Masukan Data guru</p>
+{{-- <h2 class="section-title">Tambah Guru</h2>
+<p class="section-lead">Masukan Data guru</p> --}}
 <div class="card">
+    <div class="card-header">
+        Tambah guru
+    </div>
     <div class="card-body">
         <form action="{{ route('admin.guru.store') }}" method="POST">
             @csrf
@@ -28,8 +31,6 @@
                     </div>
                     @enderror
                     </div>
-
-
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
@@ -138,8 +139,6 @@
                         @enderror
                     </div>
                 </div>
-
-
                 <button class="btn btn-success ml-auto mr-2 mt-5 mb-5" type="submit">Submit</button>
                 <a href="{{ route('admin.guru.index') }}" class="btn btn-danger mr-4 mt-5 mb-5">Cansel</a>
             </div>
