@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\admin;
 
+use App\Exports\GuruExport;
 use App\Http\Controllers\Controller;
 use App\Models\Guru;
 use App\Models\User;
@@ -10,6 +11,7 @@ use Yajra\DataTables\DataTables;
 use App\Http\Requests\GuruRequest;
 use App\Models\Jurusan;
 use Illuminate\Support\Facades\Hash;
+use Maatwebsite\Excel\Excel;
 
 class GuruController extends Controller
 {
@@ -18,11 +20,13 @@ class GuruController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index(Request $request)
     {
 
         if ($request->ajax()) {
             $guru = guru::all();
+            // yajra data table
             return datatables()->of($guru)
                 ->editColumn('jurusan', function ($data) {
                     if (!empty($data->jurusan->singkatan_jurusan)) {
@@ -167,8 +171,14 @@ class GuruController extends Controller
         return response()->json(['data' => 'data anda berhasil di hapus']);
     }
 
-    public function export()
+    // export excel
+    public function export(Excel $excel)
     {
+        // kalau yang belom tau ini make model bidiing
+        // sebenernya di excel cuman make static method \ mmethod seperti ini
+        // Excel::download(new ClassExport,'nama.xlsx');
+        $guru = Guru::all();
+        return $excel->download(new GuruExport($guru), 'data-guru.xlsx');
         return 'export';
     }
 }

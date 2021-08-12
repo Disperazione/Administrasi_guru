@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\admin;
 
+use App\Exports\JurusanExport;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\JurusanRequest;
 use App\Models\Jurusan;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Excel;
 
 class JurusanController extends Controller
 {
@@ -108,8 +110,9 @@ class JurusanController extends Controller
         return response()->json($data = 'berhasil');
     }
 
-     public function export()
+     public function export(Excel $excel)
     {
-        return 'export';
+        $jurusan = Jurusan::all();
+        return $excel->download(new JurusanExport($jurusan),'data-jurusan.xlsx');
     }
 }

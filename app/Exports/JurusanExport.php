@@ -2,7 +2,9 @@
 
 namespace App\Exports;
 
+use App\Models\Jurusan;
 use Maatwebsite\Excel\Concerns\FromCollection;
+use Maatwebsite\Excel\Concerns\FromQuery;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Maatwebsite\Excel\Concerns\WithColumnWidths;
 use Maatwebsite\Excel\Concerns\WithCustomStartCell;
@@ -10,49 +12,42 @@ use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithMapping;
 use Maatwebsite\Excel\Concerns\WithStyles;
 use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
-
-class GuruExport implements FromCollection, WithHeadings,WithMapping,WithStyles,WithCustomStartCell,ShouldAutoSize,WithColumnWidths
+use Carbon\Carbon;
+class JurusanExport implements  FromQuery, WithHeadings, WithMapping, WithStyles, WithCustomStartCell, ShouldAutoSize, WithColumnWidths
 {
-    /**
-    * @return \Illuminate\Support\Collection
-    */
-    private $guru;
-    public function __construct($guru)
+    private $jurusan;
+    public function __construct($jurusan)
     {
-        $this->guru = $guru;
+        $this->jurusan = $jurusan;
     }
-    public function collection()
+    public function query()
     {
-        // ini make from collection
-        return collect($this->guru);
+        // ini make from query
+        return Jurusan::query();
     }
 
     public function headings(): array
     {
         return [
             '#',
-            'nik',
-            'nama',
-            'jabatan',
-            'jurusan',
-            'no_telp',
+            'Nama jurusan',
+            'singkatan jurusan',
+            //'tgl_dibuat'
         ];
     }
-    public function map($guru): array
+    public function map($jurusan): array
     {
         return [
             '#',
-            $guru->nik,
-            $guru->name,
-            $guru->jabatan,
-            $guru->jurusan->singkatan_jurusan,
-            $guru->no_telp,
+            $jurusan->nama_jurusan,
+            $jurusan->singkatan_jurusan,
+            //$jurusan->created_at,
         ];
     }
     public function styles(Worksheet $sheet)
     {
         $count = [
-            count($this->guru),
+            count($this->jurusan),
         ];
 
         // array A -> BZ
@@ -72,10 +67,11 @@ class GuruExport implements FromCollection, WithHeadings,WithMapping,WithStyles,
 
         // merge cels di title
         $sheet->mergeCells('B3:' . $highestCol . '3')->setCellValue('B3', 'SMK TARUNA BHAKTI DEPOK');
-        $sheet->mergeCells('B4:' . $highestCol . '4')->setCellValue('B4', 'Data Guru');
+        $sheet->mergeCells('B4:' . $highestCol . '4')->setCellValue('B4', 'Data jurusan');
 
         // border di table dari header sampe lembar panjang column
-        $sheet->getStyle('B7:' . $highestCol . $highestRow)->applyFromArray(array('borders' => array(
+        $sheet->getStyle('B7:' . $highestCol . $highestRow)->applyFromArray(array(
+            'borders' => array(
                 'allBorders' => array(
                     'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
                     'color' => ['argb' => '00000'],
@@ -142,6 +138,5 @@ class GuruExport implements FromCollection, WithHeadings,WithMapping,WithStyles,
         return [
             'B' => '10'
         ];
-
     }
 }

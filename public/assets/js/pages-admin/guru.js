@@ -35,7 +35,7 @@ $(document).ready( function () {
     $('.btn-table').append(
         '<a href="'+root+'/admin/guru/create"class="btn btn-primary "> Tambah Data <i class="fas fa-plus"></i></button></a>'
     );
-    $('#table-1_filter').prepend('<a href="'+root+'/admin/guru/excel"class="btn btn-success mr-3  ml-2"> Excel <i class="fas fa-cloud-download-alt"></i></button></a>'
+    $('#table-1_filter').prepend('<a href="'+root+'/admin/excel/guru"class="btn btn-success mr-3  ml-2"> Excel <i class="fas fa-cloud-download-alt"></i></button></a>'
     );
 
 // search engine
@@ -56,9 +56,9 @@ $('body').on('click','#hapus', function () {
         if (result.value) {
             id = $(this).data('id');
             $.ajax({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
                     url: root+"/admin/guru/"+ id,
                     type: "DELETE",
                     data:'',

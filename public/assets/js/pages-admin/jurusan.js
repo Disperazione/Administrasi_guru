@@ -31,7 +31,7 @@ $(document).ready( function () {
     $('.btn-table').append(
         '<a href="'+root+'/admin/jurusan/create"class="btn btn-primary "> Tambah Data <i class="fas fa-plus"></i></button></a>'
     );
-    $('#table1_filter').prepend('<a href="'+root+'/admin/jurusan/excel"class="btn btn-success mr-3  ml-2"> Excel <i class="fas fa-cloud-download-alt"></i></button></a>'
+    $('#table1_filter').prepend('<a href="'+root+'/admin/excel/jurusan"class="btn btn-success mr-3  ml-2"> Excel <i class="fas fa-cloud-download-alt"></i></button></a>'
     );
 
 // search engine
