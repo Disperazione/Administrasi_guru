@@ -36,7 +36,7 @@ class GuruController extends Controller
                     }
                 })
                 ->addColumn('action', function ($data) {
-                    $button = '<a href="/admin/guru/{id}' . $data->id . '"   id="' . $data->id . '" class="edit btn btn-primary btn-sm"><i class="fas fa-search"></i></a>';
+                    $button = '<a href="/admin/guru/' . $data->id . '"   id="' . $data->id . '" class="edit btn btn-primary btn-sm"><i class="fas fa-search"></i></a>';
                     $button .= '&nbsp';
                     $button .= '<a  href="/admin/guru/' . $data->id . '/edit" id="edit" data-toggle="tooltip"  data-id="' . $data->id . '" data-original-title="Edit" class="edit btn btn-warning btn-sm edit-post"><i class="fas fa-pencil-alt"></i></a>';
                     $button .= '&nbsp';

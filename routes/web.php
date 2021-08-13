@@ -53,6 +53,8 @@ Route::prefix('admin')->name('admin.')->middleware(['auth','roles:guru,admin'])-
     Route::resource('Lembar-kerja-4', LK4::class);
     Route::resource('RPP', RPP::class);
 
+    // route for option
+    Route::get('/option/bidang_studi/{id}', [LK1::class, 'option_bidang']);
     // route for pdf here
     Route::get('/lk_1/{id}/pdf',[PDFController::class,'LK_1'])->name('pdf.lk_1');
     Route::get('/lk_2/{id}/pdf', [PDFController::class, 'LK_2'])->name('pdf.lk_2');

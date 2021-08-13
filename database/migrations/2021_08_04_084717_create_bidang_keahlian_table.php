@@ -16,6 +16,7 @@ class CreateBidangKeahlianTable extends Migration
         Schema::create('bidang_keahlian', function (Blueprint $table) {
             $table->id();
             $table->string('bidang_studi');
+            $table->string('kompetensi_keahlian');
             $table->string('kelas');
             $table->string('jam_pelajaran');
             $table->string('mapel');

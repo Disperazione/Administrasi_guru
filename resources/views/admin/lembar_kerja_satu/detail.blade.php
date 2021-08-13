@@ -22,26 +22,26 @@
           <div class="card-body">
             <div class="form-group col-12">
               <label>Bidang Study</label>
-              <input type="text" class="form-control" placeholder="32323" disabled>
+              <input type="text" class="form-control" value="{{ $target->bidang_study }}" placeholder="32323" disabled>
             </div>
             <div class="form-group col-12">
               <label>Kompetensi Keahlian</label>
-              <input type="text" class="form-control" placeholder="32323" disabled>
+              <input type="text" class="form-control" value="{{ $target->kompetensi_keahlian }}" placeholder="32323" disabled>
             </div>
             <div class="form-group col-12">
               <label>Jam Pelajaran</label>
-              <input type="text" class="form-control" placeholder="32323" disabled>
+              <input type="text" class="form-control" value="{{ $target->jam_pelajaran }}" placeholder="32323" disabled>
             </div>
             <div class="form-group col-12">
               <label>Total Waktu</label>
-              <input type="text" class="form-control" placeholder="32323" disabled>
+              <input type="text" class="form-control" value="{{ $target->total_waktu_jam_pelajaran }}" placeholder="32323" disabled>
             </div>
           </div>
         </div>
       </div>
       </div>
 
-     
+
     </div>
 
     <div class="col-12 col-md-12 ">
@@ -77,13 +77,13 @@
               </table>
             </div>
           </div>
-          
-        
+
+
       </div>
         </div>
       </div>
     </div>
-    
+
 @endsection
 @push('js')
 <script>

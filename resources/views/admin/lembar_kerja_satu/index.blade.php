@@ -29,6 +29,7 @@
                     <th>Nama guru</th>
                 @endif
                 <th>Bidang Studi</th>
+                <th>Kompetensi Keahlian</th>
                 <th>Kelas</th>
                 <th>Jam Pelajaran</th>
                 <th>Mapel</th>

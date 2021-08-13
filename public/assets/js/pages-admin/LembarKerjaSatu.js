@@ -11,6 +11,7 @@ $(document).ready(function () {
             return [
                     { data: 'DT_RowIndex', name: 'DT_RowIndex'},
                     { data: 'bidang_studi', name:'bidang_studi'},
+                    { data: 'kompetensi_keahlian', name:'kompetensi_keahlian'},
                     { data: 'kelas', name:'kelas'},
                     { data: 'jam_pelajaran', name:'jam_pelajaran'},
                     { data: 'mapel',name:'mapel'},
@@ -23,6 +24,7 @@ $(document).ready(function () {
                         { data: 'DT_RowIndex', name: 'DT_RowIndex'},
                         {data:'guru', name: 'guru'},
                         { data: 'bidang_studi', name:'bidang_studi'},
+                        { data: 'kompetensi_keahlian', name:'kompetensi_keahlian'},
                         { data: 'kelas', name:'kelas'},
                         { data: 'jam_pelajaran', name:'jam_pelajaran'},
                         { data: 'mapel',name:'mapel'},

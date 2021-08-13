@@ -23,7 +23,7 @@ class Target_pembelajaran extends Model
 
     public function kompetensi_inti()
     {
-        return $this->hasMany(Konpetensi_inti::class,'id_target_pembelajaran','id');
+        return $this->hasMany(Kompetensi_inti::class,'id_target_pembelajaran','id');
     }
 
     public function target_pencapaian_mapel()

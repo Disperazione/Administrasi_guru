@@ -22,29 +22,29 @@
               <div class="row">
             <div class="form-group col-6">
                 <label>NIK</label>
-                <input type="text" class="form-control" placeholder="32323" disabled>
+                <input type="text" class="form-control" placeholder="32323" value="{{$guru->nik}}" disabled>
               </div>
               <div class="form-group col-6">
                 <label>Nama Guru</label>
-                <input type="text" class="form-control" placeholder="329304897" disabled>
+                <input type="text" class="form-control" placeholder="329304897" value="{{$guru->name}}" disabled>
               </div>
               <div class="form-group col-6">
                 <label>Jabatan</label>
-                <input type="text" class="form-control" placeholder="329304897" disabled>
+                <input type="text" class="form-control" placeholder="329304897" value="{{$guru->jabatan}}" disabled>
               </div>
-            
+
               <div class="form-group col-6">
                 <label>Jurusan</label>
-                <input type="text" class="form-control" placeholder="329304897" disabled>
+                <input type="text" class="form-control" placeholder="329304897" value="{{$guru->jurusan->singkatan_jurusan}}" disabled>
               </div>
               <div class="form-group col-6">
                 <label>No Telp</label>
-                <input type="text" class="form-control" placeholder="329304897" disabled>
+                <input type="text" class="form-control" placeholder="329304897" value="{{$guru->no_telp}}" disabled>
               </div>
               <div class="form-group col-6" style="margin-top: 30px">
                 <a href="{{route('admin.guru.index')}}" type="button" class="btn btn-danger ">   Kembali</a>
               </div>
-              
+
             </div>
             {{-- <div class="btn btn-danger"  >
                 <a href="" type="button" class="btn btn-danger "><i class="fas fa-backspace"></i>   Kembali</a>
