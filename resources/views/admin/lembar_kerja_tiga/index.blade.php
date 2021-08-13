@@ -21,7 +21,7 @@
     @endif
 <div class="card pt-3">
     <div class="card-body">
-     <table class="table table-striped table-hover " id="table-1">
+     <table class="table table-striped table-hover text-center" id="table-1">
         <thead>
             <tr>
                 <th>#</th>
@@ -29,11 +29,11 @@
                     <th>Nama guru</th>
                 @endif
                 <th>Bidang Studi</th>
-                <th>kelas</th>
-                <th>jam pelajaran</th>
-                <th>mapel</th>
+                <th>Kelas</th>
+                <th>Jam Pelajaran</th>
+                <th>Mapel</th>
                 <th>Total Jam</th>
-                <th>action</th>
+                <th style="width: 130px;">Action</th>
             </tr>
         </thead>
         <tbody>

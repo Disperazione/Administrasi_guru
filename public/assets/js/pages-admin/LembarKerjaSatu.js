@@ -35,7 +35,7 @@ $(document).ready(function () {
 
     var table = $('#table-1').DataTable({
         dom:
-       "<'row'<'ol-sm-12 col-md-6 btn-table'><'col-sm-12 col-md-6  pdf-button'f>>" +
+       "<'row'<'col-sm-12 col-md-6 btn-table'><'col-sm-12 col-md-6  pdf-button'f>>" +
         "<'row'<'col-sm-12'tr>>" +
         "<'row'<'col-sm-5'i><'col-sm-3'l><'col-sm-4'p>>",
         bLengthChange: true,

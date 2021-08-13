@@ -55,7 +55,7 @@ $(document).ready(function () {
         },
         columns: column(role),
     });
-    $('.btn-table').append('<a href="'+root+'/admin/Lembar-kerja-1/create" class="btn btn-primary">Tambah Data +</a>');
+    $('.btn-table').append('<a href="'+root+'/admin/Lembar-kerja-2/create" class="btn btn-primary">Tambah Data +</a>');
       $('#table-1_filter').prepend('<a href="'+root+'/admin/export/excel/kompetensi_dasar"class="btn btn-success mr-3  ml-2"> Excel <i class="fas fa-cloud-download-alt"></i></button></a>'
     );
     $('body').on('click','#hapus', function () {
