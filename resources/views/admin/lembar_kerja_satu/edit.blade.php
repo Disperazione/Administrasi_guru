@@ -166,6 +166,7 @@
 
                             @else
                             @for ($i = 1; $i < count($target->target_pembelajaran->target_pencapaian_mapel) ; $i++)
+                            <span id="m" data-id="{{ $i+1 }}"></span>
                                 <div>
                                     <label class="mt-3">Pencapaian Mapel {{ $i +1 }}</label>
                                     <div class="input-group">
@@ -248,6 +249,7 @@
 
                             @else
                             @for ($i = 1; $i < count($target->target_pembelajaran->target_pencapaian_kkd); $i++)
+                            <span id="k" data-id="{{ $i+1 }}"></span>
                                 <div>
                                     <label class="mt-3">Pencapaian KKID {{ $i + 1 }}</label>
                                     <div class="input-group">
@@ -322,6 +324,7 @@
 
                     @else
                     @for ($i = 1 ; $i < count($target->target_pembelajaran->rincian_bukti); $i++)
+                     <span id="b" data-id="{{ $i+1 }}"></span>
                     <div class="input-group mt-3">
                         <input type="text" class="form-control col-8 input_bukti" name="bukti[]" style="margin-left: 41px;" value="{{ $target->target_pembelajaran->rincian_bukti[$i]->rincian_bukti }}">
                         <button class="btn btn-danger ml-4 removebtn_multiple_bukti"><i class="fas fa-times"></i></button>
@@ -361,6 +364,7 @@
 
                     @else
                      @for ($i = 1; $i < count($target->target_pembelajaran->kompetensi_inti) ; $i++)
+                      <span id="kt" data-id="{{ $i+1 }}"></span>
                          <div class="input-group mt-3">
                         <input type="text" class="form-control col-8 input_kompetensi" name="kompetensi[]"  style="margin-left: 41px;" value="{{ $target->target_pembelajaran->kompetensi_inti[$i]->konpetensi  }}">
                         <button class="btn btn-danger ml-4 removebtn_multiple_kompetensi"><i class="fas fa-times"></i></button>
@@ -402,7 +406,14 @@
             var wrapper = $(".fields_multiple_mapel"); //Fields wrapper
             var add_button = $(".addbtn_multiple_maple"); //Add button ID
 
-            var x = 1; //initlal text box count
+            id_m = $('#m').data('id');
+            // console.log(id_m);
+            if (id_m > 1) {
+                x = id_m
+            }else{
+                var x = 1; //initlal text box count
+            }
+
             $(add_button).click(function (e) { //on add input button click
                 e.preventDefault();
                 if (x < max_fields) { //max input box allowed
@@ -453,7 +464,13 @@
             var wrapper = $(".fields_multiple_kkid"); //Fields wrapper
             var add_button = $(".addbtn_multiple_kkid"); //Add button ID
 
-            var x = 1; //initlal text box count
+            id_k = $('#k').data('id');
+            // console.log(id_k);
+            if (id_k > 1) {
+                x = id_k
+            }else{
+                var x = 1;
+            }
             $(add_button).click(function (e) { //on add input button click
                 e.preventDefault();
                 if (x < max_fields) { //max input box allowed
@@ -500,7 +517,13 @@
             var wrapper = $(".fields_multiple_bukti"); //Fields wrapper
             var add_button = $(".addbtn_multiple_bukti"); //Add button ID
 
-            var x = 1; //initlal text box count
+         id_b = $('#b').data('id');
+            // console.log(id_b);
+            if (id_b > 1) {
+                x = id_b
+            }else{
+                var x = 1;
+            }
             $(add_button).click(function (e) { //on add input button click
                 e.preventDefault();
                 if (x < max_fields) { //max input box allowed
@@ -527,7 +550,13 @@
             var wrapper = $(".fields_multiple_kompetensi"); //Fields wrapper
             var add_button = $(".addbtn_multiple_kompetensi"); //Add button ID
 
-            var x = 1; //initlal text box count
+           id_kt = $('#kt').data('id');
+            // console.log(id_k);
+            if (id_kt > 1) {
+                x = id_kt
+            }else{
+                var x = 1;
+            }
             $(add_button).click(function (e) { //on add input button click
                 e.preventDefault();
                 if (x < max_fields) { //max input box allowed
