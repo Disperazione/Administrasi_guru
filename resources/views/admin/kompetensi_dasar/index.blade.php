@@ -24,6 +24,7 @@
         <thead>
             <tr>
                 <th>#</th>
+                <th>Guru</th>
                 <th>Bidang Studi</th>
                 <th>kelas</th>
                 <th>jam pelajaran</th>

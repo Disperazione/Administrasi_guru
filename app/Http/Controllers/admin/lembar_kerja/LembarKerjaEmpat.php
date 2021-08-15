@@ -39,7 +39,7 @@ class LembarKerjaEmpat extends Controller
             ->addColumn('action', function ($data) {
                 $button = '<a href="' . $data->id . '"   id="' . $data->id . '" class="edit btn btn-danger text-white btn-sm"><i class="fas fa-file-pdf"></i></a>';
                 $button .= '&nbsp';
-                    $button .= '<a href="/admin/target_pembelajaran/detail/' . $data->id . '"   id="' . $data->id . '" class="edit btn btn-primary btn-sm"><i class="fas fa-search"></i></a>';
+                    $button .= '<a href="/admin/Lembar-kerja-4/' . $data->id . '"   id="' . $data->id . '" class="edit btn btn-primary btn-sm"><i class="fas fa-search"></i></a>';
                     $button .= '&nbsp';
                     $button .= '<a  href="/admin/target_pembelajaran/edit/' . $data->id . '" id="edit" data-toggle="tooltip"  data-id="' . $data->id . '" data-original-title="Edit" class="edit btn btn-warning btn-sm edit-post"><i class="fas fa-pencil-alt"></i></a>';
                     $button .= '&nbsp';
@@ -83,7 +83,7 @@ class LembarKerjaEmpat extends Controller
     {
         if (Auth::user()->role == 'guru') {
             $materi = Bidang_keahlian::has('kompetensi_dasar')->where(['id_guru', auth()->id()], ['id', $id])->get();
-        } else if (Auth::user()->role == 'ad,om') {
+        } else if (Auth::user()->role == 'admin') {
             $materi = Bidang_keahlian::has('kompetensi_dasar')->where('id',  $id)->get();
         }
         return view('admin.lembar_kerja_empat.detail', compact('materi'));
@@ -99,7 +99,7 @@ class LembarKerjaEmpat extends Controller
     {
         if (Auth::user()->role == 'guru') {
             $materi = Bidang_keahlian::has('kompetensi_dasar')->where(['id_guru', auth()->id()], ['id', $id])->get();
-        } else if (Auth::user()->role == 'ad,om') {
+        } else if (Auth::user()->role == 'admin') {
             $materi = Bidang_keahlian::has('kompetensi_dasar')->where('id',  $id)->get();
         }
         return view('admin.lembar_kerja_empat.detail', compact('materi'));
