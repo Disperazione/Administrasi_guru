@@ -78,7 +78,7 @@
     'normal' => $rootDir . '/lib/fonts/DejaVuSerif',
   ),
   'bowlby one sc\', cursive' => array(
-    'normal' => $fontDir . '/bowlby_one_sc___cursive_normal_ea5e684a8ae1b3cb60352517b3a35d9c',
+    'normal' => $fontDir . '/bowlby_one_sc___cursive_normal_46a9d7d0d44cd0418f5a4eb0398afb37',
   ),
   'font awesome 5 brands' => array(
     'normal' => $fontDir . '/font_awesome_5_brands_normal_3b2f0d60d9a43f492362e7b2bd72dfb2',
