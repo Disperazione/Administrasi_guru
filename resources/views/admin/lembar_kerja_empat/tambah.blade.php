@@ -113,13 +113,13 @@
             {{-- datatenagapendidik --}}
 
             {{--  --}}
-            <div class="row">
+            <div class="row fields_jenisbahan">
                 <div class="col-sm-6">
                     <div class="card-header">
                         <h4 class="card-title" style="padding-top: 30px;">Jenis Bahan Ajar</h4>
                     </div>
                     <div class="card-body">
-                        <div class="form-group fields_multiple_mapel">
+                        <div class="form-group">
                             <label>Modul</label>
                             <div class="input-group">
                               <div class="input-group-prepend">
@@ -127,83 +127,51 @@
                                     <i class="fas fa-file-alt"></i>
                                 </div>
                               </div>
-                              <input type="text" class="form-control col-10">
-                              <button class="btn btn-success ml-4 addbtn_multiple_maple">Fields <i class="fas fa-plus"></i></button>
+                              <textarea class="form-control col-10" style="height: 80px;"></textarea>
+                              <button class="btn btn-success ml-4 addbtn_jenisbahan" style="height: 35px;">Fields <i class="fas fa-plus"></i></button>
+                            </div>
+                            {{--  --}}
+                        </div>
+                        <div class="form-group">
+                            <label>Video Pembelajaran</label>
+                            <div class="input-group">
+                              <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                  <i class="far fa-file-video"></i>
+                                </div>
+                              </div>
+                              <textarea class="form-control col-8" style="height: 80px;"></textarea>
+                            </div>
+                            {{--  --}}
+                        </div>
+                        <div class="form-group">
+                            <label>Deskripsi Bahan Ajar</label>
+                            <div class="input-group">
+                              <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <i class="fas fa-file-invoice"></i>
+                                </div>
+                              </div>
+                              <textarea class="form-control col-8" style="height: 80px;"></textarea>
+                            </div>
+                            {{--  --}}
+                        </div>
+                        <div class="form-group">
+                            <label>Keterangan</label>
+                            <div class="input-group">
+                              <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <i class="fas fa-file-invoice"></i>
+                                </div>
+                              </div>
+                              <textarea class="form-control col-8" style="height: 80px;"></textarea>
                             </div>
                             {{--  --}}
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-6">
-                    <div class="card-header">
-                        <h4 class="card-title" style="padding-top: 30px;">.</h4>
-                    </div>
-                    <div class="card-body">
-                      <div class="form-group fields_multiple_kkid">
-                          <label>Video Pembelajaran</label>
-                          <div class="input-group">
-                            <div class="input-group-prepend">
-                              <div class="input-group-text">
-                                <i class="far fa-file-video"></i>
-                              </div>
-                            </div>
-                            <input type="text" class="form-control col-10">
-                            <button class="btn btn-success ml-4 addbtn_multiple_kkid">Fields <i class="fas fa-plus"></i></button>
-                          </div>
-                          {{--  --}}
-                      </div>
-                    </div>
-                </div>
-            </div>
-            {{--  --}}
 
-            {{--  --}}
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="card-body">
-                      <div class="form-group fields_multiple_bukti">
-                        <label>Deskripsi Bahan Ajar</label>
-                        <div class="input-group">
-                          <div class="input-group-prepend">
-                            <div class="input-group-text">
-                                <i class="fas fa-file-invoice"></i>
-                            </div>
-                          </div>
-                          <input type="text" class="form-control col-10">
-                          <button class="btn btn-success ml-4 addbtn_multiple_bukti">Fields <i class="fas fa-plus"></i></button>
-                        </div>
-                        {{--  --}}
-                      </div>
-                    </div>
-                </div>
-                <div class="col-sm-6">
-                    <div class="card-body">
-                      <div class="form-group fields_multiple_bukti">
-                        <label>Keterangan</label>
-                        <div class="input-group">
-                          <div class="input-group-prepend">
-                            <div class="input-group-text">
-                                <i class="fas fa-file-invoice"></i>
-                            </div>
-                          </div>
-                          <input type="text" class="form-control col-10">
-                          <button class="btn btn-success ml-4 addbtn_multiple_bukti">Fields <i class="fas fa-plus"></i></button>
-                        </div>
-                        {{--  --}}
-                      </div>
-                    </div>
-                </div>
-                {{-- <div class="col-sm-6">
-                    <div class="card-header">
-                        <h4 class="card-title" style="padding-top: 30px;">.</h4>
-                    </div>
-                    <div class="card-body">
-                        <div class="modal-footer mt-5">
-                          <button class="btn btn-primary">Submit</button>
-                          <a href="" class="btn btn-danger">Cancel</a>
-                        </div>
-                    </div>
-                </div> --}}
+
             </div>
             {{--  --}}
 
@@ -226,72 +194,78 @@
 @endsection
 @push('js')
 <script>
-    // multiple input mapel
-    $(document).ready(function() {
-        var max_fields      = 10; //maximum input boxes allowed
-        var wrapper   		= $(".fields_multiple_mapel"); //Fields wrapper
-        var add_button      = $(".addbtn_multiple_maple"); //Add button ID
-
-        var x = 1; //initlal text box count
-        $(add_button).click(function(e){ //on add input button click
-            e.preventDefault();
-            if(x < max_fields){ //max input box allowed
-                x++; //text box increment
-                $(wrapper).append('<div class="input-group mt-3">'+
-                                      '<input type="text" class="form-control col-8" style="margin-left: 41px;">'+
-                                      '<button class="btn btn-danger ml-4 removebtn_multiple_maple"><i class="fas fa-times"></i></button>'+
-                                   '</div>');
-            }
-        });
-
-        $(wrapper).on("click",".removebtn_multiple_maple", function(e){ //user click on remove text
-            e.preventDefault(); $(this).parent('div').remove(); x--;
-        })
-    });
-
-    // multiple input kkid
-    $(document).ready(function() {
-        var max_fields      = 10; //maximum input boxes allowed
-        var wrapper   		= $(".fields_multiple_kkid"); //Fields wrapper
-        var add_button      = $(".addbtn_multiple_kkid"); //Add button ID
-
-        var x = 1; //initlal text box count
-        $(add_button).click(function(e){ //on add input button click
-            e.preventDefault();
-            if(x < max_fields){ //max input box allowed
-                x++; //text box increment
-                $(wrapper).append('<div class="input-group mt-3">'+
-                                      '<input type="text" class="form-control col-8" style="margin-left: 41px;">'+
-                                      '<button class="btn btn-danger ml-4 removebtn_multiple_kkid"><i class="fas fa-times"></i></button>'+
-                                   '</div>');
-            }
-        });
-
-        $(wrapper).on("click",".removebtn_multiple_kkid", function(e){ //user click on remove text
-            e.preventDefault(); $(this).parent('div').remove(); x--;
-        })
-    });
-
     // multiple input bukti siswa
     $(document).ready(function() {
-        var max_fields      = 10; //maximum input boxes allowed
-        var wrapper   		= $(".fields_multiple_bukti"); //Fields wrapper
-        var add_button      = $(".addbtn_multiple_bukti"); //Add button ID
+        var max_fields      = 10;
+        var wrapper   		= $(".fields_jenisbahan");
+        var add_button      = $(".addbtn_jenisbahan");
 
-        var x = 1; //initlal text box count
-        $(add_button).click(function(e){ //on add input button click
+        var x = 1;
+        $(add_button).click(function(e){
             e.preventDefault();
-            if(x < max_fields){ //max input box allowed
-                x++; //text box increment
-                $(wrapper).append('<div class="input-group mt-3">'+
-                                      '<input type="text" class="form-control col-8" style="margin-left: 41px;">'+
-                                      '<button class="btn btn-danger ml-4 removebtn_multiple_bukti"><i class="fas fa-times"></i></button>'+
-                                   '</div>');
+            if(x < max_fields){
+                x++;
+                $(wrapper).append('<div class="col-sm-6 ">'+
+                '<div class="card-header">'+
+                    '<h4 class="card-title" style="padding-top: 30px;">.</h4>'+
+                '</div>'+
+                '<div class="card-body">'+
+                        '<div class="form-group">'+
+                            '<label>Modul' + x + '</label>'+
+                            '<div class="input-group">'+
+                              '<div class="input-group-prepend">'+
+                                '<div class="input-group-text">'+
+                                    '<i class="fas fa-file-alt"></i>'+
+                                '</div>'+
+                              '</div>'+
+                              '<textarea class="form-control col-10" style="height: 80px;"></textarea>'+
+                              '<button class="btn btn-danger ml-4 removebtn_jenisbahan" style="height: 35px;">X</button>'+
+                            '</div>'+
+                            {{--  --}}
+                        '</div>'+
+                        '<div class="form-group">'+
+                            '<label>Video Pembelajaran' + x + '</label>'+
+                            '<div class="input-group">'+
+                              '<div class="input-group-prepend">'+
+                                '<div class="input-group-text">'+
+                                  '<i class="far fa-file-video"></i>'+
+                                '</div>'+
+                              '</div>'+
+                              '<textarea class="form-control col-9" style="height: 80px;"></textarea>'+
+                            '</div>'+
+                            {{--  --}}
+                        '</div>'+
+                        '<div class="form-group">'+
+                            '<label>Deskripsi Bahan Ajar' + x + '</label>'+
+                            '<div class="input-group">'+
+                              '<div class="input-group-prepend">'+
+                                '<div class="input-group-text">'+
+                                    '<i class="fas fa-file-invoice"></i>'+
+                                '</div>'+
+                              '</div>'+
+                              '<textarea class="form-control col-9" style="height: 80px;"></textarea>'+
+                            '</div>'+
+                            {{--  --}}
+                        '</div>'+
+                        '<div class="form-group">'+
+                            '<label>Keterangan' + x + '</label>'+
+                            '<div class="input-group">'+
+                              '<div class="input-group-prepend">'+
+                                '<div class="input-group-text">'+
+                                    '<i class="fas fa-file-invoice"></i>'+
+                                '</div>'+
+                              '</div>'+
+                              '<textarea class="form-control col-9" style="height: 80px;"></textarea>'+
+                            '</div>'+
+                            {{--  --}}
+                        '</div>'+
+                    '</div>'+
+                '</div>');
             }
         });
 
-        $(wrapper).on("click",".removebtn_multiple_bukti", function(e){ //user click on remove text
-            e.preventDefault(); $(this).parent('div').remove(); x--;
+        $(wrapper).on("click",".removebtn_jenisbahan", function(e){
+            e.preventDefault(); $(this).parent('div').parent('div').parent('div').parent('div').remove(); x--;
         })
     });
 </script>

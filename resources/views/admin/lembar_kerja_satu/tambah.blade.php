@@ -118,7 +118,7 @@
             <div class="row">
                 <div class="col-sm-6">
                     <div class="card-header">
-                        <h4 class="card-title" style="padding-top: 30px;">Target Pencapaian Mata Pelajaran</h4>
+                        <h4 class="card-title" style="padding-top: 30px;">Target Pembelajaran</h4>
                     </div>
                     <div class="card-body">
                         <div class="form-group fields_multiple_mapel">
@@ -157,7 +157,7 @@
                 </div>
                 <div class="col-sm-6">
                     <div class="card-header">
-                        <h4 class="card-title" style="padding-top: 30px;">Target Pencapaian KKID</h4>
+                        <h4 class="card-title" style="padding-top: 30px;">.</h4>
                     </div>
                     <div class="card-body">
                         <div class="form-group fields_multiple_kkid">
@@ -202,9 +202,6 @@
             {{-- buktisiswa & kompetensi_inti--}}
             <div class="row">
                 <div class="col-sm-6">
-                    <div class="card-header">
-                        <h4 class="card-title" style="padding-top: 30px;">Bukti Pencapaian Target Siswa</h4>
-                    </div>
                     <div class="card-body">
                         <div class="form-group fields_multiple_bukti">
                             <label>Rincian Bukti</label>
@@ -227,9 +224,6 @@
                     </div>
                 </div>
                 <div class="col-sm-6">
-                    <div class="card-header">
-                        <h4 class="card-title" style="padding-top: 30px;">Kopetensi Inti Siswa</h4>
-                    </div>
                     <div class="card-body">
                         <div class="form-group fields_multiple_kompetensi">
                             <label>Kompetensi Inti</label>
