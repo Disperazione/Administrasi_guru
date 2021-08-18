@@ -23,19 +23,19 @@ class indikator_ketecapaianSeeder extends Seeder
                 aplikasi web dengan
                 library bootstrap',
                 'jumlah_pertemuan' => 4,
-                'alat_bahan' => '- Koneksi
-                Internet
-                - Code Editor
-                Visual Studio
-                Code
-                - Framework
-                front end
-                - Framework
-                Codeigniter',
-                'sumber_pembelajaran' => 'Modul Digital
-                - Video
-                Pembelajaran
-                ',
+                // 'alat_bahan' => '- Koneksi
+                // Internet
+                // - Code Editor
+                // Visual Studio
+                // Code
+                // - Framework
+                // front end
+                // - Framework
+                // Codeigniter',
+                // 'sumber_pembelajaran' => 'Modul Digital
+                // - Video
+                // Pembelajaran
+                // ',
                 'keterangan' => 'keterangan',
                 'id_kompetensi_dasar' => $i
             ]);

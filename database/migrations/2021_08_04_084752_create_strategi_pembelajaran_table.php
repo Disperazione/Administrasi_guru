@@ -16,7 +16,7 @@ class CreateStrategiPembelajaranTable extends Migration
         Schema::create('strategi_pembelajaran', function (Blueprint $table) {
             $table->id();
             $table->string('model_pembelajaran');
-            $table->string('metode_pembelajaran');
+            // $table->string('metode_pembelajaran');
             $table->longText('deskripsi_kegiatan');
             $table->foreignId('id_kompetensi_dasar')->constrained('kompetensi_dasar')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();

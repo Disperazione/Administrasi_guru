@@ -18,8 +18,8 @@ class CreateIndikatorKetercapaianTable extends Migration
             $table->longText('bukti');
             $table->string('ketuntasan');
             $table->string('jumlah_pertemuan');
-            $table->longText('alat_bahan');
-            $table->longText('sumber_pembelajaran');
+            // $table->longText('alat_bahan');
+            // $table->longText('sumber_pembelajaran');
             $table->longText('keterangan')->nullable();
             $table->foreignId('id_kompetensi_dasar')->constrained('kompetensi_dasar')->onDelete('cascade')->onUpdate('cascade');
 

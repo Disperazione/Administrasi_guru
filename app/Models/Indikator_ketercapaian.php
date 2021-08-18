@@ -15,4 +15,9 @@ class Indikator_ketercapaian extends Model
     {
         return $this->belongsTo(Kompetensi_dasar::class, 'id_kompetensi_dasar');
     }
+
+    public function alat_bahan()
+    {
+        return $this->hasMany(Alat_bahan::class, 'id', 'id_indikator_ketercapaian');
+    }
 }

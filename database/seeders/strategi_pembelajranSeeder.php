@@ -18,7 +18,6 @@ class strategi_pembelajranSeeder extends Seeder
              DB::table('strategi_pembelajaran')->insert([
             'model_pembelajaran' => 'Project Based
             Learning (PjBL) /',
-            'metode_pembelajaran' => '- Simulasi ',
             'deskripsi_kegiatan' => 'Praktek membuat user
             interface menggunakan
             library frond end',

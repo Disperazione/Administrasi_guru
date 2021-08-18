@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Metode_pembelajaran;
+use App\Models\Sumber_belajar;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -30,7 +32,10 @@ class DatabaseSeeder extends Seeder
             materi_bahan_ajarSeeder::class,
             rencana_pelaksanaan_pembelajaranSeeder::class,
             pertemuan_rppSeeder::class,
-            admin_cloudSeeder::class
+            admin_cloudSeeder::class,
+            Sumber_belajarSeeder::class,
+            Metode_pembelajarSeeder::class,
+            Alat_bahanSeeder::class,
         ]);
     }
 }
