@@ -19,4 +19,34 @@ class PDFController extends Controller
         $pdf = PDF::loadView('export.pdf.lk_1', compact('target','s_ganjil','s_genap'));
         return $pdf->stream('LK1.PDF');
     }
+
+    public function LK_2($id)
+    {
+        $target = Bidang_keahlian::has('target_pembelajaran')->where('id', $id)->first();
+        // nyari kompetensi dasar yang semesternya ganjil & bidnag keahlian nya id  = $id
+        $s_ganjil = Kompetensi_dasar::where([['semester','ganjil'],['id_bidang_keahlian',$id]])->get();
+        $s_genap = Kompetensi_dasar::where([['semester', 'genap'],['id_bidang_keahlian',$id]])->get();
+        $pdf = PDF::loadView('export.pdf.lk_2', compact('target','s_ganjil','s_genap'));
+        return $pdf->stream('LK2.PDF');
+    }
+
+    public function LK_3($id)
+    {
+        $target = Bidang_keahlian::has('target_pembelajaran')->where('id', $id)->first();
+        // nyari kompetensi dasar yang semesternya ganjil & bidnag keahlian nya id  = $id
+        $s_ganjil = Kompetensi_dasar::where([['semester','ganjil'],['id_bidang_keahlian',$id]])->get();
+        $s_genap = Kompetensi_dasar::where([['semester', 'genap'],['id_bidang_keahlian',$id]])->get();
+        $pdf = PDF::loadView('export.pdf.lk_3', compact('target','s_ganjil','s_genap'));
+        return $pdf->stream('LK3.PDF');
+    }
+
+    public function LK_4($id)
+    {
+        $target = Bidang_keahlian::has('target_pembelajaran')->where('id', $id)->first();
+        // nyari kompetensi dasar yang semesternya ganjil & bidnag keahlian nya id  = $id
+        $s_ganjil = Kompetensi_dasar::where([['semester','ganjil'],['id_bidang_keahlian',$id]])->get();
+        $s_genap = Kompetensi_dasar::where([['semester', 'genap'],['id_bidang_keahlian',$id]])->get();
+        $pdf = PDF::loadView('export.pdf.lk_4', compact('target','s_ganjil','s_genap'));
+        return $pdf->stream('LK4.PDF');
+    }
 }
