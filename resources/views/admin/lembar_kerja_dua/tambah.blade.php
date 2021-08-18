@@ -113,53 +113,49 @@
             {{-- datatenagapendidik --}}
 
             {{--  --}}
-            <div class="row fields_strpembelajaran">
-                <div class="col-sm-6">
+            <div class="row">
+                <div class="col-sm-12">
                     <div class="card-header">
                         <h4 class="card-title" style="padding-top: 30px;">Strategi Pembelajaran</h4>
                     </div>
                     <div class="card-body">
-                        <div class="form-group fields_multiple_model">
-                            <label>Model Pembelajaran</label>
-                            <div class="input-group">
-                              <div class="input-group-prepend">
-                                <div class="input-group-text">
-                                  <i class="fas fa-book"></i>
-                                </div>
-                              </div>
-                              <textarea class="form-control col-10" style="height: 60px;"></textarea>
-                              <button class="btn btn-success ml-4 addbtn_strpembelajaran" style="height: 35px;">Fields <i class="fas fa-plus"></i></button>
-                            </div>
-                            {{--  --}}
-                        </div>
-                        <div class="form-group fields_multiple_metode">
-                            <label>Metode Pembelajaran</label>
-                            <div class="input-group">
-                              <div class="input-group-prepend">
-                                <div class="input-group-text">
-                                  <i class="fas fa-book"></i>
-                                </div>
-                              </div>
-                              <textarea class="form-control col-8" style="height: 60px;"></textarea>
-                            </div>
-                            {{--  --}}
-                        </div>
-                        <div class="form-group fields_multiple_desk">
-                            <label>Deskripsi Kegiatan</label>
-                            <div class="input-group">
-                              <div class="input-group-prepend">
-                                <div class="input-group-text">
-                                  <i class="fas fa-book"></i>
-                                </div>
-                              </div>
-                              <textarea class="form-control col-8" style="height: 70px;"></textarea>
-                            </div>
-                            {{--  --}}
-                        </div>
+                        <table class="table table-hover">
+                            <thead class="text-center">
+                              <tr>
+                                <th scope="col" style="width: ;">NO.</th>
+                                <th scope="col" style="width: ;">Kompetensi Dasar</th>
+                                <th scope="col" style="width: ;">Model Pembelajaran</th>
+                                <th scope="col" style="width: ;">Metode Pembelajaran</th>
+                                <th scope="col" style="width: ;">Deskripsi Kegiatan</th>
+                                <th scope="col" style="width: ;">
+                                    <button class="btn btn-success addbtn_strpembelajaran" style="width: 80px;">Fields <i class="fas fa-plus"></i></button>
+                                </th>
+                              </tr>
+                            </thead>
+                            <tbody class="fields_strpembelajaran">
+                                <tr>
+                                    <th scope="row">3.17 <br><br> 4.17</th>
+                                    <td>
+                                        <textarea type="text" class="form-control mb-2 mt-1 input_" name="[]" style="height: 40px;"></textarea>
+                                        <textarea type="text" class="form-control input_" name="[]" style="height: 40px;"></textarea>
+                                    </td>
+                                    <td class="text-center">
+                                        <textarea type="text" class="form-control input_" name="[]" style="height: 80px;"></textarea>
+                                    </td>
+                                    <td class="text-center">
+                                        <textarea type="text" class="form-control input_" name="[]" style="height: 80px;"></textarea>
+                                    </td>
+                                    <td class="text-center">
+                                        <textarea type="text" class="form-control input_" name="[]" style="height: 80px;"></textarea>
+                                    </td>
+                                    <td class="text-center">
+                                        {{-- <button class="btn btn-danger removebtn_strpembelajaran" style="width: 40px;">X</button> --}}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
-
-
             </div>
             {{--  --}}
 
@@ -182,66 +178,43 @@
 @endsection
 @push('js')
 <script>
-    // multiple model
+    // multiple
     $(document).ready(function() {
         var max_fields      = 10;
         var wrapper   		= $(".fields_strpembelajaran");
         var add_button      = $(".addbtn_strpembelajaran");
 
         var x = 1;
+        var y = 17;
         $(add_button).click(function(e){
             e.preventDefault();
             if(x < max_fields){
                 x++;
-                $(wrapper).append('<div class="col-sm-6">'+
-                    '<div class="card-header">'+
-                        '<h4 class="card-title" style="padding-top: 30px;">.</h4>'+
-                    '</div>'+
-                    '<div class="card-body">'+
-                        '<div class="form-group">'+
-                            '<label>Model Pembelajaran' + x + '</label>'+
-                            '<div class="input-group">'+
-                              '<div class="input-group-prepend">'+
-                                '<div class="input-group-text">'+
-                                  '<i class="fas fa-book"></i>'+
-                                '</div>'+
-                              '</div>'+
-                              '<textarea class="form-control col-9" style="height: 60px;"></textarea>'+
-                              '<button class="btn btn-danger ml-4 removebtn_strpembelajaran" style="height: 35px;">X</button>'+
-                            '</div>'+
-                            {{--  --}}
-                        '</div>'+
-                        '<div class="form-group">'+
-                            '<label>Metode Pembelajaran' + x + '</label>'+
-                            '<div class="input-group">'+
-                              '<div class="input-group-prepend">'+
-                                '<div class="input-group-text">'+
-                                  '<i class="fas fa-book"></i>'+
-                                '</div>'+
-                              '</div>'+
-                              '<textarea class="form-control col-9" style="height: 60px;"></textarea>'+
-                            '</div>'+
-                            {{--  --}}
-                        '</div>'+
-                        '<div class="form-group">'+
-                            '<label>Deskripsi Kegiatan' + x + '</label>'+
-                            '<div class="input-group">'+
-                              '<div class="input-group-prepend">'+
-                                '<div class="input-group-text">'+
-                                  '<i class="fas fa-book"></i>'+
-                                '</div>'+
-                              '</div>'+
-                              '<textarea class="form-control col-9" style="height: 60px;"></textarea>'+
-                            '</div>'+
-                            {{--  --}}
-                        '</div>'+
-                    '</div>'+
-                '</div>');
+                y++;
+                $(wrapper).append('<tr>'+
+                                    '<th scope="row">3.'+y+' <br><br> 4.'+y+'</th>'+
+                                    '<td>'+
+                                        '<textarea type="text" class="form-control mb-2 mt-1 input_" name="[]" style="height: 40px;"></textarea>'+
+                                        '<textarea type="text" class="form-control input_" name="[]" style="height: 40px;"></textarea>'+
+                                    '</td>'+
+                                    '<td class="text-center">'+
+                                        '<textarea type="text" class="form-control input_" name="[]" style="height: 80px;"></textarea>'+
+                                    '</td>'+
+                                    '<td class="text-center">'+
+                                        '<textarea type="text" class="form-control input_" name="[]" style="height: 80px;"></textarea>'+
+                                    '</td>'+
+                                    '<td class="text-center">'+
+                                        '<textarea type="text" class="form-control input_" name="[]" style="height: 80px;"></textarea>'+
+                                    '</td>'+
+                                    '<td class="text-center">'+
+                                        '<button class="btn btn-danger removebtn_strpembelajaran" style="width: 40px;">X</button>'+
+                                    '</td>'+
+                                '</tr>');
             }
         });
 
         $(wrapper).on("click",".removebtn_strpembelajaran", function(e){
-            e.preventDefault(); $(this).parent('div').parent('div').parent('div').parent('div').remove(); x--;
+            e.preventDefault(); $(this).parent('td').parent('tr').remove(); x--;
         })
     });
 </script>

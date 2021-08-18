@@ -120,7 +120,7 @@
                     </div>
                     <div class="card-body">
                         <div class="form-group">
-                            <label>Modul</label>
+                            <label>Kompetensi Dasar 3.17</label>
                             <div class="input-group">
                               <div class="input-group-prepend">
                                 <div class="input-group-text">
@@ -133,6 +133,28 @@
                             {{--  --}}
                         </div>
                         <div class="form-group">
+                            <label>Kompetensi Dasar 4.17</label>
+                            <div class="input-group">
+                              <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <i class="fas fa-file-alt"></i>
+                                </div>
+                              </div>
+                              <textarea class="form-control col-10" style="height: 80px;"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Modul</label>
+                            <div class="input-group">
+                              <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <i class="fas fa-file-alt"></i>
+                                </div>
+                              </div>
+                              <textarea class="form-control col-10" style="height: 80px;"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
                             <label>Video Pembelajaran</label>
                             <div class="input-group">
                               <div class="input-group-prepend">
@@ -140,7 +162,7 @@
                                   <i class="far fa-file-video"></i>
                                 </div>
                               </div>
-                              <textarea class="form-control col-8" style="height: 80px;"></textarea>
+                              <textarea class="form-control col-10" style="height: 80px;"></textarea>
                             </div>
                             {{--  --}}
                         </div>
@@ -152,7 +174,7 @@
                                     <i class="fas fa-file-invoice"></i>
                                 </div>
                               </div>
-                              <textarea class="form-control col-8" style="height: 80px;"></textarea>
+                              <textarea class="form-control col-10" style="height: 80px;"></textarea>
                             </div>
                             {{--  --}}
                         </div>
@@ -164,14 +186,12 @@
                                     <i class="fas fa-file-invoice"></i>
                                 </div>
                               </div>
-                              <textarea class="form-control col-8" style="height: 80px;"></textarea>
+                              <textarea class="form-control col-10" style="height: 80px;"></textarea>
                             </div>
                             {{--  --}}
                         </div>
                     </div>
                 </div>
-
-
             </div>
             {{--  --}}
 
@@ -201,17 +221,19 @@
         var add_button      = $(".addbtn_jenisbahan");
 
         var x = 1;
+        var y = 17;
         $(add_button).click(function(e){
             e.preventDefault();
             if(x < max_fields){
                 x++;
+                y++;
                 $(wrapper).append('<div class="col-sm-6 ">'+
                 '<div class="card-header">'+
                     '<h4 class="card-title" style="padding-top: 30px;">.</h4>'+
                 '</div>'+
                 '<div class="card-body">'+
-                        '<div class="form-group">'+
-                            '<label>Modul' + x + '</label>'+
+                    '<div class="form-group">'+
+                            '<label>Kompetensi Dasar 3.'+y+'</label>'+
                             '<div class="input-group">'+
                               '<div class="input-group-prepend">'+
                                 '<div class="input-group-text">'+
@@ -219,9 +241,30 @@
                                 '</div>'+
                               '</div>'+
                               '<textarea class="form-control col-10" style="height: 80px;"></textarea>'+
-                              '<button class="btn btn-danger ml-4 removebtn_jenisbahan" style="height: 35px;">X</button>'+
+                              '<button class="btn btn-success ml-4 addbtn_jenisbahan" style="height: 35px;">Fields <i class="fas fa-plus"></i></button>'+
                             '</div>'+
-                            {{--  --}}
+                        '</div>'+
+                        '<div class="form-group">'+
+                            '<label>Kompetensi Dasar 4.'+y+'</label>'+
+                            '<div class="input-group">'+
+                              '<div class="input-group-prepend">'+
+                                '<div class="input-group-text">'+
+                                    '<i class="fas fa-file-alt"></i>'+
+                                '</div>'+
+                              '</div>'+
+                              '<textarea class="form-control col-10" style="height: 80px;"></textarea>'+
+                            '</div>'+
+                        '</div>'+
+                        '<div class="form-group">'+
+                            '<label>Modul</label>'+
+                            '<div class="input-group">'+
+                              '<div class="input-group-prepend">'+
+                                '<div class="input-group-text">'+
+                                    '<i class="fas fa-file-alt"></i>'+
+                                '</div>'+
+                              '</div>'+
+                              '<textarea class="form-control col-10" style="height: 80px;"></textarea>'+
+                            '</div>'+
                         '</div>'+
                         '<div class="form-group">'+
                             '<label>Video Pembelajaran' + x + '</label>'+
@@ -233,7 +276,6 @@
                               '</div>'+
                               '<textarea class="form-control col-9" style="height: 80px;"></textarea>'+
                             '</div>'+
-                            {{--  --}}
                         '</div>'+
                         '<div class="form-group">'+
                             '<label>Deskripsi Bahan Ajar' + x + '</label>'+
@@ -245,7 +287,6 @@
                               '</div>'+
                               '<textarea class="form-control col-9" style="height: 80px;"></textarea>'+
                             '</div>'+
-                            {{--  --}}
                         '</div>'+
                         '<div class="form-group">'+
                             '<label>Keterangan' + x + '</label>'+
@@ -257,7 +298,6 @@
                               '</div>'+
                               '<textarea class="form-control col-9" style="height: 80px;"></textarea>'+
                             '</div>'+
-                            {{--  --}}
                         '</div>'+
                     '</div>'+
                 '</div>');

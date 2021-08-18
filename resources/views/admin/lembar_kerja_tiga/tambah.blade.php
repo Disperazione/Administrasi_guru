@@ -66,6 +66,13 @@
                               <input type="text" class="form-control" disabled>
                             </div>
                         </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="card-header">
+                        <h4 class="card-title" style="padding-top: 30px;">.</h4>
+                    </div>
+                    <div class="card-body">
                         <div class="form-group">
                             <label>Jam Pelajaran (JP)</label>
                             <div class="input-group">
@@ -101,11 +108,39 @@
                         </div>
                     </div>
                 </div>
+            </div>
+            {{-- datatenagapendidik --}}
+
+            {{--  --}}
+            <div class="row fields_ketercapaianmapel">
                 <div class="col-sm-6">
                     <div class="card-header">
                         <h4 class="card-title" style="padding-top: 30px;">Ketercapaian Mata Pelajaran</h4>
                     </div>
                     <div class="card-body">
+                        <div class="form-group">
+                            <label>Kompetensi Dasar 3.17</label>
+                            <div class="input-group">
+                              <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <i class="far fa-file-alt"></i>
+                                </div>
+                              </div>
+                              <textarea type="text" class="form-control" name="" style="height: 70px;"></textarea>
+                              <button class="btn btn-success ml-4 addbtn_ketercapaianmapel" style="height: 35px">Fields <i class="fas fa-plus"></i></button>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Kompetensi Dasar 4.17</label>
+                            <div class="input-group">
+                              <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <i class="far fa-file-alt"></i>
+                                </div>
+                              </div>
+                              <textarea type="text" class="form-control" name="" style="height: 70px;"></textarea>
+                            </div>
+                        </div>
                         <div class="form-group">
                             <label>Bukti Assesment</label>
                             <div class="input-group">
@@ -140,6 +175,28 @@
                             </div>
                         </div>
                         <div class="form-group">
+                            <label>Alat & Bahan</label>
+                            <div class="input-group">
+                              <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <i class="fas fa-cubes"></i>
+                                </div>
+                              </div>
+                              <textarea type="text" class="form-control" name="" style="height: 70px;"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Sumber Belajar</label>
+                            <div class="input-group">
+                              <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                  <i class="fab fa-dropbox"></i>
+                                </div>
+                              </div>
+                              <textarea type="text" class="form-control" name="" style="height: 70px;"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
                             <label>Keterangan</label>
                             <div class="input-group">
                               <div class="input-group-prepend">
@@ -150,51 +207,6 @@
                               <textarea class="form-control" style="height: 100px;"></textarea>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-            {{-- datatenagapendidik --}}
-
-            {{--  --}}
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="card-header">
-                        <h4 class="card-title" style="padding-top: 30px;">Metode Pembelajaran</h4>
-                    </div>
-                    <div class="card-body">
-                        <div class="form-group fields_multiple_alat">
-                            <label>Alat & Bahan</label>
-                            <div class="input-group">
-                              <div class="input-group-prepend">
-                                <div class="input-group-text">
-                                    <i class="fas fa-cubes"></i>
-                                </div>
-                              </div>
-                              <input type="text" class="form-control col-10">
-                              <button class="btn btn-success ml-4 addbtn_multiple_alat">Fields <i class="fas fa-plus"></i></button>
-                            </div>
-                            {{--  --}}
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6">
-                    <div class="card-header">
-                        <h4 class="card-title" style="padding-top: 30px;">.</h4>
-                    </div>
-                    <div class="card-body">
-                      <div class="form-group fields_multiple_sumber">
-                          <label>Sumber Belajar</label>
-                          <div class="input-group">
-                            <div class="input-group-prepend">
-                              <div class="input-group-text">
-                                <i class="fab fa-dropbox"></i>
-                              </div>
-                            </div>
-                            <input type="text" class="form-control col-10">
-                            <button class="btn btn-success ml-4 addbtn_multiple_sumber">Fields <i class="fas fa-plus"></i></button>
-                          </div>
-                          {{--  --}}
-                      </div>
                     </div>
                 </div>
             </div>
@@ -219,49 +231,120 @@
 @endsection
 @push('js')
 <script>
-    // multiple alat&bahan
+    // multiple
     $(document).ready(function() {
         var max_fields      = 10; //maximum input boxes allowed
-        var wrapper   		= $(".fields_multiple_alat"); //Fields wrapper
-        var add_button      = $(".addbtn_multiple_alat"); //Add button ID
+        var wrapper   		= $(".fields_ketercapaianmapel"); //Fields wrapper
+        var add_button      = $(".addbtn_ketercapaianmapel"); //Add button ID
 
-        var x = 1; //initlal text box count
+        var x = 1;
+        var y = 17;
         $(add_button).click(function(e){ //on add input button click
             e.preventDefault();
             if(x < max_fields){ //max input box allowed
                 x++; //text box increment
-                $(wrapper).append('<div class="input-group mt-3">'+
-                                      '<input type="text" class="form-control col-8" style="margin-left: 41px;">'+
-                                      '<button class="btn btn-danger ml-4 removebtn_multiple_alat"><i class="fas fa-times"></i></button>'+
-                                   '</div>');
+                y++;
+                $(wrapper).append('<div class="col-sm-6">'+
+                    '<div class="card-header">'+
+                        '<h4 class="card-title" style="padding-top: 30px;">.</h4>'+
+                    '</div>'+
+                    '<div class="card-body">'+
+                        '<div class="form-group">'+
+                            '<label>Kompetensi Dasar 3.'+y+'</label>'+
+                            '<div class="input-group">'+
+                              '<div class="input-group-prepend">'+
+                                '<div class="input-group-text">'+
+                                    '<i class="far fa-file-alt"></i>'+
+                                '</div>'+
+                              '</div>'+
+                              '<textarea type="text" class="form-control" name="" style="height: 70px;"></textarea>'+
+                              '<button class="btn btn-danger ml-4 removebtn_ketercapaianmapel" style="height: 35px">X</button>'+
+                            '</div>'+
+                        '</div>'+
+                        '<div class="form-group">'+
+                            '<label>Kompetensi Dasar 4.'+y+'</label>'+
+                            '<div class="input-group">'+
+                              '<div class="input-group-prepend">'+
+                                '<div class="input-group-text">'+
+                                    '<i class="far fa-file-alt"></i>'+
+                                '</div>'+
+                              '</div>'+
+                              '<textarea type="text" class="form-control" name="" style="height: 70px;"></textarea>'+
+                            '</div>'+
+                        '</div>'+
+                        '<div class="form-group">'+
+                            '<label>Bukti Assesment</label>'+
+                            '<div class="input-group">'+
+                              '<div class="input-group-prepend">'+
+                                '<div class="input-group-text">'+
+                                    '<i class="far fa-file-alt"></i>'+
+                                '</div>'+
+                              '</div>'+
+                              '<input type="text" class="form-control">'+
+                            '</div>'+
+                        '</div>'+
+                        '<div class="form-group">'+
+                            '<label>Ketuntasan</label>'+
+                            '<div class="input-group">'+
+                              '<div class="input-group-prepend">'+
+                                '<div class="input-group-text">'+
+                                    '<i class="fas fa-clipboard-list"></i>'+
+                                '</div>'+
+                              '</div>'+
+                              '<textarea class="form-control" style="height: 100px;"></textarea>'+
+                            '</div>'+
+                        '</div>'+
+                        '<div class="form-group">'+
+                            '<label>Jumlah Pertemuan</label>'+
+                            '<div class="input-group">'+
+                              '<div class="input-group-prepend">'+
+                                '<div class="input-group-text">'+
+                                    '<i class="fas fa-book-reader"></i>'+
+                                '</div>'+
+                              '</div>'+
+                              '<input type="text" class="form-control">'+
+                            '</div>'+
+                        '</div>'+
+                        '<div class="form-group">'+
+                            '<label>Alat & Bahan</label>'+
+                            '<div class="input-group">'+
+                              '<div class="input-group-prepend">'+
+                                '<div class="input-group-text">'+
+                                    '<i class="fas fa-cubes"></i>'+
+                                '</div>'+
+                              '</div>'+
+                              '<textarea type="text" class="form-control" name="" style="height: 70px;"></textarea>'+
+                            '</div>'+
+                        '</div>'+
+                        '<div class="form-group">'+
+                            '<label>Sumber Belajar</label>'+
+                            '<div class="input-group">'+
+                              '<div class="input-group-prepend">'+
+                                '<div class="input-group-text">'+
+                                  '<i class="fab fa-dropbox"></i>'+
+                                '</div>'+
+                              '</div>'+
+                              '<textarea type="text" class="form-control" name="" style="height: 70px;"></textarea>'+
+                            '</div>'+
+                        '</div>'+
+                        '<div class="form-group">'+
+                            '<label>Keterangan</label>'+
+                            '<div class="input-group">'+
+                              '<div class="input-group-prepend">'+
+                                '<div class="input-group-text">'+
+                                    '<i class="fas fa-clipboard-list"></i>'+
+                                '</div>'+
+                              '</div>'+
+                              '<textarea class="form-control" style="height: 100px;"></textarea>'+
+                            '</div>'+
+                        '</div>'+
+                    '</div>'+
+                '</div>');
             }
         });
 
-        $(wrapper).on("click",".removebtn_multiple_alat", function(e){ //user click on remove text
-            e.preventDefault(); $(this).parent('div').remove(); x--;
-        })
-    });
-
-    // multiple sumber belajar
-    $(document).ready(function() {
-        var max_fields      = 10; //maximum input boxes allowed
-        var wrapper   		= $(".fields_multiple_sumber"); //Fields wrapper
-        var add_button      = $(".addbtn_multiple_sumber"); //Add button ID
-
-        var x = 1; //initlal text box count
-        $(add_button).click(function(e){ //on add input button click
-            e.preventDefault();
-            if(x < max_fields){ //max input box allowed
-                x++; //text box increment
-                $(wrapper).append('<div class="input-group mt-3">'+
-                                      '<input type="text" class="form-control col-8" style="margin-left: 41px;">'+
-                                      '<button class="btn btn-danger ml-4 removebtn_multiple_sumber"><i class="fas fa-times"></i></button>'+
-                                   '</div>');
-            }
-        });
-
-        $(wrapper).on("click",".removebtn_multiple_sumber", function(e){ //user click on remove text
-            e.preventDefault(); $(this).parent('div').remove(); x--;
+        $(wrapper).on("click",".removebtn_ketercapaianmapel", function(e){ //user click on remove text
+            e.preventDefault(); $(this).parent('div').parent('div').parent('div').parent('div').remove(); x--;
         })
     });
 </script>
