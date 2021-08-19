@@ -54,6 +54,8 @@ Route::prefix('admin')->name('admin.')->middleware(['auth','roles:guru,admin'])-
     Route::resource('RPP', RPP::class);
 
     // route for option
+    Route::get('/option/guru/{id}', [LK1::class, 'option_guru']);
+    Route::get('/option/mapel/{id}', [LK1::class, 'option_mapel']);
     Route::get('/option/bidang_studi/{id}', [LK1::class, 'option_bidang']);
     // route for pdf here
     Route::get('/lk_1/{id}/pdf',[PDFController::class,'LK_1'])->name('pdf.lk_1');

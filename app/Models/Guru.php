@@ -18,10 +18,13 @@ class Guru extends Model
     //     'no_telp',
     //     'id_jurusan',
     // ];
-
     public function user()
     {
         return $this->belongsTo(User::class,'id_user'); // foreign , owner
+    }
+    public function mapel()
+    {
+        return $this->hasMany(Mapel::class, 'id_guru');
     }
     public function jurusan()
     {

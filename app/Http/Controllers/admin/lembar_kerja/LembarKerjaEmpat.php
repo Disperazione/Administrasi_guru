@@ -36,6 +36,9 @@ class LembarKerjaEmpat extends Controller
                 ->addColumn('guru', function ($data) {
                     return $data->guru->name;
                 })
+                ->addColumn('mapel', function ($data) {
+                    return $data->mapel->nama_mapel;
+                })
             ->addColumn('action', function ($data) {
                 $button = '<a href="/admin/lk_4/' . $data->id . '/pdf" class="edit btn btn-danger text-white btn-sm"><i class="fas fa-file-pdf"></i></a>';
                 $button .= '&nbsp';

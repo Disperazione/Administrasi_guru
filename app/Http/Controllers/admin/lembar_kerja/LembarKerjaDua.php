@@ -38,6 +38,9 @@ class LembarKerjaDua extends Controller
                 ->addColumn('guru', function ($data) {
                     return $data->guru->name;
                 })
+                ->addColumn('mapel', function ($data) {
+                    return $data->mapel->nama_mapel;
+                })
                 ->addColumn('action', function ($data) {
                 $button = '<a href="/admin/lk_2/' . $data->id . '/pdf" class="edit btn btn-danger text-white btn-sm"><i class="fas fa-file-pdf"></i></a>';
                 $button .= '&nbsp';
@@ -61,7 +64,13 @@ class LembarKerjaDua extends Controller
      */
     public function create()
     {
-        return view('admin.lembar_kerja_dua.tambah');
+        if (Auth::user()->role == 'guru') {
+            // menambil bidang keahlian yang sudah di filter di table / datatable ajax yang di atas
+            $strategi = Bidang_keahlian::has('kompetensi_dasar')->where(['id_guru', auth()->id()])->get();
+        } else {
+            $strategi = Bidang_keahlian::has('kompetensi_dasar')->get();
+        }
+        return view('admin.lembar_kerja_dua.tambah', compact('strategi'));
     }
 
     /**

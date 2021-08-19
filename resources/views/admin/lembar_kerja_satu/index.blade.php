@@ -28,11 +28,11 @@
                  @if (Auth::user()->role == 'admin')
                     <th>Nama guru</th>
                 @endif
+                 <th>Mapel</th>
                 <th>Bidang Studi</th>
                 <th>Kompetensi Keahlian</th>
                 <th>Kelas</th>
                 <th>Jam Pelajaran</th>
-                <th>Mapel</th>
                 <th>Total Jam</th>
                 <th style="width: 130px;">Action</th>
             </tr>

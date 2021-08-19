@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBidangKeahlianTable extends Migration
+class CreateMapelTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,15 @@ class CreateBidangKeahlianTable extends Migration
      */
     public function up()
     {
-        Schema::create('bidang_keahlian', function (Blueprint $table) {
+        Schema::create('mapel', function (Blueprint $table) {
             $table->id();
-            $table->string('bidang_studi');
-            $table->string('kompetensi_keahlian');
-            $table->string('kelas');
-            $table->string('jam_pelajaran');
-           $table->bigInteger('id_mapel')->unsigned();
-            $table->string('total_waktu_jam_pelajaran');
+            $table->string('nama_mapel');
             $table->foreignId('id_guru')->constrained('guru')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
+        });
+
+        Schema::table('bidang_keahlian', function (Blueprint $table) {
+            $table->foreign('id_mapel')->references('id')->on('mapel')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
@@ -33,6 +32,6 @@ class CreateBidangKeahlianTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('bidang_keahlian');
+        Schema::dropIfExists('mapel');
     }
 }

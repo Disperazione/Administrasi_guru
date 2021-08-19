@@ -17,7 +17,7 @@
         Tambah guru
     </div>
     <div class="card-body">
-        <form action="{{ route('admin.guru.store') }}" method="POST">
+        <form  id="form" class="form"  action="{{ route('admin.guru.store') }}" method="POST" >
             @csrf
             <div class="row">
                 <div class="col-md-6">
@@ -25,11 +25,11 @@
                         <label for="">NIK :</label>
                         <input type="text" name="nik" class="form-control @error('nik') is-invalid @enderror"
                             value="{{ old('nik') }}">
-                             @error('nik')
-                    <div class="invalid-feedback">
-                        {{ $message  }}
-                    </div>
-                    @enderror
+                        @error('nik')
+                        <div class="invalid-feedback">
+                            {{ $message  }}
+                        </div>
+                        @enderror
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -62,7 +62,8 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="">Jurusan :</label>
-                        <select type="text" name="id_jurusan" id="" class="form-control @error('id_jurusan') is-invalid @endif">
+                        <select type="text" name="id_jurusan" id=""
+                            class="form-control @error('id_jurusan') is-invalid @endif">
                             <option value="">-- Pilih Jurusan --</option>
                             @foreach ($jurusan as $item)
                             <option value="{{ $item->id }}" {{ (old('id_jurusan') == $item->id) ? 'selected' : '' }}>
@@ -75,6 +76,21 @@
                             {{ $message  }}
                         </div>
                         @enderror
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group addMapelInput">
+                        <label for="">Mata pelajran :</label>
+                        <div class="row ml-1">
+                            <input type="text" name="mapel[]" class="form-control mapel col-md-10 " id="mapel" >
+                            <button class="btn btn-success d-inline ml-3" id="addInput">+</button>
+                            {{-- @error('id_mapel') --}}
+                            <div class="invalid-feedback d-none mapel_err" id="mapel_err">
+                              Mapel tidak boleh kosong
+                            </div>
+                            {{-- @enderror --}}
+                        </div>
+
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -115,7 +131,7 @@
                         @enderror
                     </div>
                 </div>
-                 <div class="col-md-6">
+                <div class="col-md-6">
                     <div class="form-group">
                         <label for="">Email :</label>
                         <input type="text" name="email" class="form-control @error('email') is-invalid @enderror"
@@ -139,7 +155,7 @@
                         @enderror
                     </div>
                 </div>
-                <button class="btn btn-success ml-auto mr-2 mt-5 mb-5" type="submit">Submit</button>
+                <button class="btn btn-success ml-auto mr-2 mt-5 mb-5" id="buttonSubmit" type="submit">Submit</button>
                 <a href="{{ route('admin.guru.index') }}" class="btn btn-danger mr-4 mt-5 mb-5">Cansel</a>
             </div>
 
@@ -150,5 +166,54 @@
 </div>
 @endsection
 @push('js')
+<script>
+    $(document).ready(function () {
+        x = 1;
+        $('#addInput').click(function (e) {
+            e.preventDefault();
+            console.log('clicked');
+            x++
+            $('.addMapelInput').append(' <div class="row ml-1">' +
+                '<input type="text" name="mapel[]" class="form-control mapel mt-2 col-md-10 " id="mapel">' +
+                '<button class="btn btn-danger d-inline ml-3 removeInput mt-2 mb-2" >x</button>' +
+                '<div class="invalid-feedback mapel_err" id="mapel_err">' +
+                'mapel tidak boleh kosong' +
+                '</div>' +
+                '</div>');
+            $('.removeInput').click(function (e) {
+                e.preventDefault(); // prevent button
+                $(this).parent('div').remove(); // hapus parent
+                --x;
+            })
+        })
 
+
+        $('#buttonSubmit').click(function (e) {
+            e.preventDefault();
+            // jika return fungtion nya mkaa akan menampilan validasi
+            if (!validate_mapel()) {
+                $('#form').submit();
+            }
+        })
+
+        function validate_mapel() {
+            count_erorr = [];
+            mapel = document.querySelectorAll('.mapel');
+            mapel.forEach(element => {
+                if (!element.value) {
+                    $(element).addClass('is-invalid');
+                    $(element).closest('div').find('.mapel_err').removeClass('d-none');
+                    console.log('test');
+                    count_erorr += 1
+                } else {
+                    $(element).removeClass('is-invalid');
+                    $(element).closest('div').find('.mapel_err').addClass('d-none');
+                }
+            });
+            // console.log(count_erorr.length);
+            return count_erorr.length;
+        }
+    })
+
+</script>
 @endpush

@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 use App\Http\Requests\GuruRequest;
 use App\Models\Jurusan;
+use App\Models\Mapel;
 use Illuminate\Support\Facades\Hash;
 use Maatwebsite\Excel\Excel;
 
@@ -68,14 +69,16 @@ class GuruController extends Controller
      */
     public function store(GuruRequest $request)
     {
-        $request->validated();
+        // dd($request->all());
+        // $request->validated();
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'role' => $request->jabatan,
             'password' => Hash::make($request->pasword)
         ]);
-        Guru::create([
+
+        $guru = Guru::create([
             'nik' => $request->nik,
             'name' => $request->name,
             'jabatan' => $request->jabatan,
@@ -85,6 +88,13 @@ class GuruController extends Controller
             'no_telp' => $request->no_telp,
             'id_user' => $user->id
         ]);
+
+        for ($i = 0; $i < count($request->mapel) ; $i++) {
+            Mapel::create([
+                'nama_mapel' => $request->mapel[$i],
+                'id_guru' => $guru->id // ngambil id dari guru
+            ]);
+        }
         return redirect()->route('admin.guru.index')->with('berhasil','data berhasil di tambahkan');
     }
 
@@ -126,9 +136,9 @@ class GuruController extends Controller
         //$guru->update($request->all());
         $request->validated();
         $guru = Guru::where('id', $id)->first();
-        $user = User::where('id', $guru->id)->first();
+        $user = User::where('id', $guru->id)->first(); // 2x cek guru
         // jika usernnya kosong
-        if (!empty($user)) {
+        if (!empty($guru->user)) {
             // update
             $user = User::where('id', $guru->id_user)->update([
                 'name' => $request->name,
@@ -145,7 +155,7 @@ class GuruController extends Controller
                 'role' => $request->jabatan
             ]);
         }
-        Guru::where('id', $id)->update([
+        $guru = Guru::where('id', $id)->update([
             'nik' => $request->nik,
             'name' => $request->name,
             'jabatan' => $request->jabatan,
@@ -154,6 +164,18 @@ class GuruController extends Controller
             'fax' => $request->fax,
             'no_telp' => $request->no_telp,
         ]);
+
+        // apus mapelnya
+        $mapel = Mapel::where('id_guru', $id)->delete();
+
+        // buat mapel
+        //dd(count($request->mapel));
+        for ($i = 0; $i < count($request->mapel); $i++) {
+            Mapel::create([
+                'nama_mapel' => $request->mapel[$i],
+                'id_guru' => $id // ngambil id dari guru
+            ]);
+        }
         return redirect()->route('admin.guru.index')->with('berhasil','Data berhasil di update');
     }
 

@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
             userSeeder::class,
             jurusanSeeder::class,
             guruSeeder::class,
+            MapelSeeder::class,
             bidang_keahlianSeeder::class,
             kompetensi_dasarSeeder::class,
             target_pembelajaranSeeder::class,

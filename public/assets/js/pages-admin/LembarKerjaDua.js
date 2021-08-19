@@ -11,10 +11,10 @@ $(document).ready(function () {
         case 'guru':
             return [
                     { data: 'DT_RowIndex', name: 'DT_RowIndex'},
+                      { data: 'mapel',name:'mapel'},
                     { data: 'bidang_studi', name:'bidang_studi'},
                     { data: 'kelas', kelas:'kelas'},
                     { data: 'jam_pelajaran', name:'jam_pelajaran'},
-                    { data: 'mapel',name:'mapel'},
                     { data: 'total_waktu_jam_pelajaran',name:'total_waktu_jam_pelajaran'},
                     { data: 'action',name:'action'}
                 ];
@@ -23,10 +23,11 @@ $(document).ready(function () {
                 return [
                         { data: 'DT_RowIndex', name: 'DT_RowIndex'},
                         {data:'guru', name: 'guru'},
+                         { data: 'mapel',name:'mapel'},
                         { data: 'bidang_studi', name:'bidang_studi'},
                         { data: 'kelas', kelas:'kelas'},
                         { data: 'jam_pelajaran', name:'jam_pelajaran'},
-                        { data: 'mapel',name:'mapel'},
+
                         { data: 'total_waktu_jam_pelajaran',name:'total_waktu_jam_pelajaran'},
                         { data: 'action',name:'action'}
                     ];

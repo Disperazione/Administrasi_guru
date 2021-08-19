@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Bidang_keahlian;
 use App\Models\Guru;
 use App\Models\Kompetensi_inti;
+use App\Models\Mapel;
 use App\Models\Rincian_bukti;
 use App\Models\Target_pembelajaran;
 use App\Models\Target_pencapaian_kkd;
@@ -33,6 +34,9 @@ class LembarKerjaSatu extends Controller
                 ->addColumn('guru', function ($data) {
                     return $data->guru->name;
                 })
+                ->addColumn('mapel', function ($data) {
+                    return $data->mapel->nama_mapel;
+                })
                 ->addColumn('action', function ($data) {
                     $button = '<a href="/admin/lk_1/' . $data->id . '/pdf"   id="' . $data->id . '" class="edit btn btn-danger text-white btn-sm"><i class="fas fa-file-pdf"></i></a>';
                     $button .= '&nbsp';
@@ -57,12 +61,30 @@ class LembarKerjaSatu extends Controller
     public function create()
     {
         $guru = Guru::all();
+        if (Auth::user()->role == 'guru') {
+            $mapel = Mapel::where('id_guru',Auth::user()->id)->get();
+        }else{
+            $mapel = Mapel::all();
+        }
         $bidang = Bidang_keahlian::doesnthave('target_pembelajaran')->get();
-        return view('admin.lembar_kerja_satu.tambah', compact('guru','bidang'));
+        return view('admin.lembar_kerja_satu.tambah', compact('guru','bidang','mapel'));
+    }
+    // buat mapel
+    public function option_guru($id)
+    {
+        $mapel = Mapel::where('id_guru',$id)->get();
+        return response()->json(['mapel' => $mapel]);
+    }
+    // buat mapel
+    public function option_mapel($id){
+        $mapel = Bidang_keahlian::where('id_mapel',$id)->get();
+        return response()->json(['mapel' => $mapel]);
     }
 
-    public function option_bidang($id){
-        $bidang = Bidang_keahlian::where('id',$id)->first();
+    // buat option bidang
+    public function option_bidang($id)
+    {
+        $bidang = Bidang_keahlian::where('id', $id)->first();
         return response()->json(['bidang' => $bidang]);
     }
     /**
@@ -142,13 +164,18 @@ class LembarKerjaSatu extends Controller
         // $bidang = Bidang_keahlian::whereHas('target_pembelajaran', function (Builder $query) use($id) {
         //     $query->where('id_bidang_keahlian', $id);
         // })->get();
+        if (Auth::user()->role == 'guru') {
+            $mapel = Mapel::where('id_guru', Auth::user()->id)->get();
+        } else {
+            $mapel = Mapel::all();
+        }
         $bidang = Bidang_keahlian::doesnthave('target_pembelajaran')->get();
         if (Auth::user()->role == 'guru') {
             $target = Bidang_keahlian::has('target_pembelajaran')->with('target_pembelajaran')->where([['id_guru',Auth()->id()],['id', $id]])->first();
         } else if (Auth::user()->role == 'admin') {
             $target = Bidang_keahlian::has('target_pembelajaran')->where('id', $id)->first();
         }
-        return view('admin.lembar_kerja_satu.edit', compact('target','guru','bidang'));
+        return view('admin.lembar_kerja_satu.edit', compact('target','guru','bidang','mapel'));
     }
 
     /**

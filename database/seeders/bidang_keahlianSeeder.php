@@ -15,13 +15,14 @@ class bidang_keahlianSeeder extends Seeder
     public function run()
     {
         $faker = Faker::create('id_ID');
+
         DB::table('bidang_keahlian')->insert([
             'bidang_studi' => 'TEKNOLOGI INFORMASI DAN KOMUNIKASI',
             'kompetensi_keahlian' => 'RPL',
             'kelas' => 'X',
             'jam_pelajaran' => '128 JP',
             'total_waktu_jam_pelajaran' => '48 Menit',
-            'mapel' => 'PEMROGRAMAN BERORENTASI OBJEK',
+            'id_mapel' => 1,
             'id_guru' => 1
         ]);
     }
