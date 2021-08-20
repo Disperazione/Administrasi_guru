@@ -38,14 +38,17 @@
                                         <i class="far fa-address-card"></i>
                                     </div>
                                 </div>
-                                <select class="form-control" name="id_guru"
-                                    {{ (Auth::user()->role == 'guru') ? 'disabled' : '' }} id="id_guru">
+                                <select class="form-control" name="id_guru" {{ (Auth::user()->role == 'guru') ? 'disabled id=""' : 'id=id_guru' }}  >
                                     <option value="">Lihat Lebih Lanjut</option>
-                                    @foreach ($guru as $items)
-                                    <option value="{{ $items->id }}"
-                                        {{ (Auth::user()->role == 'guru' && Auth::user()->id == $items->id) ? 'selected' : '' }}>
+                                    @if (Auth::user()->role === 'admin')
+                                           @foreach ($guru as $items)
+                                    <option value="{{ $items->id }}" {{ (old('id_guru', $items->id)) ? 'selected' : '' }}>
                                         {{ $items->name }}</option>
                                     @endforeach
+                                    @else
+                                        <option value="{{  Auth::user()->guru->id  }}" selected>{{ Auth::user()->guru->name }}</option>
+                                    @endif
+
                                 </select>
                                 <div class="invalid-feedback">
                                     Mapel tidak boleh koosng
@@ -60,11 +63,18 @@
                                         <i class="fas fa-align-left"></i>
                                     </div>
                                 </div>
-                                <select class="form-control" name="id_mapel" id="mapel">
+                                <select class="form-control" name="id_mapel"  id="mapel">
                                     <option value="">Lihat Lebih Lanjut</option>
-                                    @foreach ($mapel as $mapel)
+                                    @if (Auth::user()->role == 'admin')
+                                          @foreach ($mapel as $mapel)
                                     <option value="{{ $mapel->id }}">{{ $mapel->nama_mapel }}</option>
                                     @endforeach
+                                    @else
+                                    @foreach (Auth::user()->guru->mapel as $mapels )
+                                        <option value="{{ $mapels->id }}">{{ $mapels->nama_mapel }}</option>
+                                    @endforeach
+                                    @endif
+
                                 </select>
                                 <div class="invalid-feedback">
                                     Mapel tidak boleh koosng

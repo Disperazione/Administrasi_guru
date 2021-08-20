@@ -24,7 +24,8 @@ class GuruController extends Controller
 
     public function index(Request $request)
     {
-
+        // $a =User::wherenotin('id', [4])->where('email', '21e12e21e')->first();
+        // dd(empty($a));
         if ($request->ajax()) {
             $guru = guru::all();
             // yajra data table
@@ -67,12 +68,41 @@ class GuruController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(GuruRequest $request)
+    // validated email
+    public function validated_email($email)
+    {
+        if (!empty($email)) {
+            $user = User::where('email', $email)->first();
+            if (!empty($user)) { // jika nik / usernme nya sudah ada atau tidak koosng
+                return response()->json(['validate_email' => 'Email sudah tersedia']);  // retun valicasi
+            } else {
+                return response()->json(['validate_email' => '']);  // rertun kosong atau berhasil
+            }
+        } else {
+            return response()->json(['validate_email' => 'Email tidak boleh kosong']); // return erorr ( tidak boleh kosong )
+        }
+    }
+
+    // validate nik
+    public function validated_nik($nik){
+        if (!empty($nik)) {
+            $user = User::where('name',$nik)->first();
+            if (!empty($user)) { // jika nik / usernme nya sudah ada atau tidak koosng
+                return response()->json(['validate_nik' => 'Nik sudah tersedia']);  // retun valicasi
+            }else{
+                return response()->json(['validate_nik' => '']);  // rertun kosong atau berhasil
+            }
+        }else{
+            return response()->json(['validate_nik' => 'Nik tidak boleh kosong']); // return erorr ( tidak boleh kosong )
+        }
+    }
+
+    public function store(Request $request)
     {
         // dd($request->all());
         // $request->validated();
         $user = User::create([
-            'name' => $request->name,
+            'name' => $request->nik,
             'email' => $request->email,
             'role' => $request->jabatan,
             'password' => Hash::make($request->pasword)
@@ -124,6 +154,7 @@ class GuruController extends Controller
         return view('admin.guru.edit',['guru' => $guru,'jurusan' => $jurusan]);
     }
 
+
     /**
      * Update the specified resource in storage.
      *
@@ -131,17 +162,48 @@ class GuruController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(GuruRequest $request, $id)
+
+    // validated email
+    public function validated_email_edit($id,$email)
+    {
+        if (!empty($email)) {
+            $user = User::wherenotin('id', [$id])->where('email', $email)->first();
+            if (!empty($user)) { // jika nik / usernme nya sudah ada atau tidak koosng
+                return response()->json(['validate_email' => 'Email sudah tersedia']);  // retun valicasi
+            } else {
+                return response()->json(['validate_email' => '']);  // rertun kosong atau berhasil
+            }
+
+        } else {
+            return response()->json(['validate_email' => 'Email tidak boleh kosong']); // return erorr ( tidak boleh kosong )
+        }
+    }
+
+    // validate nik
+    public function validated_nik_edit($id, $nik)
+    {
+        if (!empty($nik)) {
+            $user = User::wherenotin('id',[$id])->where('nik', $nik)->first();
+            if (!empty($user)) { // jika nik / usernme nya sudah ada atau tidak koosng
+                return response()->json(['validate_nik' => 'Nik sudah tersedia']);  // retun valicasi
+            } else {
+                return response()->json(['validate_nik' => '']);  // rertun kosong atau berhasil
+            }
+        } else {
+            return response()->json(['validate_nik' => 'Nik tidak boleh kosong']); // return erorr ( tidak boleh kosong )
+        }
+    }
+    public function update(Request $request, $id)
     {
         //$guru->update($request->all());
-        $request->validated();
+        // $request->validated();
         $guru = Guru::where('id', $id)->first();
         $user = User::where('id', $guru->id)->first(); // 2x cek guru
         // jika usernnya kosong
         if (!empty($guru->user)) {
             // update
             $user = User::where('id', $guru->id_user)->update([
-                'name' => $request->name,
+                'name' => $request->nik,
                 'email' => $request->email,
                 'password' => Hash::make($request->pasword),
                 'role' => $request->jabatan
@@ -149,7 +211,7 @@ class GuruController extends Controller
         }else{
             // jika tidak buar user baru
             $user = User::create([
-                'name' => $request->name,
+                'name' => $request->nik,
                 'email' => $request->email,
                 'password' => Hash::make($request->pasword),
                 'role' => $request->jabatan

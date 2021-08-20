@@ -21,7 +21,7 @@
             <h6 class="card-title">Pada bagian ini, cantumkan data pribadi tenaga pendidik serta mencantumkan mata
                 pelajaran yang di ampu.</h6>
         </div>
-        <form id="form" class="form" action="{{ route('admin.Lembar-kerja-1.store') }}" method="POST">
+        <form id="form" class="form" action="{{ route('admin.Lembar-kerja-1.update',$target->id) }}" method="POST">
             @csrf
             @method('put')
             {{-- datatenagapendidik --}}
@@ -42,11 +42,15 @@
                                 <select class="form-control" name="id_guru"
                                     {{ (Auth::user()->role == 'guru') ? 'disabled' : '' }} id="id_guru">
                                     <option value="">Lihat Lebih Lanjut</option>
-                                    @foreach ($guru as $items)
-                                    <option value="{{ $items->id }}"
-                                        {{ ($target->mapel->guru->id || Auth::user()->role == 'guru' && Auth::user()->id == $items->id) ? 'selected' : '' }}>
+                                    @if (Auth::user()->role === 'admin')
+                                        @foreach ($guru as $items)
+                                    <option value="{{ $items->id }}" {{ (old('id_guru', $items->id)) ? 'selected' : '' }}>
                                         {{ $items->name }}</option>
                                     @endforeach
+                                    @else
+                                        <option value="{{  Auth::user()->guru->id  }}" selected>{{ Auth::user()->guru->name }}</option>
+                                    @endif
+
                                 </select>
                                 <div class="invalid-feedback">
                                     Mapel tidak boleh koosng
@@ -63,11 +67,15 @@
                                 </div>
                                 <select class="form-control" name="id_mapel" id="mapel">
                                     <option value="">Lihat Lebih Lanjut</option>
-                                    @foreach ($mapel as $mapel)
-                                    <option value="{{ $mapel->id }}"
-                                        {{ (old('id_mapel',$target->mapel->id)) ? 'selected' : '' }}>
-                                        {{ $mapel->nama_mapel }}</option>
+                                   @if (Auth::user()->role == 'admin')
+                                        @foreach ($mapel as $mapel)
+                                    <option value="{{ $mapel->id }}" {{ (old('id_mapel', $target->mapel->id) == $mapel->id) ? 'selected' : '' }}>{{ $mapel->nama_mapel }}</option>
                                     @endforeach
+                                    @else
+                                    @foreach (Auth::user()->guru->mapel as $mapels )
+                                        <option value="{{ $mapels->id }}" {{ (old('id_mapel', $target->mapel->id) == $mapels->id) ? 'selected' : '' }}>{{ $mapels->nama_mapel }}</option>
+                                    @endforeach
+                                    @endif
                                 </select>
                                 <div class="invalid-feedback">
                                     Mapel tidak boleh koosng
@@ -842,10 +850,16 @@
                     console.log(response.mapel);
                     $('#bidang').empty();
                     if (!response.mapel.length) {
-                        $('#bidang').append(
-                            '<option value="">Bidang Studi kosong</option>');
+                        if (id === "{{ $target->mapel->id }}") {
+                        $('#bidang').append('<option value="">Pelajari lebih lanjut</option>');
+                        $('#bidang').append('<option value="{{ $target->id }}">{{ $target->bidang_studi }}</option>');
+                        }else{
+                            $('#bidang').append('<option value="">Bidang studi kosong</option>');
+                        }
+
                     } else {
                         $('#bidang').append('<option value="">Lihat lebih lanjut</option>');
+                        $('#bidang').append('<option value="{{ $target->id }}">{{ $target->bidang_studi }}</option>');
                         response.mapel.forEach(element => {
                             $('#bidang').append('<option value="' + element.id +
                                 '">' +

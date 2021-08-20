@@ -69,15 +69,15 @@ class LembarKerjaSatu extends Controller
         $bidang = Bidang_keahlian::doesnthave('target_pembelajaran')->get();
         return view('admin.lembar_kerja_satu.tambah', compact('guru','bidang','mapel'));
     }
-    // buat mapel
+    // autocomplete mapel mapel
     public function option_guru($id)
     {
         $mapel = Mapel::where('id_guru',$id)->get();
         return response()->json(['mapel' => $mapel]);
     }
-    // buat mapel
+    // autocompte bidang mapel
     public function option_mapel($id){
-        $mapel = Bidang_keahlian::where('id_mapel',$id)->get();
+        $mapel = Bidang_keahlian::where('id_mapel',$id)->doesnthave('target_pembelajaran')->get();
         return response()->json(['mapel' => $mapel]);
     }
 

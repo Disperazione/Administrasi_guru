@@ -57,6 +57,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth','roles:guru,admin'])-
     Route::get('/option/guru/{id}', [LK1::class, 'option_guru']);
     Route::get('/option/mapel/{id}', [LK1::class, 'option_mapel']);
     Route::get('/option/bidang_studi/{id}', [LK1::class, 'option_bidang']);
+
     // route for pdf here
     Route::get('/lk_1/{id}/pdf',[PDFController::class,'LK_1'])->name('pdf.lk_1');
     Route::get('/lk_2/{id}/pdf', [PDFController::class, 'LK_2'])->name('pdf.lk_2');
@@ -67,4 +68,10 @@ Route::prefix('admin')->name('admin.')->middleware(['auth','roles:guru,admin'])-
     // export route
     Route::get('/excel/guru',[GuruController::class,'export'])->name('export.guru');
     Route::get('/excel/jurusan', [JurusanController::class, 'export'])->name('export.jurusan');
+
+    //option valitade
+    Route::get('/guru/validdate/nik/{name}',[GuruController::class,'validated_nik']);
+    Route::get('/guru/validdate/email/{email}', [GuruController::class, 'validated_email']);
+    Route::get('/guru/validdate/nik/{id}/s/{name}/edit', [GuruController::class, 'validated_nik_edit']);
+    Route::get('/guru/validdate/email/{id}/s/{email}/edit', [GuruController::class, 'validated_email_edit']);
 });
