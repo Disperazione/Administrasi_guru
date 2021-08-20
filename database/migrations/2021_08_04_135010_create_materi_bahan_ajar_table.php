@@ -15,9 +15,9 @@ class CreateMateriBahanAjarTable extends Migration
     {
         Schema::create('materi_bahan_ajar', function (Blueprint $table) {
             $table->id();
-            $table->string('modul');
-            $table->string('vidio_pembelajaran');
-            $table->longText('deskripsi_bahan_ajar');
+            $table->string('modul')->nullable();
+            $table->string('vidio_pembelajaran')->nullable();
+            $table->longText('deskripsi_bahan_ajar')->nullable();
             $table->longText('keterangan')->nullable();
             $table->foreignId('id_kompetensi_dasar')->constrained('kompetensi_dasar')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();

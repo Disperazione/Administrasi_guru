@@ -5,7 +5,10 @@ namespace App\Http\Controllers\admin\lembar_kerja;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\Bidang_keahlian;
+use App\Models\Guru;
 use App\Models\Kompetensi_dasar;
+use App\Models\Mapel;
+use App\Models\Materi_bahan_ajar;
 use Illuminate\Http\Request;
 
 class LembarKerjaEmpat extends Controller
@@ -17,6 +20,7 @@ class LembarKerjaEmpat extends Controller
      */
     public function index(Request $request)
     {
+
         if ($request->ajax()) {
             // mencari distinct/unique id_bidag_keahlian koompetensi dasar yang punya  indikator_ketercapaian
             $kompetensi = Kompetensi_dasar::select('id_bidang_keahlian')->has('materi_bahan_ajar')->get()->unique();
@@ -60,9 +64,50 @@ class LembarKerjaEmpat extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function option_guru($id)
+    {
+        $mapel = Mapel::where('id_guru', $id)->get();
+        return response()->json(['mapel' => $mapel]);
+    }
+    // autocompte bidang mapel
+    public function option_mapel($id)
+    {
+        // ,engammbil kompetensi dasar belum mempunyai mempunyai lk4 / bahan ajar
+        $kompetensi = Kompetensi_dasar::doesntHave('materi_bahan_ajar')->get();
+        // arr ( isinya id bidang keahlian )
+        $id_keahlian = []; // loop untuk mendapat id bidang keahlian
+        foreach ($kompetensi as $key => $value) {
+            $id_keahlian[] = $value->id_bidang_keahlian;
+        }
+        $mapel = Bidang_keahlian::whereIn('id', $id_keahlian)->where('id_mapel', $id)->with('kompetensi_dasar')->get();
+        return response()->json(['mapel' => $mapel]);
+    }
+
+    // buat option bidang
+    public function option_bidang($id)
+    {
+        $bidang = Bidang_keahlian::where('id', $id)->with('kompetensi_dasar')->first();
+        return response()->json(['bidang' => $bidang]);
+    }
     public function create()
     {
-        return view('admin.lembar_kerja_empat.tambah');
+        // mencari distinct/unique id_bidag_keahlian koompetensi dasar yang punya  indikator_ketercapaian
+        $guru = Guru::has('bidang_keahlian')->get();
+        $mapel = Mapel::has('bidang_keahlian')->get();
+        $kompetensi = Kompetensi_dasar::select('id_bidang_keahlian')->has('materi_bahan_ajar')->get()->unique();
+        $id_keahlian = [];
+        foreach ($kompetensi as $key => $value) {
+            $id_keahlian[] = $value->id_bidang_keahlian;
+        }
+
+        if (Auth::user()->role == 'guru') {
+            // mendapat bidang keahlian yang sudah mempunyai kompetensi dasar yang mempunyai materi bahan ajar
+            $data = Bidang_keahlian::has('kompetensi_dasar')->whereIn('id',  $id_keahlian)->where('id_guru', auth()->id())->get();
+        } else if (Auth::user()->role == 'admin') {
+            $data = Bidang_keahlian::has('kompetensi_dasar')->whereIn('id',  $id_keahlian)->get();
+        }
+        return view('admin.lembar_kerja_empat.tambah', compact('guru','mapel','mapel'));
     }
 
     /**
@@ -73,9 +118,18 @@ class LembarKerjaEmpat extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // loop id dari kd nya dulu
+        for ($i=0; $i < count($request->id_kd) ; $i++) {
+            Materi_bahan_ajar::create([
+                'modul' => $request->modul[$i],
+                'vidio_pembelajaran' => $request->vidio_pel[$i],
+                'deskripsi_bahan_ajar' => $request->deskripsi_bahan[$i],
+                'keterangan' => $request->keterangan[$i],
+                'id_kompetensi_dasar' => $request->id_kd[$i],
+            ]);
+        }
+        return redirect()->route('admin.Lembar-kerja-4.index')->with('berhasil','Data berhasil di tambahkan');
     }
-
     /**
      * Display the specified resource.
      *
@@ -100,12 +154,12 @@ class LembarKerjaEmpat extends Controller
      */
     public function edit($id)
     {
-        if (Auth::user()->role == 'guru') {
-            $materi = Bidang_keahlian::has('kompetensi_dasar')->where(['id_guru', auth()->id()], ['id', $id])->get();
-        } else if (Auth::user()->role == 'admin') {
-            $materi = Bidang_keahlian::has('kompetensi_dasar')->where('id',  $id)->get();
-        }
-        return view('admin.lembar_kerja_empat.edit', compact('materi'));
+        $guru = Guru::has('bidang_keahlian')->get(); // ini loop guru
+        $bidang_main = Bidang_keahlian::where('id',$id)->first(); // mencari bidang keahlian main
+        $mapel = Mapel::has('bidang_keahlian')->where('id_guru', $bidang_main->guru->id)->get(); // ini loop mapel
+        //$bidang_table = Bidang_keahlian::where('id_mapel', $bidang_main->id_mapel)->get(); // mencar bidag yang sesuai dengan guru
+        $bidang_table = Bidang_keahlian::where('id_mapel', $bidang_main->mapel->id)->get();
+        return view('admin.lembar_kerja_empat.edit', compact('guru','mapel', 'bidang_main', 'bidang_table'));
     }
 
     /**
@@ -117,7 +171,15 @@ class LembarKerjaEmpat extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        for ($i=0; $i < count($request->id_kd) ; $i++) {
+             Materi_bahan_ajar::where('id_kompetensi_dasar', $request->id_kd[$i])->update([
+                'modul' => $request->modul[$i],
+                'vidio_pembelajaran' => $request->vidio_pel[$i],
+                'deskripsi_bahan_ajar' => $request->deskripsi_bahan[$i],
+                'keterangan' => $request->keterangan[$i],
+            ]);
+        }
+        return redirect()->route('admin.Lembar-kerja-4.index')->with('berhasil', 'Data berhasil di update');
     }
 
     /**
@@ -130,7 +192,7 @@ class LembarKerjaEmpat extends Controller
     {
         $kd = Kompetensi_dasar::where('id_bidang_keahlian', $id)->get();
         foreach ($kd as $key => $value) {
-            $kd->materi_bahan_ajar->delete();
+            $value->materi_bahan_ajar->delete();
         }
         return response()->json($data = 'berhasil');
     }

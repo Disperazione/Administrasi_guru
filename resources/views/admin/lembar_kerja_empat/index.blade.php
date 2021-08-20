@@ -32,7 +32,6 @@
                 <th>Bidang Studi</th>
                 <th>Kelas</th>
                 <th>Jam Pelajaran</th>
-                <th>Mapel</th>
                 <th>Total Jam</th>
                 <th style="width: 130px;">Action</th>
             </tr>
