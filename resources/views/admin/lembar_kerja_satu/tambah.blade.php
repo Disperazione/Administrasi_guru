@@ -156,7 +156,7 @@
                             <thead class="text-center">
                                 <tr>
                                     <th scope="col" style="width: 10px;">NO.</th>
-                                    <th scope="col" style="width: 80%;">Kompetensi Isi</th>
+                                    <th scope="col" style="width: 80%;">Kompetensi Inti</th>
                                     <th scope="col" style="width: 10px;">
                                         <button class="btn btn-success addbtn_multiple_kompetensi"
                                             style="width: 80px;">Fields <i class="fas fa-plus"></i></button>

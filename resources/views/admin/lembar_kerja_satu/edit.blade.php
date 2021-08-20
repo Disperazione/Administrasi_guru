@@ -279,7 +279,7 @@
                                 @if (count($target->target_pembelajaran->target_pencapaian_mapel) < 2) @else @for ($i=0;
                                     $i < count($target->target_pembelajaran->target_pencapaian_mapel); $i++)
                                     <tr id="row_pen_mapel" data-id="{{ $i + 1 }}">
-                                        <th scope="row">{{ $I }}</th>
+                                        <th scope="row">{{ $i }}</th>
                                         <td>
                                             <textarea type="text" class="form-control input_target_mapel"
                                                 name="target_mapel[]" style="height: 40px;"></textarea>

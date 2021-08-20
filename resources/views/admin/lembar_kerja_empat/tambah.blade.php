@@ -112,88 +112,212 @@
             </div>
             {{-- datatenagapendidik --}}
 
-            {{--  --}}
-            <div class="row fields_jenisbahan">
-                <div class="col-sm-6">
+            {{-- kompetensidasar --}}
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card-header">
+                        <h4 class="card-title" style="padding-top: 30px;">Kompetensi Dasar</h4>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-hover">
+                            <thead class="text-center">
+                                <tr>
+                                    <th scope="col" style="width: 10px;">NO.</th>
+                                    <th scope="col" style="width: 80%;">Kompetensi Dasar</th>
+                                    <th scope="col" style="width: 10px;">
+                                        <button class="btn btn-success addbtn_kompetensidasar"
+                                            style="width: 80px;">Fields <i class="fas fa-plus"></i></button>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody class="fields_kompetensidasar">
+                                <div>
+                                    <tr>
+                                        <th>1</th>
+                                        <td>
+                                            <textarea type="text" class="form-control input_kompetensidasar"
+                                                name="kompetensidasar[]" style="height: 40px;"></textarea>
+                                            <div class="invalid-feedback d-none invalid_kompetensidasar"
+                                                style="margin-left: 41px;">
+                                                Kompetensi dasar tidak boleh kosong
+                                            </div>
+                                        </td>
+                                        <td class="text-center">
+                                            <button class="btn btn-danger removebtn_kompetensidasar" style="width: 40px;">X</button>
+                                        </td>
+                                    </tr>
+                                </div>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            {{-- kompetensidasar --}}
+
+            {{-- jenisbahanajar modul --}}
+            <div class="row">
+                <div class="col-sm-12">
                     <div class="card-header">
                         <h4 class="card-title" style="padding-top: 30px;">Jenis Bahan Ajar</h4>
                     </div>
                     <div class="card-body">
-                        <div class="form-group">
-                            <label>Kompetensi Dasar 3.17</label>
-                            <div class="input-group">
-                              <div class="input-group-prepend">
-                                <div class="input-group-text">
-                                    <i class="fas fa-file-alt"></i>
+                        <table class="table table-hover">
+                            <thead class="text-center">
+                                <tr>
+                                    <th scope="col" style="width: 10px;">NO.</th>
+                                    <th scope="col" style="width: 80%;">Modul</th>
+                                    <th scope="col" style="width: 10px;">
+                                        <button class="btn btn-success addbtn_modul"
+                                            style="width: 80px;">Fields <i class="fas fa-plus"></i></button>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody class="fields_modul">
+                                <div>
+                                    <tr>
+                                        <th>1</th>
+                                        <td>
+                                            <textarea type="text" class="form-control input_modul"
+                                                name="modul[]" style="height: 40px;"></textarea>
+                                            <div class="invalid-feedback d-none invalid_modul"
+                                                style="margin-left: 41px;">
+                                                Modul tidak boleh kosong
+                                            </div>
+                                        </td>
+                                        <td class="text-center">
+                                            <button class="btn btn-danger removebtn_modul" style="width: 40px;">X</button>
+                                        </td>
+                                    </tr>
                                 </div>
-                              </div>
-                              <textarea class="form-control col-10" style="height: 80px;"></textarea>
-                              <button class="btn btn-success ml-4 addbtn_jenisbahan" style="height: 35px;">Fields <i class="fas fa-plus"></i></button>
-                            </div>
-                            {{--  --}}
-                        </div>
-                        <div class="form-group">
-                            <label>Kompetensi Dasar 4.17</label>
-                            <div class="input-group">
-                              <div class="input-group-prepend">
-                                <div class="input-group-text">
-                                    <i class="fas fa-file-alt"></i>
-                                </div>
-                              </div>
-                              <textarea class="form-control col-10" style="height: 80px;"></textarea>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label>Modul</label>
-                            <div class="input-group">
-                              <div class="input-group-prepend">
-                                <div class="input-group-text">
-                                    <i class="fas fa-file-alt"></i>
-                                </div>
-                              </div>
-                              <textarea class="form-control col-10" style="height: 80px;"></textarea>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label>Video Pembelajaran</label>
-                            <div class="input-group">
-                              <div class="input-group-prepend">
-                                <div class="input-group-text">
-                                  <i class="far fa-file-video"></i>
-                                </div>
-                              </div>
-                              <textarea class="form-control col-10" style="height: 80px;"></textarea>
-                            </div>
-                            {{--  --}}
-                        </div>
-                        <div class="form-group">
-                            <label>Deskripsi Bahan Ajar</label>
-                            <div class="input-group">
-                              <div class="input-group-prepend">
-                                <div class="input-group-text">
-                                    <i class="fas fa-file-invoice"></i>
-                                </div>
-                              </div>
-                              <textarea class="form-control col-10" style="height: 80px;"></textarea>
-                            </div>
-                            {{--  --}}
-                        </div>
-                        <div class="form-group">
-                            <label>Keterangan</label>
-                            <div class="input-group">
-                              <div class="input-group-prepend">
-                                <div class="input-group-text">
-                                    <i class="fas fa-file-invoice"></i>
-                                </div>
-                              </div>
-                              <textarea class="form-control col-10" style="height: 80px;"></textarea>
-                            </div>
-                            {{--  --}}
-                        </div>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
-            {{--  --}}
+            {{-- jenisbahanajar modul --}}
+
+            {{-- jenisbahanajar videopembelajaran --}}
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card-body">
+                        <table class="table table-hover">
+                            <thead class="text-center">
+                                <tr>
+                                    <th scope="col" style="width: 10px;">NO.</th>
+                                    <th scope="col" style="width: 80%;">Video Pembelajaran</th>
+                                    <th scope="col" style="width: 10px;">
+                                        <button class="btn btn-success addbtn_videobelajar"
+                                            style="width: 80px;">Fields <i class="fas fa-plus"></i></button>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody class="fields_videobelajar">
+                                <div>
+                                    <tr>
+                                        <th>1</th>
+                                        <td>
+                                            <textarea type="text" class="form-control input_videobelajar"
+                                                name="videobelajar[]" style="height: 40px;"></textarea>
+                                            <div class="invalid-feedback d-none invalid_videobelajar"
+                                                style="margin-left: 41px;">
+                                                Video Pembelajaran tidak boleh kosong
+                                            </div>
+                                        </td>
+                                        <td class="text-center">
+                                            <button class="btn btn-danger removebtn_videobelajar" style="width: 40px;">X</button>
+                                        </td>
+                                    </tr>
+                                </div>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            {{-- jenisbahanajar vidiopembelajaran --}}
+
+            {{-- deskripsibahanajar --}}
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card-header">
+                        <h4 class="card-title" style="padding-top: 30px;">Deskripsi Bahan Ajar</h4>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-hover">
+                            <thead class="text-center">
+                                <tr>
+                                    <th scope="col" style="width: 10px;">NO.</th>
+                                    <th scope="col" style="width: 80%;">Deskripsi Bahan Ajar</th>
+                                    <th scope="col" style="width: 10px;">
+                                        <button class="btn btn-success addbtn_deskbahanajar"
+                                            style="width: 80px;">Fields <i class="fas fa-plus"></i></button>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody class="fields_deskbahanajar">
+                                <div>
+                                    <tr>
+                                        <th>1</th>
+                                        <td>
+                                            <textarea type="text" class="form-control input_deskbahanajar"
+                                                name="deskbahanajar[]" style="height: 40px;"></textarea>
+                                            <div class="invalid-feedback d-none invalid_kompetensidasar"
+                                                style="margin-left: 41px;">
+                                                Deskripsi Bahan Ajar tidak boleh kosong
+                                            </div>
+                                        </td>
+                                        <td class="text-center">
+                                            <button class="btn btn-danger removebtn_deskbahanajar" style="width: 40px;">X</button>
+                                        </td>
+                                    </tr>
+                                </div>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            {{-- deskripsibahanajar --}}
+
+            {{-- keterangan --}}
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card-header">
+                        <h4 class="card-title" style="padding-top: 30px;">Keterangan</h4>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-hover">
+                            <thead class="text-center">
+                                <tr>
+                                    <th scope="col" style="width: 10px;">NO.</th>
+                                    <th scope="col" style="width: 80%;">Keterangan</th>
+                                    <th scope="col" style="width: 10px;">
+                                        <button class="btn btn-success addbtn_ket"
+                                            style="width: 80px;">Fields <i class="fas fa-plus"></i></button>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody class="fields_ket">
+                                <div>
+                                    <tr>
+                                        <th>1</th>
+                                        <td>
+                                            <textarea type="text" class="form-control input_ket"
+                                                name="ket[]" style="height: 40px;"></textarea>
+                                            <div class="invalid-feedback d-none invalid_ket"
+                                                style="margin-left: 41px;">
+                                                Keterangan tidak boleh kosong
+                                            </div>
+                                        </td>
+                                        <td class="text-center">
+                                            <button class="btn btn-danger removebtn_ket" style="width: 40px;">X</button>
+                                        </td>
+                                    </tr>
+                                </div>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            {{-- keterangan --}}
 
             {{--  --}}
             <div class="row">
@@ -214,98 +338,169 @@
 @endsection
 @push('js')
 <script>
-    // multiple input bukti siswa
-    $(document).ready(function() {
-        var max_fields      = 10;
-        var wrapper   		= $(".fields_jenisbahan");
-        var add_button      = $(".addbtn_jenisbahan");
+    // multiple
+    $(document).ready(function () {
+        var max_fields = 10;
+        var wrapper = $(".fields_kompetensidasar");
+        var add_button = $(".addbtn_kompetensidasar");
 
         var x = 1;
-        var y = 17;
-        $(add_button).click(function(e){
+        $(add_button).click(function (e) {
             e.preventDefault();
-            if(x < max_fields){
+            if (x < max_fields) {
                 x++;
-                y++;
-                $(wrapper).append('<div class="col-sm-6 ">'+
-                '<div class="card-header">'+
-                    '<h4 class="card-title" style="padding-top: 30px;">.</h4>'+
-                '</div>'+
-                '<div class="card-body">'+
-                    '<div class="form-group">'+
-                            '<label>Kompetensi Dasar 3.'+y+'</label>'+
-                            '<div class="input-group">'+
-                              '<div class="input-group-prepend">'+
-                                '<div class="input-group-text">'+
-                                    '<i class="fas fa-file-alt"></i>'+
-                                '</div>'+
-                              '</div>'+
-                              '<textarea class="form-control col-10" style="height: 80px;"></textarea>'+
-                              '<button class="btn btn-success ml-4 addbtn_jenisbahan" style="height: 35px;">Fields <i class="fas fa-plus"></i></button>'+
-                            '</div>'+
-                        '</div>'+
-                        '<div class="form-group">'+
-                            '<label>Kompetensi Dasar 4.'+y+'</label>'+
-                            '<div class="input-group">'+
-                              '<div class="input-group-prepend">'+
-                                '<div class="input-group-text">'+
-                                    '<i class="fas fa-file-alt"></i>'+
-                                '</div>'+
-                              '</div>'+
-                              '<textarea class="form-control col-10" style="height: 80px;"></textarea>'+
-                            '</div>'+
-                        '</div>'+
-                        '<div class="form-group">'+
-                            '<label>Modul</label>'+
-                            '<div class="input-group">'+
-                              '<div class="input-group-prepend">'+
-                                '<div class="input-group-text">'+
-                                    '<i class="fas fa-file-alt"></i>'+
-                                '</div>'+
-                              '</div>'+
-                              '<textarea class="form-control col-10" style="height: 80px;"></textarea>'+
-                            '</div>'+
-                        '</div>'+
-                        '<div class="form-group">'+
-                            '<label>Video Pembelajaran' + x + '</label>'+
-                            '<div class="input-group">'+
-                              '<div class="input-group-prepend">'+
-                                '<div class="input-group-text">'+
-                                  '<i class="far fa-file-video"></i>'+
-                                '</div>'+
-                              '</div>'+
-                              '<textarea class="form-control col-9" style="height: 80px;"></textarea>'+
-                            '</div>'+
-                        '</div>'+
-                        '<div class="form-group">'+
-                            '<label>Deskripsi Bahan Ajar' + x + '</label>'+
-                            '<div class="input-group">'+
-                              '<div class="input-group-prepend">'+
-                                '<div class="input-group-text">'+
-                                    '<i class="fas fa-file-invoice"></i>'+
-                                '</div>'+
-                              '</div>'+
-                              '<textarea class="form-control col-9" style="height: 80px;"></textarea>'+
-                            '</div>'+
-                        '</div>'+
-                        '<div class="form-group">'+
-                            '<label>Keterangan' + x + '</label>'+
-                            '<div class="input-group">'+
-                              '<div class="input-group-prepend">'+
-                                '<div class="input-group-text">'+
-                                    '<i class="fas fa-file-invoice"></i>'+
-                                '</div>'+
-                              '</div>'+
-                              '<textarea class="form-control col-9" style="height: 80px;"></textarea>'+
-                            '</div>'+
-                        '</div>'+
-                    '</div>'+
-                '</div>');
+                $(wrapper).append('<tr>'+
+                                    '<th>'+x+'</th>'+
+                                    '<td>'+
+                                        '<textarea type="text" class="form-control input_kompetensidasar" name="kompetensidasar[]" style="height: 40px;"></textarea>'+
+                                        '<div class="invalid-feedback d-none invalid_kompetensidasar" style="margin-left: 41px;">'+
+                                            'Kompetensi dasar tidak boleh kosong'+
+                                        '</div>'+
+                                    '</td>'+
+                                    '<td class="text-center">'+
+                                        '<button class="btn btn-danger removebtn_kompetensidasar" style="width: 40px;">X</button>'+
+                                    '</td>'+
+                                '</tr>');
             }
         });
 
-        $(wrapper).on("click",".removebtn_jenisbahan", function(e){
-            e.preventDefault(); $(this).parent('div').parent('div').parent('div').parent('div').remove(); x--;
+        // remove parent jiika button di click
+        $(wrapper).on("click", ".removebtn_kompetensidasar", function (e) {
+            e.preventDefault();
+            $(this).parent('td').parent('tr').remove();
+            x--;
+        })
+    });
+
+    $(document).ready(function () {
+        var max_fields = 10;
+        var wrapper = $(".fields_modul");
+        var add_button = $(".addbtn_modul");
+
+        var x = 1;
+        $(add_button).click(function (e) {
+            e.preventDefault();
+            if (x < max_fields) {
+                x++;
+                $(wrapper).append('<tr>'+
+                                    '<th>'+x+'</th>'+
+                                    '<td>'+
+                                        '<textarea type="text" class="form-control input_modul" name="modul[]" style="height: 40px;"></textarea>'+
+                                        '<div class="invalid-feedback d-none invalid_modul" style="margin-left: 41px;">'+
+                                            'Modul tidak boleh kosong'+
+                                        '</div>'+
+                                    '</td>'+
+                                    '<td class="text-center">'+
+                                        '<button class="btn btn-danger removebtn_modul" style="width: 40px;">X</button>'+
+                                    '</td>'+
+                                '</tr>');
+            }
+        });
+
+        // remove parent jiika button di click
+        $(wrapper).on("click", ".removebtn_modul", function (e) {
+            e.preventDefault();
+            $(this).parent('td').parent('tr').remove();
+            x--;
+        })
+    });
+
+    $(document).ready(function () {
+        var max_fields = 10;
+        var wrapper = $(".fields_videobelajar");
+        var add_button = $(".addbtn_videobelajar");
+
+        var x = 1;
+        $(add_button).click(function (e) {
+            e.preventDefault();
+            if (x < max_fields) {
+                x++;
+                $(wrapper).append('<tr>'+
+                                    '<th>'+x+'</th>'+
+                                    '<td>'+
+                                        '<textarea type="text" class="form-control input_kompetensidasar" name="videobelajar[]" style="height: 40px;"></textarea>'+
+                                        '<div class="invalid-feedback d-none invalid_videobelajar" style="margin-left: 41px;">'+
+                                            'Link Video Belajar tidak boleh kosong'+
+                                        '</div>'+
+                                    '</td>'+
+                                    '<td class="text-center">'+
+                                        '<button class="btn btn-danger removebtn_videobelajar" style="width: 40px;">X</button>'+
+                                    '</td>'+
+                                '</tr>');
+            }
+        });
+
+        // remove parent jiika button di click
+        $(wrapper).on("click", ".removebtn_videobelajar", function (e) {
+            e.preventDefault();
+            $(this).parent('td').parent('tr').remove();
+            x--;
+        })
+    });
+
+    $(document).ready(function () {
+        var max_fields = 10;
+        var wrapper = $(".fields_deskbahanajar");
+        var add_button = $(".addbtn_deskbahanajar");
+
+        var x = 1;
+        $(add_button).click(function (e) {
+            e.preventDefault();
+            if (x < max_fields) {
+                x++;
+                $(wrapper).append('<tr>'+
+                                    '<th>'+x+'</th>'+
+                                    '<td>'+
+                                        '<textarea type="text" class="form-control input_deskbahanajar" name="deskbahanajar[]" style="height: 40px;"></textarea>'+
+                                        '<div class="invalid-feedback d-none invalid_deskbahanaajar" style="margin-left: 41px;">'+
+                                            'Deskripsi Bahan Ajar tidak boleh kosong'+
+                                        '</div>'+
+                                    '</td>'+
+                                    '<td class="text-center">'+
+                                        '<button class="btn btn-danger removebtn_deskbahanajar" style="width: 40px;">X</button>'+
+                                    '</td>'+
+                                '</tr>');
+            }
+        });
+
+        // remove parent jiika button di click
+        $(wrapper).on("click", ".removebtn_deskbahanajar", function (e) {
+            e.preventDefault();
+            $(this).parent('td').parent('tr').remove();
+            x--;
+        })
+    });
+
+    $(document).ready(function () {
+        var max_fields = 10;
+        var wrapper = $(".fields_ket");
+        var add_button = $(".addbtn_ket");
+
+        var x = 1;
+        $(add_button).click(function (e) {
+            e.preventDefault();
+            if (x < max_fields) {
+                x++;
+                $(wrapper).append('<tr>'+
+                                    '<th>'+x+'</th>'+
+                                    '<td>'+
+                                        '<textarea type="text" class="form-control input_ket" name="ket[]" style="height: 40px;"></textarea>'+
+                                        '<div class="invalid-feedback d-none invalid_ket" style="margin-left: 41px;">'+
+                                            'Keterangan tidak boleh kosong'+
+                                        '</div>'+
+                                    '</td>'+
+                                    '<td class="text-center">'+
+                                        '<button class="btn btn-danger removebtn_ket" style="width: 40px;">X</button>'+
+                                    '</td>'+
+                                '</tr>');
+            }
+        });
+
+        // remove parent jiika button di click
+        $(wrapper).on("click", ".removebtn_ket", function (e) {
+            e.preventDefault();
+            $(this).parent('td').parent('tr').remove();
+            x--;
         })
     });
 </script>

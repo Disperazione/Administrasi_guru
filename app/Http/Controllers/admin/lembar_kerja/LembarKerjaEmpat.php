@@ -44,7 +44,7 @@ class LembarKerjaEmpat extends Controller
                 $button .= '&nbsp';
                     $button .= '<a href="/admin/Lembar-kerja-4/' . $data->id . '"   id="' . $data->id . '" class="edit btn btn-primary btn-sm"><i class="fas fa-search"></i></a>';
                     $button .= '&nbsp';
-                    $button .= '<a  href="/admin/target_pembelajaran/edit/' . $data->id . '" id="edit" data-toggle="tooltip"  data-id="' . $data->id . '" data-original-title="Edit" class="edit btn btn-warning btn-sm edit-post"><i class="fas fa-pencil-alt"></i></a>';
+                    $button .= '<a  href="/admin/Lembar-kerja-4/' . $data->id . '/edit" id="edit" data-toggle="tooltip"  data-id="' . $data->id . '" data-original-title="Edit" class="edit btn btn-warning btn-sm edit-post"><i class="fas fa-pencil-alt"></i></a>';
                     $button .= '&nbsp';
                     $button .= '<button type="button" name="delete" id="hapus" data-id="' . $data->id . '" class="delete btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>';
                     return $button;
@@ -105,7 +105,7 @@ class LembarKerjaEmpat extends Controller
         } else if (Auth::user()->role == 'admin') {
             $materi = Bidang_keahlian::has('kompetensi_dasar')->where('id',  $id)->get();
         }
-        return view('admin.lembar_kerja_empat.detail', compact('materi'));
+        return view('admin.lembar_kerja_empat.edit', compact('materi'));
     }
 
     /**
