@@ -102,173 +102,59 @@
         </div>
         {{-- datatenagapendidik --}}
 
-        {{-- kompetensidasar --}}
+        {{--  --}}
         <div class="row">
             <div class="col-sm-12">
                 <div class="card-header">
-                    <h4 class="card-title" style="padding-top: 30px;">Kompetensi Dasar</h4>
+                    <h4 class="card-title" style="padding-top: 30px;">Strategi Pembelajaran</h4>
                 </div>
                 <div class="card-body">
                     <table class="table table-hover">
                         <thead class="text-center">
                             <tr>
-                                <th scope="col" style="width: 10px;">NO.</th>
-                                <th scope="col" style="width: 80%;">Kompetensi Dasar</th>
-                                <th scope="col" style="width: 10px;">
-                                    <button class="btn btn-success addbtn_kompetensidasar"
-                                        style="width: 80px;">Fields <i class="fas fa-plus"></i></button>
+                                <th scope="col" style="width: ;">NO.</th>
+                                <th scope="col" style="width: ;">Kompetensi Dasar</th>
+                                <th scope="col" style="width: ;">Model Pembelajaran</th>
+                                <th scope="col" style="width: ;">Metode Pembelajaran</th>
+                                <th scope="col" style="width: ;">Deskripsi Kegiatan</th>
+                                <th scope="col" style="width: ;">
+                                    <button class="btn btn-success addbtn_strpembelajaran" style="width: 80px;">Fields
+                                        <i class="fas fa-plus"></i></button>
                                 </th>
                             </tr>
                         </thead>
-                        <tbody class="fields_kompetensidasar">
-                            <div>
-                                <tr>
-                                    <th>1</th>
-                                    <td>
-                                        <textarea type="text" class="form-control input_kompetensidasar"
-                                            name="kompetensidasar[]" style="height: 40px;"></textarea>
-                                        <div class="invalid-feedback d-none invalid_kompetensidasar"
-                                            style="margin-left: 41px;">
-                                            Kompetensi dasar tidak boleh kosong
-                                        </div>
-                                    </td>
-                                    <td class="text-center">
-                                        <button class="btn btn-danger removebtn_kompetensidasar" style="width: 40px;">X</button>
-                                    </td>
-                                </tr>
-                            </div>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-        {{-- kompetensidasar --}}
-
-        {{-- modelpembelajran --}}
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="card-header">
-                    <h4 class="card-title" style="padding-top: 30px;">Model Pembelajaran</h4>
-                </div>
-                <div class="card-body">
-                    <table class="table table-hover">
-                        <thead class="text-center">
+                        <tbody class="fields_strpembelajaran">
                             <tr>
-                                <th scope="col" style="width: 10px;">NO.</th>
-                                <th scope="col" style="width: 80%;">Model Pembelajaran</th>
-                                <th scope="col" style="width: 10px;">
-                                    <button class="btn btn-success addbtn_modelpembelajaran"
-                                        style="width: 80px;">Fields <i class="fas fa-plus"></i></button>
-                                </th>
+                                <th scope="row">3.17 <br><br> 4.17</th>
+                                <td>
+                                    3.17 <br><br> 4.17
+                                    {{-- <textarea type="text" class="form-control mb-2 mt-1 input_" name="[]"
+                                        style="height: 40px;"></textarea>
+                                    <textarea type="text" class="form-control input_" name="[]"
+                                        style="height: 40px;"></textarea> --}}
+                                </td>
+                                <td class="text-center">
+                                    <textarea type="text" class="form-control input_" name="[]"
+                                        style="height: 80px;"></textarea>
+                                </td>
+                                <td class="text-center">
+                                    <textarea type="text" class="form-control input_" name="[]"
+                                        style="height: 80px;"></textarea>
+                                </td>
+                                <td class="text-center">
+                                    <textarea type="text" class="form-control input_" name="[]"
+                                        style="height: 80px;"></textarea>
+                                </td>
+                                <td class="text-center">
+                                    {{-- <button class="btn btn-danger removebtn_strpembelajaran" style="width: 40px;">X</button> --}}
+                                </td>
                             </tr>
-                        </thead>
-                        <tbody class="fields_modelpembelajaran">
-                            <div>
-                                <tr>
-                                    <th>1</th>
-                                    <td>
-                                        <textarea type="text" class="form-control input_modelpembelajaran"
-                                            name="modelpembelajaran[]" style="height: 40px;"></textarea>
-                                        <div class="invalid-feedback d-none invalid_modelpembelajaran"
-                                            style="margin-left: 41px;">
-                                            Model Pembelajaran tidak boleh kosong
-                                        </div>
-                                    </td>
-                                    <td class="text-center">
-                                        <button class="btn btn-danger removebtn_modelpembelajaran" style="width: 40px;">X</button>
-                                    </td>
-                                </tr>
-                            </div>
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
-        {{-- modelpembelajran --}}
-
-        {{-- metodepembelajaran --}}
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="card-header">
-                    <h4 class="card-title" style="padding-top: 30px;">Metode Pembelajaran</h4>
-                </div>
-                <div class="card-body">
-                    <table class="table table-hover">
-                        <thead class="text-center">
-                            <tr>
-                                <th scope="col" style="width: 10px;">NO.</th>
-                                <th scope="col" style="width: 80%;">Metode Pembelajaran</th>
-                                <th scope="col" style="width: 10px;">
-                                    <button class="btn btn-success addbtn_metodepembelajaran"
-                                        style="width: 80px;">Fields <i class="fas fa-plus"></i></button>
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody class="fields_metodepembelajaran">
-                            <div>
-                                <tr>
-                                    <th>1</th>
-                                    <td>
-                                        <textarea type="text" class="form-control input_metodepembelajaran"
-                                            name="kompetensidasar[]" style="height: 40px;"></textarea>
-                                        <div class="invalid-feedback d-none invalid_metodepembelajaran"
-                                            style="margin-left: 41px;">
-                                            Metode Pembelajaran tidak boleh kosong
-                                        </div>
-                                    </td>
-                                    <td class="text-center">
-                                        <button class="btn btn-danger removebtn_metodepembelajaran" style="width: 40px;">X</button>
-                                    </td>
-                                </tr>
-                            </div>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-        {{-- metodepembelajaran --}}
-
-        {{-- deskripsikegiatan --}}
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="card-header">
-                    <h4 class="card-title" style="padding-top: 30px;">Deskripsi Kegiatan</h4>
-                </div>
-                <div class="card-body">
-                    <table class="table table-hover">
-                        <thead class="text-center">
-                            <tr>
-                                <th scope="col" style="width: 10px;">NO.</th>
-                                <th scope="col" style="width: 80%;">Deskripsi Kegiatan</th>
-                                <th scope="col" style="width: 10px;">
-                                    <button class="btn btn-success addbtn_deskripsikegiatan"
-                                        style="width: 80px;">Fields <i class="fas fa-plus"></i></button>
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody class="fields_deskripsikegiatan">
-                            <div>
-                                <tr>
-                                    <th>1</th>
-                                    <td>
-                                        <textarea type="text" class="form-control input_deskripsikegiatan"
-                                            name="deskripsikegiatan[]" style="height: 40px;"></textarea>
-                                        <div class="invalid-feedback d-none invalid_deskripsikegiatan"
-                                            style="margin-left: 41px;">
-                                            Deskripsi Kegiatan tidak boleh kosong
-                                        </div>
-                                    </td>
-                                    <td class="text-center">
-                                        <button class="btn btn-danger removebtn_deskripsikegiatan" style="width: 40px;">X</button>
-                                    </td>
-                                </tr>
-                            </div>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-        {{-- deskripsikegiatan --}}
+        {{--  --}}
 
         {{--  --}}
         <div class="row">
@@ -290,132 +176,41 @@
 @push('js')
 <script>
     // multiple
-    $(document).ready(function () {
-        var max_fields = 10;
-        var wrapper = $(".fields_kompetensidasar");
-        var add_button = $(".addbtn_kompetensidasar");
+    $(document).ready(function() {
+        var max_fields      = 10;
+        var wrapper = $(".fields_strpembelajaran");
+        var add_button = $(".addbtn_strpembelajaran");
 
         var x = 1;
-        $(add_button).click(function (e) {
+        var y = 17;
+        $(add_button).click(function(e){
             e.preventDefault();
-            if (x < max_fields) {
+            if(x < max_fields){
                 x++;
-                $(wrapper).append('<tr>'+
-                                    '<th>'+x+'</th>'+
-                                    '<td>'+
-                                        '<textarea type="text" class="form-control input_kompetensidasar" name="kompetensidasar[]" style="height: 40px;"></textarea>'+
-                                        '<div class="invalid-feedback d-none invalid_kompetensidasar" style="margin-left: 41px;">'+
-                                            'Kompetensi dasar tidak boleh kosong'+
-                                        '</div>'+
-                                    '</td>'+
-                                    '<td class="text-center">'+
-                                        '<button class="btn btn-danger removebtn_kompetensidasar" style="width: 40px;">X</button>'+
-                                    '</td>'+
-                                '</tr>');
+                y++;
+                $(wrapper).append('<tr>' +
+                    '<th scope="row">3.' + y + ' <br><br> 4.' + y + '</th>' +
+                    '<td>' +
+                    '<textarea type="text" class="form-control mb-2 mt-1 input_" name="[]" style="height: 40px;"></textarea>' +
+                    '<textarea type="text" class="form-control input_" name="[]" style="height: 40px;"></textarea>' +
+                    '</td>' +
+                    '<td class="text-center">' +
+                    '<textarea type="text" class="form-control input_" name="[]" style="height: 80px;"></textarea>' +
+                    '</td>' +
+                    '<td class="text-center">' +
+                    '<textarea type="text" class="form-control input_" name="[]" style="height: 80px;"></textarea>' +
+                    '</td>' +
+                    '<td class="text-center">' +
+                    '<textarea type="text" class="form-control input_" name="[]" style="height: 80px;"></textarea>' +
+                    '</td>' +
+                    '<td class="text-center">' +
+                    '<button class="btn btn-danger removebtn_strpembelajaran" style="width: 40px;">X</button>' +
+                    '</td>' +
+                    '</tr>');
             }
         });
 
-        // remove parent jiika button di click
-        $(wrapper).on("click", ".removebtn_kompetensidasar", function (e) {
-            e.preventDefault();
-            $(this).parent('td').parent('tr').remove();
-            x--;
-        })
-    });
-
-    $(document).ready(function () {
-        var max_fields = 10;
-        var wrapper = $(".fields_modelpembelajaran");
-        var add_button = $(".addbtn_modelpembelajaran");
-
-        var x = 1;
-        $(add_button).click(function (e) {
-            e.preventDefault();
-            if (x < max_fields) {
-                x++;
-                $(wrapper).append('<tr>'+
-                                    '<th>'+x+'</th>'+
-                                    '<td>'+
-                                        '<textarea type="text" class="form-control input_modelpembelajaran" name="modelpembelajaran[]" style="height: 40px;"></textarea>'+
-                                        '<div class="invalid-feedback d-none invalid_modelpembelajaran" style="margin-left: 41px;">'+
-                                            'Model Pembelajaran tidak boleh kosong'+
-                                        '</div>'+
-                                    '</td>'+
-                                    '<td class="text-center">'+
-                                        '<button class="btn btn-danger removebtn_modelpembelajaran" style="width: 40px;">X</button>'+
-                                    '</td>'+
-                                '</tr>');
-            }
-        });
-
-        // remove parent jiika button di click
-        $(wrapper).on("click", ".removebtn_modelpembelajaran", function (e) {
-            e.preventDefault();
-            $(this).parent('td').parent('tr').remove();
-            x--;
-        })
-    });
-
-    $(document).ready(function () {
-        var max_fields = 10;
-        var wrapper = $(".fields_metodepembelajaran");
-        var add_button = $(".addbtn_metodepembelajaran");
-
-        var x = 1;
-        $(add_button).click(function (e) {
-            e.preventDefault();
-            if (x < max_fields) {
-                x++;
-                $(wrapper).append('<tr>'+
-                                    '<th>'+x+'</th>'+
-                                    '<td>'+
-                                        '<textarea type="text" class="form-control input_metodepembelajaran" name="metodepembelajaran[]" style="height: 40px;"></textarea>'+
-                                        '<div class="invalid-feedback d-none invalid_metodepembelajaran" style="margin-left: 41px;">'+
-                                            'Metode Pembelajaran tidak boleh kosong'+
-                                        '</div>'+
-                                    '</td>'+
-                                    '<td class="text-center">'+
-                                        '<button class="btn btn-danger removebtn_metodepembelajaran" style="width: 40px;">X</button>'+
-                                    '</td>'+
-                                '</tr>');
-            }
-        });
-
-        // remove parent jiika button di click
-        $(wrapper).on("click", ".removebtn_metodepembelajaran", function (e) {
-            e.preventDefault();
-            $(this).parent('td').parent('tr').remove();
-            x--;
-        })
-    });
-
-    $(document).ready(function () {
-        var max_fields = 10;
-        var wrapper = $(".fields_deskripsikegiatan");
-        var add_button = $(".addbtn_deskripsikegiatan");
-
-        var x = 1;
-        $(add_button).click(function (e) {
-            e.preventDefault();
-            if (x < max_fields) {
-                x++;
-                $(wrapper).append('<tr>'+
-                                    '<th>'+x+'</th>'+
-                                    '<td>'+
-                                        '<textarea type="text" class="form-control input_deskripsikegiatan" name="deskripsikegiatan[]" style="height: 40px;"></textarea>'+
-                                        '<div class="invalid-feedback d-none invalid_deskripsikegiatan" style="margin-left: 41px;">'+
-                                            'Deskripsi Kegiatan tidak boleh kosong'+
-                                        '</div>'+
-                                    '</td>'+
-                                    '<td class="text-center">'+
-                                        '<button class="btn btn-danger removebtn_deskripsikegiatan" style="width: 40px;">X</button>'+
-                                    '</td>'+
-                                '</tr>');
-            }
-        });
-
-        // remove parent jiika button di click
-        $(wrapper).on("click", ".removebtn_deskripsikegiatan", function (e) {
+        $(wrapper).on("click", ".removebtn_strpembelajaran", function (e) {
             e.preventDefault();
             $(this).parent('td').parent('tr').remove();
             x--;
