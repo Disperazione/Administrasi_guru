@@ -28,8 +28,8 @@
                  @if (Auth::user()->role == 'admin')
                     <th>Nama guru</th>
                 @endif
+                    <th>mapel</th>
                 <th>Bidang Studi</th>
-                <th>mapel</th>
                  <th>kd pengetahuan</th>
                 <th>kd krampilan</th>
                 <th>action</th>
