@@ -14,8 +14,8 @@ class PDFController extends Controller
     {
         $target = Bidang_keahlian::has('target_pembelajaran')->where('id', $id)->first();
         // nyari kompetensi dasar yang semesternya ganjil & bidnag keahlian nya id  = $id
-        $s_ganjil = Kompetensi_dasar::where([['semester','ganjil'],['id_bidang_keahlian',$id]])->get();
-        $s_genap = Kompetensi_dasar::where([['semester', 'genap'],['id_bidang_keahlian',$id]])->get();
+        $s_ganjil = Kompetensi_dasar::where([['semester','ganjil'],['id_bidang_keahlian',$id]])->has('kd_target_pemebelajaran')->get();
+        $s_genap = Kompetensi_dasar::where([['semester', 'genap'],['id_bidang_keahlian',$id]])->has('kd_target_pemebelajaran')->get();
         $pdf = PDF::loadView('export.PDF.lk_1', compact('target','s_ganjil','s_genap'));
         return $pdf->stream('LK1.PDF');
     }

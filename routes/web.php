@@ -37,6 +37,13 @@ kalau belom bisa login taro route resource nya di luar
 cara ngeliat route di resource make php artisan route:list
 */
 
+
+// all role
+
+Route::prefix('admin')->name('admin.')->middleware(['auth', 'roles:admin,guru'])->group(function () {
+    Route::get('/dashboard', [ViewController::class, 'dashboard'])->name('dashboard');
+});
+
 // admin
 Route::prefix('admin')->name('admin.')->middleware(['auth','roles:admin'])->group(function () {
     Route::resource('guru', GuruController::class)->parameters(['guru' => 'Guru']);
@@ -44,8 +51,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth','roles:admin'])->grou
 });
 
 // guru
-Route::prefix('admin')->name('admin.')->middleware(['auth','roles:guru,admin'])->group(function () {
-    Route::get('/dashboard', [ViewController::class,'dashboard'])->name('dashboard');
+Route::prefix('admin')->name('admin.')->middleware(['auth','roles:guru'])->group(function () {
     Route::resource('kompetensi_dasar', Kompetensi_dasarController::class);
     Route::resource('Lembar-kerja-1', LK1::class);
     Route::resource('Lembar-kerja-2', LK2::class);
@@ -54,9 +60,9 @@ Route::prefix('admin')->name('admin.')->middleware(['auth','roles:guru,admin'])-
     Route::resource('RPP', RPP::class);
 
     // route for option
-    Route::get('/option/guru/{id}', [LK1::class, 'option_guru']);
+    Route::get('/option/jurusan/{id}', [LK1::class, 'option_jurusan']);
     Route::get('/option/mapel/{id}', [LK1::class, 'option_mapel']);
-    Route::get('/option/bidang_studi/{id}', [LK1::class, 'option_bidang']);
+    Route::get('/option/mapel/{id}/edit', [LK1::class, 'option_mapel_edit']);
 
     Route::get('/lk4/option/guru/{id}', [LK4::class, 'option_guru']);
     Route::get('/lk4/option/mapel/{id}', [LK4::class, 'option_mapel']);

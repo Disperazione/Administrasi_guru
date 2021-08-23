@@ -21,7 +21,6 @@ class CreateGuruTable extends Migration
             $table->longText('alamat');
             $table->string('fax',100);
             $table->string('no_telp');
-            $table->bigInteger('id_jurusan')->unsigned();
             $table->foreignId('id_user')->constrained('users')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });

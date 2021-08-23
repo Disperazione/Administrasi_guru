@@ -15,6 +15,10 @@ class Kompetensi_dasar extends Model
     {
         return $this->belongsTo(Bidang_keahlian::class, 'id_bidang_keahlian'); // foreign
     }
+    public function kd_target_pemebelajaran()
+    {
+        return $this->hasMany(Kd_target_pembelajaran::class, 'id_kompetensi_dasar', 'id');
+    }
     public function strategi_pembelajaran()
     {
         return $this->hasOne(Strategi_pembelajaran::class,'id_kompetensi_dasar','id'); // foreign , owner

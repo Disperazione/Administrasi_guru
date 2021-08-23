@@ -6,7 +6,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Lembar kerja 1 - {{ $target->mapel->nama_mapel }}</title>
+    <title>Lembar kerja 1 - {{ $target->mapel }}</title>
     {{-- font google --}}
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Ribeye&display=swap" rel="stylesheet">
@@ -88,7 +88,7 @@
             <p class="font5" style="">
                 Mata Pelajaran<span style="margin-left: 117px;">
                     :&nbsp;
-                    {{ $target->mapel->nama_mapel }}
+                    {{ $target->mapel }}
                 </span>
             </p>
             <p class="font5" style="">
@@ -102,7 +102,7 @@
                     :&nbsp; Telp:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<u>__________</u>&nbsp;&nbsp;&nbsp;
                     Fax:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<u>__________</u> <br>
                     <div style="margin-left: 240px">
-                        HP:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<u> @{{ $target->guru->no_telp }}</u></div>
+                        HP:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<u> {{ $target->guru->no_telp }}</u></div>
 
                 </span>
             </p>
@@ -133,7 +133,7 @@
                     <tr>
                         <td>Mata pelajaran</td>
                         <td> :</td>
-                        <td>{{ $target->mapel->nama_mapel .' '.$target->kelas }}</td>
+                        <td>{{ $target->mapel .' '.$target->kelas }}</td>
                     </tr>
                     <tr>
                         <td>Jam Pelajaran</td>
@@ -251,7 +251,7 @@
                     </tr>
                 </thead>
                 <tbody style="text-align: center;font-size:10px;">
-                    @foreach ($target->kompetensi_dasar()->where('semester','genap')->get() as $key => $item)
+                    @foreach ($s_ganjil as $key => $item)
                       <tr>
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $item->kd_pengetahuan }}</td>
@@ -321,7 +321,7 @@
                     </tr>
                 </thead>
                 <tbody style="text-align: center;font-size:10px;">
-                    @foreach ($target->kompetensi_dasar()->where('semester','genap')->get() as $key => $item)
+                    @foreach ($s_genap as $key => $item)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $item->kd_pengetahuan }}</td>

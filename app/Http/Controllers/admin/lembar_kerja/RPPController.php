@@ -34,10 +34,13 @@ class RPPController extends Controller
                     return $data->bidang_keahlian->bidang_studi;
                 })
                 ->addColumn('mapel', function ($data) {
-                    return $data->bidang_keahlian->mapel->nama_mapel;
+                    return $data->bidang_keahlian->mapel;
                 })
                 ->addColumn('guru', function ($data) {
                     return $data->bidang_keahlian->guru->name;
+                })
+                ->editColumn('bidang_studi', function ($data) {
+                    return $data->bidang_keahlian->lembar_kerja->RPP;
                 })
                 ->addColumn('action', function ($data) {
                 $button = '<a href="' . $data->id . '"   id="' . $data->id . '" class="edit btn btn-danger text-white btn-sm"><i class="fas fa-file-pdf"></i></a>';

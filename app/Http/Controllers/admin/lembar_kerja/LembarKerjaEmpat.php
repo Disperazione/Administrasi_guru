@@ -41,7 +41,16 @@ class LembarKerjaEmpat extends Controller
                     return $data->guru->name;
                 })
                 ->addColumn('mapel', function ($data) {
-                    return $data->mapel->nama_mapel;
+                    return $data->mapel;
+                })
+                ->addColumn('kompetensi_keahlian', function ($data) {
+                    return $data->jurusan->singkatan_jurusan;
+                })
+                ->addColumn('kompetensi_keahlian', function ($data) {
+                    return $data->jurusan->singkatan_jurusan;
+                })
+                ->editColumn('bidang_studi', function ($data) {
+                    return $data->lembar_kerja->Lk_4;
                 })
             ->addColumn('action', function ($data) {
                 $button = '<a href="/admin/lk_4/' . $data->id . '/pdf" class="edit btn btn-danger text-white btn-sm"><i class="fas fa-file-pdf"></i></a>';

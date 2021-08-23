@@ -7,7 +7,6 @@ use App\Http\Controllers\Controller;
 use App\Models\Bidang_keahlian;
 use App\Models\Kompetensi_dasar;
 use App\Models\Guru;
-use App\Models\Mapel;
 use App\Models\Strategi_pembelajaran;
 use App\Models\Metode_pembelajaran;
 use Illuminate\Http\Request;
@@ -42,7 +41,10 @@ class LembarKerjaDua extends Controller
                     return $data->guru->name;
                 })
                 ->addColumn('mapel', function ($data) {
-                    return $data->mapel->nama_mapel;
+                    return $data->mapel;
+                })
+                ->editColumn('bidang_studi', function ($data) {
+                    return $data->lembar_kerja->Lk_2;
                 })
                 ->addColumn('action', function ($data) {
                 $button = '<a href="/admin/lk_2/' . $data->id . '/pdf" class="edit btn btn-danger text-white btn-sm"><i class="fas fa-file-pdf"></i></a>';
@@ -68,7 +70,6 @@ class LembarKerjaDua extends Controller
     public function create()
     {
         $guru = Guru::has('bidang_keahlian')->get();
-        $mapel = Mapel::has('bidang_keahlian')->get();
         $kompetensi = Kompetensi_dasar::select('id_bidang_keahlian')->has('materi_bahan_ajar')->get()->unique();
         $id_keahlian = [];
         foreach ($kompetensi as $key => $value) {
@@ -81,7 +82,7 @@ class LembarKerjaDua extends Controller
         } else if (Auth::user()->role == 'admin') {
             $data = Bidang_keahlian::has('kompetensi_dasar')->whereIn('id',  $id_keahlian)->get();
         }
-        return view('admin.lembar_kerja_dua.tambah', compact('guru','mapel','mapel'));
+        return view('admin.lembar_kerja_dua.tambah', compact('guru'));
     }
 
 
@@ -128,7 +129,7 @@ class LembarKerjaDua extends Controller
             // 'materi_inti' => $request
             // 'durasi' => $request
             // 'pertemuan'=> $request
-            // 'semester' => $request 
+            // 'semester' => $request
             // 'semester_kd' => $request
         ]);
         Strategi_pembelajaran::create([
@@ -139,7 +140,7 @@ class LembarKerjaDua extends Controller
         Metode_pembelajaran::create([
 
         ]);
-        
+
     }
 
     /**

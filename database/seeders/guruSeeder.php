@@ -23,7 +23,7 @@ class guruSeeder extends Seeder
             'alamat' => $faker->address(),
             'fax' => '00',
             'no_telp' => $faker->phoneNumber(),
-            'id_jurusan' => 1,
+            // 'id_jurusan' => 1,
             'id_user' => 1
         ]);
 
@@ -34,7 +34,7 @@ class guruSeeder extends Seeder
             'alamat' => $faker->address(),
             'fax' => '00',
             'no_telp' => $faker->phoneNumber(),
-            'id_jurusan' => 1,
+            // 'id_jurusan' => 1,
             'id_user' => 2
         ]);
     }

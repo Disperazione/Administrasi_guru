@@ -16,6 +16,10 @@ class Target_pembelajaran extends Model
     {
         return $this->belongsTo(Bidang_keahlian::class, 'id_bidang_keahlian');
     }
+    public function kd_target_pemebelajaran()
+    {
+        return $this->hasMany(Kd_target_pembelajaran::class, 'id_target_pembelajaran','id');
+    }
     public function rincian_bukti()
     {
         return $this->hasMany(Rincian_bukti::class,'id_target_pembelajaran','id');

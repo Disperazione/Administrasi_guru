@@ -108,23 +108,18 @@ class GuruController extends Controller
             'password' => Hash::make($request->pasword)
         ]);
 
+
         $guru = Guru::create([
             'nik' => $request->nik,
             'name' => $request->name,
             'jabatan' => $request->jabatan,
             'alamat' => $request->alamat,
-            'id_jurusan' => $request->id_jurusan,
             'fax' => $request->fax,
             'no_telp' => $request->no_telp,
             'id_user' => $user->id
         ]);
 
-        for ($i = 0; $i < count($request->mapel) ; $i++) {
-            Mapel::create([
-                'nama_mapel' => $request->mapel[$i],
-                'id_guru' => $guru->id // ngambil id dari guru
-            ]);
-        }
+        $guru->jurusan()->attach($request->id_jurusan);
         return redirect()->route('admin.guru.index')->with('berhasil','data berhasil di tambahkan');
     }
 
@@ -150,8 +145,12 @@ class GuruController extends Controller
     public function edit($id)
     {
         $guru = Guru::where('id', $id)->first();
+        $id_jurusan = [];
+        foreach ($guru->jurusan as $value) { // loop many to many jurusan
+           $id_jurusan[] = $value->pivot->id_jurusan; // masukin ke array isis dari pivot table nya
+        }
         $jurusan = Jurusan::all();
-        return view('admin.guru.edit',['guru' => $guru,'jurusan' => $jurusan]);
+        return view('admin.guru.edit',['guru' => $guru,'jurusan' => $jurusan,'id_jurusan'=> collect($id_jurusan)]);
     }
 
 
@@ -217,27 +216,18 @@ class GuruController extends Controller
                 'role' => $request->jabatan
             ]);
         }
+        $g_a = Guru::where('id', $id)->first();
         $guru = Guru::where('id', $id)->update([
             'nik' => $request->nik,
             'name' => $request->name,
             'jabatan' => $request->jabatan,
             'alamat' => $request->alamat,
-            'id_jurusan' => $request->id_jurusan,
             'fax' => $request->fax,
             'no_telp' => $request->no_telp,
         ]);
 
-        // apus mapelnya
-        $mapel = Mapel::where('id_guru', $id)->delete();
+        $g_a->jurusan()->sync($request->id_jurusan);
 
-        // buat mapel
-        //dd(count($request->mapel));
-        for ($i = 0; $i < count($request->mapel); $i++) {
-            Mapel::create([
-                'nama_mapel' => $request->mapel[$i],
-                'id_guru' => $id // ngambil id dari guru
-            ]);
-        }
         return redirect()->route('admin.guru.index')->with('berhasil','Data berhasil di update');
     }
 

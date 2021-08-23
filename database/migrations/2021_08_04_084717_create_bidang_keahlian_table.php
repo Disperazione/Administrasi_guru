@@ -15,11 +15,12 @@ class CreateBidangKeahlianTable extends Migration
     {
         Schema::create('bidang_keahlian', function (Blueprint $table) {
             $table->id();
-            $table->string('bidang_studi');
-            $table->string('kompetensi_keahlian');
+            //$table->string('bidang_studi'); <- table lembar kerja
+            $table->string('mapel'); // mapel
+            //$table->string('kompetensi_keahlian');
+            $table->foreignId('id_jurusan')->constrained('jurusan')->onDelete('cascade')->onUpdate('cascade');
             $table->string('kelas');
             $table->string('jam_pelajaran');
-           $table->bigInteger('id_mapel')->unsigned();
             $table->string('total_waktu_jam_pelajaran');
             $table->foreignId('id_guru')->constrained('guru')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();

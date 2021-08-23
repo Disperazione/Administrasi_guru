@@ -15,9 +15,9 @@ class Bidang_keahlian extends Model
     {
         return $this->belongsTo(Guru::class,'id_guru');
     }
-    public function mapel()
+    public function jurusan()
     {
-        return $this->belongsTo(Mapel::class,'id_mapel'); //foregn
+        return $this->belongsTo(Jurusan::class,'id_jurusan'); //foreign key
     }
     public function kompetensi_dasar()
     {
@@ -27,6 +27,11 @@ class Bidang_keahlian extends Model
     public function target_pembelajaran()
     {
         return $this->hasOne(Target_pembelajaran::class,'id_bidang_keahlian','id');
+    }
+
+    public function lembar_kerja()
+    {
+        return $this->hasOne(Lembar_kerja::class, 'id_bidang_keahlian','id'); // foreign , owner
     }
 
 }

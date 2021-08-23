@@ -10,8 +10,8 @@ $(document).ready(function () {
         case 'guru':
             return [
                     { data: 'DT_RowIndex', name: 'DT_RowIndex'},
+                    { data: 'mapel',name:'mapel'},
                     { data: 'bidang_studi', name:'bidang_studi'},
-                      { data: 'mapel',name:'mapel'},
                     { data: 'kompetensi_keahlian', name:'kompetensi_keahlian'},
                     { data: 'kelas', name:'kelas'},
                     { data: 'jam_pelajaran', name:'jam_pelajaran'},

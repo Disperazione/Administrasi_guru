@@ -22,13 +22,13 @@ class Guru extends Model
     {
         return $this->belongsTo(User::class,'id_user'); // foreign , owner
     }
-    public function mapel()
-    {
-        return $this->hasMany(Mapel::class, 'id_guru');
-    }
+    // public function jurusan()
+    // {
+    //     return $this->belongsTo(Jurusan::class,'id_jurusan');
+    // }
     public function jurusan()
     {
-        return $this->belongsTo(Jurusan::class,'id_jurusan');
+        return $this->belongsToMany(Jurusan::class, 'guru_jurusan', 'id_guru', 'id_jurusan'); // pivot,  owner , foreign
     }
     public function bidang_keahlian()
     {

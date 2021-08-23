@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Lembar_kerja;
 use App\Models\Metode_pembelajaran;
 use App\Models\Sumber_belajar;
 use Illuminate\Database\Seeder;
@@ -20,7 +21,6 @@ class DatabaseSeeder extends Seeder
             userSeeder::class,
             jurusanSeeder::class,
             guruSeeder::class,
-            MapelSeeder::class,
             bidang_keahlianSeeder::class,
             kompetensi_dasarSeeder::class,
             target_pembelajaranSeeder::class,
@@ -37,6 +37,9 @@ class DatabaseSeeder extends Seeder
             Sumber_belajarSeeder::class,
             Metode_pembelajarSeeder::class,
             Alat_bahanSeeder::class,
+            PivotJurusanSeeder::class,
+            LembarkerjaSeeder::class,
+            kd_target_pembelajaranSeeder::class,
         ]);
     }
 }

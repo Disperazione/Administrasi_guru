@@ -40,42 +40,19 @@
                                     </div>
                                 </div>
                                 <select class="form-control" name="id_guru"
-                                    {{ (Auth::user()->role == 'guru') ? 'disabled' : '' }} id="id_guru">
+                                    {{ (Auth::user()->role == 'guru') ? 'disabled id=""' : 'id=id_guru' }}>
                                     <option value="">Lihat Lebih Lanjut</option>
                                     @if (Auth::user()->role === 'admin')
-                                        @foreach ($guru as $items)
-                                    <option value="{{ $items->id }}" {{ (old('id_guru', $items->id)) ? 'selected' : '' }}>
+                                    @foreach ($guru as $items)
+                                    <option value="{{ $items->id }}"
+                                        {{ (old('id_guru', $items->id)) ? 'selected' : '' }}>
                                         {{ $items->name }}</option>
                                     @endforeach
                                     @else
-                                        <option value="{{  Auth::user()->guru->id  }}" selected>{{ Auth::user()->guru->name }}</option>
+                                    <option value="{{  Auth::user()->guru->id  }}" selected>
+                                        {{ Auth::user()->guru->name }}</option>
                                     @endif
 
-                                </select>
-                                <div class="invalid-feedback">
-                                    Mapel tidak boleh koosng
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label>Mapel</label>
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <div class="input-group-text">
-                                        <i class="fas fa-align-left"></i>
-                                    </div>
-                                </div>
-                                <select class="form-control" name="id_mapel" id="mapel">
-                                    <option value="">Lihat Lebih Lanjut</option>
-                                   @if (Auth::user()->role == 'admin')
-                                        @foreach ($mapel as $mapel)
-                                    <option value="{{ $mapel->id }}" {{ (old('id_mapel', $target->mapel->id) == $mapel->id) ? 'selected' : '' }}>{{ $mapel->nama_mapel }}</option>
-                                    @endforeach
-                                    @else
-                                    @foreach (Auth::user()->guru->mapel as $mapels )
-                                        <option value="{{ $mapels->id }}" {{ (old('id_mapel', $target->mapel->id) == $mapels->id) ? 'selected' : '' }}>{{ $mapels->nama_mapel }}</option>
-                                    @endforeach
-                                    @endif
                                 </select>
                                 <div class="invalid-feedback">
                                     Mapel tidak boleh koosng
@@ -90,18 +67,58 @@
                                         <i class="fas fa-align-left"></i>
                                     </div>
                                 </div>
-                                <select class="form-control" name="id_bidang_keahlian" id="bidang">
-                                    <option value="">Lihat Lebih Lanjut</option>
-                                    <option value="{{ $target->id }}" selected>{{ $target->bidang_studi }}</option>
-                                    {{-- @foreach ($bidang as $bidangs)
-                                    <option value="{{ $bidangs->id }}">{{ $bidangs->bidang_studi }}</option>
-                                    @endforeach --}}
-                                </select>
-                                <div class="invalid-feedback">
+                                <input type="text" class="form-control" name="bidang_studi" id="bidang_studi"
+                                    placeholder="Default : TEHNOLOGI INFORMASI DAN KOMUKNIKASI"
+                                    value="{{ $target->lembar_kerja->Lk_1 }}">
+                                <div class="invalid-feedback" c>
                                     Bidang Studi tidak boleh koosng
                                 </div>
                             </div>
                         </div>
+                        <div class="form-group">
+                            <label>Jurusan</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                        <i class="fas fa-align-left"></i>
+                                    </div>
+                                </div>
+                                <select class="form-control" name="id_jurusan" id="jurusan" readonly>
+                                    <option value="">Lihat Lebih Lanjut</option>
+                                    @foreach (Auth::user()->guru->jurusan as $item)
+                                    <option value="{{ $item->id }}"
+                                        {{ (old('id_jurusan',$target->jurusan->id) == $item->id) ? 'selected' : '' }}>
+                                        {{ $item->singkatan_jurusan }}</option>
+                                    @endforeach
+
+                                </select>
+                                <div class="invalid-feedback">
+                                    Jurusan tidak boleh koosng
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Mapel</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                        <i class="fas fa-align-left"></i>
+                                    </div>
+                                </div>
+                                <select class="form-control" name="mapel" id="mapel" readonly>
+                                    <option value="">Lihat Lebih Lanjut</option>
+                                    @foreach(Auth::user()->guru->bidang_keahlian()->where('id_jurusan',$target->id_jurusan)->get()
+                                    as $item)
+                                    <option value="{{ $item->id }}" {{ ($item->id == $target->id) ? 'selected' : '' }}>
+                                        {{ $item->mapel }}</option>
+                                    @endforeach
+                                </select>
+                                <div class="invalid-feedback">
+                                    Mapel tidak boleh koosng
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
                 <div class="col-sm-6">
@@ -117,11 +134,11 @@
                                         <i class="fas fa-align-justify"></i>
                                     </div>
                                 </div>
-                                <input type="text" id="kelas" class="form-control" value="{{ $target->kelas }}"
-                                    disabled>
+                                <input type="text" id="kelas" class="form-control" disabled
+                                    value="{{ $target->kelas }}">
                             </div>
                         </div>
-                        <div class="form-group">
+                        {{-- <div class="form-group">
                             <label>Kompetensi Keahlian</label>
                             <div class="input-group">
                                 <div class="input-group-prepend">
@@ -129,10 +146,9 @@
                                         <i class="fas fa-align-justify"></i>
                                     </div>
                                 </div>
-                                <input type="text" id="kompetensi" class="form-control"
-                                    value="{{ $target->kompetensi_keahlian }}" disabled>
+                                <input type="text" id="kompetensi" class="form-control" disabled>
                             </div>
-                        </div>
+                        </div> --}}
                         <div class="form-group">
                             <label>Jam Pelajaran (JP)</label>
                             <div class="input-group">
@@ -141,15 +157,122 @@
                                         <i class="fas fa-align-justify"></i>
                                     </div>
                                 </div>
-                                <input type="text" id="jp" class="form-control" value="{{ $target->jam_pelajaran }}"
-                                    disabled>
+                                <input type="text" id="jp" class="form-control" disabled
+                                    value="{{ $target->jam_pelajaran }}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Total Jam Pelajaran (JP)</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                        <i class="fas fa-align-justify"></i>
+                                    </div>
+                                </div>
+                                <input type="text" id="total_jp" class="form-control" disabled
+                                    value="{{ $target->total_waktu_jam_pelajaran }}">
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
             {{-- datatenagapendidik --}}
+            {{-- kompetensi dasar --}}
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card-header">
+                        <h4 class="card-title" style="padding-top: 30px;">Kompetensi Dasar</h4>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-hover">
+                            <thead class="text-center">
+                                <tr>
+                                    <th scope="col" style="width: 10px;">NO.</th>
+                                    <th scope="col" style="width: 80%;">Semester Ganjil</th>
+                                    <th scope="col" style="width: 10px;">
+                                        <button class="btn btn-success addbtn_multiple_semester_ganjil"
+                                            style="width: 80px;">Fields <i class="fas fa-plus"></i></button>
+                                    </th>
+                                </tr>
+                                {{-- <tr>
+                                    <th style="width: 20%">kd pengetahuan</th>
+                                    <th>keterangan pengetahuan</th>
+                                    <th>kd ketrampilan</th>
+                                    <th>keterangan ketrampilan</th>
+                                </tr> --}}
+                            </thead>
+                            <tbody class="fields_multiple_semester_ganjil" data-target="{{ $target->id }}">
+                                @foreach ($s_ganjil as $item)
+                                <tr>
+                                    <td scope="row">1</td>
+                                    <td>
+                                        <select name="kd_ganjil[]" id="" style="width:100%;heigth:100%"
+                                            class="form-control">
+                                            <option value="{{ $item->id }}">
+                                                {{ $item->kd_pengetahuan .' '.$item->keterangan_pengetahuan.' & '.$item->kd_ketrampilan .' '.$item->keterangan_ketrampilan  }}
+                                            </option>
+                                        </select>
+                                    </td>
+                                    <td class="text-center">
+                                        <button class="btn btn-danger x_s_ganjil" id="x_s_ganjil">X</button>
+                                    </td>
+                                </tr>
+                                @endforeach
 
+                                {{-- </tr> --}}
+                            </tbody>
+                        </table>
+
+                        <table class="table table-hover">
+                            <thead class="text-center">
+                                <tr>
+                                    <th scope="col" style="width: 10px;">NO.</th>
+                                    <th scope="col" style="width: 80%;">Semester Genap</th>
+                                    <th scope="col" style="width: 10px;">
+                                        <button class="btn btn-success addbtn_multiple_semester_genap"
+                                            style="width: 80px;">Fields <i class="fas fa-plus"></i></button>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody class="fields_multiple_semester_genap" data-target="{{ $target->id }}">
+                                @foreach ($s_genap as $item)
+                                <tr>
+                                    <td scope="row">1</td>
+                                    <td>
+                                        <select name="kd_genap[]" id="" style="width:100%;heigth:100%"
+                                            class="form-control">
+                                            <option value="{{ $item->id }}">
+                                                {{ $item->kd_pengetahuan .' '.$item->keterangan_pengetahuan.' & '.$item->kd_ketrampilan .' '.$item->keterangan_ketrampilan  }}
+                                            </option>
+                                        </select>
+                                    </td>
+                                    <td class="text-center">
+                                        <button class="btn btn-danger x_s_genap" id="x_s_genap">X</button>
+                                    </td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                        {{-- <div class="form-group fields_multiple_kompetensi">
+                            <label>Kompetensi Inti</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                        <i class="fas fa-book"></i>
+                                    </div>
+                                </div>
+                                <input type="text" class="form-control col-10 input_kompetensi" name="kompetensi[]">
+                                <button class="btn btn-success ml-4 addbtn_multiple_kompetensi">Fields <i
+                                        class="fas fa-plus"></i></button>
+                                <div class="invalid-feedback d-none invalid_kompetensi">
+                                    Kompetensi inti boleh kosong
+                                </div>
+                            </div>
+                        </div> --}}
+                    </div>
+                </div>
+            </div>
+            {{--  --}}
             {{-- kompetensi inti --}}
             <div class="row">
                 <div class="col-sm-12">
@@ -276,20 +399,22 @@
                                         </td>
                                     </tr>
                                 </div>
-                                @if (count($target->target_pembelajaran->target_pencapaian_mapel) < 2) @else @for ($i=0;
+                                @if (count($target->target_pembelajaran->target_pencapaian_mapel) < 2) @else @for ($i=1;
                                     $i < count($target->target_pembelajaran->target_pencapaian_mapel); $i++)
                                     <tr id="row_pen_mapel" data-id="{{ $i + 1 }}">
-                                        <th scope="row">{{ $i }}</th>
+                                        <th scope="row">{{ $i + 1 }}</th>
                                         <td>
                                             <textarea type="text" class="form-control input_target_mapel"
-                                                name="target_mapel[]" style="height: 40px;"></textarea>
+                                                name="target_mapel[]"
+                                                style="height: 40px;">{{ $target->target_pembelajaran->target_pencapaian_mapel[$i]->target }}</textarea>
                                             <div class="invalid-feedback d-none invalid_target_mapel">
                                                 Target mapel tidak boleh kosong
                                             </div>
                                         </td>
                                         <td>
                                             <textarea type="text" class="form-control keterangan_target_mapel"
-                                                name="keterangan_mapel[]" style="height: 40px;"></textarea>
+                                                name="keterangan_mapel[]"
+                                                style="height: 40px;">{{  $target->target_pembelajaran->target_pencapaian_mapel[$i]->keterangan }}</textarea>
                                             <div class="invalid-feedback d-none invalid_keterangan_target_mapel">
                                                 Keteragan mapel tidak boleh kosong
                                             </div>
@@ -486,7 +611,7 @@
                                         </td>
                                     </tr>
                                 </div>
-                                @if (count($target->target_pembelajaran->rincian_bukti) < 1) @else <tr>
+                                @if (count($target->target_pembelajaran->rincian_bukti) < 2) @else <tr>
                                     @for ($i = 1 ; $i < count($target->target_pembelajaran->rincian_bukti);$i++ )
                                         <th scope="row" id="row_konpetensi" data-id="{{ $i+1 }}"> {{ $i + 1 }} </th>
                                         <td>
@@ -552,6 +677,8 @@
         multiple_input_kkid();
         multiple_input_bukti_siswa();
         multiple_input_kompetensi();
+        multiple_semester_ganjil();
+        multiple_semester_genap();
 
         function multiple_input_mapel() {
             var max_fields = 10; //maximum input boxes allowed
@@ -588,37 +715,6 @@
                         '<button class="btn btn-danger removebtn_multiple_maple"><i class="fas fa-times"></i></button>' +
                         '</td>' +
                         '</tr>');
-
-                    // <div id="mapel ' + x + ' " data-id="mapel ' + x + '"">' +
-                    // '<label class="mt-3">Pencapaian Mapel ' + x + '</label>' +
-                    // '<div class="input-group">' +
-                    // '<div class="input-group">' +
-                    // '<div class="input-group-prepend">' +
-                    // '<div class="input-group-text">' +
-                    // '<i class="fas fa-book"></i>' +
-                    // '</div>' +
-                    // '</div>' +
-                    // '<input type="text" class="form-control input_target_mapel" data-input="' + x +
-                    // '" name="target_mapel[]">' +
-                    // ' <div class="invalid-feedback d-none invalid_target_mapel">' +
-                    // 'Pencapaian mapel tidak boleh kosong' +
-                    // '</div>' +
-                    // '</div>' +
-                    // '  <label class="mt-3">Keterangan ' + x + '</label>' +
-                    // '<div class="input-group">' +
-                    // '<div class="input-group-prepend">' +
-                    // '<div class="input-group-text">' +
-                    // '<i class="fas fa-book"></i>' +
-                    // '</div>' +
-                    // '</div>' +
-                    // '<input type="text" class="form-control col-10 keterangan_target_mapel" name="keterangan_mapel[]">' +
-                    // '<button class="btn btn-danger ml-4 removebtn_multiple_maple"><i class="fas fa-times"></i></button>' +
-                    // '<div class="invalid-feedback d-none invalid_keterangan_target_mapel">' +
-                    // 'Keteragan mapel tidak boleh kosong' +
-                    // '</div>' +
-                    // '</div>' +
-                    // '</div>'
-
                 }
             });
 
@@ -670,36 +766,6 @@
                         '<button class="btn btn-danger removebtn_multiple_kkid"><i class="fas fa-times"></i></button>' +
                         '</td>' +
                         '</tr>');
-
-                    // '<div id="kkid ' + x + '" data-id="kkid ' + x + '"">' +
-                    // '<label class="mt-3">Pencapaian KKID ' + x + '</label>' +
-                    // '<div class="input-group">' +
-                    // '<div class="input-group">' +
-                    // '<div class="input-group-prepend">' +
-                    // '<div class="input-group-text">' +
-                    // '<i class="fas fa-book"></i>' +
-                    // '</div>' +
-                    // '</div>' +
-                    // '<input type="text" class="form-control input_pencapaian_kkid" name="target_kkid[]">' +
-                    // '<div class="invalid-feedback  invalid_pencapaian_kkid">' +
-                    // 'Pencapaian KKID tidak boleh kosong' +
-                    // '</div>' +
-                    // '</div>' +
-                    // '  <label class="mt-3">Keterangan ' + x + '</label>' +
-                    // '<div class="input-group">' +
-                    // '<div class="input-group-prepend">' +
-                    // '<div class="input-group-text">' +
-                    // '<i class="fas fa-book"></i>' +
-                    // '</div>' +
-                    // '</div>' +
-                    // '<input type="text" class="form-control col-10 keterangan_pencapaian_kkid" name="keterangan_kkid[]">' +
-                    // '<button class="btn btn-danger ml-4 removebtn_multiple_kkid"><i class="fas fa-times"></i></button>' +
-                    // '<div class="invalid-feedback d-none invalid_keterangan_pencapaian_kkid">' +
-                    // 'Keterangan tidak boleh kosong' +
-                    // '</div>' +
-                    // '</div>' +
-                    // '</div>'
-
                 }
             });
             $(wrapper).on("click", ".removebtn_multiple_kkid", function (e) { //user click on remove text
@@ -731,13 +797,6 @@
                         '<button class="btn btn-danger removebtn_multiple_bukti"><i class="fas fa-times"></i></button>' +
                         '</td>' +
                         '</tr>');
-                    // '<div class="input-group mt-3">' +
-                    // '<input type="text" class="form-control col-8 input_bukti" style="margin-left: 41px;" name="bukti[]">' +
-                    // '<button class="btn btn-danger ml-4 removebtn_multiple_bukti"><i class="fas fa-times"></i></button>' +
-                    // '<div class="invalid-feedback d-none invalid_bukti" style="margin-left: 41px;">' +
-                    // 'Rincian bukti boleh kosong' +
-                    // '</div>' +
-                    // '</div>'
                 }
             });
 
@@ -795,112 +854,127 @@
             });
         }
 
-        // auto complete mapel
-        $('#id_guru').change(function () {
-            id = $(this).val(); // mengambil value
-            //console.log(id);
-            $('#mapel').empty();
-            $('#mapel').append('<option value="">mencari..</option>');
-            // call ajax untuk get / mendapatkan data
-            if (!id) {
-                $('#mapel').empty();
-                $('#mapel').append('<option value="">Mata pelajaran kosong</option>');
-            }
-            $.ajax({
-                url: '/admin/option/guru/' + id, // url
-                type: 'get', // method
-                success: function (response) {
-                    console.log(response.mapel);
-                    $('#mapel').empty();
-                    if (!response.mapel.length) {
-                        $('#mapel').append(
-                            '<option value="">Mata pelajaran kosong</option>');
-                    } else {
-                        $('#mapel').append('<option value="">Lihat lebih lanjut</option>');
-                        response.mapel.forEach(element => {
-                            $('#mapel').append('<option value="' + element.id +
-                                '">' +
-                                element.nama_mapel + '</option>')
-                        });
-                    }
-                },
-                fail: function (rsponse) {
-                    console.log(response);
-                }
-            });
-        });
-
-        // autocomplete option Bidang studi
-        $('#mapel').change(function () {
-            id = $(this).val(); // mengambil value
-            //console.log(id);
-            //  $('#bidang').append('<option value="" selected>mencari...</option>')
-            // call ajax untuk get / mendapatkan data
-            $('#bidang').empty();
-            $('#bidang').append('<option value="">mencari..</option>');
-            // call ajax untuk get / mendapatkan data
-            if (!id) {
-                $('#bidang').empty();
-                $('#bidang').append('<option value="">Bidang Studi kosong</option>');
-            }
-            $.ajax({
-                url: '/admin/option/mapel/' + id, // url
-                type: 'get', // method
-                success: function (response) {
-                    console.log(response.mapel);
-                    $('#bidang').empty();
-                    if (!response.mapel.length) {
-                        if (id === "{{ $target->mapel->id }}") {
-                        $('#bidang').append('<option value="">Pelajari lebih lanjut</option>');
-                        $('#bidang').append('<option value="{{ $target->id }}">{{ $target->bidang_studi }}</option>');
-                        }else{
-                            $('#bidang').append('<option value="">Bidang studi kosong</option>');
-                        }
-
-                    } else {
-                        $('#bidang').append('<option value="">Lihat lebih lanjut</option>');
-                        $('#bidang').append('<option value="{{ $target->id }}">{{ $target->bidang_studi }}</option>');
-                        response.mapel.forEach(element => {
-                            $('#bidang').append('<option value="' + element.id +
-                                '">' +
-                                element.bidang_studi + '</option>')
-                        });
-                    }
-
-
-                },
-                fail: function (rsponse) {
-
-                }
-            });
-        });
-
         // bidang + status
-        $('#bidang').change(function () {
-            id = $(this).val(); // mengambil value
-            $('#kompetensi').val('')
-            $('#jp').val('');
-            $('#kelas').val('');
-            $.ajax({
-                url: '/admin/option/bidang_studi/' + id, // url
-                type: 'get', // method
-                success: function (response) {
-                    console.log(response.bidang);
-                    $('#kompetensi').val(response.bidang.kompetensi_keahlian)
-                    $('#jp').val(response.bidang.jam_pelajaran);
-                    $('#kelas').val(response.bidang.kelas);
-                },
-                fail: function (rsponse) {
+        function multiple_semester_ganjil() {
+            counter = 0;
+            $('.addbtn_multiple_semester_ganjil').click(function (e) {
+                e.preventDefault();
+                counter++;
+                $('.fields_multiple_semester_ganjil').append(
+                    ' <tr>' +
+                    ' <td scope="row">1</td>' +
+                    '<td>' +
+                    '<select name="kd_ganjil[]" id="" style="width:100%;heigth:100%" class="form-control s_ganjil">' +
+                    '</select>' +
+                    '<div class="invalid-feedback d-none invalid_kompetensi" tyle="margin-left: 41px;">Kompetensi inti tidak boleh kosong</div>' +
+                    '</td>' +
+                    '<td class="text-center">' +
+                    '<button class="btn btn-danger x_s_ganjil" id="x_s_ganjil">X</button>' +
+                    '</td>' +
+                    '</tr>')
+                select();
+                //apus apeend dalem
 
-                }
             });
-        });
+
+            $('.fields_multiple_semester_ganjil').on('click', '.x_s_ganjil', function (e) {
+                e.preventDefault();
+                console.log('clicked');
+                $(this).parent('td').parent('tr').remove();
+                counter--;
+            })
+
+            $('.x_s_ganjil').click(function (e) {
+                e.preventDefault();
+                console.log('clicked');
+                $(this).parent('td').parent('tr').remove();
+                counter--;
+            })
+
+            function select() {
+                id = $('.fields_multiple_semester_ganjil').data('target');
+                $.ajax({
+                    url: '/admin/option/mapel/' + id + '/edit', // url
+                    type: 'get', // method
+                    success: function (response) {
+                        console.log(response.mapel);
+                        response.s_ganjil.forEach(element => {
+                            $('.s_ganjil').append('<option value="' + element.id +
+                                '"> KD ' + element.kd_pengetahuan + ' ' + element
+                                .keterangan_pengetahuan +
+                                ' & KD ' +
+                                element.kd_ketrampilan + ' ' +
+                                element.keterangan_ketrampilan +
+                                ' </option>')
+                        });
+                    }
+                });
+            };
+        }
+
+        function multiple_semester_genap() {
+            counter = 0;
+            $('.addbtn_multiple_semester_genap').click(function (e) {
+                e.preventDefault();
+                counter++;
+                $('.fields_multiple_semester_genap').append(
+                    ' <tr>' +
+                    ' <td scope="row">1</td>' +
+                    '<td>' +
+                    '<select name="kd_genap[]" id="" style="width:100%;heigth:100%" class="form-control s_genap">' +
+                    '</select>' +
+                    '<div class="invalid-feedback d-none invalid_kompetensi" tyle="margin-left: 41px;">Kompetensi inti tidak boleh kosong</div>' +
+                    '</td>' +
+                    '<td class="text-center">' +
+                    '<button class="btn btn-danger x_s_genap" id="x_s_genap">X</button>' +
+                    '</td>' +
+                    '</tr>')
+                select();
+                //apus apeend dalem
+
+            });
+
+            $('.fields_multiple_semester_genap').on('click', '.x_s_genap', function (e) {
+                e.preventDefault();
+                console.log('clicked');
+                $(this).parent('td').parent('tr').remove();
+                counter--;
+            })
+
+            $('.x_s_genap').click(function (e) {
+                e.preventDefault();
+                console.log('clicked');
+                $(this).parent('td').parent('tr').remove();
+                counter--;
+            })
+
+            function select() {
+                id = $('.fields_multiple_semester_genap').data('target');
+                $.ajax({
+                    url: '/admin/option/mapel/' + id + '/edit', // url
+                    type: 'get', // method
+                    success: function (response) {
+                        console.log(response.mapel);
+                        response.s_genap.forEach(element => {
+                            $('.s_genap').append('<option value="' + element.id + '"> KD ' +
+                                element.kd_pengetahuan + ' ' + element
+                                .keterangan_pengetahuan +
+                                ' & KD ' +
+                                element.kd_ketrampilan + ' ' +
+                                element.keterangan_ketrampilan +
+                                ' </option>')
+                        });
+                    }
+                });
+            };
+        }
+
 
         // button submit
         $('#button').click(function (e) {
             e.preventDefault();
             guru = $('#id_guru').val();
-            bidang = $('#bidang').val();
+            jurusan = $('#jurusan').val();
             mapel = $('#mapel').val(); // ambil value dari mapel
             // ambil collection input by id ( hasilnya collection jadi tinggal di loop )
             target_mapel = document.querySelectorAll(".input_target_mapel");
@@ -919,15 +993,13 @@
             invalid_kompetensi = document.querySelectorAll(".invalid_kompetensi"); // validasi
 
             // jika function validasinya 0 atau undified maka akan ke submit dan jika tidak maka akan valdasi ( manggil fucntion nya )
-            if (!validasi_bidang_keahlian() && !validasi_target_mapeL() && !
+            if (!validasi_jurusan() && !validasi_target_mapeL() && !
                 validasi_keterangan_target_mapel() && !validasi_pencapaian_kkid() && !
                 validasi_keteranga_pencapaian_kkid() && !validasi_rincian_butki() && !
                 validasi_kompetensi() && !validasi_mapel()) {
-                console.log('berhasil');
                 $('#form').submit();
             } else {
-                validasi_guru();
-                validasi_bidang_keahlian()
+                validasi_jurusan()
                 validasi_target_mapeL();
                 validasi_keterangan_target_mapel();
                 validasi_pencapaian_kkid();
@@ -937,24 +1009,24 @@
                 validasi_mapel();
             };
 
-            function validasi_guru() {
-                // buat ngidung ada berapa yang kena validasi
-                count_erorr = [];
-                if (!guru) {
-                    $('#id_guru').addClass('is-invalid'); // Ad class is-invalid
-                    $('#id_guru').closest('div').find('.invalid-feedback').removeClass(
-                        'd-none'
-                    ); // cari div terdekat dan cari class nya find = cari lalu REMOVE class d-none
-                    count_erorr += 1
-                } else {
-                    $('#id_guru').removeClass('is-invalid').removeClass('is-invalid');
-                    $('#id_guru').closest('div').find('.invalid-feedback').addClass(
-                        'd-none'
-                    ); // cari div terdekat dan cari class nya find = cari lalu add class d-none
-                }
-                // return panjang dari collection atau array
-                return count_erorr.length;
-            }
+            // function validasi_guru() {
+            //     // buat ngidung ada berapa yang kena validasi
+            //     count_erorr = [];
+            //     if (!guru) {
+            //         $('#id_guru').addClass('is-invalid'); // Ad class is-invalid
+            //         $('#id_guru').closest('div').find('.invalid-feedback').removeClass(
+            //             'd-none'
+            //         ); // cari div terdekat dan cari class nya find = cari lalu REMOVE class d-none
+            //         count_erorr += 1
+            //     } else {
+            //         $('#id_guru').removeClass('is-invalid').removeClass('is-invalid');
+            //         $('#id_guru').closest('div').find('.invalid-feedback').addClass(
+            //             'd-none'
+            //         ); // cari div terdekat dan cari class nya find = cari lalu add class d-none
+            //     }
+            //     // return panjang dari collection atau array
+            //     return count_erorr.length;
+            // }
 
             function validasi_mapel() {
                 // buat ngidung ada berapa yang kena validasi
@@ -975,18 +1047,18 @@
                 return count_erorr.length;
             }
 
-            function validasi_bidang_keahlian() {
+            function validasi_jurusan() {
                 // buat ngidung ada berapa yang kena validasi
                 count_erorr = [];
-                if (!bidang) {
-                    $('#bidang').addClass('is-invalid'); // Ad class is-invalid
-                    $('#bidang').closest('div').find('.invalid-feedback').removeClass(
+                if (!jurusan) {
+                    $('#jurusan').addClass('is-invalid'); // Ad class is-invalid
+                    $('#jurusan').closest('div').find('.invalid-feedback').removeClass(
                         'd-none'
                     ); // cari div terdekat dan cari class nya find = cari lalu REMOVE class d-none
                     count_erorr += 1
                 } else {
-                    $('#bidang').removeClass('is-invalid').removeClass('is-invalid');
-                    $('#bidang').closest('div').find('.invalid-feedback').addClass(
+                    $('#jurusan').removeClass('is-invalid').removeClass('is-invalid');
+                    $('#jurusan').closest('div').find('.invalid-feedback').addClass(
                         'd-none'
                     ); // cari div terdekat dan cari class nya find = cari lalu add class d-none
                 }

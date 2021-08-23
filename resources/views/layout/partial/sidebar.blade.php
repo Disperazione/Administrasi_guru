@@ -29,6 +29,7 @@
                         class="fas fa-users"></i><span>Kd</span></a>
             </li>
             @endif
+            @if (Auth::user()->role == 'Guru')
             <li class="menu-header">Lembar kerja</li>
             <li
                 class="nav-item dropdown @if(Request::is('admin/Lembar-kerja-1','admin/Lembar-kerja-1/*','admin/Lembar-kerja-2','admin/Lembar-kerja-2/*','admin/Lembar-kerja-3','admin/Lembar-kerja-3/*','admin/Lembar-kerja-4','admin/Lembar-kerja-4/*','admin/RPP','admin/RPP/*')) active @endif">
@@ -57,6 +58,7 @@
                 <a href="{{ route('admin.RPP.index') }}" class="nav-link "><i
                         class="fas fa fa-tasks"></i><span>RPP</span></a>
             </li>
+            @endif
         </ul>
 
         <div class="mt-4 mb-4 p-3 hide-sidebar-mini">

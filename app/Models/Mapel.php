@@ -15,8 +15,5 @@ class Mapel extends Model
     {
         return $this->belongsTo(Guru::class,'id_guru','id');
     }
-    public function bidang_keahlian()
-    {
-        return $this->hasMany(Bidang_keahlian::class,'id_mapel','id'); //foreign owner
-    }
+
 }

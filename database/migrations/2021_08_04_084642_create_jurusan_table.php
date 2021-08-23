@@ -20,9 +20,9 @@ class CreateJurusanTable extends Migration
             $table->timestamps();
         });
 
-        Schema::table('guru', function (Blueprint $table) {
-            $table->foreign('id_jurusan')->references('id')->on('jurusan')->onDelete('cascade')->onUpdate('cascade');
-        });
+        // Schema::table('guru', function (Blueprint $table) {
+        //     $table->foreign('id_jurusan')->references('id')->on('jurusan')->onDelete('cascade')->onUpdate('cascade');
+        // });
     }
 
     /**

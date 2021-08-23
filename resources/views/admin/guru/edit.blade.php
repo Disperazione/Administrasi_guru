@@ -1,6 +1,6 @@
 @extends('layout.master')
 @push('css')
-
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 @endpush
 @section('title', 'App')
 @section('judul','Edit Guru')
@@ -65,49 +65,19 @@
                     <div class="form-group">
                         <label for="">Jurusan :</label>
                         <select type="text" name="id_jurusan" id="jurusan"
-                            class="form-control @error('id_jurusan') is-invalid @endif">
+                            class="form-control @error('id_jurusan') is-invalid @endif" multiple="multiple" data-id="{{ $id_jurusan }}">
                             <option value="">-- Pilih Jurusan --</option>
-                            @foreach ($jurusan as $item)
-                            <option value="{{ $item->id }}"
-                                {{ (old('id_jurusan', $guru->jurusan->id) == $item->id) ? 'selected' : '' }}>
+                            @foreach ($jurusan as $key => $item)
+                                                                                {{-- ngambil index (key) ex. 1,2,3 di array  --}}
+                            <option value="{{ $item->id }}" {{(old('id_jurusan') ? 'selected' : '') }} >
                                 {{ $item->singkatan_jurusan }}</option>
                             @endforeach
                         </select>
-{{--
-                        @error('id_jurusan') --}}
+                        {{-- @error('id_jurusan')  --}}
                         <div class="invalid-feedback">
                              Jurusan tidak boleh kosong
                         </div>
                         {{-- @enderror --}}
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group addMapelInput">
-                        <label for="">Mata pelajran :</label>
-                        <div class="row ml-1">
-                            <input type="text" name="mapel[]" class="form-control mapel col-md-10 " id="mapel"
-                                value="{{(empty($guru->mapel[0]->nama_mapel)) ? '' : $guru->mapel[0]->nama_mapel }}">
-                            <button class="btn btn-success d-inline ml-3" id="addInput">+</button>
-                            {{-- @error('id_mapel') --}}
-                            <div class="invalid-feedback d-none mapel_err" id="mapel_err">
-                                Mapel tidak boleh kosong
-                            </div>
-                            {{-- @enderror --}}
-                        </div>
-                        @for ($i = 1 ; $i < count($guru->mapel); $i++)
-                            <div class="row ml-1">
-                                <input type="text" name="mapel[]" class="form-control mapel mt-2 col-md-10 " id="mapel"
-                                    value="{{ $guru->mapel[$i]->nama_mapel }}">
-                                <button class="btn btn-danger d-inline ml-3 removeInput mt-2 mb-2">x</button>
-                                {{-- @error('id_mapel') --}}
-                                <div class="invalid-feedback d-none mapel_err" id="mapel_err">
-                                    Mapel tidak boleh kosong
-                                </div>
-                                {{-- @enderror --}}
-                            </div>
-                            @endfor
-
-
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -183,33 +153,18 @@
 </div>
 @endsection
 @push('js')
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script>
     $(document).ready(function () {
-        x = 1;
-        $('#addInput').click(function (e) {
-            e.preventDefault();
-            console.log('clicked');
-            x++
-            $('.addMapelInput').append(' <div class="row ml-1">' +
-                '<input type="text" name="mapel[]" class="form-control mapel mt-2 col-md-10 " id="mapel">' +
-                '<button class="btn btn-danger d-inline ml-3 removeInput mt-2 mb-2" >x</button>' +
-                '<div class="invalid-feedback mapel_err" id="mapel_err">' +
-                'mapel tidak boleh kosong' +
-                '</div>' +
-                '</div>');
-            $('.removeInput').click(function (e) {
-                e.preventDefault(); // prevent button
-                $(this).parent('div').remove(); // hapus parent
-                --x;
-            })
-        })
-
-
+        $('#jurusan').select2();
+        id_jurusan = $('#jurusan').data('id'); // ambil data id dari jurusan
+        $('#jurusan').val(id_jurusan).trigger("change");
+        $('#jabatan').select2();
         $('#buttonSubmit').click(function (e) {
             e.preventDefault();
             // jika return fungtion nya mkaa akan menampilan validasi
             // jika funtion validation nya tidak kosong maka akan submit form nya
-            if (!validate_mapel() && !validate_nik() && !validate_name() && !validate_jabatan() && !
+            if (!validate_nik() && !validate_name() && !validate_jabatan() && !
                 validate_jurusan() && !validate_fax() && !validate_alamat() && !validate_no_telp() && !validate_password() && !validate_email()) {
                 $('#form').submit();
             } else { // jika kosoong ambil erornya
@@ -339,24 +294,6 @@
             return count_erorr.length;
         }
 
-        function validate_mapel() {
-            count_erorr = [];
-            mapel = document.querySelectorAll('.mapel');
-            mapel.forEach(element => {
-                if (!element.value) {
-                    $(element).addClass('is-invalid');
-                    $(element).closest('div').find('.mapel_err').removeClass('d-none');
-                    //console.log('test');
-                    count_erorr += 1
-                } else {
-                    $(element).removeClass('is-invalid');
-                    $(element).closest('div').find('.mapel_err').addClass('d-none');
-                }
-            });
-            // console.log(count_erorr.length);
-            return count_erorr.length;
-        }
-
         function validate_nik() {
             arr_validated = []; // unutk mengimpan nomor jadi erorrnya
             nik = $('#nik').val();
@@ -442,7 +379,7 @@
             }
             return arr_validated.length // return panjang dari array nya
         }
-    })
+    });
 
 </script>
 @endpush
