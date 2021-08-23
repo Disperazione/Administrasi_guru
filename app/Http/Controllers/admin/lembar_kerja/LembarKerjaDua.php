@@ -6,7 +6,10 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\Bidang_keahlian;
 use App\Models\Kompetensi_dasar;
+use App\Models\Guru;
+use App\Models\Mapel;
 use App\Models\Strategi_pembelajaran;
+use App\Models\Metode_pembelajaran;
 use Illuminate\Http\Request;
 
 class LembarKerjaDua extends Controller
@@ -64,15 +67,50 @@ class LembarKerjaDua extends Controller
      */
     public function create()
     {
-        if (Auth::user()->role == 'guru') {
-            // menambil bidang keahlian yang sudah di filter di table / datatable ajax yang di atas
-            $strategi = Bidang_keahlian::has('kompetensi_dasar')->where(['id_guru', auth()->id()])->get();
-        } else {
-            $strategi = Bidang_keahlian::has('kompetensi_dasar')->get();
+        $guru = Guru::has('bidang_keahlian')->get();
+        $mapel = Mapel::has('bidang_keahlian')->get();
+        $kompetensi = Kompetensi_dasar::select('id_bidang_keahlian')->has('materi_bahan_ajar')->get()->unique();
+        $id_keahlian = [];
+        foreach ($kompetensi as $key => $value) {
+            $id_keahlian[] = $value->id_bidang_keahlian;
         }
-        return view('admin.lembar_kerja_dua.tambah', compact('strategi'));
+
+        if (Auth::user()->role == 'guru') {
+            // mendapat bidang keahlian yang sudah mempunyai kompetensi dasar yang mempunyai materi bahan ajar
+            $data = Bidang_keahlian::has('kompetensi_dasar')->whereIn('id',  $id_keahlian)->where('id_guru', auth()->id())->get();
+        } else if (Auth::user()->role == 'admin') {
+            $data = Bidang_keahlian::has('kompetensi_dasar')->whereIn('id',  $id_keahlian)->get();
+        }
+        return view('admin.lembar_kerja_dua.tambah', compact('guru','mapel','mapel'));
     }
 
+
+      // autocompte bidang mapel
+      public function option_guru($id)
+      {
+          $mapel = Mapel::where('id_guru', $id)->get();
+          return response()->json(['mapel' => $mapel]);
+      }
+      // autocompte bidang mapel
+      public function option_mapel($id)
+      {
+          // ,engammbil kompetensi dasar belum mempunyai mempunyai lk4 / bahan ajar
+          $kompetensi = Kompetensi_dasar::doesntHave('materi_bahan_ajar')->get();
+          // arr ( isinya id bidang keahlian )
+          $id_keahlian = []; // loop untuk mendapat id bidang keahlian
+          foreach ($kompetensi as $key => $value) {
+              $id_keahlian[] = $value->id_bidang_keahlian;
+          }
+          $mapel = Bidang_keahlian::whereIn('id', $id_keahlian)->where('id_mapel', $id)->with('kompetensi_dasar')->get();
+          return response()->json(['mapel' => $mapel]);
+      }
+
+       // buat option bidang
+    public function option_bidang($id)
+    {
+        $bidang = Bidang_keahlian::where('id', $id)->with('kompetensi_dasar')->first();
+        return response()->json(['bidang' => $bidang]);
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -81,7 +119,27 @@ class LembarKerjaDua extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd($request);
+        Kompetensi_dasar::create([
+            // 'kd_pengetahuan' => $request
+            // 'keterangan_pengetahuan' => $request
+            // 'kd_ketrampilan' => $request
+            // 'keterangan_ketrampilan' => $request
+            // 'materi_inti' => $request
+            // 'durasi' => $request
+            // 'pertemuan'=> $request
+            // 'semester' => $request 
+            // 'semester_kd' => $request
+        ]);
+        Strategi_pembelajaran::create([
+
+        ]);
+
+
+        Metode_pembelajaran::create([
+
+        ]);
+        
     }
 
     /**

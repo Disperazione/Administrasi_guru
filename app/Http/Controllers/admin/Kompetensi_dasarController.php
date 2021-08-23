@@ -4,7 +4,9 @@ namespace App\Http\Controllers\admin;
 
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
-use App\Models\Bidang_keahlian;
+	use App\Models\Bidang_keahlian;
+use App\Models\Kompetensi_dasar;
+use App\Models\Guru;
 use Illuminate\Http\Request;
 
 class Kompetensi_dasarController extends Controller
@@ -16,6 +18,10 @@ class Kompetensi_dasarController extends Controller
      */
     public function index(Request $request)
     {
+        // dd(
+        //     $data = Bidang_keahlian::has('kompetensi_dasar')->get()
+
+        // );
         if ($request->ajax()) {
             if (Auth::user()->role == 'guru') {
                 $data = Bidang_keahlian::where('id_guru',Auth::user()->id)->has('kompetensi_dasar')->get();
@@ -27,9 +33,9 @@ class Kompetensi_dasarController extends Controller
                 ->addColumn('guru', function ($data) {
                     return $data->guru->name;
                 })
-                // ->addColumns('guru', function ($data) {
-                //     return $data->bidang_studi->guru->name;
-                // })
+                ->addColumn('mapel', function ($data) {
+                    return $data->mapel->nama_mapel;
+                })
                 ->addColumn('action', function ($data) {
                     $button = '<a href="' . $data->id . '"   id="' . $data->id . '" class="btn btn-primary btn-sm"><i class="fas fa-search"></i></a>';
                     $button .= '&nbsp';
@@ -51,7 +57,9 @@ class Kompetensi_dasarController extends Controller
      */
     public function create()
     {
-        return view('admin.kompetensi_dasar.tambah');
+        $guru = Guru::all();
+        // dd($guru);
+        return view('admin.kompetensi_dasar.tambah',compact('guru'));
     }
 
     /**
@@ -62,7 +70,38 @@ class Kompetensi_dasarController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        // dd($request);
+
+      $bidang_keahlian =  Bidang_keahlian::create([
+            'bidang_studi' =>  $request->bidang_studi,
+            'kompetensi_keahlian' =>  $request->kompetensi_keahlian,
+            'kelas' =>  $request->kelas,
+            'jam_pelajaran' =>  $request->jam_pelajaran,
+            'id_mapel' =>  $request->id_mapel,
+            'total_waktu_jam_pelajaran' =>  $request->total_waktu_jam_pelajaran,
+            'id_guru' =>  $request->id_guru,
+        ]);
+
+        $data = $request->all();
+
+        foreach ($data['kd_pengetahuan'] as $key => $value) {
+                dd($key);
+            $dataStore = array(
+                'kd_pengetahuan' =>  $data['pengetahuan'],
+                // 'keterangan_pengetahuan' => 
+                // 'kd_ketrampilan' => 
+                // 'keterangan_ketrampilan' => 
+            );
+
+        }
+
+        
+        Kompetensi_dasar::create([
+            
+        ]);
+
+
     }
 
     /**
