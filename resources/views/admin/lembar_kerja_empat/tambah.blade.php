@@ -151,99 +151,138 @@
             </div>
             {{-- datatenagapendidik --}}
 
-            {{-- Kompetensi dasat ganjil --}}
-            <div class="row">
-                <div class="container-fluid">
+
+            {{-- card --}}
+            <div class="fields_indikmapel">
+                <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title">
-                            Kompetensi Dasar ganji;
-                        </h4>
+                        <h4>Indikator Ketercapaian Mata Pelajaran</h4>
+                        {{-- <h4>Kompetensi Dasar :</h4>
+                        <select id="" class="form-select form-control ml-2" style="width: 130px;">
+                            <option>Ganjil</option>
+                            <option>Genap</option>
+                        </select> --}}
                     </div>
-                    <table class="table table-bordered ml-2 mr-2">
-                        <thead>
-                            <tr>
-                                <th>no</th>
-                                <th>kd</th>
-                                <th>Kompetensi Dasar</th>
-                                <th>Modul</th>
-                                <th>vidio pembalajaran</th>
-                                <th>deskripsi bahan ajar</th>
-                                <th>keterangan</th>
-                            </tr>
-                        </thead>
-                        <tbody class="tbody-ganjil">
-                            {{-- <tr>
-                            <td rowspan="2">no</td>
-                            <td>kd</td>
-                            <td>Kompetensi Dasar</td>
-                            <td rowspan="2"><textarea name="modul[]" class="form-control" rows="10"
-                                    cols="20"></textarea></td>
-                            <td rowspan="2"><textarea name="vidio_pel[]" class="form-control"></textarea></td>
-                            <td rowspan="2"><textarea name="deskripsi_bahan[]" class="form-control"></textarea>
-                                <</td> <td rowspan="2"><textarea name="keterangan[]" class="form-control"></textarea>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>no</td>
-                             <td>no</td>
-                        </tr> --}}
-                        </tbody>
-                    </table>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="form-group col-sm-2">
+                                <label>No KD.</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">
+                                            <i class="far fa-sticky-note"></i>
+                                        </div>
+                                    </div>
+                                    <input type="text" id="" class="form-control" disabled placeholder="3.17">
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-5">
+                                <label>Kompetensi Dasar</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">
+                                            <i class="far fa-sticky-note"></i>
+                                        </div>
+                                    </div>
+                                    <textarea type="text" id="" class="form-control" name="" id="" style="height: 90px;"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-5">
+                                <label>Modul</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">
+                                            <i class="far fa-sticky-note"></i>
+                                        </div>
+                                    </div>
+                                    <textarea type="text" id="" class="form-control" name="" id="" style="height: 90px;"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-sm-2">
+                                <label>No KD.</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">
+                                            <i class="far fa-sticky-note"></i>
+                                        </div>
+                                    </div>
+                                    <input type="text" id="" class="form-control" disabled placeholder="3.17">
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-5">
+                                <label>Kompetensi Dasar</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">
+                                            <i class="far fa-sticky-note"></i>
+                                        </div>
+                                    </div>
+                                    <textarea type="text" id="" class="form-control" name="" id="" style="height: 90px;"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-5">
+                                <label>Video Pembelajaran</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">
+                                            <i class="far fa-sticky-note"></i>
+                                        </div>
+                                    </div>
+                                    <textarea type="text" id="" class="form-control" name="" id="" style="height: 90px;"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-sm-2">
+                                <div class="" style="margin-top: 32px;">
+                                    {{-- <button class="btn btn-success addbtn_indikmapel">Fields <i class="fas fa-plus"></i></button> --}}
+                                    {{-- <button class="btn btn-danger removebtn_indikmapel"><i class="fas fa-times"></i></button> --}}
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-5">
+                                <label>Deskripsi Bahan Ajar</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">
+                                            <i class="far fa-sticky-note"></i>
+                                        </div>
+                                    </div>
+                                    <textarea type="text" id="" class="form-control" name="" id="" style="height: 90px;"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-5">
+                                <label>Keterangan.</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">
+                                            <i class="far fa-sticky-note"></i>
+                                        </div>
+                                    </div>
+                                    <textarea type="text" id="" class="form-control" name="" id="" style="height: 90px;"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            {{--  --}}
-            {{-- Kompetensi dasat Genap --}}
-            <div class="row">
-                <div class="container-fluid">
-                    <div class="card-header">
-                        <h4 class="card-title">
-                            Kompetensi Dasar Genap;
-                        </h4>
-                    </div>
-                    <table class="table table-bordered ml-2 mr-2">
-                        <thead>
-                            <tr>
-                                <th>no</th>
-                                <th>kd</th>
-                                <th>Kompetensi Dasar</th>
-                                <th>Modul</th>
-                                <th>vidio pembalajaran</th>
-                                <th>deskripsi bahan ajar</th>
-                                <th>keterangan</th>
-                            </tr>
-                        </thead>
-                        <tbody class="tbody-genap">
-                            {{-- <tr>
-                            <td rowspan="2">no</td>
-                            <td>kd</td>
-                            <td>Kompetensi Dasar</td>
-                            <td rowspan="2"><textarea name="modul[]" class="form-control" rows="10"
-                                    cols="20"></textarea></td>
-                            <td rowspan="2"><textarea name="vidio_pel[]" class="form-control"></textarea></td>
-                            <td rowspan="2"><textarea name="deskripsi_bahan[]" class="form-control"></textarea>
-                                <</td> <td rowspan="2"><textarea name="keterangan[]" class="form-control"></textarea>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>no</td>
-                             <td>no</td>
-                        </tr> --}}
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            {{--  --}}
+            {{-- card --}}
+
+
+            {{-- buttonsubmit --}}
             <div class="row">
                 <div class="col-sm-12">
                     <div class="card-body">
                         <div class="modal-footer">
+                            <button class="btn btn-success addbtn_indikmapel">Fields <i class="fas fa-plus"></i></button>
                             <button class="btn btn-primary" id="button">Submit</button>
                             <a href="{{ route('admin.Lembar-kerja-4.index') }}" class="btn btn-danger">Cancel</a>
                         </div>
                     </div>
                 </div>
             </div>
-            {{--  --}}
+            {{-- buttonsubmit --}}
         </div>
     </div>
     {{-- end pages --}}
@@ -426,5 +465,131 @@
 
     })
 
+    // multiple
+    $(document).ready(function() {
+        var max_fields      = 10;
+        var wrapper   		= $(".fields_indikmapel");
+        var add_button      = $(".addbtn_indikmapel");
+
+        var x = 1;
+        var y = 17;
+        $(add_button).click(function(e){
+            e.preventDefault();
+            if(x < max_fields){ //max input box allowed
+                x++; //text box increment
+                y++;
+                $(wrapper).append('<div class="card">'+
+                        '<div class="card-header">'+
+                            '<h4>Indikator Ketercapaian Mata Pelajaran '+x+'</h4>'+
+                        '</div>'+
+                        '<div class="card-body">'+
+                            '<div class="row">'+
+                                '<div class="form-group col-sm-2">'+
+                                    '<label>No KD.</label>'+
+                                    '<div class="input-group">'+
+                                        '<div class="input-group-prepend">'+
+                                            '<div class="input-group-text">'+
+                                                '<i class="far fa-sticky-note"></i>'+
+                                            '</div>'+
+                                        '</div>'+
+                                        '<input type="text" id="" class="form-control" disabled placeholder="3.'+y+'">'+
+                                    '</div>'+
+                                '</div>'+
+                                '<div class="form-group col-sm-5">'+
+                                    '<label>Kompetensi Dasar</label>'+
+                                    '<div class="input-group">'+
+                                        '<div class="input-group-prepend">'+
+                                            '<div class="input-group-text">'+
+                                                '<i class="far fa-sticky-note"></i>'+
+                                            '</div>'+
+                                        '</div>'+
+                                        '<textarea type="text" id="" class="form-control" name="" id="" style="height: 90px;"></textarea>'+
+                                    '</div>'+
+                                '</div>'+
+                                '<div class="form-group col-sm-5">'+
+                                    '<label>Modul</label>'+
+                                    '<div class="input-group">'+
+                                        '<div class="input-group-prepend">'+
+                                            '<div class="input-group-text">'+
+                                                '<i class="far fa-sticky-note"></i>'+
+                                            '</div>'+
+                                        '</div>'+
+                                        '<textarea type="text" id="" class="form-control" name="" id="" style="height: 90px;"></textarea>'+
+                                    '</div>'+
+                                '</div>'+
+                            '</div>'+
+                            '<div class="row">'+
+                                '<div class="form-group col-sm-2">'+
+                                    '<label>No KD.</label>'+
+                                    '<div class="input-group">'+
+                                        '<div class="input-group-prepend">'+
+                                            '<div class="input-group-text">'+
+                                                '<i class="far fa-sticky-note"></i>'+
+                                            '</div>'+
+                                        '</div>'+
+                                        '<input type="text" id="" class="form-control" disabled placeholder="3.'+y+'">'+
+                                    '</div>'+
+                                '</div>'+
+                                '<div class="form-group col-sm-5">'+
+                                    '<label>Kompetensi Dasar</label>'+
+                                    '<div class="input-group">'+
+                                        '<div class="input-group-prepend">'+
+                                            '<div class="input-group-text">'+
+                                                '<i class="far fa-sticky-note"></i>'+
+                                            '</div>'+
+                                        '</div>'+
+                                        '<textarea type="text" id="" class="form-control" name="" id="" style="height: 90px;"></textarea>'+
+                                    '</div>'+
+                                '</div>'+
+                                '<div class="form-group col-sm-5">'+
+                                    '<label>Video Pembelajaran</label>'+
+                                    '<div class="input-group">'+
+                                        '<div class="input-group-prepend">'+
+                                            '<div class="input-group-text">'+
+                                                '<i class="far fa-sticky-note"></i>'+
+                                            '</div>'+
+                                        '</div>'+
+                                        '<textarea type="text" id="" class="form-control" name="" id="" style="height: 90px;"></textarea>'+
+                                    '</div>'+
+                                '</div>'+
+                            '</div>'+
+                            '<div class="row">'+
+                                '<div class="form-group col-sm-2">'+
+                                    '<div class="" style="margin-top: 32px;">'+
+                                        '<button class="btn btn-danger removebtn_indikmapel"><i class="fas fa-times"></i></button>'+
+                                    '</div>'+
+                                '</div>'+
+                                '<div class="form-group col-sm-5">'+
+                                   '<label>Deskripsi Bahan Ajar</label>'+
+                                    '<div class="input-group">'+
+                                        '<div class="input-group-prepend">'+
+                                            '<div class="input-group-text">'+
+                                                '<i class="far fa-sticky-note"></i>'+
+                                            '</div>'+
+                                        '</div>'+
+                                        '<textarea type="text" id="" class="form-control" name="" id="" style="height: 90px;"></textarea>'+
+                                    '</div>'+
+                                '</div>'+
+                                '<div class="form-group col-sm-5">'+
+                                    '<label>Keterangan.</label>'+
+                                    '<div class="input-group">'+
+                                        '<div class="input-group-prepend">'+
+                                            '<div class="input-group-text">'+
+                                                '<i class="far fa-sticky-note"></i>'+
+                                            '</div>'+
+                                        '</div>'+
+                                        '<textarea type="text" id="" class="form-control" name="" id="" style="height: 90px;"></textarea>'+
+                                    '</div>'+
+                                '</div>'+
+                            '</div>'+
+                        '</div>'+
+                    '</div>');
+            }
+        });
+
+        $(wrapper).on("click",".removebtn_indikmapel", function(e){ //user click on remove text
+            e.preventDefault(); $(this).parent('div').parent('div').parent('div').parent('div').parent('div').remove(); x--;
+        })
+    });
 </script>
 @endpush

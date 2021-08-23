@@ -159,91 +159,125 @@
             </div>
             {{-- datatenagapendidik --}}
 
-            {{-- Kompetensi dasat ganjil --}}
-            <div class="row">
-                <div class="container-fluid">
-                    <div class="card-header">
-                        <h4 class="card-title">
-                            Kompetensi Dasar ganji;
-                        </h4>
-                    </div>
-                    <table class="table table-bordered ml-2 mr-2">
-                        <thead>
-                            <tr>
-                                <th>no</th>
-                                <th>kd</th>
-                                <th>Kompetensi Dasar</th>
-                                <th>Modul</th>
-                                <th>vidio pembalajaran</th>
-                                <th>deskripsi bahan ajar</th>
-                                <th>keterangan</th>
-                            </tr>
-                        </thead>
-                        <tbody class="tbody-ganjil">
-                            @foreach ($bidang_main->kompetensi_dasar()->where('semester','Ganjil')->get() as $key =>
-                            $value)
-                            <tr>
-                                <td rowspan="2"><input type="text" name="id_kd[]" value="{{ $value->id }}" hidden>{{ $loop->iteration }}</td>
-                                <td>{{ $value->kd_pengetahuan }}</td>
-                                <td>{{ $value->keterangan_pengetahuan }}</td>
-                                <td rowspan="2"><textarea name="modul[]" class="form-control" rows="10"cols="20">{{ $value->materi_bahan_ajar->modul }}</textarea></td>
-                                <td rowspan="2"><textarea name="vidio_pel[]" class="form-control">{{ $value->materi_bahan_ajar->vidio_pembelajaran }}</textarea></td>
-                                <td rowspan="2"><textarea name="deskripsi_bahan[]" class="form-control">{{ $value->materi_bahan_ajar->deskripsi_bahan_ajar }}</textarea></td>
-                                <td rowspan="2"><textarea name="keterangan[]"class="form-control">{{ $value->materi_bahan_ajar->keterangan }}</textarea></td>
-                            </tr>
-                            <tr>
-                                <td>{{ $value->kd_ketrampilan }}</td>
-                                <td>{{ $value->keterangan_ketrampilan }}</td>
-                            </tr>
-                            @endforeach
 
-                        </tbody>
-                    </table>
+            {{-- card --}}
+            <div class="fields_indikmapel">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>Indikator Ketercapaian Mata Pelajaran</h4>
+                        {{-- <h4>Kompetensi Dasar :</h4>
+                        <select id="" class="form-select form-control ml-2" style="width: 130px;">
+                            <option>Ganjil</option>
+                            <option>Genap</option>
+                        </select> --}}
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="form-group col-sm-2">
+                                <label>No KD.</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">
+                                            <i class="far fa-sticky-note"></i>
+                                        </div>
+                                    </div>
+                                    <input type="text" id="" class="form-control" disabled placeholder="3.17">
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-5">
+                                <label>Kompetensi Dasar</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">
+                                            <i class="far fa-sticky-note"></i>
+                                        </div>
+                                    </div>
+                                    <textarea type="text" id="" class="form-control" name="" id="" style="height: 90px;"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-5">
+                                <label>Modul</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">
+                                            <i class="far fa-sticky-note"></i>
+                                        </div>
+                                    </div>
+                                    <textarea type="text" id="" class="form-control" name="" id="" style="height: 90px;"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-sm-2">
+                                <label>No KD.</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">
+                                            <i class="far fa-sticky-note"></i>
+                                        </div>
+                                    </div>
+                                    <input type="text" id="" class="form-control" disabled placeholder="3.17">
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-5">
+                                <label>Kompetensi Dasar</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">
+                                            <i class="far fa-sticky-note"></i>
+                                        </div>
+                                    </div>
+                                    <textarea type="text" id="" class="form-control" name="" id="" style="height: 90px;"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-5">
+                                <label>Video Pembelajaran</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">
+                                            <i class="far fa-sticky-note"></i>
+                                        </div>
+                                    </div>
+                                    <textarea type="text" id="" class="form-control" name="" id="" style="height: 90px;"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-sm-2">
+                                <div class="" style="margin-top: 32px;">
+                                    {{-- <button class="btn btn-success addbtn_indikmapel">Fields <i class="fas fa-plus"></i></button> --}}
+                                    {{-- <button class="btn btn-danger removebtn_indikmapel"><i class="fas fa-times"></i></button> --}}
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-5">
+                                <label>Deskripsi Bahan Ajar</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">
+                                            <i class="far fa-sticky-note"></i>
+                                        </div>
+                                    </div>
+                                    <textarea type="text" id="" class="form-control" name="" id="" style="height: 90px;"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-5">
+                                <label>Keterangan.</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">
+                                            <i class="far fa-sticky-note"></i>
+                                        </div>
+                                    </div>
+                                    <textarea type="text" id="" class="form-control" name="" id="" style="height: 90px;"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            {{--  --}}
-            {{-- Kompetensi dasat Genap --}}
-            <div class="row">
-                <div class="container-fluid">
-                    <div class="card-header">
-                        <h4 class="card-title">
-                            Kompetensi Dasar Genap;
-                        </h4>
-                    </div>
-                    <table class="table table-bordered ml-2 mr-2">
-                        <thead>
-                            <tr>
-                                <th>no</th>
-                                <th>kd</th>
-                                <th>Kompetensi Dasar</th>
-                                <th>Modul</th>
-                                <th>vidio pembalajaran</th>
-                                <th>deskripsi bahan ajar</th>
-                                <th>keterangan</th>
-                            </tr>
-                        </thead>
-                        <tbody class="tbody-genap">
-                            @foreach ($bidang_main->kompetensi_dasar()->where('semester','Genap')->get() as $key =>
-                            $value)
-                            <tr>
-                                <td rowspan="2"><input type="text" name="id_kd[]" value="{{ $value->id }}" hidden>{{ $loop->iteration }}</td>
-                                <td>{{ $value->kd_pengetahuan }}</td>
-                                <td>{{ $value->keterangan_pengetahuan }}</td>
-                                <td rowspan="2"><textarea name="modul[]" class="form-control" rows="10"cols="20">{{ $value->materi_bahan_ajar->modul }}</textarea></td>
-                                <td rowspan="2"><textarea name="vidio_pel[]" class="form-control">{{ $value->materi_bahan_ajar->vidio_pembelajaran }}</textarea></td>
-                                <td rowspan="2"><textarea name="deskripsi_bahan[]" class="form-control">{{ $value->materi_bahan_ajar->deskripsi_bahan_ajar }}</textarea></td>
-                                <td rowspan="2"><textarea name="keterangan[]"class="form-control">{{ $value->materi_bahan_ajar->keterangan }}</textarea></td>
-                            </tr>
-                            <tr>
-                                <td>{{ $value->kd_ketrampilan }}</td>
-                                <td>{{ $value->keterangan_ketrampilan }}</td>
-                            </tr>
-                            @endforeach
+            {{-- card --}}
 
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+
             {{--  --}}
             <div class="row">
                 <div class="col-sm-12">

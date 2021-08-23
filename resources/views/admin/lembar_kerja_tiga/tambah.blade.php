@@ -111,121 +111,156 @@
             </div>
             {{-- datatenagapendidik --}}
 
-            {{--  --}}
-            <div class="row fields_ketercapaianmapel">
-                <div class="col-sm-6">
+            {{-- card --}}
+            <div class="fields_indikmapel">
+                <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title" style="padding-top: 30px;">Ketercapaian Mata Pelajaran</h4>
+                        <h4>Indikator Ketercapaian Mata Pelajaran Semester : </h4>
+                        <select id="" class="form-select form-control ml-2" style="width: 130px;">
+                            <option>Ganjil</option>
+                            <option>Genap</option>
+                        </select>
                     </div>
                     <div class="card-body">
-                        <div class="form-group">
-                            <label>Kompetensi Dasar 3.17</label>
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <div class="input-group-text">
-                                        <i class="far fa-file-alt"></i>
+                        <div class="row">
+                            <div class="form-group col-sm-2">
+                                <label>No KD.</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">
+                                            <i class="far fa-sticky-note"></i>
+                                        </div>
                                     </div>
-                                </div>
-                                <textarea type="text" class="form-control" name="" style="height: 70px;"></textarea>
-                                <button class="btn btn-success ml-4 addbtn_ketercapaianmapel" style="height: 35px">Fields <i class="fas fa-plus"></i></button>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label>Kompetensi Dasar 4.17</label>
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                <div class="input-group-text">
-                                    <i class="far fa-file-alt"></i>
-                                </div>
-                                </div>
-                                <textarea type="text" class="form-control" name="" style="height: 70px;"></textarea>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label>Bukti Assesment</label>
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                <div class="input-group-text">
-                                    <i class="far fa-file-alt"></i>
+                                    <input type="text" id="" class="form-control" disabled placeholder="3.17">
                                 </div>
                             </div>
-                            <input type="text" class="form-control">
-                          </div>
-                        </div>
-                        <div class="form-group">
-                            <label>Ketuntasan</label>
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                <div class="input-group-text">
-                                    <i class="fas fa-clipboard-list"></i>
+                            <div class="form-group col-sm-5">
+                                <label>Kompetensi Dasar</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">
+                                            <i class="far fa-sticky-note"></i>
+                                        </div>
                                     </div>
+                                    <textarea type="text" id="" class="form-control" name="" id="" style="height: 90px;"></textarea>
                                 </div>
-                                <textarea class="form-control" style="height: 100px;"></textarea>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label>Jumlah Pertemuan</label>
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                <div class="input-group-text">
-                                    <i class="fas fa-book-reader"></i>
+                            <div class="form-group col-sm-5">
+                                <label>Bukti / Assesment Valid / Tidak Valid</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">
+                                            <i class="far fa-sticky-note"></i>
+                                        </div>
                                     </div>
+                                    <textarea type="text" id="" class="form-control" name="" id="" style="height: 90px;"></textarea>
                                 </div>
-                                <input type="text" class="form-control">
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label>Alat & Bahan</label>
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                <div class="input-group-text">
-                                    <i class="fas fa-cubes"></i>
+                        <div class="row">
+                            <div class="form-group col-sm-2">
+                                <label>No KD.</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">
+                                            <i class="far fa-sticky-note"></i>
+                                        </div>
                                     </div>
-                                </div>
-                                <textarea type="text" class="form-control" name="" style="height: 70px;"></textarea>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label>Sumber Belajar</label>
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                <div class="input-group-text">
-                                    <i class="fab fa-dropbox"></i>
+                                    <input type="text" id="" class="form-control" disabled placeholder="3.17">
                                 </div>
                             </div>
-                            <textarea type="text" class="form-control" name="" style="height: 70px;"></textarea>
-                        </div>
-                        </div>
-                        <div class="form-group">
-                            <label>Keterangan</label>
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                <div class="input-group-text">
-                                    <i class="fas fa-clipboard-list"></i>
+                            <div class="form-group col-sm-5">
+                                <label>Kompetensi Dasar</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">
+                                            <i class="far fa-sticky-note"></i>
+                                        </div>
                                     </div>
+                                    <textarea type="text" id="" class="form-control" name="" id="" style="height: 90px;"></textarea>
                                 </div>
-                                <textarea class="form-control" style="height: 100px;"></textarea>
+                            </div>
+                            <div class="form-group col-sm-5">
+                                <label>Ketuntasan</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">
+                                            <i class="far fa-sticky-note"></i>
+                                        </div>
+                                    </div>
+                                    <textarea type="text" id="" class="form-control" name="" id="" style="height: 90px;"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-sm-2"></div>
+                            <div class="form-group col-sm-2">
+                                <label>Jumlah Pertemuan</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">
+                                            <i class="far fa-sticky-note"></i>
+                                        </div>
+                                    </div>
+                                    <input type="text" id="" class="form-control" name="" id="">
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-3"></div>
+                            <div class="form-group col-sm-5">
+                                <label>Alat dan Bahan</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">
+                                            <i class="far fa-sticky-note"></i>
+                                        </div>
+                                    </div>
+                                    <textarea type="text" id="" class="form-control" name="" id="" style="height: 90px;"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-sm-2"></div>
+                            <div class="form-group col-sm-5">
+                                <label>Sumber Belajar</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">
+                                            <i class="far fa-sticky-note"></i>
+                                        </div>
+                                    </div>
+                                    <textarea type="text" id="" class="form-control" name="" id="" style="height: 90px;"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-5">
+                                <label>Keterangan.</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">
+                                            <i class="far fa-sticky-note"></i>
+                                        </div>
+                                    </div>
+                                    <textarea type="text" id="" class="form-control" name="" id="" style="height: 90px;"></textarea>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            {{--  --}}
+            {{-- card --}}
 
-
-
-            {{--  --}}
+            {{-- buttonsubmit --}}
             <div class="row">
                 <div class="col-sm-12">
                     <div class="card-body">
                         <div class="modal-footer">
-                          <button class="btn btn-primary">Submit</button>
-                          <a href="" class="btn btn-danger">Cancel</a>
+                            <button class="btn btn-success addbtn_indikmapel">Fields <i class="fas fa-plus"></i></button>
+                            <button class="btn btn-primary">Submit</button>
+                            <a href="" class="btn btn-danger">Cancel</a>
                         </div>
                     </div>
                 </div>
             </div>
-            {{--  --}}
+            {{-- buttonsubmit --}}
         </div>
     </div>
 
@@ -236,8 +271,8 @@
     // multiple
     $(document).ready(function() {
         var max_fields      = 10;
-        var wrapper   		= $(".fields_ketercapaianmapel");
-        var add_button      = $(".addbtn_ketercapaianmapel");
+        var wrapper   		= $(".fields_indikmapel");
+        var add_button      = $(".addbtn_indikmapel");
 
         var x = 1;
         var y = 17;
@@ -246,107 +281,147 @@
             if(x < max_fields){ //max input box allowed
                 x++; //text box increment
                 y++;
-                $(wrapper).append('<div class="col-sm-6">'+
-                    '<div class="card-header">'+
-                        '<h4 class="card-title" style="padding-top: 30px;">.</h4>'+
-                    '</div>'+
-                    '<div class="card-body">'+
-                        '<div class="form-group">'+
-                            '<label>Kompetensi Dasar 3.'+y+'</label>'+
-                            '<div class="input-group">'+
-                              '<div class="input-group-prepend">'+
-                                '<div class="input-group-text">'+
-                                    '<i class="far fa-file-alt"></i>'+
+                $(wrapper).append('<div class="card">'+
+                        '<div class="card-header">'+
+                            '<h4>'+x+'. Indikator Ketercapaian Mata Pelajaran Semester : </h4>'+
+                            '<select id="" class="form-select form-control ml-2" style="width: 130px;">'+
+                                '<option>Ganjil</option>'+
+                                '<option>Genap</option>'+
+                            '</select>'+
+                        '</div>'+
+                        '<div class="card-body">'+
+                            '<div class="row">'+
+                                '<div class="form-group col-sm-2">'+
+                                    '<label>No KD.</label>'+
+                                    '<div class="input-group">'+
+                                        '<div class="input-group-prepend">'+
+                                            '<div class="input-group-text">'+
+                                                '<i class="far fa-sticky-note"></i>'+
+                                            '</div>'+
+                                        '</div>'+
+                                        '<input type="text" id="" class="form-control" disabled placeholder="3.'+y+'">'+
+                                    '</div>'+
                                 '</div>'+
-                              '</div>'+
-                              '<textarea type="text" class="form-control" name="" style="height: 70px;"></textarea>'+
-                              '<button class="btn btn-danger ml-4 removebtn_ketercapaianmapel" style="height: 35px">X</button>'+
+                                '<div class="form-group col-sm-5">'+
+                                    '<label>Kompetensi Dasar</label>'+
+                                    '<div class="input-group">'+
+                                        '<div class="input-group-prepend">'+
+                                            '<div class="input-group-text">'+
+                                                '<i class="far fa-sticky-note"></i>'+
+                                            '</div>'+
+                                        '</div>'+
+                                        '<textarea type="text" id="" class="form-control" name="" id="" style="height: 90px;"></textarea>'+
+                                    '</div>'+
+                                '</div>'+
+                                '<div class="form-group col-sm-5">'+
+                                    '<label>Bukti / Assesment Valid / Tidak Valid</label>'+
+                                    '<div class="input-group">'+
+                                        '<div class="input-group-prepend">'+
+                                            '<div class="input-group-text">'+
+                                                '<i class="far fa-sticky-note"></i>'+
+                                            '</div>'+
+                                        '</div>'+
+                                        '<textarea type="text" id="" class="form-control" name="" id="" style="height: 90px;"></textarea>'+
+                                    '</div>'+
+                                '</div>'+
+                            '</div>'+
+                            '<div class="row">'+
+                                '<div class="form-group col-sm-2">'+
+                                    '<label>No KD.</label>'+
+                                    '<div class="input-group">'+
+                                        '<div class="input-group-prepend">'+
+                                            '<div class="input-group-text">'+
+                                                '<i class="far fa-sticky-note"></i>'+
+                                            '</div>'+
+                                        '</div>'+
+                                        '<input type="text" id="" class="form-control" disabled placeholder="3.'+y+'">'+
+                                    '</div>'+
+                                '</div>'+
+                                '<div class="form-group col-sm-5">'+
+                                    '<label>Kompetensi Dasar</label>'+
+                                    '<div class="input-group">'+
+                                        '<div class="input-group-prepend">'+
+                                            '<div class="input-group-text">'+
+                                                '<i class="far fa-sticky-note"></i>'+
+                                            '</div>'+
+                                        '</div>'+
+                                        '<textarea type="text" id="" class="form-control" name="" id="" style="height: 90px;"></textarea>'+
+                                    '</div>'+
+                                '</div>'+
+                                '<div class="form-group col-sm-5">'+
+                                    '<label>Ketuntasan</label>'+
+                                    '<div class="input-group">'+
+                                        '<div class="input-group-prepend">'+
+                                            '<div class="input-group-text">'+
+                                                '<i class="far fa-sticky-note"></i>'+
+                                            '</div>'+
+                                        '</div>'+
+                                        '<textarea type="text" id="" class="form-control" name="" id="" style="height: 90px;"></textarea>'+
+                                    '</div>'+
+                                '</div>'+
+                            '</div>'+
+                            '<div class="row">'+
+                                '<div class="form-group col-sm-2"></div>'+
+                                '<div class="form-group col-sm-2">'+
+                                    '<label>Jumlah Pertemuan</label>'+
+                                    '<div class="input-group">'+
+                                        '<div class="input-group-prepend">'+
+                                            '<div class="input-group-text">'+
+                                                '<i class="far fa-sticky-note"></i>'+
+                                            '</div>'+
+                                        '</div>'+
+                                        '<input type="text" id="" class="form-control" name="" id="">'+
+                                    '</div>'+
+                                '</div>'+
+                                '<div class="form-group col-sm-3"></div>'+
+                                '<div class="form-group col-sm-5">'+
+                                    '<label>Alat dan Bahan</label>'+
+                                    '<div class="input-group">'+
+                                        '<div class="input-group-prepend">'+
+                                            '<div class="input-group-text">'+
+                                                '<i class="far fa-sticky-note"></i>'+
+                                            '</div>'+
+                                        '</div>'+
+                                        '<textarea type="text" id="" class="form-control" name="" id="" style="height: 90px;"></textarea>'+
+                                    '</div>'+
+                                '</div>'+
+                            '</div>'+
+                            '<div class="row">'+
+                                '<div class="form-group col-sm-2">'+
+                                    '<div class="" style="margin-top: 32px;">'+
+                                        '<button class="btn btn-danger removebtn_indikmapel"><i class="fas fa-times"></i></button>'+
+                                    '</div>'+
+                                '</div>'+
+                                '<div class="form-group col-sm-5">'+
+                                    '<label>Sumber Belajar</label>'+
+                                    '<div class="input-group">'+
+                                        '<div class="input-group-prepend">'+
+                                            '<div class="input-group-text">'+
+                                                '<i class="far fa-sticky-note"></i>'+
+                                            '</div>'+
+                                        '</div>'+
+                                        '<textarea type="text" id="" class="form-control" name="" id="" style="height: 90px;"></textarea>'+
+                                    '</div>'+
+                                '</div>'+
+                                '<div class="form-group col-sm-5">'+
+                                    '<label>Keterangan.</label>'+
+                                    '<div class="input-group">'+
+                                        '<div class="input-group-prepend">'+
+                                            '<div class="input-group-text">'+
+                                                '<i class="far fa-sticky-note"></i>'+
+                                            '</div>'+
+                                        '</div>'+
+                                        '<textarea type="text" id="" class="form-control" name="" id="" style="height: 90px;"></textarea>'+
+                                    '</div>'+
+                                '</div>'+
                             '</div>'+
                         '</div>'+
-                        '<div class="form-group">'+
-                            '<label>Kompetensi Dasar 4.'+y+'</label>'+
-                            '<div class="input-group">'+
-                              '<div class="input-group-prepend">'+
-                                '<div class="input-group-text">'+
-                                    '<i class="far fa-file-alt"></i>'+
-                                '</div>'+
-                              '</div>'+
-                              '<textarea type="text" class="form-control" name="" style="height: 70px;"></textarea>'+
-                            '</div>'+
-                        '</div>'+
-                        '<div class="form-group">'+
-                            '<label>Bukti Assesment</label>'+
-                            '<div class="input-group">'+
-                              '<div class="input-group-prepend">'+
-                                '<div class="input-group-text">'+
-                                    '<i class="far fa-file-alt"></i>'+
-                                '</div>'+
-                              '</div>'+
-                              '<input type="text" class="form-control">'+
-                            '</div>'+
-                        '</div>'+
-                        '<div class="form-group">'+
-                            '<label>Ketuntasan</label>'+
-                            '<div class="input-group">'+
-                              '<div class="input-group-prepend">'+
-                                '<div class="input-group-text">'+
-                                    '<i class="fas fa-clipboard-list"></i>'+
-                                '</div>'+
-                              '</div>'+
-                              '<textarea class="form-control" style="height: 100px;"></textarea>'+
-                            '</div>'+
-                        '</div>'+
-                        '<div class="form-group">'+
-                            '<label>Jumlah Pertemuan</label>'+
-                            '<div class="input-group">'+
-                              '<div class="input-group-prepend">'+
-                                '<div class="input-group-text">'+
-                                    '<i class="fas fa-book-reader"></i>'+
-                                '</div>'+
-                              '</div>'+
-                              '<input type="text" class="form-control">'+
-                            '</div>'+
-                        '</div>'+
-                        '<div class="form-group">'+
-                            '<label>Alat & Bahan</label>'+
-                            '<div class="input-group">'+
-                              '<div class="input-group-prepend">'+
-                                '<div class="input-group-text">'+
-                                    '<i class="fas fa-cubes"></i>'+
-                                '</div>'+
-                              '</div>'+
-                              '<textarea type="text" class="form-control" name="" style="height: 70px;"></textarea>'+
-                            '</div>'+
-                        '</div>'+
-                        '<div class="form-group">'+
-                            '<label>Sumber Belajar</label>'+
-                            '<div class="input-group">'+
-                              '<div class="input-group-prepend">'+
-                                '<div class="input-group-text">'+
-                                  '<i class="fab fa-dropbox"></i>'+
-                                '</div>'+
-                              '</div>'+
-                              '<textarea type="text" class="form-control" name="" style="height: 70px;"></textarea>'+
-                            '</div>'+
-                        '</div>'+
-                        '<div class="form-group">'+
-                            '<label>Keterangan</label>'+
-                            '<div class="input-group">'+
-                              '<div class="input-group-prepend">'+
-                                '<div class="input-group-text">'+
-                                    '<i class="fas fa-clipboard-list"></i>'+
-                                '</div>'+
-                              '</div>'+
-                              '<textarea class="form-control" style="height: 100px;"></textarea>'+
-                            '</div>'+
-                        '</div>'+
-                    '</div>'+
-                '</div>');
+                    '</div>');
             }
         });
 
-        $(wrapper).on("click",".removebtn_ketercapaianmapel", function(e){ //user click on remove text
-            e.preventDefault(); $(this).parent('div').parent('div').parent('div').parent('div').remove(); x--;
+        $(wrapper).on("click",".removebtn_indikmapel", function(e){ //user click on remove text
+            e.preventDefault(); $(this).parent('div').parent('div').parent('div').parent('div').parent('div').remove(); x--;
         })
     });
 </script>

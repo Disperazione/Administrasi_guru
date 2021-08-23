@@ -102,173 +102,107 @@
         </div>
         {{-- datatenagapendidik --}}
 
-        {{-- kompetensidasar --}}
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="card-header">
-                    <h4 class="card-title" style="padding-top: 30px;">Kompetensi Dasar</h4>
-                </div>
-                <div class="card-body">
-                    <table class="table table-hover">
-                        <thead class="text-center">
-                            <tr>
-                                <th scope="col" style="width: 10px;">NO.</th>
-                                <th scope="col" style="width: 80%;">Kompetensi Dasar</th>
-                                <th scope="col" style="width: 10px;">
-                                    <button class="btn btn-success addbtn_kompetensidasar"
-                                        style="width: 80px;">Fields <i class="fas fa-plus"></i></button>
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody class="fields_kompetensidasar">
-                            <div>
-                                <tr>
-                                    <th>1</th>
-                                    <td>
-                                        <textarea type="text" class="form-control input_kompetensidasar"
-                                            name="kompetensidasar[]" style="height: 40px;"></textarea>
-                                        <div class="invalid-feedback d-none invalid_kompetensidasar"
-                                            style="margin-left: 41px;">
-                                            Kompetensi dasar tidak boleh kosong
-                                        </div>
-                                    </td>
-                                    <td class="text-center">
-                                        <button class="btn btn-danger removebtn_kompetensidasar" style="width: 40px;">X</button>
-                                    </td>
-                                </tr>
-                            </div>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-        {{-- kompetensidasar --}}
 
-        {{-- modelpembelajran --}}
-        <div class="row">
-            <div class="col-sm-12">
+        {{-- card --}}
+        <div class="fields_strpembelajaran">
+            <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title" style="padding-top: 30px;">Model Pembelajaran</h4>
+                    <h4>Strategi Pembelajaran Semester : </h4>
+                    <select id="" class="form-select form-control ml-2" style="width: 130px;">
+                        <option>Ganjil</option>
+                        <option>Genap</option>
+                    </select>
                 </div>
                 <div class="card-body">
-                    <table class="table table-hover">
-                        <thead class="text-center">
-                            <tr>
-                                <th scope="col" style="width: 10px;">NO.</th>
-                                <th scope="col" style="width: 80%;">Model Pembelajaran</th>
-                                <th scope="col" style="width: 10px;">
-                                    <button class="btn btn-success addbtn_modelpembelajaran"
-                                        style="width: 80px;">Fields <i class="fas fa-plus"></i></button>
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody class="fields_modelpembelajaran">
-                            <div>
-                                <tr>
-                                    <th>1</th>
-                                    <td>
-                                        <textarea type="text" class="form-control input_modelpembelajaran"
-                                            name="modelpembelajaran[]" style="height: 40px;"></textarea>
-                                        <div class="invalid-feedback d-none invalid_modelpembelajaran"
-                                            style="margin-left: 41px;">
-                                            Model Pembelajaran tidak boleh kosong
-                                        </div>
-                                    </td>
-                                    <td class="text-center">
-                                        <button class="btn btn-danger removebtn_modelpembelajaran" style="width: 40px;">X</button>
-                                    </td>
-                                </tr>
+                    <div class="row">
+                        <div class="form-group col-sm-2">
+                            <label>No KD.</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                        <i class="far fa-sticky-note"></i>
+                                    </div>
+                                </div>
+                                <input type="text" id="" class="form-control" disabled placeholder="3.17">
                             </div>
-                        </tbody>
-                    </table>
+                        </div>
+                        <div class="form-group col-sm-5">
+                            <label>Kompetensi Dasar</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                        <i class="far fa-sticky-note"></i>
+                                    </div>
+                                </div>
+                                <textarea type="text" id="" class="form-control" name="" id="" style="height: 90px;"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-5">
+                            <label>Model Pembelajaran</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                        <i class="far fa-sticky-note"></i>
+                                    </div>
+                                </div>
+                                <textarea type="text" id="" class="form-control" name="" id="" style="height: 90px;"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-sm-2">
+                            <label>No KD.</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                        <i class="far fa-sticky-note"></i>
+                                    </div>
+                                </div>
+                                <input type="text" id="" class="form-control" disabled placeholder="3.17">
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-5">
+                            <label>Kompetensi Dasar</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                        <i class="far fa-sticky-note"></i>
+                                    </div>
+                                </div>
+                                <textarea type="text" id="" class="form-control" name="" id="" style="height: 90px;"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-5">
+                            <label>Metode Pembelajaran</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                        <i class="far fa-sticky-note"></i>
+                                    </div>
+                                </div>
+                                <textarea type="text" id="" class="form-control" name="" id="" style="height: 90px;"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-sm-2"></div>
+                        <div class="form-group col-sm-5">
+                            <label>Deskripsi Kegiatan</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                        <i class="far fa-sticky-note"></i>
+                                    </div>
+                                </div>
+                                <textarea type="text" id="" class="form-control" name="" id="" style="height: 90px;"></textarea>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-        {{-- modelpembelajran --}}
+        {{-- card --}}
 
-        {{-- metodepembelajaran --}}
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="card-header">
-                    <h4 class="card-title" style="padding-top: 30px;">Metode Pembelajaran</h4>
-                </div>
-                <div class="card-body">
-                    <table class="table table-hover">
-                        <thead class="text-center">
-                            <tr>
-                                <th scope="col" style="width: 10px;">NO.</th>
-                                <th scope="col" style="width: 80%;">Metode Pembelajaran</th>
-                                <th scope="col" style="width: 10px;">
-                                    <button class="btn btn-success addbtn_metodepembelajaran"
-                                        style="width: 80px;">Fields <i class="fas fa-plus"></i></button>
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody class="fields_metodepembelajaran">
-                            <div>
-                                <tr>
-                                    <th>1</th>
-                                    <td>
-                                        <textarea type="text" class="form-control input_metodepembelajaran"
-                                            name="kompetensidasar[]" style="height: 40px;"></textarea>
-                                        <div class="invalid-feedback d-none invalid_metodepembelajaran"
-                                            style="margin-left: 41px;">
-                                            Metode Pembelajaran tidak boleh kosong
-                                        </div>
-                                    </td>
-                                    <td class="text-center">
-                                        <button class="btn btn-danger removebtn_metodepembelajaran" style="width: 40px;">X</button>
-                                    </td>
-                                </tr>
-                            </div>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-        {{-- metodepembelajaran --}}
-
-        {{-- deskripsikegiatan --}}
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="card-header">
-                    <h4 class="card-title" style="padding-top: 30px;">Deskripsi Kegiatan</h4>
-                </div>
-                <div class="card-body">
-                    <table class="table table-hover">
-                        <thead class="text-center">
-                            <tr>
-                                <th scope="col" style="width: 10px;">NO.</th>
-                                <th scope="col" style="width: 80%;">Deskripsi Kegiatan</th>
-                                <th scope="col" style="width: 10px;">
-                                    <button class="btn btn-success addbtn_deskripsikegiatan"
-                                        style="width: 80px;">Fields <i class="fas fa-plus"></i></button>
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody class="fields_deskripsikegiatan">
-                            <div>
-                                <tr>
-                                    <th>1</th>
-                                    <td>
-                                        <textarea type="text" class="form-control input_deskripsikegiatan"
-                                            name="deskripsikegiatan[]" style="height: 40px;"></textarea>
-                                        <div class="invalid-feedback d-none invalid_deskripsikegiatan"
-                                            style="margin-left: 41px;">
-                                            Deskripsi Kegiatan tidak boleh kosong
-                                        </div>
-                                    </td>
-                                    <td class="text-center">
-                                        <button class="btn btn-danger removebtn_deskripsikegiatan" style="width: 40px;">X</button>
-                                    </td>
-                                </tr>
-                            </div>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-        {{-- deskripsikegiatan --}}
 
         {{--  --}}
         <div class="row">
