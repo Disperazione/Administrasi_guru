@@ -29,7 +29,7 @@
                         class="fas fa-users"></i><span>Kd</span></a>
             </li>
             @endif
-            @if (Auth::user()->role == 'Guru')
+            @if (Auth::user()->role == 'guru')
             <li class="menu-header">Lembar kerja</li>
             <li
                 class="nav-item dropdown @if(Request::is('admin/Lembar-kerja-1','admin/Lembar-kerja-1/*','admin/Lembar-kerja-2','admin/Lembar-kerja-2/*','admin/Lembar-kerja-3','admin/Lembar-kerja-3/*','admin/Lembar-kerja-4','admin/Lembar-kerja-4/*','admin/RPP','admin/RPP/*')) active @endif">

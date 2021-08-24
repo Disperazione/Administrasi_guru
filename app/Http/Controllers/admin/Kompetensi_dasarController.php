@@ -33,9 +33,7 @@ class Kompetensi_dasarController extends Controller
                 ->addColumn('guru', function ($data) {
                     return $data->guru->name;
                 })
-                ->addColumn('mapel', function ($data) {
-                    return $data->mapel->nama_mapel;
-                })
+             
                 ->addColumn('action', function ($data) {
                     $button = '<a href="' . $data->id . '"   id="' . $data->id . '" class="btn btn-primary btn-sm"><i class="fas fa-search"></i></a>';
                     $button .= '&nbsp';

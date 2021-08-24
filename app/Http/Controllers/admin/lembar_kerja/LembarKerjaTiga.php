@@ -35,9 +35,7 @@ class LembarKerjaTiga extends Controller
                 ->addColumn('guru', function ($data) {
                     return $data->guru->name;
                 })
-                ->addColumn('mapel', function ($data) {
-                    return $data->mapel;
-                })
+          
                 ->addColumn('kompetensi_keahlian', function ($data) {
                     return $data->jurusan->singkatan_jurusan;
                 })

@@ -28,7 +28,6 @@
                 <th>Bidang Studi</th>
                 <th>kelas</th>
                 <th>jam pelajaran</th>
-                <th>mapel</th>
                 <th>Total Jam</th>
                 <th>action</th>
             </tr>

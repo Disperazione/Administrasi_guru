@@ -12,10 +12,10 @@ $(document).ready(function () {
                         data: 'DT_RowIndex',
                         name: 'DT_RowIndex'
                     },
-                    {
-                        data: 'mapel',
-                        name: 'mapel'
-                    },
+                    // {
+                    //     data: 'mapel',
+                    //     name: 'mapel'
+                    // },
                     {
                         data: 'bidang_studi',
                         name: 'bidang_studi'
@@ -47,10 +47,10 @@ $(document).ready(function () {
                         data: 'guru',
                         name: 'guru'
                     },
-                    {
-                        data: 'mapel',
-                        name: 'mapel'
-                    },
+                    // {
+                    //     data: 'mapel',
+                    //     name: 'mapel'
+                    // },
                     {
                         data: 'bidang_studi',
                         name: 'bidang_studi'

@@ -33,9 +33,7 @@ class RPPController extends Controller
                 ->addColumn('bidang_studi', function ($data) {
                     return $data->bidang_keahlian->bidang_studi;
                 })
-                ->addColumn('mapel', function ($data) {
-                    return $data->bidang_keahlian->mapel;
-                })
+           
                 ->addColumn('guru', function ($data) {
                     return $data->bidang_keahlian->guru->name;
                 })
