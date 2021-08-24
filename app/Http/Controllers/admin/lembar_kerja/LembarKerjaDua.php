@@ -40,9 +40,7 @@ class LembarKerjaDua extends Controller
                 ->addColumn('guru', function ($data) {
                     return $data->guru->name;
                 })
-                ->addColumn('mapel', function ($data) {
-                    return $data->mapel;
-                })
+            
                 ->editColumn('bidang_studi', function ($data) {
                     return $data->lembar_kerja->Lk_2;
                 })
