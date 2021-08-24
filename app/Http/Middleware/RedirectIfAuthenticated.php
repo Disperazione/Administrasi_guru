@@ -24,15 +24,12 @@ class RedirectIfAuthenticated
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
                 switch (auth()->user()->role) {
-                    case 'admin':
+                    case 'admin';
                     case 'guru':
                         return redirect('/admin/dashboard');
                 }
-                return redirect(RouteServiceProvider::HOME);
             }
         }
-
-
         return $next($request);
     }
 }

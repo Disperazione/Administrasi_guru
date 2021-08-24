@@ -27,8 +27,8 @@ use App\Http\Controllers\ViewController;
 */
 
 
-Route::get('/', [AuthController::class, 'login'])->name('login');
-Route::post('/PostLogin', [AuthController::class, 'PostLogin'])->name('api.login');
+Route::get('/', [AuthController::class, 'login'])->name('login')->middleware('guest'); // middleware guest buat trigger redirect if autenticate
+Route::post('/PostLogin', [AuthController::class, 'PostLogin'])->name('api.login')->middleware('guest');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 /*
@@ -64,9 +64,13 @@ Route::prefix('admin')->name('admin.')->middleware(['auth','roles:guru'])->group
     Route::get('/option/mapel/{id}', [LK1::class, 'option_mapel']);
     Route::get('/option/mapel/{id}/edit', [LK1::class, 'option_mapel_edit']);
 
-    Route::get('/lk4/option/guru/{id}', [LK4::class, 'option_guru']);
+    // Route::get('/lk4/option/guru/{id}', [LK4::class, 'option_guru']);
+    // Route::get('/lk4/option/mapel/{id}', [LK4::class, 'option_mapel']);
+    // Route::get('/lk4/option/bidang_studi/{id}', [LK4::class, 'option_bidang']);
+
+    Route::get('/lk4/option/jurusan/{id}', [LK4::class, 'option_jurusan']);
     Route::get('/lk4/option/mapel/{id}', [LK4::class, 'option_mapel']);
-    Route::get('/lk4/option/bidang_studi/{id}', [LK4::class, 'option_bidang']);
+    Route::get('/lk4/option/mapel/{id}/edit', [LK4::class, 'option_mapel_edit']);
 
     // route for pdf here
     Route::get('/lk_1/{id}/pdf',[PDFController::class,'LK_1'])->name('pdf.lk_1');

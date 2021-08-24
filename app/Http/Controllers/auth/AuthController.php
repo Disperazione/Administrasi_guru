@@ -10,6 +10,11 @@ use Symfony\Component\HttpFoundation\Session\Session;
 use Illuminate\Routing\Router;
 class AuthController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('guest', ['except' => ['logout', 'time_log']]);
+    }
+
     public function login()
     {
         return view('auth.login');
