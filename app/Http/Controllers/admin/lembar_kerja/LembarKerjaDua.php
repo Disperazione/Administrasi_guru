@@ -40,9 +40,22 @@ class LembarKerjaDua extends Controller
                 ->addColumn('guru', function ($data) {
                     return $data->guru->name;
                 })
-            
+
                 ->editColumn('bidang_studi', function ($data) {
                     return $data->lembar_kerja->Lk_2;
+                })
+                ->addColumn('kompetensi_keahlian', function ($data) {
+                    $singkatan_badge = [];
+                    foreach ($data->jurusan as $jurusan) {
+                        $singkatan_badge[] .= "<span class='badge badge-pill badge-primary'>$jurusan->singkatan_jurusan</span>";
+                    }
+                    if (empty($singkatan_badge)) {
+                        return 'Jurusan koosng';
+                    }
+                    return implode(' ', $singkatan_badge);
+                })
+                ->editColumn('bidang_studi', function ($data) {
+                    return $data->lembar_kerja->Lk_4;
                 })
                 ->addColumn('action', function ($data) {
                 $button = '<a href="/admin/lk_2/' . $data->id . '/pdf" class="edit btn btn-danger text-white btn-sm"><i class="fas fa-file-pdf"></i></a>';
@@ -54,7 +67,7 @@ class LembarKerjaDua extends Controller
                     $button .= '<button type="button" name="delete" id="hapus" data-id="' . $data->id . '" class="delete btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>';
                     return $button;
                 })
-                ->rawColumns(['action'])
+                ->rawColumns(['action', 'kompetensi_keahlian'])
                 ->addIndexColumn()->make(true);
         }
         return view('admin.lembar_kerja_dua.index');
@@ -195,7 +208,7 @@ class LembarKerjaDua extends Controller
      */
     public function destroy($id)
     {
-        $kom = Kompetensi_dasar::where('id_bidang_keahlian', $id)->get();
+        $kom = Kompetensi_dasar::where('id_bidang_keahlian', $id)->has('strategi_pembelajaran')->get();
         foreach ($kom as $key => $value) {
             $value->strategi_pembelajaran->delete();
         }

@@ -31,21 +31,22 @@ class GuruController extends Controller
             // yajra data table
             return datatables()->of($guru)
                 ->editColumn('jurusan', function ($data) {
-                    if (!empty($data->jurusan->singkatan_jurusan)) {
-                        return $data->jurusan->singkatan_jurusan;
-                    } else {
-                        return "Jurusan Kosong";
+                    $singkatan_badge = [];
+                    foreach ($data->jurusan as $jurusan) {
+                        $singkatan_badge[] .= "<span class='badge badge-pill badge-primary'>$jurusan->singkatan_jurusan</span>";
                     }
+                    if (empty($singkatan_badge)) {
+                        return 'Jurusan koosng';
+                    }
+                    return implode(' ', $singkatan_badge);
                 })
                 ->addColumn('action', function ($data) {
-                    $button = '<a href="/admin/guru/' . $data->id . '"   id="' . $data->id . '" class="edit btn btn-primary btn-sm"><i class="fas fa-search"></i></a>';
-                    $button .= '&nbsp';
-                    $button .= '<a  href="/admin/guru/' . $data->id . '/edit" id="edit" data-toggle="tooltip"  data-id="' . $data->id . '" data-original-title="Edit" class="edit btn btn-warning btn-sm edit-post"><i class="fas fa-pencil-alt"></i></a>';
+                    $button = '<a  href="/admin/guru/' . $data->id . '/edit" id="edit" data-toggle="tooltip"  data-id="' . $data->id . '" data-original-title="Edit" class="edit btn btn-warning btn-sm edit-post"><i class="fas fa-pencil-alt"></i></a>';
                     $button .= '&nbsp';
                     $button .= '<button type="button" name="delete" id="hapus" data-id="' . $data->id . '" class="delete btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>';
                     return $button;
                 })
-                ->rawColumns(['action'])
+                ->rawColumns(['action', 'jurusan'])
                 ->addIndexColumn()->make(true);
         }
         return view('admin.guru.index');
@@ -147,7 +148,7 @@ class GuruController extends Controller
         $guru = Guru::where('id', $id)->first();
         $id_jurusan = [];
         foreach ($guru->jurusan as $value) { // loop many to many jurusan
-           $id_jurusan[] = $value->pivot->id_jurusan; // masukin ke array isis dari pivot table nya
+           $id_jurusan[] = $value->id; // masukin ke array masukin id dari morph / id jurusan nya
         }
         $jurusan = Jurusan::all();
         return view('admin.guru.edit',['guru' => $guru,'jurusan' => $jurusan,'id_jurusan'=> collect($id_jurusan)]);
@@ -198,8 +199,9 @@ class GuruController extends Controller
         // $request->validated();
         $guru = Guru::where('id', $id)->first();
         $user = User::where('id', $guru->id)->first(); // 2x cek guru
+
         // jika usernnya kosong
-        if (!empty($guru->user)) {
+        if (!empty($user))  {
             // update
             $user = User::where('id', $guru->id_user)->update([
                 'name' => $request->nik,
@@ -207,6 +209,19 @@ class GuruController extends Controller
                 'password' => Hash::make($request->pasword),
                 'role' => $request->jabatan
             ]);
+
+            Guru::where('id', $id)->update([
+                'nik' => $request->nik,
+                'name' => $request->name,
+                'jabatan' => $request->jabatan,
+                'alamat' => $request->alamat,
+                'fax' => $request->fax,
+                'no_telp' => $request->no_telp,
+            ]);
+
+            $guru->jurusan()->sync($request->id_jurusan);
+
+            return redirect()->route('admin.guru.index')->with('berhasil', 'Data berhasil di update');
         }else{
             // jika tidak buar user baru
             $user = User::create([
@@ -215,20 +230,21 @@ class GuruController extends Controller
                 'password' => Hash::make($request->pasword),
                 'role' => $request->jabatan
             ]);
+
+            Guru::where('id', $id)->update([
+                'nik' => $request->nik,
+                'name' => $request->name,
+                'jabatan' => $request->jabatan,
+                'alamat' => $request->alamat,
+                'fax' => $request->fax,
+                'no_telp' => $request->no_telp,
+            ]);
+
+            $guru->jurusan()->sync($request->id_jurusan);
+
+            return redirect()->route('admin.guru.index')->with('berhasil', 'Data berhasil di update');
         }
-        $g_a = Guru::where('id', $id)->first();
-        $guru = Guru::where('id', $id)->update([
-            'nik' => $request->nik,
-            'name' => $request->name,
-            'jabatan' => $request->jabatan,
-            'alamat' => $request->alamat,
-            'fax' => $request->fax,
-            'no_telp' => $request->no_telp,
-        ]);
 
-        $g_a->jurusan()->sync($request->id_jurusan);
-
-        return redirect()->route('admin.guru.index')->with('berhasil','Data berhasil di update');
     }
 
     /**

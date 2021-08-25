@@ -25,9 +25,10 @@
         <thead>
             <tr>
                 <th>#</th>
-                 @if (Auth::user()->role == 'admin')
+                 {{-- @if (Auth::user()->role == 'admin')
                     <th>Nama guru</th>
-                @endif
+                @endif --}}
+                <th>Mapel</th>
                 <th>Bidang Studi</th>
                 <th>Kompetensi Keahlian</th>
                 <th>Kelas</th>

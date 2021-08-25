@@ -1,6 +1,6 @@
 @extends('layout.master')
 @push('css')
-
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 @endpush
 @section('title', 'SIFOS | Exit Data LK 1')
 @section('judul','Exit Data Lembar Kerja 1')
@@ -76,35 +76,13 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label>Jurusan</label>
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <div class="input-group-text">
-                                        <i class="fas fa-align-left"></i>
-                                    </div>
-                                </div>
-                                <select class="form-control" name="id_jurusan" id="jurusan" readonly>
-                                    <option value="">Lihat Lebih Lanjut</option>
-                                    @foreach (Auth::user()->guru->jurusan as $item)
-                                    <option value="{{ $item->id }}"
-                                        {{ (old('id_jurusan',$target->jurusan->id) == $item->id) ? 'selected' : '' }}>
-                                        {{ $item->singkatan_jurusan }}</option>
-                                    @endforeach
-
-                                </select>
-                                <div class="invalid-feedback">
-                                    Jurusan tidak boleh koosng
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
                             <label>Mapel</label>
                             <div class="input-group">
-                                <div class="input-group-prepend">
+                                {{-- <div class="input-group-prepend">
                                     <div class="input-group-text">
                                         <i class="fas fa-align-left"></i>
                                     </div>
-                                </div>
+                                </div> --}}
                                 <select class="form-control" name="mapel" id="mapel" readonly>
                                     <option value="">Lihat Lebih Lanjut</option>
                                     @foreach(Auth::user()->guru->bidang_keahlian()->where('id_jurusan',$target->id_jurusan)->get()
@@ -118,7 +96,28 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="form-group">
+                            <label>Jurusan</label>
+                            <div class="input-group">
+                                {{-- <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                        <i class="fas fa-align-left"></i>
+                                    </div>
+                                </div> --}}
+                                <select class="form-control" name="id_jurusan" id="jurusan" data-id="{{ $id_jurusan }}" multiple="multiple"   disabled>
+                                    <option value="">Lihat Lebih Lanjut</option>
+                                    @foreach ($jurusan as $item)
+                                    <option value="{{ $item->id }}"
+                                        {{ (old('id_jurusan',$target->id) == $item->id) ? 'selected' : '' }}>
+                                        {{ $item->singkatan_jurusan }}</option>
+                                    @endforeach
 
+                                </select>
+                                <div class="invalid-feedback">
+                                    Jurusan tidak boleh koosng
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="col-sm-6">
@@ -669,9 +668,15 @@
 
 @endsection
 @push('js')
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script>
     // multiple input mapel
     $(document).ready(function () {
+
+        $('#guru').select2();
+        $('#jurusan').select2();
+        id_jurusan = $('#jurusan').data('id');
+        $('#jurusan').val(id_jurusan).trigger('change');
 
         multiple_input_mapel();
         multiple_input_kkid();

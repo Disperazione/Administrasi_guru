@@ -30,10 +30,10 @@ class RPPController extends Controller
             }
 
             return datatables()->of($data)
-                ->addColumn('bidang_studi', function ($data) {
-                    return $data->bidang_keahlian->bidang_studi;
+                ->addColumn('mapel', function ($data) {
+                    return $data->bidang_keahlian->mapel;
                 })
-           
+
                 ->addColumn('guru', function ($data) {
                     return $data->bidang_keahlian->guru->name;
                 })

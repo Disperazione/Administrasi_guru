@@ -1,6 +1,6 @@
 @extends('layout.master')
 @push('css')
-
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 @endpush
 @section('title', 'SIFOS | Edit Data LK 4')
 @section('judul','Edit Data Lembar Kerja 4')
@@ -68,45 +68,23 @@
                                         <i class="fas fa-align-left"></i>
                                     </div>
                                 </div>
-                                <input type="text" class="form-control" name="bidang_studi" id="bidang_studi"
+                                <input type="text" class="form-control" name="lembar_kerja" id="bidang_studi"
                                     placeholder="Default : TEHNOLOGI INFORMASI DAN KOMUKNIKASI"
-                                    value="{{ $bidang_main->lembar_kerja->Lk_1 }}">
+                                    value="{{ $bidang_main->lembar_kerja->Lk_4 }}">
                                 <div class="invalid-feedback" c>
                                     Bidang Studi tidak boleh koosng
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label>Jurusan</label>
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <div class="input-group-text">
-                                        <i class="fas fa-align-left"></i>
-                                    </div>
-                                </div>
-                                <select class="form-control" name="id_jurusan" id="jurusan" readonly>
-                                    <option value="">Lihat Lebih Lanjut</option>
-                                    @foreach (Auth::user()->guru->jurusan as $item)
-                                    <option value="{{ $item->id }}"
-                                        {{ (old('id_jurusan',$bidang_main->jurusan->id) == $item->id) ? 'selected' : '' }}>
-                                        {{ $item->singkatan_jurusan }}</option>
-                                    @endforeach
-
-                                </select>
-                                <div class="invalid-feedback">
-                                    Jurusan tidak boleh koosng
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
                             <label>Mapel</label>
                             <div class="input-group">
-                                <div class="input-group-prepend">
+                                {{-- <div class="input-group-prepend">
                                     <div class="input-group-text">
                                         <i class="fas fa-align-left"></i>
                                     </div>
-                                </div>
-                                <select class="form-control" name="mapel" id="mapel" readonly>
+                                </div> --}}
+                                <select class="form-control" name="mapel" id="mapel" disabled>
                                     <option value="">Lihat Lebih Lanjut</option>
                                     @foreach(Auth::user()->guru->bidang_keahlian()->where('id_jurusan',$bidang_main->id_jurusan)->get()
                                     as $item)
@@ -119,7 +97,28 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="form-group">
+                            <label>Jurusan</label>
+                            <div class="input-group">
+                                {{-- <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                        <i class="fas fa-align-left"></i>
+                                    </div>
+                                </div> --}}
+                                <select class="form-control" name="id_jurusan" id="jurusan" multiple="multiple" disabled data-id="{{ $id_jurusan }}">
+                                    <option value="">Lihat Lebih Lanjut</option>
+                                    @foreach ($jurusan as $item)
+                                    <option value="{{ $item->id }}"
+                                        {{ (old('id_jurusan',$bidang_main->id) == $item->id) ? 'selected' : '' }}>
+                                        {{ $item->singkatan_jurusan }}</option>
+                                    @endforeach
 
+                                </select>
+                                <div class="invalid-feedback">
+                                    Jurusan tidak boleh koosng
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="col-sm-6">
@@ -329,8 +328,13 @@
 
 @endsection
 @push('js')
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script>
     $(document).ready(function () {
+        $('#mapel').select2();
+        $('#jurusan').select2();
+        id_jurusan = $('#jurusan').data('id');
+        $('#jurusan').val(id_jurusan).trigger('change');
           // bidang + status
         // $('#mapel').change(function () {
             id = $('#mapel').val(); // mengambil value

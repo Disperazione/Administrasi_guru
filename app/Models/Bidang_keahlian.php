@@ -15,10 +15,17 @@ class Bidang_keahlian extends Model
     {
         return $this->belongsTo(Guru::class,'id_guru');
     }
+    // public function jurusan()
+    // {
+    //     return $this->belongsTo(Jurusan::class,'id_jurusan'); //foreign key
+    // }
+
     public function jurusan()
     {
-        return $this->belongsTo(Jurusan::class,'id_jurusan'); //foreign key
+        return $this->morphToMany(Jurusan::class, 'MorphJurusan'); // morph many to many yang ada dari bidang ke jurusan untuk mengambungkan seperti pivot tapi ini morph
+        // table MorphJurusans, column Morphjurusan
     }
+
     public function kompetensi_dasar()
     {
         return $this->hasMany(Kompetensi_dasar::class,'id_bidang_keahlian','id');

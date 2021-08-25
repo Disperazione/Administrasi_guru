@@ -26,9 +26,14 @@ class Guru extends Model
     // {
     //     return $this->belongsTo(Jurusan::class,'id_jurusan');
     // }
+    // public function jurusan()
+    // {
+    //     return $this->belongsToMany(Jurusan::class, 'guru_jurusan', 'id_guru', 'id_jurusan'); // pivot,  owner , foreign
+    // }
     public function jurusan()
     {
-        return $this->belongsToMany(Jurusan::class, 'guru_jurusan', 'id_guru', 'id_jurusan'); // pivot,  owner , foreign
+        return $this->morphToMany(Jurusan::class, 'MorphJurusan'); // morph many to many yang ada dari guru ke jurusan untuk mengambungkan seperti pivot tapi ini morph
+                             // table MorphJurusans, column Morphjurusan
     }
     public function bidang_keahlian()
     {

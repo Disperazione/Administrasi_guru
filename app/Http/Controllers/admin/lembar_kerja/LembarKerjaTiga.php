@@ -35,9 +35,16 @@ class LembarKerjaTiga extends Controller
                 ->addColumn('guru', function ($data) {
                     return $data->guru->name;
                 })
-          
+
                 ->addColumn('kompetensi_keahlian', function ($data) {
-                    return $data->jurusan->singkatan_jurusan;
+                    $singkatan_badge = [];
+                    foreach ($data->jurusan as $jurusan) {
+                        $singkatan_badge[] .= "<span class='badge badge-pill badge-primary'>$jurusan->singkatan_jurusan</span>";
+                    }
+                    if (empty($singkatan_badge)) {
+                        return 'Jurusan koosng';
+                    }
+                    return implode(' ', $singkatan_badge);
                 })
                 ->editColumn('bidang_studi', function ($data) {
                     return $data->lembar_kerja->Lk_3;
@@ -52,7 +59,7 @@ class LembarKerjaTiga extends Controller
                     $button .= '<button type="button" name="delete" id="hapus" data-id="' . $data->id . '" class="delete btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>';
                     return $button;
                 })
-                ->rawColumns(['action'])
+                ->rawColumns(['action', 'kompetensi_keahlian'])
                 ->addIndexColumn()->make(true);
         }
         return view('admin.lembar_kerja_tiga.index');
@@ -131,7 +138,7 @@ class LembarKerjaTiga extends Controller
      */
     public function destroy($id)
     {
-        $kd = Kompetensi_dasar::where('id_bidang_keahlian', $id)->first();
+        $kd = Kompetensi_dasar::where('id_bidang_keahlian', $id)->has('indikator_ketercapaian')->get();
         foreach ($kd as $key => $value) {
             $value->indikator_ketercapaian->delete();
         }

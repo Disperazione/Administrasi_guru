@@ -1,6 +1,6 @@
 @extends('layout.master')
 @push('css')
-
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 @endpush
 @section('title', 'SIFOS | Add Data LK 4')
 @section('judul','Add Data Lembar Kerja 4')
@@ -67,7 +67,7 @@
                                         <i class="fas fa-align-left"></i>
                                     </div>
                                 </div>
-                                <input type="text" class="form-control" name="bidang_studi" id="bidang_studi"
+                                <input type="text" class="form-control" name="lembar_kerja" id="bidang_studi"
                                     placeholder="Default : TEHNOLOGI INFORMASI DAN KOMUKNIKASI">
                                 <div class="invalid-feedback" c>
                                     Bidang Studi tidak boleh koosng
@@ -75,39 +75,41 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label>Jurusan</label>
+                            <label>Mapel</label>
                             <div class="input-group">
-                                <div class="input-group-prepend">
+                                {{-- <div class="input-group-prepend">
                                     <div class="input-group-text">
                                         <i class="fas fa-align-left"></i>
                                     </div>
-                                </div>
-                                <select class="form-control" name="id_jurusan" id="jurusan">
+                                </div> --}}
+                                <select class="form-control" name="mapel" id="mapel">
                                     <option value="">Lihat Lebih Lanjut</option>
-                                    @foreach (Auth::user()->guru->jurusan as $item)
+                                    @foreach ($data as $item)
+                                        <option value="{{ $item->id }}">{{ $item->mapel }}</option>
+                                    @endforeach
+                                </select>
+                                <div class="invalid-feedback">
+                                    Mapel tidak boleh koosng
+                                </div>
+                            </div>
+                        </div>
+                          <div class="form-group">
+                            <label>Jurusan</label>
+                            <div class="input-group">
+                                {{-- <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                        <i class="fas fa-align-left"></i>
+                                    </div>
+                                </div> --}}
+                                <select class="form-control" name="id_jurusan" id="jurusan" multiple="multiple" disabled >
+                                    <option >Lihat Lebih Lanjut</option>
+                                    @foreach ($jurusan as $item)
                                     <option value="{{ $item->id }}">{{ $item->singkatan_jurusan }}</option>
                                     @endforeach
 
                                 </select>
                                 <div class="invalid-feedback">
                                     Jurusan tidak boleh koosng
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label>Mapel</label>
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <div class="input-group-text">
-                                        <i class="fas fa-align-left"></i>
-                                    </div>
-                                </div>
-                                <select class="form-control" name="mapel" id="mapel">
-                                    <option value="">Lihat Lebih Lanjut</option>
-
-                                </select>
-                                <div class="invalid-feedback">
-                                    Mapel tidak boleh koosng
                                 </div>
                             </div>
                         </div>
@@ -314,45 +316,49 @@
 
 @endsection
 @push('js')
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script>
     $(document).ready(function () {
         multiple_input_form();
-
+        $('#mapel').select2();
+        $('#jurusan').select2();
+        id_jurusan = $('#jurusan').data('id');
+        $('#jurusan').val(id_jurusan).trigger('change');
         // auto complete mapel
-        $('#jurusan').change(function () {
-            id = $(this).val(); // mengambil value
-            //console.log(id);
-            $('#mapel').empty();
-            $('#mapel').append('<option value="">mencari..</option>');
-            $('.fields_multiple_semester_ganjil').empty(); // koosngin tabless
-            $('.fields_multiple_semester_genap').empty();
-            // call ajax untuk get / mendapatkan data
-            if (!id) {
-                $('#mapel').empty();
-                $('#mapel').append('<option value="">Mata pelajaran kosong</option>');
-            }
-            $.ajax({
-                url: '/admin/lk4/option/jurusan/' + id, // url
-                type: 'get', // method
-                success: function (response) {
-                    console.log(response.mapel);
-                    $('#mapel').empty();
-                    if (!response.mapel.length) {
-                        $('#mapel').append(
-                            '<option value="">Mata pelajaran kosong</option>');
-                    } else {
-                        $('#mapel').append('<option value="">Lihat lebih lanjut</option>');
-                        response.mapel.forEach(element => {
-                            $('#mapel').append('<option value="' + element.id +
-                                '">' + element.mapel + '</option>')
-                        });
-                    }
-                },
-                fail: function (rsponse) {
-                    console.log(response);
-                }
-            });
-        });
+        // $('#jurusan').change(function () {
+        //     id = $(this).val(); // mengambil value
+        //     //console.log(id);
+        //     $('#mapel').empty();
+        //     $('#mapel').append('<option value="">mencari..</option>');
+        //     $('.fields_multiple_semester_ganjil').empty(); // koosngin tabless
+        //     $('.fields_multiple_semester_genap').empty();
+        //     // call ajax untuk get / mendapatkan data
+        //     if (!id) {
+        //         $('#mapel').empty();
+        //         $('#mapel').append('<option value="">Mata pelajaran kosong</option>');
+        //     }
+        //     $.ajax({
+        //         url: '/admin/lk4/option/jurusan/' + id, // url
+        //         type: 'get', // method
+        //         success: function (response) {
+        //             console.log(response.mapel);
+        //             $('#mapel').empty();
+        //             if (!response.mapel.length) {
+        //                 $('#mapel').append(
+        //                     '<option value="">Mata pelajaran kosong</option>');
+        //             } else {
+        //                 $('#mapel').append('<option value="">Lihat lebih lanjut</option>');
+        //                 response.mapel.forEach(element => {
+        //                     $('#mapel').append('<option value="' + element.id +
+        //                         '">' + element.mapel + '</option>')
+        //                 });
+        //             }
+        //         },
+        //         fail: function (rsponse) {
+        //             console.log(response);
+        //         }
+        //     });
+        // });
 
 
         // bidang + status
@@ -361,6 +367,7 @@
             $('#total_jp').val('')
             $('#jp').val('');
             $('#kelas').val('');
+            $('#jurusan').val('').trigger("change");
             $.ajax({
                 url: '/admin/lk4/option/mapel/' + id, // url
                 type: 'get', // method
@@ -372,6 +379,7 @@
                     $('#jp').val(response.mapel.jam_pelajaran);
                     $('#kelas').val(response.mapel.kelas);
                     $('.fields_indikmapel').empty();
+                    $('#jurusan').val(response.id_jurusan).trigger("change");
                     console.log(response.kd);
 
                     count = 0;

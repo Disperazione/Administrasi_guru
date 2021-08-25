@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin\lembar_kerja;
 use App\Http\Controllers\Controller;
 use App\Models\Bidang_keahlian;
 use App\Models\Guru;
+use App\Models\Jurusan;
 use App\Models\Kd_target_pembelajaran;
 use App\Models\Kompetensi_dasar;
 use App\Models\Kompetensi_inti;
@@ -36,9 +37,16 @@ class LembarKerjaSatu extends Controller
                 ->addColumn('guru', function ($data) {
                     return $data->guru->name;
                 })
-              
+
                 ->addColumn('kompetensi_keahlian', function($data){
-                    return $data->jurusan->singkatan_jurusan;
+                    $singkatan_badge = [];
+                    foreach ($data->jurusan as $jurusan) {
+                        $singkatan_badge[] .= "<span class='badge badge-pill badge-primary'>$jurusan->singkatan_jurusan</span>";
+                    }
+                    if (empty($singkatan_badge)) {
+                        return 'Jurusan koosng';
+                    }
+                    return implode(' ', $singkatan_badge);
                 })
                 ->editColumn('bidang_studi', function($data){
                     return $data->lembar_kerja->Lk_1;
@@ -53,7 +61,7 @@ class LembarKerjaSatu extends Controller
                     $button .= '<button type="button" name="delete" id="hapus" data-id="' . $data->id . '" class="delete btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>';
                     return $button;
                 })
-                ->rawColumns(['action'])
+                ->rawColumns(['action', 'kompetensi_keahlian'])
                 ->addIndexColumn()->make(true);
         }
         return view('admin.lembar_kerja_satu.index');
@@ -67,22 +75,30 @@ class LembarKerjaSatu extends Controller
     public function create()
     {
         $guru = Guru::all();
+        $mapel = Bidang_keahlian::where('id_guru', Auth::user()->guru->id)->doesnthave('target_pembelajaran')->get();
         $bidang = Bidang_keahlian::doesnthave('target_pembelajaran')->get();
-        return view('admin.lembar_kerja_satu.tambah', compact('guru','bidang'));
+        $jurusan = Jurusan::all();
+        return view('admin.lembar_kerja_satu.tambah', compact('guru','bidang','mapel','jurusan'));
     }
     // autocomplete mapel mapel
-    public function option_jurusan($id)
-    {
-        $mapel = Bidang_keahlian::where('id_jurusan',$id)->doesnthave('target_pembelajaran')->get();
-        return response()->json(['mapel' => $mapel]);
-    }
+    // public function option_jurusan($id)
+    // {
+    //     $mapel = Bidang_keahlian::where('id_jurusan',$id)->doesnthave('target_pembelajaran')->get();
+    //     return response()->json(['mapel' => $mapel]);
+    // }
     // autocompte bidang mapel
     public function option_mapel($id)
     {
         $mapel = Bidang_keahlian::where('id',$id)->doesnthave('target_pembelajaran')->first();
         $s_genap = $mapel->kompetensi_dasar()->where('semester','genap')->get();
         $s_ganjil = $mapel->kompetensi_dasar()->where('semester', 'ganjil')->get();
-        return response()->json(['mapel' => $mapel, 's_genap'=> $s_genap ,'s_ganjil'=> $s_ganjil]);
+
+        $id_jurusan = [];
+        foreach ($mapel->jurusan as $key => $value) {
+            $id_jurusan[] .= $value->id; // id dari jurusan;
+        }
+
+        return response()->json(['mapel' => $mapel, 's_genap'=> $s_genap ,'s_ganjil'=> $s_ganjil, 'id_jurusan' => $id_jurusan]);
     }
     /**
      * Store a newly created resource in storage.
@@ -196,10 +212,18 @@ class LembarKerjaSatu extends Controller
     {
         $guru = Guru::all();
         $bidang = Bidang_keahlian::doesnthave('target_pembelajaran')->get();
-        $target = Bidang_keahlian::has('target_pembelajaran')->with('target_pembelajaran')->where([['id_guru', Auth()->id()], ['id', $id]])->first();
+        $target = Bidang_keahlian::has('target_pembelajaran')->with('target_pembelajaran')->where([['id_guru', Auth()->id()], ['id', $id]])->first(); // target untuk nyari bidang yang id = id
         $s_genap = Kompetensi_dasar::has('kd_target_pemebelajaran')->where('semester','Genap')->get();
         $s_ganjil = Kompetensi_dasar::has('kd_target_pemebelajaran')->where('semester', 'Ganjil')->get();
-        return view('admin.lembar_kerja_satu.edit', compact('target','guru','bidang','s_genap','s_ganjil'));
+
+        $jurusan = Jurusan::all();
+        $arr_jurusan = [];
+        foreach ($target->jurusan as $key => $value) {
+
+            $arr_jurusan[] .= $value->id; // id dari jurusan;
+        }
+        $id_jurusan = collect($arr_jurusan);
+        return view('admin.lembar_kerja_satu.edit', compact('target','guru','bidang','s_genap','s_ganjil', 'id_jurusan','jurusan'));
     }
 
     /**

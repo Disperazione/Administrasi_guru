@@ -13,10 +13,10 @@ class CreateGuruJurusanTable extends Migration
      */
     public function up()
     {
-        Schema::create('guru_jurusan', function (Blueprint $table) {
+        Schema::create('MorphJurusans', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_guru')->constrained('guru')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreignId('id_jurusan')->constrained('jurusan')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('jurusan_id')->constrained('jurusan')->onDelete('cascade')->onUpdate('cascade');
+            $table->morphs('MorphJurusan'); // morph jurusan guru & bidang jurusan dengan many2 manny
             $table->timestamps();
         });
     }

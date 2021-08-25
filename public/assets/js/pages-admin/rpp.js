@@ -13,10 +13,10 @@ $(document).ready(function () {
                         data: 'DT_RowIndex',
                         name: 'DT_RowIndex'
                     },
-                    //   {
-                    //     data: 'mapel',
-                    //     name: 'mapel'
-                    // },
+                      {
+                        data: 'mapel',
+                        name: 'mapel'
+                    },
                     {
                         data: 'bidang_studi',
                         name: 'bidang_studi'
@@ -36,39 +36,6 @@ $(document).ready(function () {
                         name: 'action'
                     }
 
-                ];
-                break;
-            case 'admin':
-                return [{
-                        data: 'DT_RowIndex',
-                        name: 'DT_RowIndex'
-                    },
-                    {
-                        data: 'guru',
-                        name: 'guru'
-                    },
-                    // {
-                    //     data: 'mapel',
-                    //     name: 'mapel'
-                    // },
-                    {
-                        data: 'bidang_studi',
-                        name: 'bidang_studi'
-                    },
-
-
-                    {
-                        data: 'kd_ketrampilan',
-                        name: 'kd_ketrampilan'
-                    },
-                    {
-                        data: 'kd_pengetahuan',
-                        name: 'kd_pengetahuan'
-                    },
-                    {
-                        data: 'action',
-                        name: 'action'
-                    }
                 ];
                 break;
         }

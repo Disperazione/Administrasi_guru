@@ -128,7 +128,7 @@
                     <tr>
                         <td>Kompetensi Keahlian</td>
                         <td>:</td>
-                        <td>{{ $target->kompetensi_keahlian }}</td>
+                        <td>{{ $jurusan }}</td>
                     </tr>
                     <tr>
                         <td>Mata pelajaran</td>

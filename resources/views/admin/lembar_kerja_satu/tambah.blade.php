@@ -1,6 +1,6 @@
 @extends('layout.master')
 @push('css')
-
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 @endpush
 @section('title', 'SIFOS | Add Data LK 1')
 @section('judul','Add Data Lembar Kerja 1')
@@ -73,17 +73,37 @@
                                 </div>
                             </div>
                         </div>
+
                         <div class="form-group">
-                            <label>Jurusan</label>
+                            <label>Mapel</label>
                             <div class="input-group">
-                                <div class="input-group-prepend">
+                                {{-- <div class="input-group-prepend">
                                     <div class="input-group-text">
                                         <i class="fas fa-align-left"></i>
                                     </div>
-                                </div>
-                                <select class="form-control" name="id_jurusan" id="jurusan">
+                                </div> --}}
+                                <select class="form-control" name="mapel" id="mapel">
                                     <option value="">Lihat Lebih Lanjut</option>
-                                    @foreach (Auth::user()->guru->jurusan as $item)
+                                    @foreach ($mapel as $item)
+                                        <option value="{{ $item->id }}">{{ $item->mapel }}</option>
+                                    @endforeach
+                                </select>
+                                <div class="invalid-feedback">
+                                    Mapel tidak boleh koosng
+                                </div>
+                            </div>
+                        </div>
+                          <div class="form-group">
+                            <label>Jurusan</label>
+                            <div class="input-group">
+                                {{-- <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                        <i class="fas fa-align-left"></i>
+                                    </div>
+                                </div> --}}
+                                <select class="form-control" name="id_jurusan" id="jurusan" multiple="multiple" disabled>
+                                    <option >Lihat Lebih Lanjut</option>
+                                    @foreach ($jurusan as $item)
                                     <option value="{{ $item->id }}">{{ $item->singkatan_jurusan }}</option>
                                     @endforeach
 
@@ -93,24 +113,6 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label>Mapel</label>
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <div class="input-group-text">
-                                        <i class="fas fa-align-left"></i>
-                                    </div>
-                                </div>
-                                <select class="form-control" name="mapel" id="mapel">
-                                    <option value="">Lihat Lebih Lanjut</option>
-
-                                </select>
-                                <div class="invalid-feedback">
-                                    Mapel tidak boleh koosng
-                                </div>
-                            </div>
-                        </div>
-
                     </div>
                 </div>
                 <div class="col-sm-6">
@@ -531,9 +533,12 @@
 
 @endsection
 @push('js')
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script>
     // multiple input mapel
     $(document).ready(function () {
+        $('#mapel').select2();
+        $('#jurusan').select2();
 
         multiple_select_kd_ganjil();
         multiple_select_kd_genap();
@@ -768,48 +773,49 @@
             });
         }
         // auto complete mapel
-        $('#jurusan').change(function () {
-            id = $(this).val(); // mengambil value
-            //console.log(id);
-            $('#mapel').empty();
-            $('#mapel').append('<option value="">mencari..</option>');
-            $('.fields_multiple_semester_ganjil').empty(); // koosngin tabless
-            $('.fields_multiple_semester_genap').empty();
-            // call ajax untuk get / mendapatkan data
-            if (!id) {
-                $('#mapel').empty();
-                $('#mapel').append('<option value="">Mata pelajaran kosong</option>');
-            }
-            $.ajax({
-                url: '/admin/option/jurusan/' + id, // url
-                type: 'get', // method
-                success: function (response) {
-                    console.log(response.mapel);
-                    $('#mapel').empty();
-                    if (!response.mapel.length) {
-                        $('#mapel').append(
-                            '<option value="">Mata pelajaran kosong</option>');
-                    } else {
-                        $('#mapel').append('<option value="">Lihat lebih lanjut</option>');
-                        response.mapel.forEach(element => {
-                            $('#mapel').append('<option value="' + element.id +
-                                '">' + element.mapel + '</option>')
-                        });
-                    }
-                },
-                fail: function (rsponse) {
-                    console.log(response);
-                }
-            });
-        });
+        // $('#jurusan').change(function () {
+        //     id = $(this).val(); // mengambil value
+        //     //console.log(id);
+        //     $('#mapel').empty();
+        //     $('#mapel').append('<option value="">mencari..</option>');
+        //     $('.fields_multiple_semester_ganjil').empty(); // koosngin tabless
+        //     $('.fields_multiple_semester_genap').empty();
+        //     // call ajax untuk get / mendapatkan data
+        //     if (!id) {
+        //         $('#mapel').empty();
+        //         $('#mapel').append('<option value="">Mata pelajaran kosong</option>');
+        //     }
+        //     $.ajax({
+        //         url: '/admin/option/jurusan/' + id, // url
+        //         type: 'get', // method
+        //         success: function (response) {
+        //             console.log(response.mapel);
+        //             $('#mapel').empty();
+        //             if (!response.mapel.length) {
+        //                 $('#mapel').append(
+        //                     '<option value="">Mata pelajaran kosong</option>');
+        //             } else {
+        //                 $('#mapel').append('<option value="">Lihat lebih lanjut</option>');
+        //                 response.mapel.forEach(element => {
+        //                     $('#mapel').append('<option value="' + element.id +
+        //                         '">' + element.mapel + '</option>')
+        //                 });
+        //             }
+        //         },
+        //         fail: function (rsponse) {
+        //             console.log(response);
+        //         }
+        //     });
+        // });
 
 
-        // bidang + status
+        // mapel + status
         $('#mapel').change(function () {
             id = $(this).val(); // mengambil value
             $('#total_jp').val('')
             $('#jp').val('');
             $('#kelas').val('');
+            $('#jurusan').val('').trigger('change');
             $.ajax({
                 url: '/admin/option/mapel/' + id, // url
                 type: 'get', // method
@@ -820,7 +826,8 @@
                     $('#total_jp').val(response.mapel.total_waktu_jam_pelajaran)
                     $('#jp').val(response.mapel.jam_pelajaran);
                     $('#kelas').val(response.mapel.kelas);
-
+                    $('#jurusan').val(response.id_jurusan).trigger("change");
+                    console.log(response.id_jurusan);
                     console.log(response.s_genap);
                     s_ganjil_multiple_input(); // table ganjil
                     s_genap_multiple_input(); // table genap

@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Lembar_kerja;
 use App\Models\Metode_pembelajaran;
 use App\Models\Sumber_belajar;
+use Database\Seeders\PivotJurusanSeeder as MorphJurusan;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -31,13 +32,13 @@ class DatabaseSeeder extends Seeder
             strategi_pembelajranSeeder::class,
             indikator_ketecapaianSeeder::class,
             materi_bahan_ajarSeeder::class,
-            rencana_pelaksanaan_pembelajaranSeeder::class,
+            rencana_pelaksanaan_pembelajaranSeeder::class,  
             pertemuan_rppSeeder::class,
             admin_cloudSeeder::class,
             Sumber_belajarSeeder::class,
             Metode_pembelajarSeeder::class,
             Alat_bahanSeeder::class,
-            PivotJurusanSeeder::class,
+            MorphJurusan::class,
             LembarkerjaSeeder::class,
             kd_target_pembelajaranSeeder::class,
         ]);
