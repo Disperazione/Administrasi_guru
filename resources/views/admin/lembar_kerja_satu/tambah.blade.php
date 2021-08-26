@@ -168,364 +168,355 @@
                 </div>
             </div>
             {{-- datatenagapendidik --}}
-            {{-- kompetensi dasar --}}
-            <div class="row">
-                <div class="col-sm-12">
+
+
+            {{-- card kompetensidasar --}}
+            <div class="fields_kompetensidasar">
+                <div class="">
                     <div class="card-header">
-                        <h4 class="card-title" style="padding-top: 30px;">Kompetensi Dasar</h4>
+                        <h4>Daftar Kompetensi Dasar Semester : </h4>
+                        <select id="" class="form-select form-control ml-2" style="width: 130px;">
+                            <option>Ganjil</option>
+                            <option>Genap</option>
+                        </select>
                     </div>
                     <div class="card-body">
-                        <table class="table table-hover">
-                            <thead class="text-center">
-                                <tr>
-                                    <th scope="col" style="width: 10px;">NO.</th>
-                                    <th scope="col" style="width: 80%;">Semester Ganjil</th>
-                                    <th scope="col" style="width: 10px;">
-                                        <button class="btn btn-success addbtn_multiple_semester_ganjil"
-                                            style="width: 80px;">Fields <i class="fas fa-plus"></i></button>
-                                    </th>
-                                </tr>
-                                {{-- <tr>
-                                    <th style="width: 20%">kd pengetahuan</th>
-                                    <th>keterangan pengetahuan</th>
-                                    <th>kd ketrampilan</th>
-                                    <th>keterangan ketrampilan</th>
-                                </tr> --}}
-                            </thead>
-                            <tbody class="fields_multiple_semester_ganjil">
-
-                            </tbody>
-                        </table>
-
-                        <table class="table table-hover">
-                            <thead class="text-center">
-                                <tr>
-                                    <th scope="col" style="width: 10px;">NO.</th>
-                                    <th scope="col" style="width: 80%;">Semester Genap</th>
-                                    <th scope="col" style="width: 10px;">
-                                        <button class="btn btn-success addbtn_multiple_semester_genap"
-                                            style="width: 80px;">Fields <i class="fas fa-plus"></i></button>
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody class="fields_multiple_semester_genap">
-                                {{-- <tr>
-                                    <td scope="row">1</td>
-                                    <td>
-                                        <select name="id_kd[]" id="" style="width:100%;heigth:100%">
-                                            <option value=""> kd 3.0 kompetensi dasar 1 kd 4.0 kompetensi dasar 2
-                                            </option>
-                                        </select>
-                                    </td>
-                                    <td class="text-center">
-                                        <button class="btn btn-danger" id="x_s_genap">X</button>
-                                    </td>
-                                </tr> --}}
-                                {{-- </tr> --}}
-                            </tbody>
-                        </table>
-                        {{-- <div class="form-group fields_multiple_kompetensi">
-                            <label>Kompetensi Inti</label>
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <div class="input-group-text">
-                                        <i class="fas fa-book"></i>
+                        <div class="row">
+                            <div class="form-group col-sm-2">
+                                <label>No KD.</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">
+                                            <i class="far fa-sticky-note"></i>
+                                        </div>
                                     </div>
-                                </div>
-                                <input type="text" class="form-control col-10 input_kompetensi" name="kompetensi[]">
-                                <button class="btn btn-success ml-4 addbtn_multiple_kompetensi">Fields <i
-                                        class="fas fa-plus"></i></button>
-                                <div class="invalid-feedback d-none invalid_kompetensi">
-                                    Kompetensi inti boleh kosong
+                                    <input type="text" id="" class="form-control" disabled placeholder="3.17">
                                 </div>
                             </div>
-                        </div> --}}
+                            <div class="form-group col-sm-5">
+                                <label>Kompetensi Dasar (Pengetahuan)</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">
+                                            <i class="far fa-sticky-note"></i>
+                                        </div>
+                                    </div>
+                                    <textarea type="text" id="" class="form-control" name="" id="" style="height: 90px;"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-5">
+                                <label>Durasi</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">
+                                            <i class="far fa-sticky-note"></i>
+                                        </div>
+                                    </div>
+                                    <input type="text" id="" class="form-control" name="" id="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-sm-2">
+                                <label>No KD.</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">
+                                            <i class="far fa-sticky-note"></i>
+                                        </div>
+                                    </div>
+                                    <input type="text" id="" class="form-control" disabled placeholder="4.17">
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-5">
+                                <label>Kompetensi Dasar (Keterampilan)</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">
+                                            <i class="far fa-sticky-note"></i>
+                                        </div>
+                                    </div>
+                                    <textarea type="text" id="" class="form-control" name="" id="" style="height: 90px;"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-5">
+                                <label>Pertemuan</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">
+                                            <i class="far fa-sticky-note"></i>
+                                        </div>
+                                    </div>
+                                    <input type="text" id="" class="form-control" name="" id="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-sm-2"></div>
+                            <div class="form-group col-sm-5">
+                                <label>Semester</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">
+                                            <i class="far fa-sticky-note"></i>
+                                        </div>
+                                    </div>
+                                    <input type="text" id="" class="form-control" name="" id="">
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-5">
+                                <label>Jumlah Jam</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">
+                                            <i class="far fa-sticky-note"></i>
+                                        </div>
+                                    </div>
+                                    <input type="text" id="" class="form-control" name="" id="">
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            {{--  --}}
-            {{-- kompetensi inti --}}
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="card-header">
-                        <h4 class="card-title" style="padding-top: 30px;">Kompetensi Inti</h4>
-                    </div>
-                    <div class="card-body">
-                        <table class="table table-hover">
-                            <thead class="text-center">
-                                <tr>
-                                    <th scope="col" style="width: 10px;">NO.</th>
-                                    <th scope="col" style="width: 80%;">Kompetensi Inti</th>
-                                    <th scope="col" style="width: 10px;">
-                                        <button class="btn btn-success addbtn_multiple_kompetensi"
-                                            style="width: 80px;">Fields <i class="fas fa-plus"></i></button>
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody class="fields_multiple_kompetensi">
-                                <div>
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td>
-                                            <textarea type="text" class="form-control input_kompetensi"
-                                                name="kompetensi[]" style="height: 40px;"></textarea>
-                                            <div class="invalid-feedback d-none invalid_kompetensi"
-                                                style="margin-left: 41px;">
-                                                Kompetensi inti tidak boleh kosong
-                                            </div>
-                                        </td>
-                                        <td class="text-center">
-                                        </td>
-                                    </tr>
-                                </div>
-                            </tbody>
-                        </table>
+            <button class="btn btn-success addbtn_kompetensidasar" style="margin-top: -100px; margin-left: 29px;">Fields <i class="fas fa-plus"></i></button>
+            {{-- card kompetensidasar --}}
 
-                        {{-- <div class="form-group fields_multiple_kompetensi">
-                            <label>Kompetensi Inti</label>
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <div class="input-group-text">
-                                        <i class="fas fa-book"></i>
+
+            {{-- card kompetensiinti --}}
+            <div class="mt-5">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>Kompetensi Inti</h4>
+                    </div>
+                    <div class="card-body fields_multiple_kompetensi">
+                        <div class="row">
+                            <div class="form-group col-sm-2">
+                                <label>No</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">
+                                            <i class="far fa-sticky-note"></i>
+                                        </div>
                                     </div>
-                                </div>
-                                <input type="text" class="form-control col-10 input_kompetensi" name="kompetensi[]">
-                                <button class="btn btn-success ml-4 addbtn_multiple_kompetensi">Fields <i
-                                        class="fas fa-plus"></i></button>
-                                <div class="invalid-feedback d-none invalid_kompetensi">
-                                    Kompetensi inti boleh kosong
+                                    <input type="text" id="" class="form-control" disabled placeholder="1.">
                                 </div>
                             </div>
-                        </div> --}}
+                            <div class="form-group col-sm-8">
+                                <label>Kompetensi Inti</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">
+                                            <i class="far fa-sticky-note"></i>
+                                        </div>
+                                    </div>
+                                    <textarea type="text" id="" class="form-control input_kompetensi" name="kompetensi[]" style="height: 60px;"></textarea>
+                                    <div class="invalid-feedback d-none invalid_kompetensi" style="margin-left: 41px;">
+                                        Kompetensi inti tidak boleh kosong
+                                    </div>
+                                </div>
+                            </div>
+                            {{-- <div class="form-group col-sm-2">
+                                <button class="btn btn-danger removebtn_multiple_kompetensi" style="margin-top: 45px;">X</button>
+                            </div> --}}
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <button class="btn btn-success addbtn_multiple_kompetensi" style="margin-top: -100px;">Fields <i class="fas fa-plus"></i></button>
                     </div>
                 </div>
             </div>
-            {{-- kompetensi inti --}}
+            {{-- card kompetensiinti --}}
 
-            {{-- mapel&kkid --}}
-            <div class="row">
-                <div class="col-sm-12">
+
+            {{-- card mapel&ket --}}
+            <div class="">
+                <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title" style="padding-top: 30px;">Target Mata Pelajaran</h4>
+                        <h4>Target Mata Pelajaran</h4>
+                    </div>
+                    <div class="fields_multiple_mapel">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="form-group col-sm-2">
+                                    <label>No</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">
+                                                <i class="far fa-sticky-note"></i>
+                                            </div>
+                                        </div>
+                                        <input type="text" id="" class="form-control" disabled placeholder="1.">
+                                    </div>
+                                </div>
+                                <div class="form-group col-sm-8">
+                                    <label>Target Mapel</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">
+                                                <i class="far fa-sticky-note"></i>
+                                            </div>
+                                        </div>
+                                        <textarea type="text" class="form-control input_target_mapel" name="target_mapel[]" style="height: 60px;"></textarea>
+                                        <div class="invalid-feedback d-none invalid_target_mapel">
+                                            Target mapel tidak boleh kosong
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-sm-2">
+                                    {{-- <button class="btn btn-danger removebtn_multiple_mapel" style="margin-top: 5px;">X</button> --}}
+                                </div>
+                                <div class="form-group col-sm-8">
+                                    <label for="">Keterangan</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">
+                                                <i class="far fa-sticky-note"></i>
+                                            </div>
+                                        </div>
+                                        <textarea type="text" class="form-control keterangan_target_mapel" name="keterangan_mapel[]" style="height: 60px;"></textarea>
+                                        <div class="invalid-feedback d-none invalid_keterangan_target_mapel">
+                                            Keteragan mapel tidak boleh kosong
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="card-body">
-                        <table class="table table-hover">
-                            <thead class="text-center">
-                                <tr>
-                                    <th scope="col" style="width: 10px;">NO.</th>
-                                    <th scope="col" style="width: 55%;">Target Mata Pelajaran</th>
-                                    <th scope="col" style="width: 20%;">Keterangan</th>
-                                    <th scope="col" style="width: 10px;">
-                                        <button class="btn btn-success addbtn_multiple_maple"
-                                            style="width: 80px;">Fields <i class="fas fa-plus"></i></button>
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody class="fields_multiple_mapel">
-                                <div>
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td>
-                                            <textarea type="text" class="form-control input_target_mapel"
-                                                name="target_mapel[]" style="height: 40px;"></textarea>
-                                            {{-- validasi --}}
-                                            <div class="invalid-feedback d-none invalid_target_mapel">
-                                                Target mapel tidak boleh kosong
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <textarea type="text" class="form-control keterangan_target_mapel"
-                                                name="keterangan_mapel[]" style="height: 40px;"></textarea>
-                                            {{-- validasi --}}
-                                            <div class="invalid-feedback d-none invalid_keterangan_target_mapel">
-                                                Keteragan mapel tidak boleh kosong
-                                            </div>
-                                        </td>
-                                        <td>
-                                        </td>
-                                    </tr>
-                                </div>
-                            </tbody>
-                        </table>
-
-                        {{-- <div class="form-group fields_multiple_mapel">
-                            <label>Pencapaian Mapel</label>
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <div class="input-group-text">
-                                        <i class="fas fa-book"></i>
-                                    </div>
-                                </div>
-                                <input type="text" class="form-control col-10 input_target_mapel" name="target_mapel[]">
-                                <div class="invalid-feedback d-none invalid_target_mapel">
-                                    Pencapaian mapel tidak boleh kosong
-                                </div>
-                            </div>
-                            <label class="mt-3">Keterangan</label>
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <div class="input-group-text">
-                                        <i class="fas fa-book"></i>
-                                    </div>
-                                </div>
-                                <input type="text" class="form-control col-10 keterangan_target_mapel"
-                                    name="keterangan_mapel[]">
-                                <button class="btn btn-success ml-4 addbtn_multiple_maple">Fields <i
-                                        class="fas fa-plus"></i></button>
-                                <div class="invalid-feedback d-none invalid_keterangan_target_mapel">
-                                    Keteragan mapel tidak boleh kosong
-                                </div>
-                            </div>
-                        </div> --}}
-                    </div>
-                </div>
-                <div class="col-sm-12">
-                    <div class="card-header">
-                        <h4 class="card-title" style="padding-top: 30px;">Target Mata Pelajaran KKID</h4>
-                    </div>
-                    <div class="card-body">
-                        <table class="table table-hover">
-                            <thead class="text-center">
-                                <tr>
-                                    <th scope="col" style="width: 10px;">NO.</th>
-                                    <th scope="col" style="width: 55%;">Target Mata Pelajaran KKID</th>
-                                    <th scope="col" style="width: 20%;">Keterangan</th>
-                                    <th scope="col" style="width: 10px;">
-                                        <button class="btn btn-success addbtn_multiple_kkid" style="width: 80px;">Fields
-                                            <i class="fas fa-plus"></i></button>
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody class="fields_multiple_kkid">
-                                <div>
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td>
-                                            <textarea type="text" class="form-control input_pencapaian_kkid"
-                                                name="target_kkid[]" style="height: 40px;"></textarea>
-                                            {{-- validasi --}}
-                                            <div class="invalid-feedback d-none invalid_pencapaian_kkid">
-                                                Target mapel KKID tidak boleh kosong
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <textarea type="text" class="form-control keterangan_pencapaian_kkid"
-                                                name="keterangan_kkid[]" style="height: 40px;"></textarea>
-                                            {{-- validasi --}}
-                                            <div class="invalid-feedback d-none invalid_keterangan_pencapaian_kkid">
-                                                Keteragan KKID tidak boleh kosong
-                                            </div>
-                                        </td>
-                                        <td>
-                                        </td>
-                                    </tr>
-                                </div>
-                            </tbody>
-                        </table>
-
-                        {{-- <div class="form-group fields_multiple_kkid">
-                            <label>Pencapaian KKID</label>
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <div class="input-group-text">
-                                        <i class="fas fa-book"></i>
-                                    </div>
-                                </div>
-                                <input type="text" class="form-control col-10 input_pencapaian_kkid"
-                                    name="target_kkid[]">
-                                <div class="invalid-feedback  invalid_pencapaian_kkid">
-                                    Pencapaian KKID tidak boleh kosong
-                                </div>
-                            </div>
-                            <label>Keterangan</label>
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <div class="input-group-text">
-                                        <i class="fas fa-book"></i>
-                                    </div>
-                                </div>
-                                <input type="text" class="form-control col-10 keterangan_pencapaian_kkid"
-                                    name="keterangan_kkid[]">
-                                <button class="btn btn-success ml-4 addbtn_multiple_kkid"
-                                    name="keterangan_kkid[]">Fields <i class="fas fa-plus"></i></button>
-                                <div class="invalid-feedback d-none invalid_keterangan_pencapaian_kkid">
-                                    Keterangan tidak boleh kosong
-                                </div>
-                            </div>
-                        </div> --}}
+                        <button class="btn btn-success addbtn_multiple_mapel" style="margin-top: -100px;">Fields <i class="fas fa-plus"></i></button>
                     </div>
                 </div>
             </div>
-            {{-- mapel&kkid --}}
+            {{-- card mapel&ket --}}
 
-            {{-- buktisiswa --}}
-            <div class="row">
-                <div class="col-sm-12">
+
+            {{-- card kkid&ket --}}
+            <div class="">
+                <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title" style="padding-top: 30px;">Rincian Bukti</h4>
+                        <h4>Target Mata Pelajaran KKID</h4>
                     </div>
-                    <div class="card-body">
-                        <table class="table table-hover">
-                            <thead class="text-center">
-                                <tr>
-                                    <th scope="col" style="width: 10px;">NO.</th>
-                                    <th scope="col" style="width: 80%;">Rincian Bukti</th>
-                                    <th scope="col" style="width: 10px;">
-                                        <button class="btn btn-success addbtn_multiple_bukti"
-                                            style="width: 80px;">Fields <i class="fas fa-plus"></i></button>
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody class="fields_multiple_bukti">
-                                <div>
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td>
-                                            <textarea type="text" class="form-control input_bukti" name="bukti[]"
-                                                style="height: 40px;"></textarea>
-                                            {{-- validasi --}}
-                                            <div class="invalid-feedback d-none invalid_bukti"
-                                                style="margin-left: 41px;">
-                                                Rincian bukti tidak boleh kosong
+                    <div class="fields_multiple_kkid">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="form-group col-sm-2">
+                                    <label>No</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">
+                                                <i class="far fa-sticky-note"></i>
                                             </div>
-                                        </td>
-                                        <td class="text-center">
-                                            <button class="btn btn-danger removebtn_multiple_bukti"><i
-                                                    class="fas fa-times"></i></button>
-                                        </td>
-                                    </tr>
-                                </div>
-                            </tbody>
-                        </table>
-
-                        {{-- <div class="form-group fields_multiple_bukti">
-                            <label>Rincian Bukti</label>
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <div class="input-group-text">
-                                        <i class="fas fa-book"></i>
+                                        </div>
+                                        <input type="text" id="" class="form-control" disabled placeholder="1.">
                                     </div>
                                 </div>
-                                <input type="text" class="form-control col-10 input_bukti" name="bukti[]">
-                                <button class="btn btn-success ml-4 addbtn_multiple_bukti">Fields <i
-                                        class="fas fa-plus"></i></button>
-                                <div class="invalid-feedback d-none invalid_bukti">
-                                    Rincian bukti boleh kosong
+                                <div class="form-group col-sm-8">
+                                    <label>Target Mapel KKID</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">
+                                                <i class="far fa-sticky-note"></i>
+                                            </div>
+                                        </div>
+                                        <textarea type="text" class="form-control input_pencapaian_kkid" name="target_kkid[]" style="height: 60px;"></textarea>
+                                        <div class="invalid-feedback d-none invalid_pencapaian_kkid">
+                                            Target mapel KKID tidak boleh kosong
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div> --}}
+                            <div class="row">
+                                <div class="form-group col-sm-2">
+                                    {{-- <button class="btn btn-danger removebtn_multiple_kkid" style="margin-top: 5px;">X</button> --}}
+                                </div>
+                                <div class="form-group col-sm-8">
+                                    <label for="">Keterangan</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">
+                                                <i class="far fa-sticky-note"></i>
+                                            </div>
+                                        </div>
+                                        <textarea type="text" class="form-control keterangan_pencapaian_kkid" name="keterangan_kkid[]" style="height: 40px;"></textarea>
+                                        <div class="invalid-feedback d-none invalid_keterangan_pencapaian_kkid">
+                                            Keteragan KKID tidak boleh kosong
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="col-sm-12">
                     <div class="card-body">
-                    </div>
-                    <div class="modal-footer">
-                        <button class="btn btn-primary button" id="button">Submit</button>
-                        <a href="{{ route('admin.Lembar-kerja-1.index') }}" class="btn btn-danger">Cancel</a>
+                        <button class="btn btn-success addbtn_multiple_kkid" style="margin-top: -100px;">Fields <i class="fas fa-plus"></i></button>
                     </div>
                 </div>
             </div>
-            {{-- buktisiswa --}}
+            {{-- card kkid&ket --}}
+
+
+            {{-- card buktisiswa --}}
+            <div class="">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>Rincian Bukti Siswa</h4>
+                    </div>
+                    <div class="fields_multiple_bukti">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="form-group col-sm-2">
+                                    <label>No</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">
+                                                <i class="far fa-sticky-note"></i>
+                                            </div>
+                                        </div>
+                                        <input type="text" id="" class="form-control" disabled placeholder="1.">
+                                    </div>
+                                </div>
+                                <div class="form-group col-sm-8">
+                                    <label>Rincian Bukti</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">
+                                                <i class="far fa-sticky-note"></i>
+                                            </div>
+                                        </div>
+                                        <textarea type="text" class="form-control input_bukti" name="bukti[]" style="height: 60px;"></textarea>
+                                        <div class="invalid-feedback d-none invalid_bukti" style="margin-left: 41px;">
+                                            Rincian bukti tidak boleh kosong
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-sm-2">
+                                    <button class="btn btn-danger removebtn_multiple_bukti" style="margin-top: 40px;">X</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <button class="btn btn-success addbtn_multiple_bukti" style="margin-top: -100px;">Fields <i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            {{-- card buktisiswa --}}
+
+
+            {{-- button --}}
+            <div class="col-sm-12">
+                <div class="card-body">
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary button" id="button">Submit</button>
+                    <a href="{{ route('admin.Lembar-kerja-1.index') }}" class="btn btn-danger">Cancel</a>
+                </div>
+            </div>
+            {{-- button --}}
+
+
         </form>
     </div>
 </div>
@@ -540,12 +531,14 @@
         $('#mapel').select2();
         $('#jurusan').select2();
 
+        multiple_card();
         multiple_select_kd_ganjil();
         multiple_select_kd_genap();
         multiple_input_mapel();
         multiple_input_kkid();
         multiple_input_bukti_siswa();
         multiple_input_kompetensi();
+
 
 
         function multiple_select_kd_ganjil() {
@@ -558,76 +551,290 @@
 
         }
 
+        // multiple kompetensi
+        function multiple_card() {
+            var max_fields      = 10;
+            var wrapper   		= $(".fields_kompetensidasar");
+            var add_button      = $(".addbtn_kompetensidasar");
+
+            var x = 1;
+            var y = 17;
+            $(add_button).click(function(e){
+                e.preventDefault();
+                if(x < max_fields){ //max input box allowed
+                    x++; //text box increment
+                    y++;
+                    $(wrapper).append('<div class="">'+
+                            '<div class="card-header">'+
+                                '<h4>'+x+'. Strategi Pembelajaran Semester : </h4>'+
+                                '<select id="" class="form-select form-control ml-2" style="width: 130px;">'+
+                                    '<option>Ganjil</option>'+
+                                    '<option>Genap</option>'+
+                                '</select>'+
+                            '</div>'+
+                            '<div class="card-body">'+
+                                '<div class="row">'+
+                                    '<div class="form-group col-sm-2">'+
+                                        '<label>No KD.</label>'+
+                                        '<div class="input-group">'+
+                                            '<div class="input-group-prepend">'+
+                                                '<div class="input-group-text">'+
+                                                    '<i class="far fa-sticky-note"></i>'+
+                                                '</div>'+
+                                            '</div>'+
+                                            '<input type="text" id="" class="form-control" disabled placeholder="3.'+y+'">'+
+                                        '</div>'+
+                                    '</div>'+
+                                    '<div class="form-group col-sm-5">'+
+                                        '<label>Kompetensi Dasar</label>'+
+                                        '<div class="input-group">'+
+                                            '<div class="input-group-prepend">'+
+                                                '<div class="input-group-text">'+
+                                                    '<i class="far fa-sticky-note"></i>'+
+                                                '</div>'+
+                                            '</div>'+
+                                            '<textarea type="text" id="" class="form-control" name="" id="" style="height: 90px;"></textarea>'+
+                                        '</div>'+
+                                    '</div>'+
+                                    '<div class="form-group col-sm-5">'+
+                                        '<label>Model Pembelajaran</label>'+
+                                        '<div class="input-group">'+
+                                            '<div class="input-group-prepend">'+
+                                                '<div class="input-group-text">'+
+                                                    '<i class="far fa-sticky-note"></i>'+
+                                                '</div>'+
+                                            '</div>'+
+                                            '<textarea type="text" id="" class="form-control" name="" id="" style="height: 90px;"></textarea>'+
+                                        '</div>'+
+                                    '</div>'+
+                                '</div>'+
+                                '<div class="row">'+
+                                    '<div class="form-group col-sm-2">'+
+                                        '<label>No KD.</label>'+
+                                        '<div class="input-group">'+
+                                            '<div class="input-group-prepend">'+
+                                                '<div class="input-group-text">'+
+                                                    '<i class="far fa-sticky-note"></i>'+
+                                                '</div>'+
+                                            '</div>'+
+                                            '<input type="text" id="" class="form-control" disabled placeholder="4.'+y+'">'+
+                                        '</div>'+
+                                    '</div>'+
+                                    '<div class="form-group col-sm-5">'+
+                                        '<label>Kompetensi Dasar</label>'+
+                                        '<div class="input-group">'+
+                                            '<div class="input-group-prepend">'+
+                                                '<div class="input-group-text">'+
+                                                    '<i class="far fa-sticky-note"></i>'+
+                                                '</div>'+
+                                            '</div>'+
+                                            '<textarea type="text" id="" class="form-control" name="" id="" style="height: 90px;"></textarea>'+
+                                        '</div>'+
+                                    '</div>'+
+                                    '<div class="form-group col-sm-5">'+
+                                        '<label>Metode Pembelajaran</label>'+
+                                        '<div class="input-group">'+
+                                            '<div class="input-group-prepend">'+
+                                                '<div class="input-group-text">'+
+                                                    '<i class="far fa-sticky-note"></i>'+
+                                                '</div>'+
+                                            '</div>'+
+                                            '<textarea type="text" id="" class="form-control" name="" id="" style="height: 90px;"></textarea>'+
+                                        '</div>'+
+                                    '</div>'+
+                                '</div>'+
+                                '<div class="row">'+
+                                    '<div class="form-group col-sm-2">'+
+                                        '<div class="" style="margin-top: 32px;">'+
+                                            '<button class="btn btn-danger removebtn_kompetensidasar"><i class="fas fa-times"></i></button>'+
+                                        '</div>'+
+                                    '</div>'+
+                                    '<div class="form-group col-sm-5">'+
+                                        '<label>Deskripsi Kegiatan</label>'+
+                                        '<div class="input-group">'+
+                                            '<div class="input-group-prepend">'+
+                                                '<div class="input-group-text">'+
+                                                    '<i class="far fa-sticky-note"></i>'+
+                                                '</div>'+
+                                            '</div>'+
+                                            '<textarea type="text" id="" class="form-control" name="" id="" style="height: 90px;"></textarea>'+
+                                        '</div>'+
+                                    '</div>'+
+                                '</div>'+
+                            '</div>'+
+                        '</div>');
+                }
+            });
+
+            $(wrapper).on("click",".removebtn_kompetensidasar", function(e){ //user click on remove text
+                e.preventDefault(); $(this).parent('div').parent('div').parent('div').parent('div').parent('div').remove(); x--;
+            })
+        }
+
+        // multiple kompetensi inti
+        function multiple_input_kompetensi() {
+            var max_fields = 10;
+            var wrapper = $(".fields_multiple_kompetensi");
+            var add_button = $(".addbtn_multiple_kompetensi");
+
+            var x = 1;
+            $(add_button).click(function (e) {
+                e.preventDefault();
+                if (x < max_fields) {
+                    x++;
+                    $(wrapper).append('<div class="row">'+
+                            '<div class="form-group col-sm-2">'+
+                                '<label>No</label>'+
+                                '<div class="input-group">'+
+                                    '<div class="input-group-prepend">'+
+                                        '<div class="input-group-text">'+
+                                            '<i class="far fa-sticky-note"></i>'+
+                                        '</div>'+
+                                    '</div>'+
+                                    '<input type="text" id="" class="form-control" disabled placeholder="'+x+'.">'+
+                                '</div>'+
+                            '</div>'+
+                            '<div class="form-group col-sm-8">'+
+                                '<label>Kompetensi Inti</label>'+
+                                '<div class="input-group">'+
+                                    '<div class="input-group-prepend">'+
+                                        '<div class="input-group-text">'+
+                                            '<i class="far fa-sticky-note"></i>'+
+                                        '</div>'+
+                                   '</div>'+
+                                    '<textarea type="text" id="" class="form-control input_kompetensi" name="kompetensi[]" style="height: 60px;"></textarea>'+
+                                    '<div class="invalid-feedback d-none invalid_kompetensi" style="margin-left: 41px;">'+
+                                        'Kompetensi inti tidak boleh kosong'+
+                                    '</div>'+
+                                '</div>'+
+                            '</div>'+
+                            '<div class="form-group col-sm-2">'+
+                                '<button class="btn btn-danger removebtn_multiple_kompetensi" style="margin-top: 45px;">X</button>'+
+                            '</div>'+
+                        '</div>');
+
+                        // '<tr>' +
+                        // '<th scope="row">' + x + '</th>' +
+                        // '<td>' +
+                        // '<textarea type="text" class="form-control input_kompetensi" name="kompetensi[]" style="height: 40px;"></textarea>' +
+                        // '<div class="invalid-feedback d-none invalid_kompetensi" style="margin-left: 41px;">' +
+                        // 'Kompetensi inti tidak boleh kosong' +
+                        // '</div>' +
+                        // '</td>' +
+                        // '<td class="text-center">' +
+                        // '<button class="btn btn-danger ml-4 removebtn_multiple_kompetensi"><i class="fas fa-times"></i></button>' +
+                        // '</td>' +
+                        // '</tr>'
+
+                    // '<div class="input-group mt-3">' +
+                    // '<input type="text" class="form-control col-8 input_kompetensi" style="margin-left: 41px;" name="kompetensi[]">' +
+                    // '<button class="btn btn-danger ml-4 removebtn_multiple_kompetensi"><i class="fas fa-times"></i></button>' +
+                    // '<div class="invalid-feedback d-none invalid_kompetensi" style="margin-left: 41px;">' +
+                    // 'Kompetensi inti boleh kosong' +
+                    // '</div>' +
+                    // '</div>'
+                }
+            });
+
+            $(wrapper).on("click", ".removebtn_multiple_kompetensi", function (e) { //user click on remove text
+                e.preventDefault();
+                $(this).parent('div').parent('div').remove();
+                x--;
+            });
+        }
+
+        // multiple target mapel
         function multiple_input_mapel() {
             var max_fields = 10; //maximum input boxes allowed
             var wrapper = $(".fields_multiple_mapel"); //Fields wrapper
-            var add_button = $(".addbtn_multiple_maple"); //Add button ID
+            var add_button = $(".addbtn_multiple_mapel"); //Add button ID
 
             var x = 1; //initlal text box count
             $(add_button).click(function (e) { //on add input button click
                 e.preventDefault();
                 if (x < max_fields) { //max input box allowed
                     x++; //text box increment
-                    $(wrapper).append('<tr id="mapel ' + x + ' " data-id="mapel ' + x + ' ">' +
-                        '<th scope="row"> ' + x + ' </th>' +
-                        '<td>' +
-                        '<textarea type="text" class="form-control input_target_mapel" data-input=" ' +
-                        x + ' " name="target_mapel[]" style="height: 40px;"></textarea>' +
-                        '<div class="invalid-feedback d-none invalid_target_mapel">' +
-                        'Target mapel tidak boleh kosong' +
-                        '</div>' +
-                        '</td>' +
-                        '<td>' +
-                        '<textarea type="text" class="form-control keterangan_target_mapel" name="keterangan_mapel[]" style="height: 40px;"></textarea>' +
-                        '<div class="invalid-feedback d-none invalid_keterangan_target_mapel">' +
-                        'Keteragan mapel tidak boleh kosong' +
-                        '</div>' +
-                        '</td>' +
-                        '<td class="text-center">' +
-                        '<button class="btn btn-danger removebtn_multiple_maple"><i class="fas fa-times"></i></button>' +
-                        '</td>' +
-                        '</tr>');
+                    $(wrapper).append('<div class="card-body" id="mapel ' + x + ' " data-id="mapel ' + x + ' ">'+
+                            '<div class="row">'+
+                                '<div class="form-group col-sm-2">'+
+                                    '<label>No</label>'+
+                                    '<div class="input-group">'+
+                                        '<div class="input-group-prepend">'+
+                                            '<div class="input-group-text">'+
+                                                '<i class="far fa-sticky-note"></i>'+
+                                            '</div>'+
+                                        '</div>'+
+                                        '<input type="text" id="" class="form-control" disabled placeholder="'+x+'.">'+
+                                    '</div>'+
+                                '</div>'+
+                                '<div class="form-group col-sm-8">'+
+                                    '<label>Target Mapel</label>'+
+                                    '<div class="input-group">'+
+                                        '<div class="input-group-prepend">'+
+                                            '<div class="input-group-text">'+
+                                                '<i class="far fa-sticky-note"></i>'+
+                                            '</div>'+
+                                        '</div>'+
+                                        '<textarea type="text" class="form-control input_target_mapel" name="target_mapel[]" style="height: 60px;"></textarea>'+
+                                        '<div class="invalid-feedback d-none invalid_target_mapel">'+
+                                            'Target mapel tidak boleh kosong'+
+                                        '</div>'+
+                                    '</div>'+
+                                '</div>'+
+                            '</div>'+
+                            '<div class="row">'+
+                                '<div class="form-group col-sm-2">'+
+                                    '<button class="btn btn-danger removebtn_multiple_mapel" style="margin-top: 5px;">X</button>'+
+                                '</div>'+
+                                '<div class="form-group col-sm-8">'+
+                                    '<div class="input-group">'+
+                                        '<div class="input-group-prepend">'+
+                                            '<div class="input-group-text">'+
+                                                '<i class="far fa-sticky-note"></i>'+
+                                            '</div>'+
+                                        '</div>'+
+                                        '<textarea type="text" class="form-control keterangan_target_mapel" name="keterangan_mapel[]" style="height: 60px;"></textarea>'+
+                                        '<div class="invalid-feedback d-none invalid_keterangan_target_mapel">'+
+                                            'Keteragan mapel tidak boleh kosong'+
+                                        '</div>'+
+                                    '</div>'+
+                                '</div>'+
+                            '</div>'+
+                        '</div>');
 
-                    // <div id="mapel ' + x + ' " data-id="mapel ' + x + '"">' +
-                    // '<label class="mt-3">Pencapaian Mapel ' + x + '</label>' +
-                    // '<div class="input-group">' +
-                    // '<div class="input-group">' +
-                    // '<div class="input-group-prepend">' +
-                    // '<div class="input-group-text">' +
-                    // '<i class="fas fa-book"></i>' +
-                    // '</div>' +
-                    // '</div>' +
-                    // '<input type="text" class="form-control input_target_mapel" data-input="' + x +
-                    // '" name="target_mapel[]">' +
-                    // ' <div class="invalid-feedback d-none invalid_target_mapel">' +
-                    // 'Pencapaian mapel tidak boleh kosong' +
-                    // '</div>' +
-                    // '</div>' +
-                    // '  <label class="mt-3">Keterangan ' + x + '</label>' +
-                    // '<div class="input-group">' +
-                    // '<div class="input-group-prepend">' +
-                    // '<div class="input-group-text">' +
-                    // '<i class="fas fa-book"></i>' +
-                    // '</div>' +
-                    // '</div>' +
-                    // '<input type="text" class="form-control col-10 keterangan_target_mapel" name="keterangan_mapel[]">' +
-                    // '<button class="btn btn-danger ml-4 removebtn_multiple_maple"><i class="fas fa-times"></i></button>' +
-                    // '<div class="invalid-feedback d-none invalid_keterangan_target_mapel">' +
-                    // 'Keteragan mapel tidak boleh kosong' +
-                    // '</div>' +
-                    // '</div>' +
-                    // '</div>'
 
+
+
+                        // '<tr id="mapel ' + x + ' " data-id="mapel ' + x + ' ">' +
+                        // '<th scope="row"> ' + x + ' </th>' +
+                        // '<td>' +
+                        // '<textarea type="text" class="form-control input_target_mapel" data-input=" ' +
+                        // x + ' " name="target_mapel[]" style="height: 40px;"></textarea>' +
+                        // '<div class="invalid-feedback d-none invalid_target_mapel">' +
+                        // 'Target mapel tidak boleh kosong' +
+                        // '</div>' +
+                        // '</td>' +
+                        // '<td>' +
+                        // '<textarea type="text" class="form-control keterangan_target_mapel" name="keterangan_mapel[]" style="height: 40px;"></textarea>' +
+                        // '<div class="invalid-feedback d-none invalid_keterangan_target_mapel">' +
+                        // 'Keteragan mapel tidak boleh kosong' +
+                        // '</div>' +
+                        // '</td>' +
+                        // '<td class="text-center">' +
+                        // '<button class="btn btn-danger removebtn_multiple_maple"><i class="fas fa-times"></i></button>' +
+                        // '</td>' +
+                        // '</tr>'
                 }
             });
 
-            $(wrapper).on("click", ".removebtn_multiple_maple", function (e) { //user click on remove text
+            $(wrapper).on("click", ".removebtn_multiple_mapel", function (e) { //user click on remove text
                 e.preventDefault();
-                $(this).parent('td').parent('tr').remove();
+                $(this).parent('div').parent('div').parent('div').remove();
                 x--;
             })
         }
 
+        // multiple mapel kkid
         function multiple_input_kkid() {
             var max_fields = 10; //maximum input boxes allowed
             var wrapper = $(".fields_multiple_kkid"); //Fields wrapper
@@ -638,24 +845,76 @@
                 e.preventDefault();
                 if (x < max_fields) { //max input box allowed
                     x++; //text box increment
-                    $(wrapper).append('<tr id="kkid ' + x + ' " data-id="kkid ' + x + ' ">' +
-                        '<th scope="row"> ' + x + ' </th>' +
-                        '<td>' +
-                        '<textarea type="text" class="form-control input_pencapaian_kkid" name="target_kkid[]" style="height: 40px;"></textarea>' +
-                        '<div class="invalid-feedback d-none invalid_pencapaian_kkid">' +
-                        'Target mapel KKID tidak boleh kosong' +
-                        '</div>' +
-                        '</td>' +
-                        '<td>' +
-                        '<textarea type="text" class="form-control keterangan_pencapaian_kkid" name="keterangan_kkid[]" style="height: 40px;"></textarea>' +
-                        '<div class="invalid-feedback d-none invalid_keterangan_pencapaian_kkid">' +
-                        'Keteragan KKID tidak boleh kosong' +
-                        '</div>' +
-                        '</td>' +
-                        '<td class="text-center">' +
-                        '<button class="btn btn-danger removebtn_multiple_kkid"><i class="fas fa-times"></i></button>' +
-                        '</td>' +
-                        '</tr>');
+                    $(wrapper).append(
+                        '<div class="card-body" id="kkid ' + x + ' " data-id="kkid ' + x + ' ">'+
+                            '<div class="row">'+
+                                '<div class="form-group col-sm-2">'+
+                                    '<label>No</label>'+
+                                    '<div class="input-group">'+
+                                        '<div class="input-group-prepend">'+
+                                            '<div class="input-group-text">'+
+                                                '<i class="far fa-sticky-note"></i>'+
+                                            '</div>'+
+                                        '</div>'+
+                                        '<input type="text" id="" class="form-control" disabled placeholder="'+x+'.">'+
+                                    '</div>'+
+                                '</div>'+
+                                '<div class="form-group col-sm-8">'+
+                                    '<label>Target Mapel KKID</label>'+
+                                    '<div class="input-group">'+
+                                        '<div class="input-group-prepend">'+
+                                            '<div class="input-group-text">'+
+                                                '<i class="far fa-sticky-note"></i>'+
+                                            '</div>'+
+                                        '</div>'+
+                                        '<textarea type="text" class="form-control input_pencapaian_kkid" name="target_kkid[]" style="height: 60px;"></textarea>'+
+                                        '<div class="invalid-feedback d-none invalid_pencapaian_kkid">'+
+                                            'Target mapel KKID tidak boleh kosong'+
+                                        '</div>'+
+                                    '</div>'+
+                                '</div>'+
+                            '</div>'+
+                            '<div class="row">'+
+                                '<div class="form-group col-sm-2">'+
+                                    '<button class="btn btn-danger removebtn_multiple_kkid" style="margin-top: 5px;">X</button>'+
+                                '</div>'+
+                                '<div class="form-group col-sm-8">'+
+                                    '<label for="">Keterangan</label>'+
+                                    '<div class="input-group">'+
+                                        '<div class="input-group-prepend">'+
+                                            '<div class="input-group-text">'+
+                                                '<i class="far fa-sticky-note"></i>'+
+                                            '</div>'+
+                                        '</div>'+
+                                        '<textarea type="text" class="form-control keterangan_pencapaian_kkid" name="keterangan_kkid[]" style="height: 60px;"></textarea>'+
+                                        '<div class="invalid-feedback d-none invalid_keterangan_pencapaian_kkid">'+
+                                            'Keteragan KKID tidak boleh kosong'+
+                                        '</div>'+
+                                    '</div>'+
+                                '</div>'+
+                            '</div>'+
+                        '</div>');
+
+
+
+                        // '<tr >' +
+                        // '<th scope="row"> ' + x + ' </th>' +
+                        // '<td>' +
+                        // '<textarea type="text" class="form-control input_pencapaian_kkid" name="target_kkid[]" style="height: 40px;"></textarea>' +
+                        // '<div class="invalid-feedback d-none invalid_pencapaian_kkid">' +
+                        // 'Target mapel KKID tidak boleh kosong' +
+                        // '</div>' +
+                        // '</td>' +
+                        // '<td>' +
+                        // '<textarea type="text" class="form-control keterangan_pencapaian_kkid" name="keterangan_kkid[]" style="height: 40px;"></textarea>' +
+                        // '<div class="invalid-feedback d-none invalid_keterangan_pencapaian_kkid">' +
+                        // 'Keteragan KKID tidak boleh kosong' +
+                        // '</div>' +
+                        // '</td>' +'
+                        // '<td class="text-center">' +
+                        // '<button class="btn btn-danger removebtn_multiple_kkid"><i class="fas fa-times"></i></button>' +
+                        // '</td>' +
+                        // '</tr>'
 
                     // '<div id="kkid ' + x + '" data-id="kkid ' + x + '"">' +
                     // '<label class="mt-3">Pencapaian KKID ' + x + '</label>' +
@@ -690,11 +949,12 @@
             });
             $(wrapper).on("click", ".removebtn_multiple_kkid", function (e) { //user click on remove text
                 e.preventDefault();
-                $(this).parent('td').parent('tr').remove();
+                $(this).parent('div').parent('div').parent('div').remove();
                 x--;
             })
         }
 
+        // multiple bukti siswa
         function multiple_input_bukti_siswa() {
             var max_fields = 10; //maximum input boxes allowed
             var wrapper = $(".fields_multiple_bukti"); //Fields wrapper
@@ -705,18 +965,53 @@
                 e.preventDefault();
                 if (x < max_fields) { //max input box allowed
                     x++; //text box increment
-                    $(wrapper).append('<tr>' +
-                        '<th scope="row">' + x + '</th>' +
-                        '<td>' +
-                        '<textarea type="text" class="form-control input_bukti" name="bukti[]" style="height: 40px;"></textarea>' +
-                        '<div class="invalid-feedback d-none invalid_bukti" style="margin-left: 41px;">' +
-                        'Rincian bukti tidak boleh kosong' +
-                        '</div>' +
-                        '</td>' +
-                        '<td class="text-center">' +
-                        '<button class="btn btn-danger removebtn_multiple_bukti"><i class="fas fa-times"></i></button>' +
-                        '</td>' +
-                        '</tr>');
+                    $(wrapper).append('<div class="card-body">'+
+                            '<div class="row">'+
+                                '<div class="form-group col-sm-2">'+
+                                    '<label>No</label>'+
+                                    '<div class="input-group">'+
+                                        '<div class="input-group-prepend">'+
+                                            '<div class="input-group-text">'+
+                                                '<i class="far fa-sticky-note"></i>'+
+                                            '</div>'+
+                                        '</div>'+
+                                        '<input type="text" id="" class="form-control" disabled placeholder="'+x+'.">'+
+                                    '</div>'+
+                                '</div>'+
+                                '<div class="form-group col-sm-8">'+
+                                    '<label>Rincian Bukti</label>'+
+                                    '<div class="input-group">'+
+                                        '<div class="input-group-prepend">'+
+                                            '<div class="input-group-text">'+
+                                                '<i class="far fa-sticky-note"></i>'+
+                                            '</div>'+
+                                        '</div>'+
+                                        '<textarea type="text" class="form-control input_bukti" name="bukti[]" style="height: 60px;"></textarea>'+
+                                        '<div class="invalid-feedback d-none invalid_bukti" style="margin-left: 41px;">'+
+                                            'Rincian bukti tidak boleh kosong'+
+                                        '</div>'+
+                                    '</div>'+
+                                '</div>'+
+                                '<div class="form-group col-sm-2">'+
+                                    '<button class="btn btn-danger removebtn_multiple_bukti" style="margin-top: 40px;">X</button>'+
+                                '</div>'+
+                            '</div>'+
+                        '</div>');
+
+
+
+                        // '<tr>' +
+                        // '<th scope="row">' + x + '</th>' +
+                        // '<td>' +
+                        // '<textarea type="text" class="form-control input_bukti" name="bukti[]" style="height: 40px;"></textarea>' +
+                        // '<div class="invalid-feedback d-none invalid_bukti" style="margin-left: 41px;">' +
+                        // 'Rincian bukti tidak boleh kosong' +
+                        // '</div>' +
+                        // '</td>' +
+                        // '<td class="text-center">' +
+                        // '<button class="btn btn-danger removebtn_multiple_bukti"><i class="fas fa-times"></i></button>' +
+                        // '</td>' +
+                        // '</tr>'
                     // '<div class="input-group mt-3">' +
                     // '<input type="text" class="form-control col-8 input_bukti" style="margin-left: 41px;" name="bukti[]">' +
                     // '<button class="btn btn-danger ml-4 removebtn_multiple_bukti"><i class="fas fa-times"></i></button>' +
@@ -729,49 +1024,17 @@
 
             $(wrapper).on("click", ".removebtn_multiple_bukti", function (e) { //user click on remove text
                 e.preventDefault();
-                $(this).parent('td').parent('tr').remove();
+                $(this).parent('div').parent('div').parent('div').remove();
                 x--;
             });
         }
 
-        function multiple_input_kompetensi() {
-            var max_fields = 10; //maximum input boxes allowed
-            var wrapper = $(".fields_multiple_kompetensi"); //Fields wrapper
-            var add_button = $(".addbtn_multiple_kompetensi"); //Add button ID
 
-            var x = 1; //initlal text box count
-            $(add_button).click(function (e) { //on add input button click
-                e.preventDefault();
-                if (x < max_fields) { //max input box allowed
-                    x++; //text box increment
-                    $(wrapper).append('<tr>' +
-                        '<th scope="row">' + x + '</th>' +
-                        '<td>' +
-                        '<textarea type="text" class="form-control input_kompetensi" name="kompetensi[]" style="height: 40px;"></textarea>' +
-                        '<div class="invalid-feedback d-none invalid_kompetensi" style="margin-left: 41px;">' +
-                        'Kompetensi inti tidak boleh kosong' +
-                        '</div>' +
-                        '</td>' +
-                        '<td class="text-center">' +
-                        '<button class="btn btn-danger ml-4 removebtn_multiple_kompetensi"><i class="fas fa-times"></i></button>' +
-                        '</td>' +
-                        '</tr>');
-                    // '<div class="input-group mt-3">' +
-                    // '<input type="text" class="form-control col-8 input_kompetensi" style="margin-left: 41px;" name="kompetensi[]">' +
-                    // '<button class="btn btn-danger ml-4 removebtn_multiple_kompetensi"><i class="fas fa-times"></i></button>' +
-                    // '<div class="invalid-feedback d-none invalid_kompetensi" style="margin-left: 41px;">' +
-                    // 'Kompetensi inti boleh kosong' +
-                    // '</div>' +
-                    // '</div>'
-                }
-            });
 
-            $(wrapper).on("click", ".removebtn_multiple_kompetensi", function (e) { //user click on remove text
-                e.preventDefault();
-                $(this).parent('td').parent('tr').remove();
-                x--;
-            });
-        }
+
+
+
+
         // auto complete mapel
         // $('#jurusan').change(function () {
         //     id = $(this).val(); // mengambil value
