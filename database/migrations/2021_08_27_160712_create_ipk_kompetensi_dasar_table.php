@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRencanaPelaksanaanPembelajaranTable extends Migration
+class CreateIpkKompetensiDasarTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,10 @@ class CreateRencanaPelaksanaanPembelajaranTable extends Migration
      */
     public function up()
     {
-        Schema::create('rencana_pelaksanaan_pembelajaran', function (Blueprint $table) {
+        Schema::create('ipk_kompetensi_dasar', function (Blueprint $table) {
             $table->id();
-            // $table->string('ipk_kd_ketrampilan');
-            // $table->string('ipk_kd_pengetahuan');
-            $table->string('alokasi_waktu');
+            $table->string('ipk_kd_ketrampilan')->nullable();
+            $table->string('ipk_kd_pengetahuan')->nullable();
             $table->foreignId('id_kompetensi_dasar')->constrained('kompetensi_dasar')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
@@ -30,6 +29,6 @@ class CreateRencanaPelaksanaanPembelajaranTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('rencana_pelaksanaan_pembelajaran');
+        Schema::dropIfExists('ipk_kompetensi_dasar');
     }
 }

@@ -41,6 +41,7 @@ class DatabaseSeeder extends Seeder
             MorphJurusan::class,
             LembarkerjaSeeder::class,
             kd_target_pembelajaranSeeder::class,
+            Ipk_kompetensi_dasarSeeder::class,
         ]);
     }
 }

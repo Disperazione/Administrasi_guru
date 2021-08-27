@@ -15,8 +15,8 @@ class rencana_pelaksanaan_pembelajaranSeeder extends Seeder
     public function run()
     {
         DB::table('rencana_pelaksanaan_pembelajaran')->insert([
-            'ipk_kd_ketrampilan' => '3.01',
-            'ipk_kd_pengetahuan' => '4.01',
+            // 'ipk_kd_ketrampilan' => '3.01',
+            // 'ipk_kd_pengetahuan' => '4.01',
             'alokasi_waktu' => '4 JP',
             'id_kompetensi_dasar' => 1
         ]);

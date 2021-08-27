@@ -35,5 +35,8 @@ class Kompetensi_dasar extends Model
     {
         return $this->hasOne(Rencana_pelaksanaan_pembelajaran::class,'id_kompetensi_dasar','id');
     }
-
+    public function ipk_kompetensi_dasar()
+    {
+        return $this->hasOne(Ipk_kompetensi_dasar::class, 'id_kompetensi_dasar', 'id');
+    }
 }
