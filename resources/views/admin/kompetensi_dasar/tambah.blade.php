@@ -1,6 +1,10 @@
 @extends('layout.master')
 @push('css')
-
+<style>
+    .card-bawah{
+        
+    }
+</style>
 @endpush
 @section('title', 'SIFOS | Add Kompetensi Dasar')
 @section('judul','Add Data Kompetensi Dasar')
@@ -89,6 +93,17 @@
                               <input type="text" class="form-control" >
                             </div>
                         </div>
+                        <div class="form-group">
+                            <label>Jurusan</label>
+                            <div class="input-group">
+                              <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                  <i class="fas fa-align-justify"></i>
+                                </div>
+                              </div>
+                              <input type="text" class="form-control" >
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -96,7 +111,7 @@
 
             {{-- card --}}
             <div class="fields_komda">
-                <div class="card">
+                <div class="card card-primary" style="box-shadow: 0 4px 15px 0 rgba(0,0,0,0.2);">
                     <div class="card-header">
                         <h4>KD</h4>
                     </div>
@@ -260,7 +275,7 @@
             if(x < max_fields){ //max input box allowed
                 x++; //text box increment
                 y++;
-                $(wrapper).append('<div class="card">'+
+                $(wrapper).append('<div class="card card-primary" style="box-shadow: 0 4px 15px 0 rgba(0,0,0,0.2);">'+
                     '<div class="card-header">'+
                         '<h4>KD</h4>'+
                     '</div>'+
