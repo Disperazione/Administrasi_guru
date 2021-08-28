@@ -24,9 +24,9 @@
         <thead>
             <tr>
                 <th>#</th>
-                <th>Guru</th>
-                <th>Bidang Studi</th>
-                <th>kelas</th>
+                <th>Mata Pelajaran</th>
+                <th>Kompetensi keahlian</th>
+                    <th>Kelas</th>
                 <th>jam pelajaran</th>
                 <th>Total Jam</th>
                 <th>action</th>

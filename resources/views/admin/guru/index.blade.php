@@ -27,9 +27,9 @@
                 <th>nik</th>
                 <th>Nama</th>
                 <th>jabatan</th>
-                <th>jurusan</th>
+                <th>Mengajar Jurusan</th>
                 <th>No telp </th>
-                  <th>action</th>
+                <th>action</th>
             </tr>
         </thead>
         <tbody>

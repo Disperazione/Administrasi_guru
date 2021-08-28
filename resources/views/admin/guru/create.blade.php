@@ -51,9 +51,9 @@
                         <label for="">Jabatan :</label>
                         <select name="jabatan" class="form-control @error('jabatan') is-invalid @enderror" id="jabatan">
                             <option value="">-- Pilih Jabatan --</option>
-                            <option value="guru" {{ (old('jabatan') == 'guru') ? 'selected' : '' }}>Guru
+                            <option value="Guru" {{ (old('jabatan') == 'guru') ? 'selected' : '' }}>Guru
                             </option>
-                            <option value="admin" {{ (old('jabatan') == 'admin') ? 'selected' : '' }}>Admin
+                            <option value="Admin" {{ (old('jabatan') == 'admin') ? 'selected' : '' }}>Admin
                             </option>
                         </select>
                         {{-- @error('jabatan') --}}
@@ -66,7 +66,7 @@
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="">Jurusan :</label>
+                        <label for="">Mengajar Jurusan :</label>
                         <select type="text" name="id_jurusan[]"
                             class=" jurusan form-control @error('id_jurusan') is-invalid @endif" id="jurusan" multiple="multiple">
                             <option value="">-- Pilih Jurusan --</option>
@@ -335,7 +335,7 @@
                     url: '/admin/guru/validdate/nik/' + nik,
                     type: 'get',
                     success: function (response) {
-                        console.log(!response.validate_nik);
+                        console.log(response);
                         // $('#nik').closest('div').find('.invalid-feedback').val('');
                         if (response.validate_nik) { // jika jika ada erorrnya maka tampilkan eror
                             $('#nik').addClass('is-invalid');

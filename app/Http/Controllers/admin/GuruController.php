@@ -198,7 +198,7 @@ class GuruController extends Controller
         //$guru->update($request->all());
         // $request->validated();
         $guru = Guru::where('id', $id)->first();
-        $user = User::where('id', $guru->id)->first(); // 2x cek guru
+        $user = User::where('id', $guru->id_user)->first(); // 2x cek guru
 
         // jika usernnya kosong
         if (!empty($user))  {

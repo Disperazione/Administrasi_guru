@@ -904,7 +904,7 @@
                     success: function (response) {
                         console.log(response.mapel);
                         response.s_ganjil.forEach(element => {
-                            $('.s_ganjil').append('<option value="' + element.id +
+                            $('.s_ganjil select:last').append('<option value="' + element.id +
                                 '"> KD ' + element.kd_pengetahuan + ' ' + element
                                 .keterangan_pengetahuan +
                                 ' & KD ' +

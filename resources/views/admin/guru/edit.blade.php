@@ -49,9 +49,9 @@
                         <label for="">Jabatan :</label>
                         <select name="jabatan" class="form-control @error('jabatan') is-invalid @enderror" id="jabatan">
                             <option value="">-- Pilih Jabatan --</option>
-                            <option value="guru" {{ (old('jabatan', $guru->jabatan) === 'guru') ? 'selected' : '' }}>Guru
+                            <option value="Guru" {{ (old('jabatan', $guru->jabatan) === 'Guru') ? 'selected' : '' }}>Guru
                             </option>
-                            <option value="admin" {{ (old('jabatan', $guru->jabatan) === 'admin') ? 'selected' : '' }}>
+                            <option value="Admin" {{ (old('jabatan', $guru->jabatan) === 'Admin') ? 'selected' : '' }}>
                                 Admin</option>
                         </select>
                         {{-- @error('jabatan') --}}
@@ -63,7 +63,7 @@
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="">Jurusan :</label>
+                        <label for="">Mengajar Jurusan :</label>
                         <select type="text" name="id_jurusan" id="jurusan"
                             class="form-control @error('id_jurusan') is-invalid @endif" multiple="multiple" data-id="{{ $id_jurusan }}">
                             <option value="">-- Pilih Jurusan --</option>

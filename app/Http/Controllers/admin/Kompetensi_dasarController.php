@@ -33,7 +33,16 @@ class Kompetensi_dasarController extends Controller
                 ->addColumn('guru', function ($data) {
                     return $data->guru->name;
                 })
-             
+                ->addColumn('kompetensi_keahlian', function ($data) {
+                    $singkatan_badge = [];
+                    foreach ($data->jurusan as $jurusan) {
+                        $singkatan_badge[] .= "<span class='badge badge-pill badge-primary'>$jurusan->singkatan_jurusan</span>";
+                    }
+                    if (empty($singkatan_badge)) {
+                        return 'Jurusan koosng';
+                    }
+                    return implode(' ', $singkatan_badge);
+                })
                 ->addColumn('action', function ($data) {
                     $button = '<a href="' . $data->id . '"   id="' . $data->id . '" class="btn btn-primary btn-sm"><i class="fas fa-search"></i></a>';
                     $button .= '&nbsp';
@@ -42,7 +51,7 @@ class Kompetensi_dasarController extends Controller
                     $button .= '<button type="button" name="delete" id="hapus" data-id="' . $data->id . '" class="delete btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>';
                     return $button;
                 })
-                ->rawColumns(['action'])
+                ->rawColumns(['action', 'kompetensi_keahlian'])
                 ->addIndexColumn()->make(true);
         }
         return view('admin.kompetensi_dasar.index');
@@ -87,16 +96,16 @@ class Kompetensi_dasarController extends Controller
                 dd($key);
             $dataStore = array(
                 'kd_pengetahuan' =>  $data['pengetahuan'],
-                // 'keterangan_pengetahuan' => 
-                // 'kd_ketrampilan' => 
-                // 'keterangan_ketrampilan' => 
+                // 'keterangan_pengetahuan' =>
+                // 'kd_ketrampilan' =>
+                // 'keterangan_ketrampilan' =>
             );
 
         }
 
-        
+
         Kompetensi_dasar::create([
-            
+
         ]);
 
 

@@ -886,8 +886,9 @@
                         }
                          // select
                         function select() {
+                            // $('.s_ganjil').empty();
                             response.s_ganjil.forEach(element => {
-                                $('.s_ganjil').append('<option value="' + element
+                                $('.s_ganjil').last().append('<option value="' + element
                                     .id + '"> KD ' + element.kd_pengetahuan +
                                     ' ' + element.keterangan_pengetahuan +
                                     ' & KD ' +
@@ -953,7 +954,8 @@
                          // select
                         function select() {
                             response.s_genap.forEach(element => {
-                                $('.s_genap').append('<option value="' + element
+                                // $('.s_genap').empty();
+                                $('.s_genap').last().append('<option value="' + element
                                     .id + '"> KD ' + element.kd_pengetahuan +
                                     ' ' + element.keterangan_pengetahuan +
                                     ' & KD ' +
