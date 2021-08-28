@@ -48,6 +48,12 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'roles:admin,guru'])
 Route::prefix('admin')->name('admin.')->middleware(['auth','roles:admin'])->group(function () {
     Route::resource('guru', GuruController::class)->parameters(['guru' => 'Guru']);
     Route::resource('jurusan', JurusanController::class)->parameters(['jurusan' => 'Jurusan']);
+
+    //option valitade
+    Route::get('/guru/validdate/nik/{name}', [GuruController::class, 'validated_nik']);
+    Route::get('/guru/validdate/email/{email}', [GuruController::class, 'validated_email']);
+    Route::get('/guru/validdate/nik/{id}/s/{name}/edit', [GuruController::class, 'validated_nik_edit']);
+    Route::get('/guru/validdate/email/{id}/s/{email}/edit', [GuruController::class, 'validated_email_edit']);
 });
 
 // guru
@@ -83,9 +89,5 @@ Route::prefix('admin')->name('admin.')->middleware(['auth','roles:guru'])->group
     Route::get('/excel/guru',[GuruController::class,'export'])->name('export.guru');
     Route::get('/excel/jurusan', [JurusanController::class, 'export'])->name('export.jurusan');
 
-    //option valitade
-    Route::get('/guru/validdate/nik/{name}',[GuruController::class,'validated_nik']);
-    Route::get('/guru/validdate/email/{email}', [GuruController::class, 'validated_email']);
-    Route::get('/guru/validdate/nik/{id}/s/{name}/edit', [GuruController::class, 'validated_nik_edit']);
-    Route::get('/guru/validdate/email/{id}/s/{email}/edit', [GuruController::class, 'validated_email_edit']);
+
 });

@@ -106,7 +106,7 @@ class GuruController extends Controller
             'name' => $request->nik,
             'email' => $request->email,
             'role' => $request->jabatan,
-            'password' => Hash::make($request->pasword)
+            'password' => Hash::make($request->password)
         ]);
 
 

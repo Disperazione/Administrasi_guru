@@ -206,10 +206,15 @@
                                     <td scope="row">1</td>
                                     <td>
                                         <select name="kd_ganjil[]" id="" style="width:100%;heigth:100%"
-                                            class="form-control">
-                                            <option value="{{ $item->id }}">
+                                            class="form-control s_ganjil">
+                                            {{-- <option value="{{ $item->id }}">
                                                 {{ $item->kd_pengetahuan .' '.$item->keterangan_pengetahuan.' & '.$item->kd_ketrampilan .' '.$item->keterangan_ketrampilan  }}
+                                            </option> --}}
+                                            @foreach ($s_ganjil->where('id_bidang_keahlian',$item->id_bidang_keahlian)->where('semester','Ganjil') as $items)
+                                            <option value="{{ $items->id }}" {{ $item->id == $items->id ? 'selected' : '' }}>
+                                                {{ $items->kd_pengetahuan .' '.$items->keterangan_pengetahuan.' & '.$items->kd_ketrampilan .' '.$items->keterangan_ketrampilan  }}
                                             </option>
+                                            @endforeach
                                         </select>
                                     </td>
                                     <td class="text-center">
@@ -240,9 +245,15 @@
                                     <td>
                                         <select name="kd_genap[]" id="" style="width:100%;heigth:100%"
                                             class="form-control">
-                                            <option value="{{ $item->id }}">
+                                            {{-- <option value="{{ $item->id }}">
                                                 {{ $item->kd_pengetahuan .' '.$item->keterangan_pengetahuan.' & '.$item->kd_ketrampilan .' '.$item->keterangan_ketrampilan  }}
+                                            </option> --}}
+                                            {{-- ngambil collection dari s_genap lalu menambgil data yang semester == genap --}}
+                                            @foreach ($s_genap->where('id_bidang_keahlian',$item->id_bidang_keahlian)->where('semester','Genap') as $items)
+                                            <option value="{{ $items->id }}" {{ $item->id == $items->id ? 'selected' : '' }}>
+                                                {{ $items->kd_pengetahuan .' '.$items->keterangan_pengetahuan.' & '.$items->kd_ketrampilan .' '.$items->keterangan_ketrampilan  }}
                                             </option>
+                                            @endforeach
                                         </select>
                                     </td>
                                     <td class="text-center">
@@ -616,7 +627,7 @@
                                         <td>
                                             <textarea type="text" class="form-control input_kompetensi"
                                                 name="kompetensi[]"
-                                                style="height: 40px;">{{ $target->target_pembelajaran->rincian_bukti[$i]->rincian}}</textarea>
+                                                style="height: 40px;">{{ $target->target_pembelajaran->rincian_bukti[$i]->rincian_bukti}}</textarea>
                                             <div class="invalid-feedback d-none invalid_kompetensi"
                                                 style="margin-left: 41px;">
                                                 Kompetensi inti tidak boleh kosong
@@ -678,12 +689,34 @@
         id_jurusan = $('#jurusan').data('id');
         $('#jurusan').val(id_jurusan).trigger('change');
 
+        // select();
         multiple_input_mapel();
         multiple_input_kkid();
         multiple_input_bukti_siswa();
         multiple_input_kompetensi();
         multiple_semester_ganjil();
         multiple_semester_genap();
+
+
+        //  function select() {
+        //         id = $('.fields_multiple_semester_ganjil').data('target');
+        //         $.ajax({
+        //             url: '/admin/option/mapel/' + id + '/edit', // url
+        //             type: 'get', // method
+        //             success: function (response) {
+        //                 console.log(response);
+        //                 response.s_ganjil.forEach(element => {
+        //                     $('.s_ganjil').append('<option value="' + element.id +
+        //                         '"> KD ' + element.kd_pengetahuan + ' ' + element
+        //                         .keterangan_pengetahuan +
+        //                         ' & KD ' +
+        //                         element.kd_ketrampilan + ' ' +
+        //                         element.keterangan_ketrampilan +
+        //                         ' </option>')
+        //                 });
+        //             }
+        //         });
+        //     };
 
         function multiple_input_mapel() {
             var max_fields = 10; //maximum input boxes allowed
@@ -904,7 +937,7 @@
                     success: function (response) {
                         console.log(response.mapel);
                         response.s_ganjil.forEach(element => {
-                            $('.s_ganjil select:last').append('<option value="' + element.id +
+                            $('.s_ganjil').last().append('<option value="' + element.id +
                                 '"> KD ' + element.kd_pengetahuan + ' ' + element
                                 .keterangan_pengetahuan +
                                 ' & KD ' +
@@ -961,7 +994,7 @@
                     success: function (response) {
                         console.log(response.mapel);
                         response.s_genap.forEach(element => {
-                            $('.s_genap').append('<option value="' + element.id + '"> KD ' +
+                            $('.s_genap').last().append('<option value="' + element.id + '"> KD ' +
                                 element.kd_pengetahuan + ' ' + element
                                 .keterangan_pengetahuan +
                                 ' & KD ' +

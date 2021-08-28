@@ -51,9 +51,9 @@
                         <label for="">Jabatan :</label>
                         <select name="jabatan" class="form-control @error('jabatan') is-invalid @enderror" id="jabatan">
                             <option value="">-- Pilih Jabatan --</option>
-                            <option value="Guru" {{ (old('jabatan') == 'guru') ? 'selected' : '' }}>Guru
+                            <option value="guru" {{ (old('jabatan') == 'guru') ? 'selected' : '' }}>Guru
                             </option>
-                            <option value="Admin" {{ (old('jabatan') == 'admin') ? 'selected' : '' }}>Admin
+                            <option value="admin" {{ (old('jabatan') == 'admin') ? 'selected' : '' }}>Admin
                             </option>
                         </select>
                         {{-- @error('jabatan') --}}
@@ -141,7 +141,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="">password :</label>
-                        <input type="text" name="password" class="form-control @error('password') is-invalid @enderror"
+                        <input type="password" name="password" class="form-control @error('password') is-invalid @enderror"
                             value="{{ old('password') }}" id="password">
                         {{-- @error('password') --}}
                         <div class="invalid-feedback d-none">
@@ -335,7 +335,7 @@
                     url: '/admin/guru/validdate/nik/' + nik,
                     type: 'get',
                     success: function (response) {
-                        console.log(response);
+                        console.log(!response.validate_nik);
                         // $('#nik').closest('div').find('.invalid-feedback').val('');
                         if (response.validate_nik) { // jika jika ada erorrnya maka tampilkan eror
                             $('#nik').addClass('is-invalid');

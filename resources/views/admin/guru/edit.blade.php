@@ -49,9 +49,9 @@
                         <label for="">Jabatan :</label>
                         <select name="jabatan" class="form-control @error('jabatan') is-invalid @enderror" id="jabatan">
                             <option value="">-- Pilih Jabatan --</option>
-                            <option value="Guru" {{ (old('jabatan', $guru->jabatan) === 'Guru') ? 'selected' : '' }}>Guru
+                            <option value="guru" {{ (old('jabatan', $guru->jabatan) === 'Guru') ? 'selected' : '' }}>Guru
                             </option>
-                            <option value="Admin" {{ (old('jabatan', $guru->jabatan) === 'Admin') ? 'selected' : '' }}>
+                            <option value="admin" {{ (old('jabatan', $guru->jabatan) === 'Admin') ? 'selected' : '' }}>
                                 Admin</option>
                         </select>
                         {{-- @error('jabatan') --}}
