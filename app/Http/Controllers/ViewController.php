@@ -8,6 +8,8 @@ use App\Models\Guru;
 use App\Models\Jurusan;
 use App\Models\Kompetensi_dasar;
 use App\Models\User;
+use Illuminate\Routing\Route;
+use Illuminate\Support\Facades\App;
 
 class ViewController extends Controller
 {
@@ -47,7 +49,15 @@ class ViewController extends Controller
         $lk_4 = Bidang_keahlian::has('kompetensi_dasar')->whereIn('id',  $id_keahlian_materi)->where('id_guru', auth()->id())->count();
         $total = $lk_1 + $lk_2 + $lk_3 + $lk_4;
         $rpp = Bidang_keahlian::has('kompetensi_dasar')->whereIn('id',  $id_keahlian_rpp)->where('id_guru', auth()->id())->count();
-        
+
         return view('admin.dashboard', compact('user','jurusan','kd','lk_1', 'lk_2', 'lk_3', 'lk_4','total','rpp'));
+    }
+
+    public function SetLocale($language = '')
+    {
+        // Simpan locale ke session. nanti ini akna di akses di middleware role untuk setlocale nya.
+        request()->session()->put('locale', $language);
+        // App::setLocale($language); 
+        return redirect()->back();
     }
 }

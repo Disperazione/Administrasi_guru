@@ -8,8 +8,8 @@
         </div>
         <ul class="sidebar-menu">
             <li class="menu-header">Dashboard</li>
-            <li class="nav-item  @if(Request::is('admin/dashboard')) active @endif">
-                <a href="{{ route('admin.dashboard') }}" class="nav-link"><i
+            <li class="nav-item  @if(Request::route('admin.dashboard')) active @endif">
+                <a href="{{ route('admin.dashboard',['locale'=> app()->getlocale()]) }}" class="nav-link"><i
                         class="fas fa-fire"></i><span>Dashboard</span></a>
             </li>
             @if (Auth::user()->role == 'admin')
@@ -24,11 +24,11 @@
                         class="fas fa-users"></i><span>Jurusan</span></a>
             </li>
             @endif
-            {{-- <li class="  @if(Request::is('admin/kompetensi_dasar','admin/kompetensi_dasar/*')) active @endif">
+            <li class="  @if(Request::is('admin/kompetensi_dasar','admin/kompetensi_dasar/*')) active @endif">
                 <a href="{{ route('admin.kompetensi_dasar.index') }}" class="nav-link "><i
                 class="fas fa-users"></i><span>Kd</span></a>
-            </li> --}}
-            @endif
+            </li>
+           @endif 
             @if (Auth::user()->role == 'guru')
             <li class="menu-header">Lembar kerja</li>
             <li class="  @if(Request::is('admin/kompetensi_dasar','admin/kompetensi_dasar/*')) active @endif">

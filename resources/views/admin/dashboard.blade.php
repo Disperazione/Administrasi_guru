@@ -3,7 +3,7 @@
 
 @endpush
 @section('title', 'SIFOS | Dashboard')
-@section('judul','Dashboard')
+@section('judul', __('Dashboard'))
 @section('breadcrump')
 {{-- breadcrump here --}}
 @endsection

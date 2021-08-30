@@ -14,6 +14,7 @@ use App\Http\Controllers\admin\lembar_kerja\LembarKerjaEmpat as LK4;
 use App\Http\Controllers\admin\lembar_kerja\RPPController as RPP;
 use App\Http\Controllers\PDF\PDFController;
 use App\Http\Controllers\ViewController;
+use Illuminate\Support\Facades\App;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,6 +43,7 @@ cara ngeliat route di resource make php artisan route:list
 
 Route::prefix('admin')->name('admin.')->middleware(['auth', 'roles:admin,guru'])->group(function () {
     Route::get('/dashboard', [ViewController::class, 'dashboard'])->name('dashboard');
+    Route::get('/lang/{language}',[ViewController::class,'SetLocale'])->name('locale'); // untuk mengubah locale
 });
 
 // admin
@@ -59,6 +61,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth','roles:admin'])->grou
 // guru
 Route::prefix('admin')->name('admin.')->middleware(['auth','roles:guru'])->group(function () {
     Route::resource('kompetensi_dasar', Kompetensi_dasarController::class);
+
     Route::resource('Lembar-kerja-1', LK1::class);
     Route::resource('Lembar-kerja-2', LK2::class);
     Route::resource('Lembar-kerja-3', LK3::class);

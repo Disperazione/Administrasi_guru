@@ -3,10 +3,10 @@
 
 @endpush
 @section('title', 'SIFOS | Table Guru')
-@section('judul','Table Guru')
+@section('judul', __('app.guru.name'))
 @section('breadcrump')
     <div class="breadcrumb-item active"><a href="{{ route('admin.dashboard') }}">Dashboard</a></div>
-    <div class="breadcrumb-item">Table Guru</div>
+    <div class="breadcrumb-item">{{ __('app.guru.name') }}</div>
 @endsection
 @section('main')
  @if (session('berhasil'))

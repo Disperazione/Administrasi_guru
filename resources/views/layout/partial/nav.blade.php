@@ -9,7 +9,21 @@
                     </ul>
                 </form>
                 <ul class="navbar-nav navbar-right">
-                    <li class="dropdown"><a href="#" data-toggle="dropdown"
+                    <li class="dropdown mt-1"><a href="#" data-toggle="dropdown"
+                            class="nav-link dropdown-toggle nav-link-lg nav-link-user">
+                            {{-- <img alt="image" src="../assets/img/avatar/avatar-1.png" class="rounded-circle mr-1"> --}}
+                            <div class="d-sm-none d-lg-inline-block">{{ __('bahasa') }}</div>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a href="{{  route('admin.locale',['language'=> 'id']) }}" class="dropdown-item has-icon text-dark" id="bahasa" data-bahasa="id">
+                                Bahasa Indonesia
+                            </a>
+                            <a href="{{  route('admin.locale',['language'=>'en']) }}" class="dropdown-item has-icon text-dark" id="bahasa" data-bahasa="en">
+                                Bahasa Ingris
+                            </a>
+                        </div>
+                    </li>
+                    <li class="dropdown mt-1"><a href="#" data-toggle="dropdown"
                             class="nav-link dropdown-toggle nav-link-lg nav-link-user">
                             {{-- <img alt="image" src="../assets/img/avatar/avatar-1.png" class="rounded-circle mr-1"> --}}
                             <div class="d-sm-none d-lg-inline-block">{{ Auth::user()->guru->name }}</div>
