@@ -46,6 +46,12 @@
                                 <label>Mata Pelajaran</label>
                                 <input type="text" name="mapel" class="form-control input_rp mapel" disabled>
                             </div>
+                            
+                            
+                        </div>
+    
+                        {{-- card col 2 --}}
+                        <div class="col-6">
                             <div class="mb-3 col-lg-10">
                                 <label>Jam Pembelajaran</label>
                                 <input type="text" name="jam" class="form-control input_rp jam" disabled>
@@ -58,56 +64,151 @@
                                 <label>KD Pengetahuan</label>
                                 <input type="text" name="pengetahuan" class="form-control input_rp pengetahuan" disabled>
                             </div>
-                            
                         </div>
-    
-                        {{-- card col 2 --}}
-                        <div class="col-6">
-                            {{-- bekerja --}}
-                            <div class="mb-3 col-lg-10" id="namaperusahaan" >
-                                <label>Nama Perusahaan</label>
-                                <div class="mb-3">
-                                    <input type="text" name="nama_perusahaan" id="valid_namaperusahaan"
-                                        class="form-control @error('valid_namaperusahaan')  is-invalid  @enderror form-control"
-                                        value="">
-                                    <div id="invalid_namaperusahaan" class="invalid-feedback d-none"></div>
-                                </div>
-                            </div>
-                            <div class="mb-3 col-lg-10" id="alamatperusahaan" >
-                                <label>Alamat Perusahaan</label>
-                                <div class="mb-3">
-                                    <input type="text" name="alamat_perusahaan" id="valid_alamatperusahaan"
-                                        class="form-control @error('valid_alamatperusahaan')  is-invalid  @enderror form-control"
-                                        value="">
-                                    <div id="invalid_alamatperusahaan" class="invalid-feedback d-none"></div>
-                                </div>
-                            </div>
-                            <div class="mb-3 col-lg-10" id="tahunkuliah" >
-                                <label>Tahun Masuk Kuliah</label>
-                                <div class="mb-3">
-                                    <input type="text" name="tahun_kuliah" id="valid_tahunkuliah"
-                                        class="form-control @error('valid_tahunkuliah')  is-invalid  @enderror form-control"
-                                        value="">
-                                    <div id="invalid_tahunkuliah" class="invalid-feedback d-none"></div>
-                                </div>
-                            </div>
-                            {{-- tutup --}}
-    
-                    <div class="row">
-                        <a class="btn btn-danger ml-auto mr-3 text-white mt-3 mb-3" id="kembali">kembali
-                        </a>
-                        <button type="submit" id="cek_submit" class="text-white mr-3 btn btn-success mt-3 mb-3">
-                            <i class="fas fa-check"></i> Submit
-                        </button>
                     </div>
+
+                    <div class="fields_rpp">
+                <div class="card card-primary" style="box-shadow: 0 4px 15px 0 rgba(0,0,0,0.2);">
+                    <div class="card-header">
+                        <h4>RPP</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="form-group col-sm-4">
+                                <label>IPK KD Pengetahuan</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">
+                                            <i class="far fa-sticky-note"></i>
+                                        </div>
+                                    </div>
+                                    <input type="text" id="" class="form-control" >
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-4">
+                              <label>IPK KD Keterampilan</label>
+                              <div class="input-group">
+                                  <div class="input-group-prepend">
+                                      <div class="input-group-text">
+                                          <i class="far fa-sticky-note"></i>
+                                      </div>
+                                  </div>
+                                  <input type="text" id="" class="form-control" >
+                              </div>
+                            </div>
+                            <div class="form-group col-sm-4">
+                                <label>Pertemuan</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">
+                                            <i class="far fa-sticky-note"></i>
+                                        </div>
+                                    </div>
+                                    <input type="text" id="" class="form-control" >
+                                </div>
+                              </div>
+
+                              {{-- <div class="" style="margin-top: 32px;">
+                                <button class="btn btn-danger removebtn_rpp"><i class="fas fa-times"></i></button>
+                            </div> --}}
+                              
+                        </div>
+
+
+                    </div>
+                </div>
             </div>
-        </div>
-        </form>
+            <div class="row">
+              <button class="btn btn-success btn-block addbtn_rpp" >Fields <i class="fas fa-plus"></i></button>
+              </div>
+              <div class="row">
+                <div class="col-sm-12">
+                    <div class="card-body">
+                        <div class="modal-footer">
+                            <button class="btn btn-primary">Submit</button>
+                            <a href="" class="btn btn-danger">Cancel</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+                </form>
     </div>
     </div>
     </div>
 @endsection
 @push('js')
+
+<script>
+     $(document).ready(function() {
+        var max_fields      = 10;
+        var wrapper   		= $(".fields_rpp");
+        var add_button      = $(".addbtn_rpp");
+
+        var x = 1;
+        var y = 17;
+        $(add_button).click(function(e){
+            e.preventDefault();
+            if(x < max_fields){ //max input box allowed
+                x++; //text box increment
+                y++;
+                $(wrapper).append( '<div class="card card-primary" style="box-shadow: 0 4px 15px 0 rgba(0,0,0,0.2);">'+
+                    '<div class="card-header">'+
+                        '<h4>RPP</h4>'+
+                    '</div>'+
+                    '<div class="card-body">'+
+                        '<div class="row">'+
+                            '<div class="form-group col-sm-4">'+
+                                '<label>IPK KD Pengetahuan</label>'+
+                                '<div class="input-group">'+
+                                    '<div class="input-group-prepend">'+
+                                        '<div class="input-group-text">'+
+                                            '<i class="far fa-sticky-note"></i>'+
+                                        '</div>'+
+                                    '</div>'+
+                                    '<input type="text" id="" class="form-control" >'+
+                                '</div>'+
+                            '</div>'+
+                            '<div class="form-group col-sm-4">'+
+                              '<label>IPK KD Keterampilan</label>'+
+                              '<div class="input-group">'+
+                                  '<div class="input-group-prepend">'+
+                                      '<div class="input-group-text">'+
+                                          '<i class="far fa-sticky-note"></i>'+
+                                      '</div>'+
+                                  '</div>'+
+                                  '<input type="text" id="" class="form-control" >'+
+                              '</div>'+
+                            '</div>'+
+                            '<div class="form-group col-sm-4">'+
+                                '<label>Pertemuan</label>'+
+                                '<div class="input-group">'+
+                                    '<div class="input-group-prepend">'+
+                                        '<div class="input-group-text">'+
+                                            '<i class="far fa-sticky-note"></i>'+
+                                        '</div>'+
+                                    '</div>'+
+                                    '<input type="text" id="" class="form-control" >'+
+                                '</div>'+
+                              '</div>'+
+                        '</div>'+
+                        '<div class="" style="margin-top: 32px;">'+
+                                '<button class="btn btn-danger removebtn_rpp"><i class="fas fa-times"></i></button>'+
+                            '</div>'+
+
+
+                    '</div>'+
+                '</div>');
+            }
+        });
+
+        $(wrapper).on("click",".removebtn_rpp", function(e){ //user click on remove text
+            e.preventDefault(); $(this).parent('div').parent('div').parent('div').remove(); x--;
+        })
+    });
+</script>
+
+
 
 <script type='text/javascript'>
     $(document).ready(function () {
