@@ -21,16 +21,15 @@
     @endif
 <div class="card pt-3">
     <div class="card-body">
-     <table class="table table-striped table-hover text-center" id="table-1">
+    <table class="table table-striped table-hover text-center" id="table-1">
         <thead>
             <tr>
                 <th>#</th>
                 <th>Mapel</th>
                 <th>Bidang Studi</th>
                 <th>Kompetensi Keahlian</th>
-                <th>Kelas</th>
-                <th>Jam Pelajaran</th>
-                <th>Total Jam</th>
+                <th>status</th>
+                <th>Upload Cloud</th>
                 <th style="width: 130px;">Action</th>
             </tr>
         </thead>

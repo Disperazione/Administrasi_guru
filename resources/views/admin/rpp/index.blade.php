@@ -25,13 +25,12 @@
         <thead>
             <tr>
                 <th>#</th>
-                 @if (Auth::user()->role == 'admin')
-                    <th>Nama guru</th>
-                @endif
-                    <th>mapel</th>
-                <th>Bidang Studi</th>
-                 <th>kd pengetahuan</th>
+                <th>mapel</th>
+                <th>Kompetensi Keahlian</th>
+                <th>kd pengetahuan</th>
                 <th>kd krampilan</th>
+                <th>status</th>
+                <th>Upload Cloud</th>
                 <th>action</th>
             </tr>
         </thead>

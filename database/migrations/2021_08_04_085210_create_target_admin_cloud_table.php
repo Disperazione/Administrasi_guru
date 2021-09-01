@@ -16,8 +16,11 @@ class CreateTargetAdminCloudTable extends Migration
         Schema::create('admin_cloud', function (Blueprint $table) {
             $table->id();
             $table->string('nama');
+            $table->string('jenis');
+            $table->enum('status',['kosong','pending','acc','tolak','pending_2'])->default('kosong');
             $table->string('path');
             $table->foreignId('id_guru')->constrained('guru')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('id_bidang_keahlian')->constrained('bidang_keahlian')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

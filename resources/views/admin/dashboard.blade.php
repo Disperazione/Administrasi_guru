@@ -137,10 +137,52 @@
         </a>
     </div>
 </div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="card-header">
+                    <h4>Last Uploded File</h3>
+                </div>
+            <table class="table table-bordered" id="Table-1">
+            <thead>
+                <th>#</th>
+                <th>judul</th>
+                <th>mapel</th>
+                <th>bidang studi</th>
+                <th>Tanggal dibuat</th>
+                <th>Action</th>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+            </div>
+        </div>
+    </div>
+</div>
 @endif
+
 {{-- harus make ini --}}
 <span data-role="{{ Auth::user()->role }}"></span>
 @endsection
 @push('js')
-
+<script>
+    $('#Table-1').DataTable({
+        serverside: true,
+        processing: true,
+        ajax : {
+            url: '/admin/dashboard/admin_cloud/view',
+            methods: 'get',
+        },
+        columns: [
+        {name: 'DT_RowIndex',data:'DT_RowIndex'},
+        {name: 'judul',data:'judul'},
+        {name: 'mapel',data:'mapel'},
+        {name:'kompetensi_keahlian', data:'kompetensi_keahlian'},
+        {name: 'tanggal_dibuat',data:'tanggal_dibuat'},
+        {name: 'action',data:'action'},
+        ]
+    });
+</script>
 @endpush

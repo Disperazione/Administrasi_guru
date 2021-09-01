@@ -13,26 +13,14 @@ $(document).ready(function () {
                     { data: 'mapel',name:'mapel'},
                     { data: 'bidang_studi', name:'bidang_studi'},
                     { data: 'kompetensi_keahlian', name:'kompetensi_keahlian'},
-                    { data: 'kelas', name:'kelas'},
-                    { data: 'jam_pelajaran', name:'jam_pelajaran'},
-                    { data: 'total_waktu_jam_pelajaran',name:'total_waktu_jam_pelajaran'},
+                    {data: 'status', name:'status'},
+                    {data: 'btn_upload', name:'btn_upload'},
+                    // { data: 'kelas', name:'kelas'},
+                    // { data: 'jam_pelajaran', name:'jam_pelajaran'},
+                    // { data: 'total_waktu_jam_pelajaran',name:'total_waktu_jam_pelajaran'},
                     { data: 'action',name:'action'}
                 ];
             break;
-        case 'admin':
-                return [
-                        { data: 'DT_RowIndex', name: 'DT_RowIndex'},
-                        {data:'guru', name: 'guru'},
-                           { data: 'mapel',name:'mapel'},
-                        { data: 'bidang_studi', name:'bidang_studi'},
-                        { data: 'kompetensi_keahlian', name:'kompetensi_keahlian'},
-                        { data: 'kelas', name:'kelas'},
-                        { data: 'jam_pelajaran', name:'jam_pelajaran'},
-
-                        { data: 'total_waktu_jam_pelajaran',name:'total_waktu_jam_pelajaran'},
-                        { data: 'action',name:'action'}
-                    ];
-                break;
         }
     }
 
@@ -58,8 +46,8 @@ $(document).ready(function () {
         columns:column(role),
     });
 $('.btn-table').append('<a href="'+root+'/admin/Lembar-kerja-1/create" class="btn btn-primary">Tambah Data +</a>');
-  $('#table-1_filter').prepend('<a href="'+root+'/admin/export/excel/kompetensi_dasar"class="btn btn-success mr-3  ml-2"> Excel <i class="fas fa-cloud-download-alt"></i></button></a>'
-    );
+$('#table-1_filter').prepend('<a href="'+root+'/admin/export/excel/kompetensi_dasar"class="btn btn-success mr-3  ml-2"> Excel <i class="fas fa-cloud-download-alt"></i></button></a>'
+);
     $('body').on('click','#hapus', function () {
 // sweet alert
     Swal.fire({
@@ -94,4 +82,38 @@ $('.btn-table').append('<a href="'+root+'/admin/Lembar-kerja-1/create" class="bt
         } else if (result.dismiss === Swal.DismissReason.cancel) {}
     })
 });
+$('body').on('click','#upload', function (e) {
+    e.preventDefault();
+    Swal.fire({
+    title: 'Apa anda yakin?',
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonText: 'Ya',
+    cancelButtonText: 'Tidak'
+    }).then((result) => {
+        if (result.value) {
+            id = $(this).data('id');
+            $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    url: root+"/admin/upload/cloud",
+                    type: "POST",
+                    data: { name:'LK.01 Target Pembelajaran' ,id_bidang:id , jenis:'LK1',url:'/admin/lk_1/'+id+'/pdf'},
+                    success: function (reponse) {
+                        console.log(reponse);
+                        table.draw();
+                        Swal.fire(
+                            'success',
+                            'Data anda berhasil di upload.',
+                            'success'
+                        )
+                    },
+                    error: function (data) {
+                        console.log('Error:', data);
+                    }
+            });
+        } else if (result.dismiss === Swal.DismissReason.cancel) {}
+    })
+})
 })

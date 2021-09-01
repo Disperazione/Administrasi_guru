@@ -5,79 +5,82 @@ $(document).ready(function () {
     role = $('#data').data('role');
 
     // untuk column nya
-    function column(role)
-    {
+    function column(role) {
         switch (role) {
-        case 'guru':
-            return [
-                    { data: 'DT_RowIndex', name: 'DT_RowIndex'},
-                    { data: 'mapel',name:'mapel'},
-                    { data: 'bidang_studi', name:'bidang_studi'},
-                    { data: 'kompetensi_keahlian', name:'kompetensi_keahlian'},
-                    { data: 'kelas', name:'kelas'},
-                    { data: 'jam_pelajaran', name:'jam_pelajaran'},
-                    { data: 'total_waktu_jam_pelajaran',name:'total_waktu_jam_pelajaran'},
-                    { data: 'action',name:'action'}
+            case 'guru':
+                return [{
+                        data: 'DT_RowIndex',
+                        name: 'DT_RowIndex'
+                    },
+                    {
+                        data: 'mapel',
+                        name: 'mapel'
+                    },
+                    {
+                        data: 'bidang_studi',
+                        name: 'bidang_studi'
+                    },
+                    {
+                        data: 'kompetensi_keahlian',
+                        name: 'kompetensi_keahlian'
+                    },
+                    {
+                        data: 'status',
+                        name: 'kelas'
+                    },
+                    {
+                        data: 'btn_upload',
+                        name: 'btn_upload'
+                    },
+                    {
+                        data: 'action',
+                        name: 'action'
+                    }
                 ];
-            break;
-        case 'admin':
-                return [
-                        { data: 'DT_RowIndex', name: 'DT_RowIndex'},
-                        {data:'guru', name: 'guru'},
-                        //  { data: 'mapel',name:'mapel'},
-                        { data: 'bidang_studi', name:'bidang_studi'},
-                        { data: 'kelas', kelas:'kelas'},
-                        { data: 'jam_pelajaran', name:'jam_pelajaran'},
-
-                        { data: 'total_waktu_jam_pelajaran',name:'total_waktu_jam_pelajaran'},
-                        { data: 'action',name:'action'}
-                    ];
                 break;
         }
     }
 
     var table = $('#table-1').DataTable({
-        dom:
-           "<'row'<'ol-sm-12 col-md-6 btn-table'><'col-sm-12 col-md-6  pdf-button'f>>" +
-        "<'row'<'col-sm-12'tr>>" +
-        "<'row'<'col-sm-5'i><'col-sm-3'l><'col-sm-4'p>>",
+        dom: "<'row'<'ol-sm-12 col-md-6 btn-table'><'col-sm-12 col-md-6  pdf-button'f>>" +
+            "<'row'<'col-sm-12'tr>>" +
+            "<'row'<'col-sm-5'i><'col-sm-3'l><'col-sm-4'p>>",
         bLengthChange: true,
-        ordering:false,
+        ordering: false,
         info: true,
-        filtering:true,
+        filtering: true,
         searching: true,
         serverside: true,
         processing: true,
         serverSide: true,
         "responsive": true,
         "autoWidth": false,
-        ajax:{
-        url: root + "/admin/Lembar-kerja-2",
-        type: "get",
+        ajax: {
+            url: root + "/admin/Lembar-kerja-2",
+            type: "get",
         },
         columns: column(role),
     });
-    $('.btn-table').append('<a href="'+root+'/admin/Lembar-kerja-2/create" class="btn btn-primary">Tambah Data +</a>');
-      $('#table-1_filter').prepend('<a href="'+root+'/admin/export/excel/kompetensi_dasar"class="btn btn-success mr-3  ml-2"> Excel <i class="fas fa-cloud-download-alt"></i></button></a>'
-    );
-    $('body').on('click','#hapus', function () {
-// sweet alert
-    Swal.fire({
-    title: 'Apa anda yakin?',
-    icon: 'warning',
-    showCancelButton: true,
-    confirmButtonText: 'Hapus',
-    cancelButtonText: 'Batal'
-    }).then((result) => {
-        if (result.value) {
-            id = $(this).data('id');
-            $.ajax({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                    url: root+"/admin/Lembar-kerja-2/"+ id,
+    $('.btn-table').append('<a href="' + root + '/admin/Lembar-kerja-2/create" class="btn btn-primary">Tambah Data +</a>');
+    $('#table-1_filter').prepend('<a href="' + root + '/admin/export/excel/kompetensi_dasar"class="btn btn-success mr-3  ml-2"> Excel <i class="fas fa-cloud-download-alt"></i></button></a>');
+    $('body').on('click', '#hapus', function () {
+        // sweet alert
+        Swal.fire({
+            title: 'Apa anda yakin?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Hapus',
+            cancelButtonText: 'Batal'
+        }).then((result) => {
+            if (result.value) {
+                id = $(this).data('id');
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    url: root + "/admin/Lembar-kerja-2/" + id,
                     type: "DELETE",
-                    data:'',
+                    data: '',
                     success: function (data) {
                         console.log(data);
                         table.draw();
@@ -90,8 +93,46 @@ $(document).ready(function () {
                     error: function (data) {
                         console.log('Error:', data);
                     }
-            });
-        } else if (result.dismiss === Swal.DismissReason.cancel) {}
+                });
+            } else if (result.dismiss === Swal.DismissReason.cancel) {}
+        })
+    });
+    $('body').on('click', '#upload', function (e) {
+        e.preventDefault();
+        Swal.fire({
+            title: 'Apa anda yakin?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Ya',
+            cancelButtonText: 'Tidak'
+        }).then((result) => {
+            if (result.value) {
+                id = $(this).data('id');
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    url: root + "/admin/upload/cloud",
+                    type: "POST",
+                    data: {
+                        name: 'LK.02 Strategi Pembelajaran',
+                        id_bidang: id,
+                        jenis: 'LK2',
+                    },
+                    success: function (reponse) {
+                        console.log(reponse);
+                        table.draw();
+                        Swal.fire(
+                            'success',
+                            'Data anda berhasil di upload.',
+                            'success'
+                        )
+                    },
+                    error: function (data) {
+                        console.log('Error:', data);
+                    }
+                });
+            } else if (result.dismiss === Swal.DismissReason.cancel) {}
+        })
     })
-});
 })

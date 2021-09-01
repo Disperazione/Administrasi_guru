@@ -8,43 +8,29 @@ $(document).ready(function () {
     function column(role) {
         switch (role) {
             case 'guru':
-                return [{data: 'DT_RowIndex', name: 'DT_RowIndex'},
-                    { data: 'mapel',name:'mapel'},
-                    { data: 'bidang_studi', name:'bidang_studi'},
-                    { data: 'kompetensi_keahlian', name:'kompetensi_keahlian'},
-                    { data: 'kelas', name:'kelas'},
-                    { data: 'jam_pelajaran', name:'jam_pelajaran'},
-                    { data: 'total_waktu_jam_pelajaran',name:'total_waktu_jam_pelajaran'},
-                    { data: 'action',name:'action'}];
-                break;
-            case 'admin':
                 return [{
                         data: 'DT_RowIndex',
                         name: 'DT_RowIndex'
                     },
                     {
-                        data: 'guru',
-                        name: 'guru'
+                        data: 'mapel',
+                        name: 'mapel'
                     },
-                    // {
-                    //     data: 'mapel',
-                    //     name: 'mapel'
-                    // },
                     {
                         data: 'bidang_studi',
                         name: 'bidang_studi'
                     },
                     {
-                        data: 'kelas',
-                        name: 'kelas'
+                        data: 'kompetensi_keahlian',
+                        name: 'kompetensi_keahlian'
                     },
                     {
-                        data: 'jam_pelajaran',
-                        name: 'jam_pelajaran'
+                        data: 'status',
+                        name: 'status'
                     },
                     {
-                        data: 'total_waktu_jam_pelajaran',
-                        name: 'total_waktu_jam_pelajaran'
+                        data: 'btn_upload',
+                        name: 'btn_upload'
                     },
                     {
                         data: 'action',
@@ -110,4 +96,43 @@ $(document).ready(function () {
             } else if (result.dismiss === Swal.DismissReason.cancel) {}
         })
     });
+    $('body').on('click', '#upload', function (e) {
+        e.preventDefault();
+        Swal.fire({
+            title: 'Apa anda yakin?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Ya',
+            cancelButtonText: 'Tidak'
+        }).then((result) => {
+            if (result.value) {
+                id = $(this).data('id');
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    url: root + "/admin/upload/cloud",
+                    type: "POST",
+                    data: {
+                        name: 'LK.04 Materi Bahan Ajar',
+                        id_bidang: id,
+                        jenis: 'LK4',
+                        url: '/admin/lk_4/' + id + '/pdf'
+                    },
+                    success: function (reponse) {
+                        console.log(reponse);
+                        table.draw();
+                        Swal.fire(
+                            'success',
+                            'Data anda berhasil di upload.',
+                            'success'
+                        )
+                    },
+                    error: function (data) {
+                        console.log('Error:', data);
+                    }
+                });
+            } else if (result.dismiss === Swal.DismissReason.cancel) {}
+        })
+    })
 })

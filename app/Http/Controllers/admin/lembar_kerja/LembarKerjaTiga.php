@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\admin\lembar_kerja;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin_cloud;
 use App\Models\Bidang_keahlian;
 use App\Models\Indikator_ketercapaian;
 use App\Models\Kompetensi_dasar;
@@ -35,7 +36,58 @@ class LembarKerjaTiga extends Controller
                 ->addColumn('guru', function ($data) {
                     return $data->guru->name;
                 })
-
+                ->addColumn('status', function ($data) {
+                    $jenis = $data->admin_cloud()->where('jenis', 'LK3')->first();
+                    switch ($jenis->status) {
+                        case 'pending':
+                            return "<span class='badge badge-pill badge-primary'>$jenis->status</span>";
+                            break;
+                        case 'acc':
+                            $badge = "<span class='badge badge-pill badge-success'>$jenis->status</span>";
+                            if (!empty($jenis->komentar_cloud)) {
+                                $badge .= " <a href='' class='btn btn-primary text-white'><i class='fas fa-comments'></i></a>";
+                            }
+                            return $badge;
+                            break;
+                        case 'tolak':
+                            $badge = "<span class='badge badge-pill badge-danger'>$jenis->status</span>";
+                            if (!empty($jenis->komentar_cloud)) {
+                                $badge .= " <a href='' class='btn btn-primary text-white'><i class='fas fa-comments'></i></a>";
+                            }
+                            return  $badge;
+                            break;
+                        case 'pending_2':
+                            $badge = "<span class='badge badge-pill badge-primary'>pending</span>";
+                            if (!empty($jenis->komentar_cloud)) {
+                                $badge .= " <a href='' class='btn btn-primary text-white'><i class='fas fa-comments'></i></a>";
+                            }
+                            return $badge;
+                            break;
+                        case 'kosong':
+                            return "<span class='badge badge-pill badge-secondary'>$jenis->status</span>";
+                            break;
+                    }
+                })
+                ->addColumn('btn_upload', function ($data) {
+                    $jenis = $data->admin_cloud()->where('jenis', 'LK3')->first();
+                    switch ($jenis->status) {
+                        case 'pending':
+                            return '<a type="button" id="upload"   data-id="' . $data->id . '" class="btn btn-success text-white btn-sm disabled">Sudah di upload</i></a>';
+                            break;
+                        case 'acc':
+                            return '<a type="button" id="upload"   data-id="' . $data->id . '" class="btn btn-success text-white btn-sm disabled">Sudah di terima</i></a>';
+                            break;
+                        case 'tolak':
+                            return '<a type="button" id="upload"   data-id="' . $data->id . '" class="btn btn-success text-white btn-sm">Upload to Cloud</i></a>';
+                            break;
+                        case 'pending_2':
+                            return '<a type="button" id="upload"   data-id="' . $data->id . '" class="btn btn-success text-white btn-sm disabled">Sudah di upload</i></a>';
+                            break;
+                        case 'kosong':
+                            return '<a type="button" id="upload"   data-id="' . $data->id . '" class="btn btn-success text-white btn-sm">Upload to Cloud</i></a>';
+                            break;
+                    }
+                })
                 ->addColumn('kompetensi_keahlian', function ($data) {
                     $singkatan_badge = [];
                     foreach ($data->jurusan as $jurusan) {
@@ -59,7 +111,7 @@ class LembarKerjaTiga extends Controller
                     $button .= '<button type="button" name="delete" id="hapus" data-id="' . $data->id . '" class="delete btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>';
                     return $button;
                 })
-                ->rawColumns(['action', 'kompetensi_keahlian'])
+                ->rawColumns(['action', 'kompetensi_keahlian','status','btn_upload'])
                 ->addIndexColumn()->make(true);
         }
         return view('admin.lembar_kerja_tiga.index');
@@ -142,6 +194,7 @@ class LembarKerjaTiga extends Controller
         foreach ($kd as $key => $value) {
             $value->indikator_ketercapaian->delete();
         }
+        Admin_cloud::where('id_bidang_keahlian', $id)->where('jenis', "LK3")->delete();
         return response()->json($data = 'berhasil');
     }
 }

@@ -28,9 +28,8 @@
                 <th>Mapel</th>
                 <th>Bidang Studi</th>
                 <th>Kompetensi Keahlian</th>
-                <th>Kelas</th>
-                <th>Jam Pelajaran</th>
-                <th>Total Jam</th>
+                <th>status</th>
+                <th>Upload Cloud</th>
                 <th style="width: 130px;">Action</th>
             </tr>
         </thead>

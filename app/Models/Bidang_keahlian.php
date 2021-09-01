@@ -40,5 +40,9 @@ class Bidang_keahlian extends Model
     {
         return $this->hasOne(Lembar_kerja::class, 'id_bidang_keahlian','id'); // foreign , owner
     }
+    public function admin_cloud()
+    {
+        return $this->hasMany(admin_cloud::class, 'id_bidang_keahlian','id');
+    }
 
 }

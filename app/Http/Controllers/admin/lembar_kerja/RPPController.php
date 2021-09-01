@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin\lembar_kerja;
 
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
+use App\Models\Admin_cloud;
 use App\Models\Bidang_keahlian;
 use App\Models\Kompetensi_dasar;
 use Illuminate\Http\Request;
@@ -33,12 +34,71 @@ class RPPController extends Controller
                 ->addColumn('mapel', function ($data) {
                     return $data->bidang_keahlian->mapel;
                 })
-
+                ->addColumn('status', function ($data) {
+                                        // ini ngambil dari hasmany 1:3 bidang -> cloud
+                    $jenis = $data->bidang_keahlian->admin_cloud()->where('jenis', "RPP kd $data->kd_pengetahuan & kd $data->kd_ketrampilan")->first();
+                    switch ($jenis->status) {
+                        case 'pending':
+                            return "<span class='badge badge-pill badge-primary'>$jenis->status</span>";
+                            break;
+                        case 'acc':
+                            $badge = "<span class='badge badge-pill badge-success'>$jenis->status</span>";
+                            if (!empty($jenis->komentar_cloud)) {
+                                $badge .= " <a href='' class='btn btn-primary text-white'><i class='fas fa-comments'></i></a>";
+                            }
+                            return $badge;
+                            break;
+                        case 'tolak':
+                            $badge = "<span class='badge badge-pill badge-danger'>$jenis->status</span>";
+                            if (!empty($jenis->komentar_cloud)) {
+                                $badge .= " <a href='' class='btn btn-primary text-white'><i class='fas fa-comments'></i></a>";
+                            }
+                            return  $badge;
+                            break;
+                        case 'pending_2':
+                            $badge = "<span class='badge badge-pill badge-primary'>pending</span>";
+                            if (!empty($jenis->komentar_cloud)) {
+                                $badge .= " <a href='' class='btn btn-primary text-white'><i class='fas fa-comments'></i></a>";
+                            }
+                            return $badge;
+                            break;
+                        case 'kosong':
+                            return "<span class='badge badge-pill badge-secondary'>$jenis->status</span>";
+                            break;
+                    }
+                })
+                ->addColumn('btn_upload', function ($data) {
+                    $jenis =  $data->bidang_keahlian->admin_cloud()->where('jenis', "RPP kd $data->kd_pengetahuan & kd $data->kd_ketrampilan")->first();
+                    switch ($jenis->status) {
+                        case 'pending':
+                            return '<a type="button" id="upload"   data-id="' . $data->id . '" data-tittle="RPP kd '.$data->kd_pengetahuan.' & kd '.$data->kd_ketrampilan.'" class="btn btn-success text-white btn-sm disabled">Sudah di upload</i></a>';
+                            break;
+                        case 'acc':
+                            return '<a type="button" id="upload"   data-id="' . $data->id . '" data-tittle="RPP kd ' . $data->kd_pengetahuan . ' & kd ' . $data->kd_ketrampilan . '" class="btn btn-success text-white btn-sm disabled">Sudah di terima</i></a>';
+                            break;
+                        case 'tolak':
+                            return '<a type="button" id="upload"   data-id="' . $data->id . '" data-tittle="RPP kd ' . $data->kd_pengetahuan . ' & kd ' . $data->kd_ketrampilan . '" class="btn btn-success text-white btn-sm">Upload to Cloud</i></a>';
+                            break;
+                        case 'pending_2':
+                            return '<a type="button" id="upload"   data-id="' . $data->id . '" data-tittle="RPP kd ' . $data->kd_pengetahuan . ' & kd ' . $data->kd_ketrampilan . '" class="btn btn-success text-white btn-sm disabled">Sudah di upload</i></a>';
+                            break;
+                        case 'kosong':
+                            return '<a type="button" id="upload"   data-id="' . $data->id . '" data-tittle="RPP kd ' . $data->kd_pengetahuan . ' & kd ' . $data->kd_ketrampilan . '" class="btn btn-success text-white btn-sm">Upload to Cloud</i></a>';
+                            break;
+                    }
+                })
                 ->addColumn('guru', function ($data) {
                     return $data->bidang_keahlian->guru->name;
                 })
-                ->editColumn('bidang_studi', function ($data) {
-                    return $data->bidang_keahlian->lembar_kerja->RPP;
+                ->addColumn('kompetensi_keahlian', function ($data) {
+                    $singkatan_badge = [];
+                    foreach ($data->bidang_keahlian->jurusan as $jurusan) {
+                        $singkatan_badge[] .= "<span class='badge badge-pill badge-primary'>$jurusan->singkatan_jurusan</span>";
+                    }
+                    if (empty($singkatan_badge)) {
+                        return 'Jurusan koosng';
+                    }
+                    return implode(' ', $singkatan_badge);
                 })
                 ->addColumn('action', function ($data) {
                 $button = '<a href="' . $data->id . '"   id="' . $data->id . '" class="edit btn btn-danger text-white btn-sm"><i class="fas fa-file-pdf"></i></a>';
@@ -50,7 +110,7 @@ class RPPController extends Controller
                     $button .= '<button type="button" name="delete" id="hapus" data-id="' . $data->id . '" class="delete btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>';
                     return $button;
                 })
-                ->rawColumns(['action'])
+                ->rawColumns(['action','status','btn_upload', 'kompetensi_keahlian'])
                 ->addIndexColumn()->make(true);
         }
         return view('admin.rpp.index');
@@ -134,6 +194,7 @@ class RPPController extends Controller
     public function destroy($id)
     {
         $kd = Kompetensi_dasar::where('id', $id)->first();
+        Admin_cloud::where('id_bidang_keahlian',$kd->id_bidang_keahlian)->where('jenis', "RPP kd $kd->kd_pengetahuan & kd $kd->kd_ketrampilan")->delete();
         $kd->rencana_pelaksanaan_pembelajaran->delete();
         return response()->json($data = 'berhasil');
     }

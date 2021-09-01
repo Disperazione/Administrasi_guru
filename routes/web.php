@@ -1,6 +1,6 @@
 <?php
 
-
+use App\Http\Controllers\admin\CloudController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\admin\GuruController;
 use App\Http\Controllers\admin\JurusanController;
@@ -92,5 +92,9 @@ Route::prefix('admin')->name('admin.')->middleware(['auth','roles:guru'])->group
     Route::get('/excel/guru',[GuruController::class,'export'])->name('export.guru');
     Route::get('/excel/jurusan', [JurusanController::class, 'export'])->name('export.jurusan');
 
-
+    // cloud route
+    Route::post('/upload/cloud', [CloudController::class,'upload'])->name('upload.cloud');
+    Route::get('/dashboard/admin_cloud/view',[CloudController::class,'dashboard_view'])->name('dashboard.view');
+    Route::get('/cloud/download/{id}/pdf',[CloudController::class,'dashboard_download_file'])->name('dasboard_download_file');
+    Route::get('/cloud/view/{id}/pdf', [CloudController::class, 'dashboard_view_file'])->name('dasboard_view_file');
 });

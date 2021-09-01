@@ -18,11 +18,9 @@ $(document).ready(function () {
                         name: 'mapel'
                     },
                     {
-                        data: 'bidang_studi',
-                        name: 'bidang_studi'
+                        data: 'kompetensi_keahlian',
+                        name: 'kompetensi_keahlian'
                     },
-
-
                     {
                         data: 'kd_ketrampilan',
                         name: 'kd_ketrampilan'
@@ -31,6 +29,8 @@ $(document).ready(function () {
                         data: 'kd_pengetahuan',
                         name: 'kd_pengetahuan'
                     },
+                    { data: 'status', name:'status'},
+                    { data: 'btn_upload', name:'btn_upload'},
                     {
                         data: 'action',
                         name: 'action'
@@ -95,6 +95,40 @@ $(document).ready(function () {
                         console.log('Error:', data);
                     }
                 });
+            } else if (result.dismiss === Swal.DismissReason.cancel) {}
+        })
+    });
+    $("body").on('click','#upload',function(){
+        Swal.fire({
+            title: 'Apa anda yakin untuk upload file ini?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Ya',
+            cancelButtonText: 'Tidak'
+        }).then((result) => {
+            if (result.value) {
+                id = $(this).data('id');
+                tittle = $('#upload').data('tittle');
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    url: root+"/admin/upload/cloud",
+                    type: "POST",
+                    data: { name: 'RPP' ,id_bidang:id , jenis:tittle ,url:'/admin/lk_1/'+id+'/pdf'},
+                    success: function (reponse) {
+                        console.log(reponse);
+                        table.draw();
+                        Swal.fire(
+                            'success',
+                            'Data anda berhasil di upload.',
+                            'success'
+                        )
+                    },
+                    error: function (data) {
+                        console.log('Error:', data);
+                    }
+            });
             } else if (result.dismiss === Swal.DismissReason.cancel) {}
         })
     });
