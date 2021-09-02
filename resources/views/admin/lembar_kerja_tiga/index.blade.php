@@ -29,7 +29,7 @@
                 <th>Bidang Studi</th>
                 <th>Kompetensi Keahlian</th>
                 <th>status</th>
-                <th>Upload Cloud</th>
+                {{-- <th>Upload Cloud</th> --}}
                 <th style="width: 130px;">Action</th>
             </tr>
         </thead>

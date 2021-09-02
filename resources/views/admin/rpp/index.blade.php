@@ -30,7 +30,7 @@
                 <th>kd pengetahuan</th>
                 <th>kd krampilan</th>
                 <th>status</th>
-                <th>Upload Cloud</th>
+                
                 <th>action</th>
             </tr>
         </thead>

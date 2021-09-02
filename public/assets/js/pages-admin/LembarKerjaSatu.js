@@ -14,7 +14,7 @@ $(document).ready(function () {
                     { data: 'bidang_studi', name:'bidang_studi'},
                     { data: 'kompetensi_keahlian', name:'kompetensi_keahlian'},
                     {data: 'status', name:'status'},
-                    {data: 'btn_upload', name:'btn_upload'},
+                    // {data: 'btn_upload', name:'btn_upload'},
                     // { data: 'kelas', name:'kelas'},
                     // { data: 'jam_pelajaran', name:'jam_pelajaran'},
                     // { data: 'total_waktu_jam_pelajaran',name:'total_waktu_jam_pelajaran'},

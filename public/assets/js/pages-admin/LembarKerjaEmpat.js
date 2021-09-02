@@ -28,10 +28,10 @@ $(document).ready(function () {
                         data: 'status',
                         name: 'status'
                     },
-                    {
-                        data: 'btn_upload',
-                        name: 'btn_upload'
-                    },
+                    // {
+                    //     data: 'btn_upload',
+                    //     name: 'btn_upload'
+                    // },
                     {
                         data: 'action',
                         name: 'action'

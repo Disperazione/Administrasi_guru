@@ -69,24 +69,7 @@ class LembarKerjaTiga extends Controller
                     }
                 })
                 ->addColumn('btn_upload', function ($data) {
-                    $jenis = $data->admin_cloud()->where('jenis', 'LK3')->first();
-                    switch ($jenis->status) {
-                        case 'pending':
-                            return '<a type="button" id="upload"   data-id="' . $data->id . '" class="btn btn-success text-white btn-sm disabled">Sudah di upload</i></a>';
-                            break;
-                        case 'acc':
-                            return '<a type="button" id="upload"   data-id="' . $data->id . '" class="btn btn-success text-white btn-sm disabled">Sudah di terima</i></a>';
-                            break;
-                        case 'tolak':
-                            return '<a type="button" id="upload"   data-id="' . $data->id . '" class="btn btn-success text-white btn-sm">Upload to Cloud</i></a>';
-                            break;
-                        case 'pending_2':
-                            return '<a type="button" id="upload"   data-id="' . $data->id . '" class="btn btn-success text-white btn-sm disabled">Sudah di upload</i></a>';
-                            break;
-                        case 'kosong':
-                            return '<a type="button" id="upload"   data-id="' . $data->id . '" class="btn btn-success text-white btn-sm">Upload to Cloud</i></a>';
-                            break;
-                    }
+                   
                 })
                 ->addColumn('kompetensi_keahlian', function ($data) {
                     $singkatan_badge = [];
@@ -102,13 +85,35 @@ class LembarKerjaTiga extends Controller
                     return $data->lembar_kerja->Lk_3;
                 })
                 ->addColumn('action', function ($data) {
-                    $button = '<a href="/admin/lk_3/' . $data->id . '/pdf" class="edit btn btn-danger text-white btn-sm"><i class="fas fa-file-pdf"></i></a>';
+                    $jenis = $data->admin_cloud()->where('jenis', 'LK3')->first();
+                    switch ($jenis->status) {
+                        case 'pending':
+                            $button = '<a type="button" id="upload"   data-id="' . $data->id . '" class="btn btn-success text-white btn-sm disabled">Sudah di upload</i></a>';
+                            break;
+                        case 'acc':
+                            $button = '<a type="button" id="upload"   data-id="' . $data->id . '" class="btn btn-success text-white btn-sm disabled">Sudah di terima</i></a>';
+                            break;
+                        case 'tolak':
+                            $button = '<a type="button" id="upload"   data-id="' . $data->id . '" class="btn btn-success text-white btn-sm
+                            data-toggle="tooltip" data-placement="bottom" title="Uplod to cloud""><i class="fas fa-cloud-upload-alt"></i></a>';
+                            break;
+                        case 'pending_2':
+                            $button = '<a type="button" id="upload"   data-id="' . $data->id . '" class="btn btn-success text-white btn-sm disabled">Sudah di upload</i></a>';
+                            break;
+                        case 'kosong':
+                            $button = '<a type="button" id="upload"   data-id="' . $data->id . '" class="btn btn-success text-white btn-sm
+                            data-toggle="tooltip" data-placement="bottom" title="Uplod to cloud"><i class="fas fa-cloud-upload-alt"></i></a>';
+                            break;
+                    }
+
+
+                    $button .= '<a href="/admin/lk_3/' . $data->id . '/pdf" class="edit btn btn-danger text-white btn-sm ml-1"><i class="fas fa-file-pdf"></i></a>';
                     $button .= '&nbsp';
                     $button .= '<a href="/admin/Lembar-kerja-3/' . $data->id . '"   id="' . $data->id . '" class="edit btn btn-primary btn-sm"><i class="fas fa-search"></i></a>';
                     $button .= '&nbsp';
                     $button .= '<a  href="/admin/Lembar-kerja-3/' . $data->id . '/edit" id="edit" data-toggle="tooltip"  data-id="' . $data->id . '" data-original-title="Edit" class="edit btn btn-warning btn-sm edit-post"><i class="fas fa-pencil-alt"></i></a>';
                     $button .= '&nbsp';
-                    $button .= '<button type="button" name="delete" id="hapus" data-id="' . $data->id . '" class="delete btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>';
+                    $button .= '<button type="button" name="delete" id="hapus" data-id="' . $data->id . '" class="delete btn btn-danger btn-sm mt-1"><i class="fas fa-trash"></i></button>';
                     return $button;
                 })
                 ->rawColumns(['action', 'kompetensi_keahlian','status','btn_upload'])

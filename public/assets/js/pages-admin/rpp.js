@@ -30,7 +30,7 @@ $(document).ready(function () {
                         name: 'kd_pengetahuan'
                     },
                     { data: 'status', name:'status'},
-                    { data: 'btn_upload', name:'btn_upload'},
+                    
                     {
                         data: 'action',
                         name: 'action'

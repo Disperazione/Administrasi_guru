@@ -32,7 +32,7 @@
                 <th>Bidang Studi</th>
                 <th>Kompetensi Keahlian</th>
                 <th>status</th>
-                <th>Upload Cloud</th>
+                {{-- <th>Upload Cloud</th> --}}
                 {{-- <th>Kelas</th>
                 <th>Jam Pelajaran</th>
                 <th>Total Jam</th> --}}
