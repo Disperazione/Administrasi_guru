@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\admin\CloudController;
+use App\Http\Controllers\Cloud_adminController;
+use App\Http\Controllers\komentarController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\admin\GuruController;
 use App\Http\Controllers\admin\JurusanController;
@@ -56,6 +58,10 @@ Route::prefix('admin')->name('admin.')->middleware(['auth','roles:admin'])->grou
     Route::get('/guru/validdate/email/{email}', [GuruController::class, 'validated_email']);
     Route::get('/guru/validdate/nik/{id}/s/{name}/edit', [GuruController::class, 'validated_nik_edit']);
     Route::get('/guru/validdate/email/{id}/s/{email}/edit', [GuruController::class, 'validated_email_edit']);
+    // cloude route admin
+    Route::get('/cloud_admin',[Cloud_adminController::class,'cloud_admin'])->name('cloud.index');
+    // route komentar
+    Route::get('/komentar',[komentarController::class,'coment'])->name('komen.tambah');
 });
 
 // guru
@@ -92,9 +98,13 @@ Route::prefix('admin')->name('admin.')->middleware(['auth','roles:guru'])->group
     Route::get('/excel/guru',[GuruController::class,'export'])->name('export.guru');
     Route::get('/excel/jurusan', [JurusanController::class, 'export'])->name('export.jurusan');
 
-    // cloud route
+    // cloud route guru
     Route::post('/upload/cloud', [CloudController::class,'upload'])->name('upload.cloud');
     Route::get('/dashboard/admin_cloud/view',[CloudController::class,'dashboard_view'])->name('dashboard.view');
     Route::get('/cloud/download/{id}/pdf',[CloudController::class,'dashboard_download_file'])->name('dasboard_download_file');
     Route::get('/cloud/view/{id}/pdf', [CloudController::class, 'dashboard_view_file'])->name('dasboard_view_file');
+   
+
+    
+   
 });
