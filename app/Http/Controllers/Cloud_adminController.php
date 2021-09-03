@@ -14,4 +14,9 @@ class Cloud_adminController extends Controller
     {
         return view('admin.cloud.index');
     }
+
+    public function table()
+    {
+        return view('admin.cloud.table');
+    }
 }

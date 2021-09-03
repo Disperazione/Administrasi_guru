@@ -60,6 +60,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth','roles:admin'])->grou
     Route::get('/guru/validdate/email/{id}/s/{email}/edit', [GuruController::class, 'validated_email_edit']);
     // cloude route admin
     Route::get('/cloud_admin',[Cloud_adminController::class,'cloud_admin'])->name('cloud.index');
+    Route::get('/cloud_admin/table',[Cloud_adminController::class,'table'])->name('cloud.table');
     // route komentar
     Route::get('/komentar',[komentarController::class,'coment'])->name('komen.tambah');
 });

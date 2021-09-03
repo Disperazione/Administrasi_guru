@@ -15,6 +15,7 @@
 
     <!-- CSS Libraries -->
      <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap4.min.css">
+     
 
 
     @stack('css')
@@ -78,6 +79,8 @@
     <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap4.min.js"></script>
     <script src="https://unpkg.com/phosphor-icons"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/5.9.1/tinymce.min.js" integrity="sha512-wL4f713UTdXFhzoGj57R7cKAwWMp48nzQ4Z/OLy7r8Hrqsa53x3y9Wl1N27hNktcmmHUABHuIX5xQazAl0VMRg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    
 
 
     <!-- Template JS File -->
