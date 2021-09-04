@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Admin_cloud;
 use Illuminate\Http\Request;
 use App\Models\Bidang_keahlian;
 use App\Models\Guru;
@@ -22,6 +23,7 @@ class ViewController extends Controller
         $indikator = Kompetensi_dasar::select('id_bidang_keahlian')->has('indikator_ketercapaian')->get()->unique();
         $materi = Kompetensi_dasar::select('id_bidang_keahlian')->has('materi_bahan_ajar')->get()->unique();
         $rpp = Kompetensi_dasar::select('id_bidang_keahlian')->has('rencana_pelaksanaan_pembelajaran')->get()->unique();
+        $cloud = Admin_cloud::where('status','!=','kosong')->count();
         $id_keahlian_strategi = [];
         $id_keahlian_indikator = [];
         $id_keahlian_materi = [];
@@ -50,14 +52,14 @@ class ViewController extends Controller
         $total = $lk_1 + $lk_2 + $lk_3 + $lk_4;
         $rpp = Bidang_keahlian::has('kompetensi_dasar')->whereIn('id',  $id_keahlian_rpp)->where('id_guru', auth()->id())->count();
 
-        return view('admin.dashboard', compact('user','jurusan','kd','lk_1', 'lk_2', 'lk_3', 'lk_4','total','rpp'));
+        return view('admin.dashboard', compact('user','jurusan','kd','lk_1', 'lk_2', 'lk_3', 'lk_4','total','rpp','cloud'));
     }
 
     public function SetLocale($language = '')
     {
         // Simpan locale ke session. nanti ini akna di akses di middleware role untuk setlocale nya.
         request()->session()->put('locale', $language);
-        // App::setLocale($language); 
+        // App::setLocale($language);
         return redirect()->back();
     }
 }

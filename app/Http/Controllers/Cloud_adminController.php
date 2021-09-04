@@ -8,6 +8,7 @@ use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Guru;
 use App\Models\Admin_cloud;
+use Carbon\Carbon;
 
 class Cloud_adminController extends Controller
 {
@@ -95,7 +96,7 @@ class Cloud_adminController extends Controller
     }
 
     public function cloud_acc(Request $request, $id){
-        Admin_cloud::where('id',$id)->update(['status'=>'acc']);
+        Admin_cloud::where('id',$id)->update(['status'=>'acc','updated_at' => Carbon::now()]);
         return response()->json(['status'=>'berhasil di acc']);
     }
 

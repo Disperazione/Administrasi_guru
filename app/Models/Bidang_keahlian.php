@@ -42,7 +42,7 @@ class Bidang_keahlian extends Model
     }
     public function admin_cloud()
     {
-        return $this->hasMany(admin_cloud::class, 'id_bidang_keahlian','id');
+        return $this->hasMany(Admin_cloud::class, 'id_bidang_keahlian','id');
     }
 
 }

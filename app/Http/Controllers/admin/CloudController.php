@@ -85,8 +85,11 @@ class CloudController extends Controller
 
     public function dashboard_view()
     {
-                                                                // mencari updated at yang lebih dari 1
-        $admin = Admin_cloud::where('id_guru',Auth::user()->guru->id)->where('updated_at','>','1')->orderBy('updated_at','DESC')->get();
+        if (Auth::user()->role == 'admin') {
+                $admin = Admin_cloud::where('status', '!=', 'kosong')->where('updated_at', '>', '1')->orderBy('updated_at', 'DESC')->get();
+        }else{
+                $admin = Admin_cloud::where('id_guru', Auth::user()->guru->id)->where('status', '!=', 'kosong')->where('updated_at', '>', '1')->orderBy('updated_at', 'DESC')->get();
+        }
         return datatables()->of($admin)
         ->addColumn('judul', function ($admin) {
             return $admin->nama;

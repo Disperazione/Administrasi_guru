@@ -33,7 +33,7 @@
                 {{-- <th>Kelas</th>
                 <th>Jam Pelajaran</th>
                 <th>Total Jam</th> --}}
-                <th style="width: 130px;">Action</th>
+                <th style="width: 200px;">Action</th>
             </tr>
         </thead>
         <tbody>

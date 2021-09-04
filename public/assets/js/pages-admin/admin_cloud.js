@@ -1,12 +1,12 @@
 $(document).ready(function (params) {
 id = $('#id_guru').data('id');
-
+root = window.location.protocol + '//' + window.location.host;
 var table = $('#table-1').DataTable({
     serverside: true,
     processing: true,
     ajax: {
-        url: '/admin/cloud_admin/'+id,
-        methods: 'get'
+        url: root+'/admin/cloud_admin/'+id,
+        type: 'get'
     },
     columns: [
         {name: 'DT_RowIndex',data:'DT_RowIndex'},
@@ -19,8 +19,7 @@ var table = $('#table-1').DataTable({
     ],
 });
 
-$('body').on('click','#acc',function(e) {
-    e.preventDefault();
+$('body').on('click','#acc',function() {
     Swal.fire({
     title: 'Apa anda yakin?',
     icon: 'warning',
@@ -38,11 +37,10 @@ $('body').on('click','#acc',function(e) {
                     type: "put",
                     data:'',
                     success: function (data) {
-                        console.log(data);
-                        table.draw();
+                        table.ajax.reload(); // w make ajax reload soalnya table draw nya erorr atau make parameter
                         Swal.fire(
                             'success',
-                            'Data anda berhasil di hapus.',
+                            'Berhasil di acc.',
                             'success'
                         )
                     },

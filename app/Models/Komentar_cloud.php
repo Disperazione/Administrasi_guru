@@ -13,6 +13,6 @@ class Komentar_cloud extends Model
 
     public function admin_cloud()
     {
-        return $this->belongsTo(admin_cloud::class,'id_admin_cloud');
+        return $this->belongsTo(Admin_cloud::class,'id_admin_cloud');
     }
 }

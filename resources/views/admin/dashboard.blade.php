@@ -57,7 +57,43 @@
             </div>
         </a>
     </div>
+     <div class="col-md-4">
+        <a href="/admin/cloud_admin" class="text-decoration-none">
+            <div class="card card-hero">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                    </div>
+                    <h4>{{ $cloud }}</h4>
+                    <div class="card-description">Cloud</div>
+                </div>
+            </div>
+        </a>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="card-header">
+                    <h4>Last Uploded File</h3>
+                </div>
+            <table class="table table-bordered" id="Table-1">
+            <thead>
+                <th>#</th>
+                <th>judul</th>
+                <th>mapel</th>
+                <th>bidang studi</th>
+                <th>Tanggal dibuat</th>
+                <th>Action</th>
+            </thead>
+            <tbody>
 
+            </tbody>
+        </table>
+            </div>
+        </div>
+    </div>
 </div>
 @endif
 

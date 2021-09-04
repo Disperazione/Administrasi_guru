@@ -13,6 +13,7 @@ use App\Models\Jurusan;
 use App\Models\Mapel;
 use Illuminate\Support\Facades\Hash;
 use Maatwebsite\Excel\Excel;
+use Illuminate\Support\Facades\Auth;
 
 class GuruController extends Controller
 {
@@ -256,6 +257,9 @@ class GuruController extends Controller
     public function destroy($id)
     {
         $guru = Guru::where('id', $id)->first();
+        if ($guru->id === Auth::user()->guru->id) {
+            Auth::logout();
+        }
         $guru->user->delete;
         $guru->delete();
         return response()->json(['data' => 'data anda berhasil di hapus']);

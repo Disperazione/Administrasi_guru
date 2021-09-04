@@ -46,7 +46,8 @@ cara ngeliat route di resource make php artisan route:list
 Route::prefix('admin')->name('admin.')->middleware(['auth', 'roles:admin,guru'])->group(function () {
     Route::get('/dashboard', [ViewController::class, 'dashboard'])->name('dashboard');
     Route::get('/lang/{language}',[ViewController::class,'SetLocale'])->name('locale'); // untuk mengubah locale
-
+    Route::get('/dashboard/admin_cloud/view', [CloudController::class, 'dashboard_view'])->name('dashboard.view'); // dashboard cloud
+    
     // download pdf admin guru
     Route::get('/cloud/download/{id}/pdf', [CloudController::class, 'dashboard_download_file'])->name('dasboard_download_file');
     Route::get('/cloud/view/{id}/pdf', [CloudController::class, 'dashboard_view_file'])->name('dasboard_view_file');
@@ -109,5 +110,5 @@ Route::prefix('admin')->name('admin.')->middleware(['auth','roles:guru'])->group
 
     // cloud route guru
     Route::post('/upload/cloud', [CloudController::class,'upload'])->name('upload.cloud');
-    Route::get('/dashboard/admin_cloud/view',[CloudController::class,'dashboard_view'])->name('dashboard.view');
+
 });

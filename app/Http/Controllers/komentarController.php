@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Admin_cloud;
 use App\Models\Komentar_cloud;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -25,7 +26,8 @@ class komentarController extends Controller
             'id_guru' => Auth::user()->guru->id,
         ]);
         Admin_cloud::where('id', $cloud->id)->update([
-            'status' => 'tolak'
+            'status' => 'tolak',
+            'updated_at' => Carbon::now()
         ]);
         return redirect()->route('admin.cloud.table',$cloud->id_guru);
     }

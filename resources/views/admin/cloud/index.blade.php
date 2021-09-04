@@ -39,7 +39,7 @@
                                 <h4>Total Cloud</h4>
                             </div>
                             <div class="card-body">
-                                {{ $item->admin_cloud()->count(); }}
+                                {{ $item->admin_cloud()->where('status','!=','kosong')->count(); }}
                             </div>
                         </a>
                     </div>

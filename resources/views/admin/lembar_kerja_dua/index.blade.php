@@ -29,8 +29,8 @@
                 <th>Bidang Studi</th>
                 <th>Kompetensi Keahlian</th>
                 <th>status</th>
-                
-                <th style="width: 130px;">Action</th>
+
+                <th style="width: 200px;">Action</th>
             </tr>
         </thead>
         <tbody>

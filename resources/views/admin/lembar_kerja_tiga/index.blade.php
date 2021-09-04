@@ -30,7 +30,7 @@
                 <th>Kompetensi Keahlian</th>
                 <th>status</th>
                 {{-- <th>Upload Cloud</th> --}}
-                <th style="width: 130px;">Action</th>
+                <th style="width: 200px;">Action</th>
             </tr>
         </thead>
         <tbody>
