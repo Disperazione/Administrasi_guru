@@ -19,4 +19,8 @@ class Admin_cloud extends Model
     {
         return $this->hasMany(Komentar_cloud::class, 'id_admin_cloud','id');
     }
+    public function guru()
+    {
+        return $this->belongsTo(Guru::class, 'id_guru');
+    }
 }

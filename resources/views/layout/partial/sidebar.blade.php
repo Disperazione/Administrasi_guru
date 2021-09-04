@@ -23,12 +23,13 @@
                 <a href="{{ route('admin.jurusan.index') }}" class="nav-link "><i
                         class="fas fa-users"></i><span>Jurusan</span></a>
             </li>
-            <li class="  @if(Request::is('/cloud_admin','/cloud_admin/*')) active @endif">
+            <li class="menu-header">Cloud</li>
+            <li class="  @if(Request::is('admin/cloud_admin','admin/cloud_admin/*')) active @endif">
                 <a href="{{ route('admin.cloud.index') }}" class="nav-link "><i
                         class="fas fa-users"></i><span>Cloud</span></a>
             </li>
             @endif
-           @endif 
+            @endif
             @if (Auth::user()->role == 'guru')
             <li class="menu-header">Lembar kerja</li>
             <li class="  @if(Request::is('admin/kompetensi_dasar','admin/kompetensi_dasar/*')) active @endif">

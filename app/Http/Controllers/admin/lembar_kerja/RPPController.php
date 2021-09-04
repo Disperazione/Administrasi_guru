@@ -68,7 +68,7 @@ class RPPController extends Controller
                     }
                 })
                 ->addColumn('btn_upload', function ($data) {
-                   
+
                 })
                 ->addColumn('guru', function ($data) {
                     return $data->bidang_keahlian->guru->name;
@@ -87,20 +87,20 @@ class RPPController extends Controller
                     $jenis =  $data->bidang_keahlian->admin_cloud()->where('jenis', "RPP kd $data->kd_pengetahuan & kd $data->kd_ketrampilan")->first();
                     switch ($jenis->status) {
                         case 'pending':
-                            $button = '<a type="button" id="upload"   data-id="' . $data->id . '" data-tittle="RPP kd '.$data->kd_pengetahuan.' & kd '.$data->kd_ketrampilan.'" class="btn btn-success text-white btn-sm disabled">Sudah di upload</i></a>';
+                            $button = '<a type="button" id="upload"   data-id="' . $data->id . '" data-tittle="RPP kd '.$data->kd_pengetahuan.' & kd '.$data->kd_ketrampilan.' '.$data->mapel.'" class="btn btn-success text-white btn-sm disabled">Sudah di upload</i></a>';
                             break;
                         case 'acc':
-                            $button = '<a type="button" id="upload"   data-id="' . $data->id . '" data-tittle="RPP kd ' . $data->kd_pengetahuan . ' & kd ' . $data->kd_ketrampilan . '" class="btn btn-success text-white btn-sm disabled">Sudah di terima</i></a>';
+                            $button = '<a type="button" id="upload"   data-id="' . $data->id . '" data-tittle="RPP kd ' . $data->kd_pengetahuan . ' & kd ' . $data->kd_ketrampilan.''.$data->mapel.'" class="btn btn-success text-white btn-sm disabled">Sudah di terima</i></a>';
                             break;
                         case 'tolak':
-                            $button = '<a type="button" id="upload"   data-id="' . $data->id . '" data-tittle="RPP kd ' . $data->kd_pengetahuan . ' & kd ' . $data->kd_ketrampilan . '" class="btn btn-success text-white btn-sm
+                            $button = '<a type="button" id="upload"   data-id="' . $data->id . '" data-tittle="RPP kd ' . $data->kd_pengetahuan . ' & kd ' . $data->kd_ketrampilan.''.$data->mapel.'" class="btn btn-success text-white btn-sm
                             data-toggle="tooltip" data-placement="bottom" title="Uplod Cloud"><i class="fas fa-cloud-upload-alt"></i></a>';
                             break;
                         case 'pending_2':
-                            $button = '<a type="button" id="upload"   data-id="' . $data->id . '" data-tittle="RPP kd ' . $data->kd_pengetahuan . ' & kd ' . $data->kd_ketrampilan . '" class="btn btn-success text-white btn-sm disabled">Sudah di upload</i></a>';
+                            $button = '<a type="button" id="upload"   data-id="' . $data->id . '" data-tittle="RPP kd ' . $data->kd_pengetahuan . ' & kd ' . $data->kd_ketrampilan.''.$data->mapel.'" class="btn btn-success text-white btn-sm disabled">Sudah di upload</i></a>';
                             break;
                         case 'kosong':
-                            $button = '<a type="button" id="upload"   data-id="' . $data->id . '" data-tittle="RPP kd ' . $data->kd_pengetahuan . ' & kd ' . $data->kd_ketrampilan . '" class="btn btn-success text-white btn-sm
+                            $button = '<a type="button" id="upload"   data-id="' . $data->id . '" data-tittle="RPP kd ' . $data->kd_pengetahuan . ' & kd ' . $data->kd_ketrampilan.''.$data->mapel.'" class="btn btn-success text-white btn-sm
                             data-toggle="tooltip" data-placement="bottom" title="Uplod Cloud"><i class="fas fa-cloud-upload-alt"></i></a>';
                             break;
                     }

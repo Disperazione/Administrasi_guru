@@ -15,19 +15,19 @@
         <h4>Berikan komentar</h4>
     </div>
 
-    <form id="form" action="{{ route('admin.Lembar-kerja-2.store') }}" method="POST">
+    <form id="form" action="{{ route('admin.komen.store', $cloud->id) }}" method="POST">
+        @method('patch')
+        @csrf
     <div class="card-body">
-        <textarea id="basic-example">
-   
+        <textarea id="basic-example" name="komen">
         </textarea>
-
-    </div>  
+    </div>
     <div class="row">
         <div class="col-sm-12">
             <div class="card-body">
                 <div class="modal-footer">
-                    <button class="btn btn-primary" id="button">Submit</button>
-                    <a href="{{ route('admin.Lembar-kerja-4.index') }}" class="btn btn-danger">Cancel</a>
+                    <button type="submit" class="btn btn-primary" id="button">Submit</button>
+                    <a href="{{ route('admin.cloud.table', $cloud->guru->id) }}" class="btn btn-danger">Cancel</a>
                 </div>
             </div>
         </div>

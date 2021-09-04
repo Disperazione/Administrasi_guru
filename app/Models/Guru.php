@@ -39,4 +39,8 @@ class Guru extends Model
     {
         return $this->hasMany(Bidang_keahlian::class,'id_guru','id');
     }
+    public function admin_cloud()
+    {
+        return $this->hasMany(Admin_cloud::class,'id_guru','id');
+    }
 }

@@ -73,9 +73,6 @@ class LembarKerjaDua extends Controller
                             break;
                     }
                 })
-                ->addColumn('btn_upload', function ($data) {
-                   
-                })
                 ->editColumn('bidang_studi', function ($data) {
                     return $data->lembar_kerja->Lk_2;
                 })

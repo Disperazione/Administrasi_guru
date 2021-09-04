@@ -46,6 +46,10 @@ cara ngeliat route di resource make php artisan route:list
 Route::prefix('admin')->name('admin.')->middleware(['auth', 'roles:admin,guru'])->group(function () {
     Route::get('/dashboard', [ViewController::class, 'dashboard'])->name('dashboard');
     Route::get('/lang/{language}',[ViewController::class,'SetLocale'])->name('locale'); // untuk mengubah locale
+
+    // download pdf admin guru
+    Route::get('/cloud/download/{id}/pdf', [CloudController::class, 'dashboard_download_file'])->name('dasboard_download_file');
+    Route::get('/cloud/view/{id}/pdf', [CloudController::class, 'dashboard_view_file'])->name('dasboard_view_file');
 });
 
 // admin
@@ -60,9 +64,13 @@ Route::prefix('admin')->name('admin.')->middleware(['auth','roles:admin'])->grou
     Route::get('/guru/validdate/email/{id}/s/{email}/edit', [GuruController::class, 'validated_email_edit']);
     // cloude route admin
     Route::get('/cloud_admin',[Cloud_adminController::class,'cloud_admin'])->name('cloud.index');
-    Route::get('/cloud_admin/table',[Cloud_adminController::class,'table'])->name('cloud.table');
+    Route::get('/cloud_admin/{id}', [Cloud_adminController::class, 'cloud_ajax'])->name('cloud.ajax');
+    Route::put('/cloud_admin/{id}', [Cloud_adminController::class, 'cloud_acc'])->name('cloud.acc');
+    Route::get('/cloud_admin/table/{id}',[Cloud_adminController::class,'table'])->name('cloud.table');
     // route komentar
-    Route::get('/komentar',[komentarController::class,'coment'])->name('komen.tambah');
+    Route::get('/komentar/{id}',[komentarController::class,'coment'])->name('komen.tambah');
+    Route::patch('/komentar/{id}', [komentarController::class, 'store'])->name('komen.store');
+    Route::get('/komentar/view/{id}', [komentarController::class, 'view'])->name('komen.view');
 });
 
 // guru
@@ -102,10 +110,4 @@ Route::prefix('admin')->name('admin.')->middleware(['auth','roles:guru'])->group
     // cloud route guru
     Route::post('/upload/cloud', [CloudController::class,'upload'])->name('upload.cloud');
     Route::get('/dashboard/admin_cloud/view',[CloudController::class,'dashboard_view'])->name('dashboard.view');
-    Route::get('/cloud/download/{id}/pdf',[CloudController::class,'dashboard_download_file'])->name('dasboard_download_file');
-    Route::get('/cloud/view/{id}/pdf', [CloudController::class, 'dashboard_view_file'])->name('dasboard_view_file');
-   
-
-    
-   
 });

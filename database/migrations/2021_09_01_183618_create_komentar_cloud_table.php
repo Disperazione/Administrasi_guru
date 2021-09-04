@@ -17,6 +17,7 @@ class CreateKomentarCloudTable extends Migration
             $table->id();
             $table->longText('comment');
             $table->foreignId('id_admin_cloud')->constrained('admin_cloud')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('id_guru')->constrained('guru')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

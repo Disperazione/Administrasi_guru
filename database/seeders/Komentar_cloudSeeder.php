@@ -17,7 +17,8 @@ class Komentar_cloudSeeder extends Seeder
         for ($i=3; $i <= 4 ; $i++) {
             DB::table('komentar_cloud')->insert([
                 'comment' => 'bagus',
-                'id_admin_cloud' => $i
+                'id_admin_cloud' => $i,
+                'id_guru' => 2
             ]);
         }
     }

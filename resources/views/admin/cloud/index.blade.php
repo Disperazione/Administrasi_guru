@@ -17,14 +17,15 @@
 
     <div class="card-body">
         <div class="row">
-            <div class="col-lg-3 col-md-3 col-sm-12">
+            @foreach ($guru as $item)
+                <div class="col-lg-3 col-md-3 col-sm-12">
                 <div class="card card-statistic-2 card-primary" style="box-shadow: 0 4px 15px 0 rgba(0,0,0,0.2);">
                     <div class="card-stats">
                         <div class="card-stats-items mt-4">
-                            <div class="card-stats-item col-6">
-                                <a href="{{ route('admin.cloud.table') }}" class="text-decoration-none">
+                            <div class="card-stats-item col-12 ml-2 text-left">
+                                <a href="{{ route('admin.cloud.table', $item->id) }}" class="text-decoration-none">
                                     <div class="card-stats-item-label">Guru</div>
-                                    <div class="card-stats-item-count">Asuka</div>   
+                                    <div class="card-stats-item-count w-100">{{ $item->name }}</div>
                                 </a>
                             </div>
                         </div>
@@ -33,25 +34,27 @@
                         <i class="fas fa-cloud"></i>
                     </div>
                     <div class="card-wrap">
-                        <a href="" class="text-decoration-none">
+                        <a href="{{ route('admin.cloud.table', $item->id) }}" class="text-decoration-none">
                             <div class="card-header">
                                 <h4>Total Cloud</h4>
                             </div>
                             <div class="card-body">
-                                12
+                                {{ $item->admin_cloud()->count(); }}
                             </div>
                         </a>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-3 col-sm-12">
+            @endforeach
+
+            {{-- <div class="col-lg-3 col-md-3 col-sm-12">
                 <div class="card card-statistic-2 card-primary" style="box-shadow: 0 4px 15px 0 rgba(0,0,0,0.2);">
                     <div class="card-stats">
                         <div class="card-stats-items mt-4">
                             <div class="card-stats-item col-6">
                                 <a href="" class="text-decoration-none">
                                     <div class="card-stats-item-label">Guru</div>
-                                    <div class="card-stats-item-count">Asuka</div>   
+                                    <div class="card-stats-item-count">Asuka</div>
                                 </a>
                             </div>
                         </div>
@@ -78,7 +81,7 @@
                             <div class="card-stats-item col-6">
                                 <a href="" class="text-decoration-none">
                                     <div class="card-stats-item-label">Guru</div>
-                                    <div class="card-stats-item-count">Asuka</div>   
+                                    <div class="card-stats-item-count">Asuka</div>
                                 </a>
                             </div>
                         </div>
@@ -105,7 +108,7 @@
                             <div class="card-stats-item col-6">
                                 <a href="" class="text-decoration-none">
                                     <div class="card-stats-item-label">Guru</div>
-                                    <div class="card-stats-item-count">Asuka</div>   
+                                    <div class="card-stats-item-count">Asuka</div>
                                 </a>
                             </div>
                         </div>
@@ -124,12 +127,12 @@
                         </a>
                     </div>
                 </div>
-            </div>
+            </div> --}}
 
 
-             
 
-              
+
+
         </div>
     </div>
 </div>
@@ -156,5 +159,5 @@
     //     ]
     // });
 </script>
-<script src="{{ asset('assets/js/pages-admin/') }}"></script>
+
 @endpush
