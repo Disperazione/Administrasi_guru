@@ -231,7 +231,7 @@
             <p class="font5" style="font-weight: bold;font-size:14px;">Daftar Kompetensi Ganjil</p>
         </div>
 
-        <div style="margin-left: -20px;margin-top:20px;">
+        <div style="margin-left: -20px; margin-top:20px;">
             <table class="font5" border="1" style="border-collapse:collapse;">
                 <thead>
                     <tr style="background-color: rgb(182, 208, 211);">
