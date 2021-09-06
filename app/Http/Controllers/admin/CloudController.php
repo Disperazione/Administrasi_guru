@@ -106,7 +106,7 @@ class CloudController extends Controller
         ->addColumn('action', function ($admin) {
             $button = '<a href="/admin/cloud/download/' . $admin->id . '/pdf" class="edit btn btn-danger text-white btn-sm"><i class="fas fa-file-pdf"></i></a>';
             $button .= '&nbsp';
-            $button .= '<a href="/admin/cloud/view/' . $admin->id . '/pdf"   id="' . $admin->id . '" class="edit btn btn-primary btn-sm"><i class="fas fa-search"></i></a>';
+            $button .= '<a href="/admin/cloud/view/' . $admin->id . '/pdf"   id="' . $admin->id . '" class="edit btn btn-primary btn-sm "><i class="fas fa-search"></i></a>';
             return $button;
         })
         ->addColumn('kompetensi_keahlian', function ($admin) {

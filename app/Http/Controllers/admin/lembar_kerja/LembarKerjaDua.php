@@ -93,20 +93,19 @@ class LembarKerjaDua extends Controller
                     $jenis = $data->admin_cloud()->where('jenis', 'LK2')->first();
                     switch ($jenis->status) {
                         case 'pending':
-                            $button = '<a type="button" id="upload"   data-id="' . $data->id . '" class="btn btn-success text-white btn-sm disabled">Sudah di upload</i></a>';
+                            $button = '<a type="button" id="upload"   data-id="' . $data->id . '" class="btn btn-success text-white btn-sm disabled"><i class="fas fa-cloud-upload-alt"></i></i></a>';
                             break;
                         case 'acc':
-                            $button = '<a type="button" id="upload"   data-id="' . $data->id . '" class="btn btn-success text-white btn-sm disabled">Sudah di terima</i></a>';
+                            $button = '<a type="button" id="upload"   data-id="' . $data->id . '" class="btn btn-success text-white btn-sm disabled" ><i class="fas fa-cloud-upload-alt"></i></a>';
                             break;
                         case 'tolak':
                             $button = '<a type="button" id="upload"   data-id="' . $data->id . '" class="btn btn-success text-white btn-sm"><i class="fas fa-cloud-upload-alt"></i></a>';
                             break;
                         case 'pending_2':
-                            $button = '<a type="button" id="upload"   data-id="' . $data->id . '" class="btn btn-success text-white btn-sm disabled">Sudah di upload</i></a>';
+                            $button = '<a type="button" id="upload"   data-id="' . $data->id . '" class="btn btn-success text-white btn-sm disabled" ><i class="fas fa-cloud-upload-alt"></i></a>';
                             break;
                         case 'kosong':
-                            $button = '<a type="button" id="upload"   data-id="' . $data->id . '" class="btn btn-success text-white btn-sm  data-toggle="tooltip" data-placement="bottom" title="uplod to cloud">
-                            <i class="fas fa-cloud-upload-alt"></i></a>';
+                            $button = '<a type="button" id="upload"   data-id="' . $data->id . '" class="btn btn-success text-white btn-sm ml-1 data-toggle="tooltip" data-placement="bottom"><i class="fas fa-cloud-upload-alt"></i></a>';
                             break;
                     }
 

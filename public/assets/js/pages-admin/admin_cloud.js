@@ -13,9 +13,9 @@ var table = $('#table-1').DataTable({
         {name: 'judul',data:'judul'},
         {name: 'mapel',data:'mapel'},
         {name:'kompetensi_keahlian', data:'kompetensi_keahlian'},
-        {name: 'status',data:'status'},
-        {name: 'persejutuan',data:'persejutuan'},
         {name: 'action',data:'action'},
+        {name: 'persejutuan',data:'persejutuan'},
+        {name: 'status',data:'status'},
     ],
 });
 

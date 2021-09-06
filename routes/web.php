@@ -47,7 +47,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'roles:admin,guru'])
     Route::get('/dashboard', [ViewController::class, 'dashboard'])->name('dashboard');
     Route::get('/lang/{language}',[ViewController::class,'SetLocale'])->name('locale'); // untuk mengubah locale
     Route::get('/dashboard/admin_cloud/view', [CloudController::class, 'dashboard_view'])->name('dashboard.view'); // dashboard cloud
-    
+
     // download pdf admin guru
     Route::get('/cloud/download/{id}/pdf', [CloudController::class, 'dashboard_download_file'])->name('dasboard_download_file');
     Route::get('/cloud/view/{id}/pdf', [CloudController::class, 'dashboard_view_file'])->name('dasboard_view_file');
@@ -69,7 +69,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth','roles:admin'])->grou
     Route::put('/cloud_admin/{id}', [Cloud_adminController::class, 'cloud_acc'])->name('cloud.acc');
     Route::get('/cloud_admin/table/{id}',[Cloud_adminController::class,'table'])->name('cloud.table');
     // route komentar
-    Route::get('/komentar/{id}',[komentarController::class,'coment'])->name('komen.tambah');
+    //Route::get('/komentar/{id}',[komentarController::class,'coment'])->name('komen.tambah');
     Route::patch('/komentar/{id}', [komentarController::class, 'store'])->name('komen.store');
     Route::get('/komentar/view/{id}', [komentarController::class, 'view'])->name('komen.view');
 });

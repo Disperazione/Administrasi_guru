@@ -26,8 +26,8 @@ class Cloud_adminController extends Controller
     }
 
     public function cloud_ajax($id){
-        // $admin = Admin_cloud::where('id_guru',$id)->where('status','!=','tolak')->get();
-        $admin = Admin_cloud::where('id_guru', $id)->where('status','!=','kosong')->get();
+        $admin = Admin_cloud::where('id_guru',$id)->whereNotin('status',['kosong','tolak'])->get();
+        //$admin = Admin_cloud::where('id_guru', $id)->where('status','!=','kosong')->get();
         return datatables()->of($admin)
             ->addColumn('judul', function ($admin) {
                 return $admin->nama;
@@ -55,23 +55,23 @@ class Cloud_adminController extends Controller
                     break;
                 case 'acc':
                     $badge = "<span class='badge badge-pill badge-success'>$admin->status</span>";
-                    if (count($admin->komentar_cloud) > 0) { // jika tidak kosog
-                        $badge .= " <a href='/admin/komentar/view/".$admin->id."' class='btn btn-primary text-white'><i class='fas fa-comments'></i></a>";
-                    }
+                    // if (count($admin->komentar_cloud) > 0) { // jika tidak kosog
+                    //     $badge .= " <a href='/admin/komentar/view/".$admin->id."' class='btn btn-primary text-white'><i class='fas fa-comments'></i></a>";
+                    // }
                     return $badge;
                     break;
                 case 'tolak':
                     $badge = "<span class='badge badge-pill badge-danger'>$admin->status</span>";
-                    if (count($admin->komentar_cloud) > 0) {
-                        $badge .= " <a href='/admin/komentar/view/".$admin->id."' class='btn btn-primary text-white'><i class='fas fa-comments'></i></a>";
-                    }
+                    // if (count($admin->komentar_cloud) > 0) {
+                    //     $badge .= " <a href='/admin/komentar/view/".$admin->id."' class='btn btn-primary text-white'><i class='fas fa-comments'></i></a>";
+                    // }
                     return  $badge;
                     break;
                 case 'pending_2':
                     $badge = "<span class='badge badge-pill badge-primary'>pending</span>";
-                    if (count($admin->komentar_cloud) > 0) {
-                        $badge .= " <a href='/admin/komentar/view/".$admin->id."' class='btn btn-primary text-white'><i class='fas fa-comments'></i></a>";
-                    }
+                    // if (count($admin->komentar_cloud) > 0) {
+                    //     $badge .= " <a href='/admin/komentar/view/".$admin->id."' class='btn btn-primary text-white'><i class='fas fa-comments'></i></a>";
+                    // }
                     return $badge;
                     break;
                 case 'kosong':
@@ -80,8 +80,9 @@ class Cloud_adminController extends Controller
             }
             })
             ->addColumn('persejutuan', function($admin){
-                $button = '<a href="#" class="btn btn-icon btn-success" id="acc" data-id="' . $admin->id . '"><i class="fas fa-check"></i></a> ';
-                $button .= '<a href="/admin/komentar/'.$admin->id.'" class="btn btn-icon btn-danger"><i class="fas fa-times"></i></a> ';
+                $stat =  (in_array($admin->status, ['acc','tolak']) ) ? 'disabled' : '' ;
+                $button = '<a href="#" class="btn btn-icon btn-success '.$stat.'" id="acc" data-id="' . $admin->id . '"><i class="fas fa-check"></i></a> ';
+                $button .= '<a href="#" data-toggle="modal" data-target="#tolak" class="btn btn-icon tolak-button btn-danger '.$stat.' " id="tolak-button" data-id_cloud="'.$admin->id.'"><i class="fas fa-times"></i></a> ';
                 return $button;
             })
             ->addColumn('action', function ($admin) {

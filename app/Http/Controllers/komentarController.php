@@ -29,7 +29,8 @@ class komentarController extends Controller
             'status' => 'tolak',
             'updated_at' => Carbon::now()
         ]);
-        return redirect()->route('admin.cloud.table',$cloud->id_guru);
+        // return redirect()->route('admin.cloud.table',$cloud->id_guru);
+        return response()->json(['status'=>'berhasil']);
     }
 
     public function view($id)
