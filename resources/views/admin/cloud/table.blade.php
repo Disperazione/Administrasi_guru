@@ -13,7 +13,7 @@
 @section('judul','Cloud Guru')
 @section('breadcrump')
 <div class="breadcrumb-item active"><a href="{{ route('admin.dashboard') }}">Dashboard</a></div>
-<div class="breadcrumb-item"></div>
+<div class="breadcrumb-item">Cloud {{ Auth::user()->guru->name }}</div>
 @endsection
 @section('main')
 <span id="id_guru" data-id="{{ $guru->id }}"></span>
@@ -27,9 +27,9 @@
                     <th>Kategori</th>
                     <th>Mapel</th>
                     <th>Kompetensi keahlian</th>
-                    <th>Status</th>
-                    <th>Persetujuan</th>
                     <th>action</th>
+                    <th>Persetujuan</th>
+                    <th>Status</th>
                 </tr>
             </thead>
             <tbody>
