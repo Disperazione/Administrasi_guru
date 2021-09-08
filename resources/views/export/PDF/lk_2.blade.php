@@ -20,7 +20,6 @@
 </head>
 
 <style>
-
     .logo {
         width: 90px;
         height: 90px;
@@ -71,7 +70,8 @@
         </div>
         <div style="margin-left: 10px;">
             <p class="font5" style="font-weight: bold;font-size:14px;">Bagian 1: Penentuan Strategi Pembelajaran</p>
-            <p class="font5" style="font-size: 14px">Pada bagian ini, guru pengampu mata pelajaran memberikan model pembelajaran dengan memilih
+            <p class="font5" style="font-size: 14px">Pada bagian ini, guru pengampu mata pelajaran memberikan model
+                pembelajaran dengan memilih
                 dua jenis model pembelajaran yaitu Project Based Learning (PjBL) atau Problem Based Learning
                 (PBL) serta memberikan deskripsi dari strategi yang dilakukan.</p>
         </div>
@@ -92,7 +92,7 @@
                     <tr>
                         <td>Kompetensi Keahlian</td>
                         <td>:</td>
-                        <td>{{ $target->kompetensi_keahlian }}</td>
+                        <td>{{ $jurusan }}</td>
                     </tr>
                     <tr>
                         <td>Mata pelajaran</td>
@@ -130,9 +130,24 @@
                     </tr>
                 </thead>
                 <tbody style="text-align: center;font-size:10px;">
+                    @foreach ($s_ganjil as $kompetensi_dasar)
                     <tr>
+                        <td rowspan="2">{{ $loop->iteration }}</td>
+                        <td>{{ $kompetensi_dasar->kd_pengetahuan }}</td>
+                        <td rowspan="2">{{ $kompetensi_dasar->strategi_pembelajaran->model_pembelajaran }}</td>
+                        <td rowspan="2">
+                            <ul>
+                                @foreach ($kompetensi_dasar->strategi_pembelajaran->metode_pembelajaran as $item)
+                                <li>{{ $item->metode }}</li>
+                                @endforeach
+                            </ul>
+                        </td>
+                        <td rowspan="2">{{ $kompetensi_dasar->strategi_pembelajaran->deskripsi_kegiatan }}</td>
                     </tr>
-
+                    <tr>
+                        <td>{{ $kompetensi_dasar->kd_ketrampilan }}</td>
+                    </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>
@@ -157,9 +172,24 @@
                     </tr>
                 </thead>
                 <tbody style="text-align: center;font-size:10px;">
+                    @foreach ($s_genap as $kompetensi_dasar)
                     <tr>
-
+                        <td rowspan="2">{{ $loop->iteration }}</td>
+                        <td>{{ $kompetensi_dasar->kd_pengetahuan }}</td>
+                        <td rowspan="2">{{ $kompetensi_dasar->strategi_pembelajaran->model_pembelajaran }}</td>
+                        <td rowspan="2">
+                            <ul>
+                                @foreach ($kompetensi_dasar->strategi_pembelajaran->metode_pembelajaran as $item)
+                                <li>{{ $item->metode }}</li>
+                                @endforeach
+                            </ul>
+                        </td>
+                        <td rowspan="2">{{ $kompetensi_dasar->strategi_pembelajaran->deskripsi_kegiatan }}</td>
                     </tr>
+                    <tr>
+                        <td>{{ $kompetensi_dasar->kd_ketrampilan }}</td>
+                    </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>

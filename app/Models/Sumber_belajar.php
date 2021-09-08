@@ -11,7 +11,7 @@ class Sumber_belajar extends Model
     protected $table = 'sumber_belajar';
     protected $guarded = [];
 
-    public function strategi_pembelajaran()
+    public function indikator_ketercapaian()
     {
         return $this->belongsTo(Indikator_ketercapaian::class, 'id_indikator_ketercapaian'); // foreign
     }

@@ -20,7 +20,6 @@
 </head>
 
 <style>
-
     .logo {
         width: 90px;
         height: 90px;
@@ -91,7 +90,7 @@
                     <tr>
                         <td>Kompetensi Keahlian</td>
                         <td>:</td>
-                        <td>{{ $target->kompetensi_keahlian }}</td>
+                        <td>{{ $jurusan }}</td>
                     </tr>
                     <tr>
                         <td>Mata pelajaran</td>
@@ -132,9 +131,33 @@
                     </tr>
                 </thead>
                 <tbody style="text-align: center;font-size:10px;">
+                    @foreach ($s_ganjil as $kompetensi_dasar)
                     <tr>
+                        <td rowspan="2">{{ $loop->iteration }}</td>
+                        <td>{{ $kompetensi_dasar->kd_pengetahuan }}</td>
+                        <td rowspan="2">{{ $kompetensi_dasar->indikator_ketercapaian->bukti }}</td>
+                        <td rowspan="2">{{ $kompetensi_dasar->indikator_ketercapaian->ketuntasan }}</td>
+                        <td rowspan="2">{{ $kompetensi_dasar->indikator_ketercapaian->jumlah_pertemuan }}</td>
+                        <td rowspan="2">
+                            <ul>
+                                @foreach ($kompetensi_dasar->indikator_ketercapaian->alat_bahan as $item)
+                                <li>{{ $item->isi }}</li>
+                                @endforeach
+                            </ul>
+                        </td>
+                        <td rowspan="2">
+                            <ul>
+                                @foreach ($kompetensi_dasar->indikator_ketercapaian->sumber_belajar as $item)
+                                <li>{{ $item->isi }}</li>
+                                @endforeach
+                            </ul>
+                        </td>
+                        <td rowspan="2">{{ $kompetensi_dasar->indikator_ketercapaian->keterangan }}</td>
                     </tr>
-
+                    <tr>
+                        <td>{{ $kompetensi_dasar->kd_ketrampilan }}</td>
+                    </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>
@@ -162,9 +185,33 @@
                     </tr>
                 </thead>
                 <tbody style="text-align: center;font-size:10px;">
+                    @foreach ($s_genap as $kompetensi_dasar)
                     <tr>
-
+                        <td rowspan="2">{{ $loop->iteration }}</td>
+                        <td>{{ $kompetensi_dasar->kd_pengetahuan }}</td>
+                        <td rowspan="2">{{ $kompetensi_dasar->indikator_ketercapaian->bukti }}</td>
+                        <td rowspan="2">{{ $kompetensi_dasar->indikator_ketercapaian->ketuntasan }}</td>
+                        <td rowspan="2">{{ $kompetensi_dasar->indikator_ketercapaian->jumlah_pertemuan }}</td>
+                        <td rowspan="2">
+                            <ul>
+                                @foreach ($kompetensi_dasar->indikator_ketercapaian->alat_bahan as $item)
+                                <li>{{ $item->isi }}</li>
+                                @endforeach
+                            </ul>
+                        </td>
+                        <td rowspan="2">
+                            <ul>
+                                @foreach ($kompetensi_dasar->indikator_ketercapaian->sumber_belajar as $item)
+                                <li>{{ $item->isi }}</li>
+                                @endforeach
+                            </ul>
+                        </td>
+                        <td rowspan="2">{{ $kompetensi_dasar->indikator_ketercapaian->keterangan }}</td>
                     </tr>
+                    <tr>
+                        <td>{{ $kompetensi_dasar->kd_ketrampilan }}</td>
+                    </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>

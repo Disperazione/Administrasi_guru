@@ -18,6 +18,10 @@ class Indikator_ketercapaian extends Model
 
     public function alat_bahan()
     {
-        return $this->hasMany(Alat_bahan::class, 'id', 'id_indikator_ketercapaian');
+        return $this->hasMany(Alat_bahan::class,'id_indikator_ketercapaian', 'id');
+    }
+    public function sumber_belajar()
+    {
+        return $this->hasMany(Sumber_belajar::class,'id_indikator_ketercapaian', 'id');
     }
 }

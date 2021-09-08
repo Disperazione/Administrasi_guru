@@ -29,8 +29,8 @@ class PDFController extends Controller
     {
         $target = Bidang_keahlian::has('target_pembelajaran')->where('id', $id)->first();
         // nyari kompetensi dasar yang semesternya ganjil & bidnag keahlian nya id  = $id
-        $s_ganjil = Kompetensi_dasar::where([['semester','ganjil'],['id_bidang_keahlian',$id]])->get();
-        $s_genap = Kompetensi_dasar::where([['semester', 'genap'],['id_bidang_keahlian',$id]])->get();
+        $s_ganjil = Kompetensi_dasar::where([['semester','ganjil'],['id_bidang_keahlian',$id]])->has('strategi_pembelajaran')->get();
+        $s_genap = Kompetensi_dasar::where([['semester', 'genap'],['id_bidang_keahlian',$id]])->has('strategi_pembelajaran')->get();
         $id_jurusan = [];
         foreach ($target->jurusan as $key => $value) {
             $id_jurusan[] .= $value->singkatan_jurusan;
@@ -44,14 +44,14 @@ class PDFController extends Controller
     {
         $target = Bidang_keahlian::has('target_pembelajaran')->where('id', $id)->first();
         // nyari kompetensi dasar yang semesternya ganjil & bidnag keahlian nya id  = $id
-        $s_ganjil = Kompetensi_dasar::where([['semester','ganjil'],['id_bidang_keahlian',$id]])->get();
-        $s_genap = Kompetensi_dasar::where([['semester', 'genap'],['id_bidang_keahlian',$id]])->get();
+        $s_ganjil = Kompetensi_dasar::where([['semester','ganjil'],['id_bidang_keahlian',$id]])->has('indikator_ketercapaian')->get();
+        $s_genap = Kompetensi_dasar::where([['semester', 'genap'],['id_bidang_keahlian',$id]])->has('indikator_ketercapaian')->get();
         $id_jurusan = [];
         foreach ($target->jurusan as $key => $value) {
             $id_jurusan[] .= $value->singkatan_jurusan;
         }
         $jurusan =  implode(', ', $id_jurusan);
-        $pdf = PDF::loadView('export.PDF.lk_3', compact('target','s_ganjil','s_genap'));
+        $pdf = PDF::loadView('export.PDF.lk_3', compact('target','s_ganjil','s_genap','jurusan'));
         return $pdf->stream('LK3.PDF');
     }
 
