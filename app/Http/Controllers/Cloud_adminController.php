@@ -81,8 +81,8 @@ class Cloud_adminController extends Controller
             })
             ->addColumn('persejutuan', function($admin){
                 $stat =  (in_array($admin->status, ['acc','tolak']) ) ? 'disabled' : '' ;
-                $button = '<a href="#" class="btn btn-icon btn-success '.$stat.'" id="acc" data-id="' . $admin->id . '"><i class="fas fa-check"></i></a> ';
-                $button .= '<a href="#" data-toggle="modal" data-target="#tolak" class="btn btn-icon tolak-button btn-danger '.$stat.' " id="tolak-button" data-id_cloud="'.$admin->id.'"><i class="fas fa-times"></i></a> ';
+                $button = '<a href="#" class="btn btn-icon btn-success '.$stat.'" id="acc" data-id="' . $admin->id . '" data-toggle="tooltip" data-placement="bottom" title="setuju"><i class="fas fa-check"></i></a> ';
+                $button .= '<a href="#" data-toggle="modal" data-target="#tolak" class="btn btn-icon tolak-button btn-danger '.$stat.' " id="tolak-button" data-id_cloud="'.$admin->id.'"><i class="fas fa-times" data-toggle="tooltip" data-placement="bottom" title="tolak"></i></a> ';
                 return $button;
             })
             ->addColumn('action', function ($admin) {

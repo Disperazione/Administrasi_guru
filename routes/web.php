@@ -111,4 +111,6 @@ Route::prefix('admin')->name('admin.')->middleware(['auth','roles:guru'])->group
     // cloud route guru
     Route::post('/upload/cloud', [CloudController::class,'upload'])->name('upload.cloud');
 
+
+    Route::get('/komentar/view/{id}', [komentarController::class, 'view'])->name('komen.view');
 });

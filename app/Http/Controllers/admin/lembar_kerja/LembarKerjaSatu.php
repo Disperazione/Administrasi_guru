@@ -45,23 +45,14 @@ class LembarKerjaSatu extends Controller
                             break;
                         case 'acc':
                             $badge = "<span class='badge badge-pill badge-success'>$jenis->status</span>";
-                            if (!empty($jenis->komentar_cloud)) {
-                                $badge .= "<a href='' class='btn btn-primary text-white'><i class='fas fa-comments'></i></a>";
-                            }
                             return $badge;
                             break;
                         case 'tolak':
-                            $badge = "<span class='badge badge-pill badge-danger'>$jenis->status</span>";
-                            if (!empty($jenis->komentar_cloud)) {
-                                $badge .= "<a href='' class='btn btn-primary text-white'><i class='fas fa-comments'></i></a>";
-                            }
+                            $badge = "<a  href='' class='badge badge-pill badge-danger' data-toggle='modal' data-target='#komen'>$jenis->status</a>";
                             return  $badge;
                             break;
                         case 'pending_2':
                             $badge = "<span class='badge badge-pill badge-primary'>pending</span>";
-                                if (!empty($jenis->komentar_cloud)) {
-                                    $badge .= "<a href='' class='btn btn-primary text-white'><i class='fas fa-comments'></i></a>";
-                                }
                             return $badge;
                             break;
                         case 'kosong':
@@ -90,25 +81,25 @@ class LembarKerjaSatu extends Controller
                     $jenis = $data->admin_cloud()->where('jenis', 'LK1')->first();
                 switch ($jenis->status) {
                     case 'pending':
-                        $button = '<a type="button" id="upload"   data-id="' . $data->id . '" class="btn btn-success text-white btn-sm disabled"><i class="fas fa-cloud-upload-alt"></i></i></a>';
+                        $button = '<a type="button" id="upload"   data-id="' . $data->id . '" class="btn btn-success text-white btn-sm disabled" data-toggle="tooltip" data-placement="bottom" title="Uplod"><i class="fas fa-cloud-upload-alt"></i></i></a>';
                         break;
                     case 'acc':
-                        $button = '<a type="button" id="upload"   data-id="' . $data->id . '" class="btn btn-success text-white btn-sm disabled" ><i class="fas fa-cloud-upload-alt"></i></a>';
+                        $button = '<a type="button" id="upload"   data-id="' . $data->id . '" class="btn btn-success text-white btn-sm disabled"  ><i class="fas fa-cloud-upload-alt"></i></a>';
                         break;
                     case 'tolak':
-                        $button = '<a type="button" id="upload"   data-id="' . $data->id . '" class="btn btn-success text-white btn-sm"><i class="fas fa-cloud-upload-alt"></i></a>';
+                        $button = '<a type="button" id="upload"   data-id="' . $data->id . '" class="btn btn-success text-white btn-sm" data-toggle="tooltip" data-placement="bottom" title="Uplod"><i class="fas fa-cloud-upload-alt"></i></a>';
                         break;
                     case 'pending_2':
-                        $button = '<a type="button" id="upload"   data-id="' . $data->id . '" class="btn btn-success text-white btn-sm disabled" ><i class="fas fa-cloud-upload-alt"></i></a>';
+                        $button = '<a type="button" id="upload"   data-id="' . $data->id . '" class="btn btn-success text-white btn-sm disabled" data-toggle="tooltip" data-placement="bottom" title="Uplod" ><i class="fas fa-cloud-upload-alt"></i></a>';
                         break;
                     case 'kosong':
-                        $button = '<a type="button" id="upload"   data-id="' . $data->id . '" class="btn btn-success text-white btn-sm ml-1 data-toggle="tooltip" data-placement="bottom"><i class="fas fa-cloud-upload-alt"></i></a>';
+                        $button = '<a type="button" id="upload"   data-id="' . $data->id . '" class="btn btn-success text-white btn-sm ml-1" data-toggle="tooltip" data-placement="bottom" title="Uplod"><i class="fas fa-cloud-upload-alt"></i></a>';
                         break;
                 }
 
-                    $button .= '<a href="/admin/lk_1/' . $data->id . '/pdf"   id="' . $data->id . '" class="edit btn btn-danger text-white btn-sm ml-1"><i class="fas fa-file-pdf"></i></a>';
+                    $button .= '<a href="/admin/lk_1/' . $data->id . '/pdf"   id="' . $data->id . '" class="edit btn btn-danger text-white btn-sm ml-1" data-toggle="tooltip" data-placement="bottom" title="download pdf"><i class="fas fa-file-pdf"></i></a>';
                     $button .= '&nbsp';
-                    $button .= '<a href="/admin/Lembar-kerja-1/' . $data->id . '"   id="' . $data->id . '" class="edit btn btn-primary btn-sm"><i class="fas fa-search"></i></a>';
+                    $button .= '<a href="/admin/Lembar-kerja-1/' . $data->id . '"   id="' . $data->id . '" class="edit btn btn-primary btn-sm" data-toggle="tooltip" data-placement="bottom" title="detail PDF"><i class="fas fa-search"></i></a>';
                     $button .= '&nbsp';
                     $button .= '<a  href="/admin/Lembar-kerja-1/' . $data->id . '/edit" id="edit" data-toggle="tooltip"  data-id="' . $data->id . '" data-original-title="Edit" class="edit btn btn-warning btn-sm edit-post"><i class="fas fa-pencil-alt"></i></a>';
                     $button .= '&nbsp';

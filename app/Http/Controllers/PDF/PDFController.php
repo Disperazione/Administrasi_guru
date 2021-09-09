@@ -71,4 +71,10 @@ class PDFController extends Controller
         $pdf = PDF::loadView('export.PDF.lk_4', compact('target','s_ganjil','s_genap', 'm_bahan_ajar','jurusan'));
         return $pdf->stream('LK4.PDF');
     }
+
+    public function rpp()
+    {
+        $pdf = PDF::loadView('export.PDF.rpp');
+        return $pdf->stream('RPP.PDF');
+    }
 }

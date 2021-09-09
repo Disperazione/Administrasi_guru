@@ -43,23 +43,14 @@ class RPPController extends Controller
                             break;
                         case 'acc':
                             $badge = "<span class='badge badge-pill badge-success'>$jenis->status</span>";
-                            if (!empty($jenis->komentar_cloud)) {
-                                $badge .= " <a href='' class='btn btn-primary text-white'><i class='fas fa-comments'></i></a>";
-                            }
                             return $badge;
                             break;
                         case 'tolak':
-                            $badge = "<span class='badge badge-pill badge-danger'>$jenis->status</span>";
-                            if (!empty($jenis->komentar_cloud)) {
-                                $badge .= " <a href='' class='btn btn-primary text-white'><i class='fas fa-comments'></i></a>";
-                            }
+                            $badge = "<a  href='' class='badge badge-pill badge-danger' data-toggle='modal' data-target='#komen'>$jenis->status</a>";
                             return  $badge;
                             break;
                         case 'pending_2':
                             $badge = "<span class='badge badge-pill badge-primary'>pending</span>";
-                            if (!empty($jenis->komentar_cloud)) {
-                                $badge .= " <a href='' class='btn btn-primary text-white'><i class='fas fa-comments'></i></a>";
-                            }
                             return $badge;
                             break;
                         case 'kosong':
@@ -106,9 +97,9 @@ class RPPController extends Controller
 
 
 
-                    $button .= '<a href="' . $data->id . '"   id="' . $data->id . '" class="edit btn btn-danger text-white btn-sm ml-1"><i class="fas fa-file-pdf"></i></a>';
-                    $button .= '&nbsp';
-                    $button .= '<a href="/admin/RPP/{RPP}' . $data->id . '"   id="' . $data->id . '" class="edit btn btn-primary btn-sm"><i class="fas fa-search"></i></a>';
+                    $button .= '<a href="/admin/rpp/' . $data->id . '/pdf"   id="' . $data->id . '" class="edit btn btn-danger text-white btn-sm ml-1" data-toggle="tooltip" data-placement="bottom" title="download pdf"><i class="fas fa-file-pdf"></i></a>';
+                    $button .= '&nbsp';   
+                    $button .= '<a href="/admin/RPP/{RPP}' . $data->id . '"   id="' . $data->id . '" class="edit btn btn-primary btn-sm" data-toggle="tooltip" data-placement="bottom" title="detail pdf"><i class="fas fa-search"></i></a>';
                     $button .= '&nbsp';
                     $button .= '<a  href="/admin/target_pembelajaran/edit/' . $data->id . '" id="edit" data-toggle="tooltip"  data-id="' . $data->id . '" data-original-title="Edit" class="edit btn btn-warning btn-sm edit-post"><i class="fas fa-pencil-alt"></i></a>';
                     $button .= '&nbsp';
