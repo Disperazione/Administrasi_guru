@@ -43,4 +43,8 @@ class Guru extends Model
     {
         return $this->hasMany(Admin_cloud::class,'id_guru','id');
     }
+    public function komentar_cloud()
+    {
+        return $this->hasMany(Komentar_cloud::class,'id_guru','id');
+    }
 }

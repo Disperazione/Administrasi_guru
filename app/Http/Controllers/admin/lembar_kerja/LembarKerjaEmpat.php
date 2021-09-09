@@ -54,7 +54,7 @@ class LembarKerjaEmpat extends Controller
                             return $badge;
                             break;
                         case 'tolak':
-                            $badge = "<a  href='' class='badge badge-pill badge-danger' data-toggle='modal' data-target='#komen'>$jenis->status</a>";
+                            $badge = "<a  href='' class='badge badge-pill badge-danger badge-tolak' data-id='".$jenis->id."' data-toggle='modal' data-target='#komen'>$jenis->status</a>";
                             return  $badge;
                             break;
                         case 'pending_2':

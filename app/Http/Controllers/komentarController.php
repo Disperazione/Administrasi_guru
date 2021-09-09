@@ -10,12 +10,6 @@ use Illuminate\Support\Facades\Auth;
 
 class komentarController extends Controller
 {
-    //
-    public function coment($id)
-    {
-        $cloud = Admin_cloud::find($id);
-        return view('admin.komen.tambah', compact('cloud'));
-    }
 
     public function store(Request $request, $id)
     {
@@ -35,6 +29,11 @@ class komentarController extends Controller
 
     public function view($id)
     {
-        return view('admin.komen.view');
+        $comment = Komentar_cloud::where('id_admin_cloud', $id)->with('guru')->orderby('created_at','DESC')->get();
+        $difforhumans = [];
+        foreach ($comment as $key => $value) {
+            $difforhumans[] .= ($value->created_at) ? $value->created_at->diffForHumans() : '';
+        }
+        return response()->json(['komentar'=>$comment,'waktu'=>collect($difforhumans)]);
     }
 }

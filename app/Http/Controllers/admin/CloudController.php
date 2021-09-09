@@ -32,8 +32,30 @@ class CloudController extends Controller
             Storage::put($url,  $pdf->output("LK.01 Target Pembelajaran.PDF"));
 
         }else if($request->jenis == "LK2"){
+            $target = Bidang_keahlian::has('target_pembelajaran')->where('id', $request->id_bidang)->first();
+            // nyari kompetensi dasar yang semesternya ganjil & bidnag keahlian nya id  = $id
+            $s_ganjil = Kompetensi_dasar::where([['semester', 'ganjil'], ['id_bidang_keahlian', $request->id_bidang]])->has('strategi_pembelajaran')->get();
+            $s_genap = Kompetensi_dasar::where([['semester', 'genap'], ['id_bidang_keahlian', $request->id_bidang]])->has('strategi_pembelajaran')->get();
+            $id_jurusan = [];
+            foreach ($target->jurusan as $key => $value) {
+                $id_jurusan[] .= $value->singkatan_jurusan;
+            }
+            $jurusan =  implode(', ', $id_jurusan);
+            $pdf = PDF::loadView('export.PDF.lk_2', compact('target', 's_ganjil', 's_genap', 'jurusan'));
+            Storage::put($url,  $pdf->output("LK.01 Target Pembelajaran.PDF"));
             // tempat download lk 2 sepeti di atas
         } else if ($request->jenis == "LK3") {
+            $target = Bidang_keahlian::has('target_pembelajaran')->where('id', $request->id_bidang)->first();
+            // nyari kompetensi dasar yang semesternya ganjil & bidnag keahlian nya id  = $id
+            $s_ganjil = Kompetensi_dasar::where([['semester','ganjil'],['id_bidang_keahlian',$request->id_bidang]])->has('indikator_ketercapaian')->get();
+            $s_genap = Kompetensi_dasar::where([['semester', 'genap'],['id_bidang_keahlian',$request->id_bidang]])->has('indikator_ketercapaian')->get();
+            $id_jurusan = [];
+            foreach ($target->jurusan as $key => $value) {
+                $id_jurusan[] .= $value->singkatan_jurusan;
+            }
+            $jurusan =  implode(', ', $id_jurusan);
+            $pdf = PDF::loadView('export.PDF.lk_3', compact('target','s_ganjil','s_genap','jurusan'));
+            Storage::put($url,  $pdf->output("LK.01 Target Pembelajaran.PDF"));
             // ini buat lk 3
         } else if ($request->jenis == "LK4") {
             $target = Bidang_keahlian::has('target_pembelajaran')->where('id', $request->id_bidang)->first();

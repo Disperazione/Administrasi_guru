@@ -15,4 +15,9 @@ class Komentar_cloud extends Model
     {
         return $this->belongsTo(Admin_cloud::class,'id_admin_cloud');
     }
+
+    public function guru()
+    {
+        return $this->belongsTo(Guru::class,'id_guru');
+    }
 }

@@ -59,8 +59,8 @@
                 <div class="col-12 col-sm-12 col-lg-12">
                     <div class="card">
                       <div class="card-body">
-                        <ul class="list-unstyled list-unstyled-border list-unstyled-noborder">
-                          <li class="media">
+                        <ul class="list-unstyled list-unstyled-border list-unstyled-noborder field-lk-3">
+                          {{-- <li class="media">
                             <div class="media-body">
                               <div class="media-right"><div class="text-danger">Ditolak</div></div>
                               <div class="media-title mb-1">Admin (Rizal)</div>
@@ -83,8 +83,8 @@
                                 <a href="#" class="text-danger">Hapus Komentar</a>
                               </div>
                             </div>
-                          </li>
-                          
+                          </li> --}}
+
                         </ul>
                       </div>
                     </div>

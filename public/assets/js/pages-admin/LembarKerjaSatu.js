@@ -82,6 +82,7 @@ $('#table-1_filter').prepend('<a href="'+root+'/admin/export/excel/kompetensi_da
         } else if (result.dismiss === Swal.DismissReason.cancel) {}
     })
 });
+// upload file
 $('body').on('click','#upload', function (e) {
     e.preventDefault();
     Swal.fire({
@@ -116,4 +117,34 @@ $('body').on('click','#upload', function (e) {
         } else if (result.dismiss === Swal.DismissReason.cancel) {}
     })
 })
+// view komentar
+$('body').on('click', '.badge-tolak', function () {
+        id = $(this).data('id');
+        $('.id_cloud').val(id);
+
+        $.ajax({
+            url: '/admin/komentar/view/' + id,
+            type: 'GET',
+            success: function (response) {
+                var komen = response.komentar;
+                $('.field-lk-1').empty();
+                for (let i = 0; i < komen.length; i++) {
+                    $('.field-lk-1').append('<li class="media">' +
+                        '<div class="media-body">' +
+                        '<div class="media-right"><div class="text-danger">Ditolak</div></div>' +
+                        '<div class="media-title mb-1">Admin ('+komen[i].guru.name+')</div>' +
+                        '<div class="text-time">'+response.waktu[i]+'</div>' +
+                        '<div class="media-description text-muted">'+komen[i].comment+'</div>' +
+                        '<div class="media-links">' +
+                        ' </div>' +
+                        '</li>');
+                }
+
+            },
+            fail: function (response) {
+                console.log(response);
+            }
+        });
+    });
+
 })

@@ -52,7 +52,7 @@ class LembarKerjaDua extends Controller
                             return $badge;
                             break;
                         case 'tolak':
-                            $badge = "<a  href='' class='badge badge-pill badge-danger' data-toggle='modal' data-target='#komen'>$jenis->status</a>";
+                            $badge = "<a  href='' class='badge badge-pill badge-danger badge-tolak' data-id='".$jenis->id."' data-toggle='modal' data-target='#komen'>$jenis->status</a>";
                             return  $badge;
                             break;
                         case 'pending_2':
@@ -90,7 +90,7 @@ class LembarKerjaDua extends Controller
                             $button = '<a type="button" id="upload"   data-id="' . $data->id . '" class="btn btn-success text-white btn-sm disabled" ><i class="fas fa-cloud-upload-alt"></i></a>';
                             break;
                         case 'tolak':
-                            $button = '<a type="button" id="upload"   data-id="' . $data->id . '" class="btn btn-success text-white btn-sm" data-toggle="tooltip" data-placement="bottom" title="Uplod"><i class="fas fa-cloud-upload-alt"></i></a>';
+                            $button = '<a type="button" id="upload"   data-id="' . $data->id . '" class="btn btn-success text-white btn-sm badge-tolak" data-toggle="tooltip" data-placement="bottom" title="Uplod"><i class="fas fa-cloud-upload-alt"></i></a>';
                             break;
                         case 'pending_2':
                             $button = '<a type="button" id="upload"   data-id="' . $data->id . '" class="btn btn-success text-white btn-sm disabled" data-toggle="tooltip" data-placement="bottom" title="Uplod" ><i class="fas fa-cloud-upload-alt"></i></a>';

@@ -30,7 +30,7 @@ $(document).ready(function () {
                         name: 'kd_pengetahuan'
                     },
                     { data: 'status', name:'status'},
-                    
+
                     {
                         data: 'action',
                         name: 'action'
@@ -131,5 +131,35 @@ $(document).ready(function () {
             });
             } else if (result.dismiss === Swal.DismissReason.cancel) {}
         })
+    });
+
+       // view komentar
+    $('body').on('click', '.badge-tolak', function () {
+        id = $(this).data('id');
+        $('.id_cloud').val(id);
+
+        $.ajax({
+            url: '/admin/komentar/view/' + id,
+            type: 'GET',
+            success: function (response) {
+                var komen = response.komentar;
+                $('.rpp').empty();
+                for (let i = 0; i < komen.length; i++) {
+                    $('.rpp').append('<li class="media">' +
+                        '<div class="media-body">' +
+                        '<div class="media-right"><div class="text-danger">Ditolak</div></div>' +
+                        '<div class="media-title mb-1">Admin ('+komen[i].guru.name+')</div>' +
+                        '<div class="text-time">'+response.waktu[i]+'</div>' +
+                        '<div class="media-description text-muted">'+komen[i].comment+'</div>' +
+                        '<div class="media-links">' +
+                        ' </div>' +
+                        '</li>');
+                }
+
+            },
+            fail: function (response) {
+                console.log(response);
+            }
+        });
     });
 })
