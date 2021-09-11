@@ -2,7 +2,7 @@
 @push('css')
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 @endpush
-@section('title', 'App')
+@section('title', 'Tambah guru')
 @section('judul','Tambah Guru')
 @section('breadcrump')
 <div class="breadcrumb-item active"><a href="{{ route('admin.dashboard') }}">Dashboard</a></div>
@@ -64,6 +64,9 @@
                         {{-- @enderror --}}
                     </div>
                 </div>
+
+                
+
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="">Mengajar Jurusan :</label>
@@ -84,6 +87,9 @@
                         {{-- @enderror --}}
                     </div>
                 </div>
+
+
+
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="">fax :</label>
@@ -97,6 +103,7 @@
                         {{-- @enderror --}}
                     </div>
                 </div>
+
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="">alamat :</label>
@@ -112,6 +119,11 @@
                         {{-- @enderror --}}
                     </div>
                 </div>
+                
+               
+            </div>
+
+            <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="">No_telp :</label>
@@ -125,6 +137,30 @@
                         {{-- @enderror --}}
                     </div>
                 </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Pokja :</label>
+                        <select class="form-control select2">
+                          <option>-- Pilih Pokja --</option>
+                          <option>RPL</option>
+                          <option>MM</option>
+                          <option>BC</option>
+                          <option>TKJ</option>
+                          <option>TEI</option>
+                          <option>B.indo</option>
+                          <option>MTK</option>
+                          <option>PKN</option>
+                          <option>Agama</option>
+                          <option>Sindo</option>
+                          <option>SBK</option>
+                          <option>B.inggris</option>
+                          <option>BK</option>
+                        </select>
+                      </div>
+                </div>
+
+
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="">Email :</label>
@@ -151,10 +187,18 @@
                         {{-- @enderror --}}
                     </div>
                 </div>
+
+                
+                
+                
+
                 <button class="btn btn-success ml-auto mr-2 mt-5 mb-5" id="buttonSubmit" type="submit">Submit</button>
-                <a href="{{ route('admin.guru.index') }}" class="btn btn-danger mr-4 mt-5 mb-5">Cansel</a>
+                <a href="{{ route('admin.guru.index') }}" class="btn btn-danger mr-4 mt-5 mb-5">Cancel</a>
+
             </div>
 
+
+            
 
         </form>
     </div>
