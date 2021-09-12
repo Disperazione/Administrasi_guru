@@ -113,6 +113,11 @@ $(document).ready(function () {
             cancelButtonText: 'Tidak'
         }).then((result) => {
             if (result.value) {
+                $(document).ajaxStart(function () {
+                    NProgress.done();
+                });
+                id = $(this).data('id');
+                Pace.restart();
                 id = $(this).data('id');
                 tittle = $('#upload').data('tittle');
                 $.ajax({
@@ -128,6 +133,7 @@ $(document).ready(function () {
                         url: '/admin/lk_1/' + id + '/pdf'
                     },
                     success: function (reponse) {
+                        Pace.stop();
                         console.log(reponse);
                         table.draw();
                         Swal.fire(

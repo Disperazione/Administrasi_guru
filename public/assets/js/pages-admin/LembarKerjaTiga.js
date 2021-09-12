@@ -108,6 +108,10 @@ $(document).ready(function () {
             cancelButtonText: 'Tidak'
         }).then((result) => {
             if (result.value) {
+                $(document).ajaxStart(function () {
+                    NProgress.done();
+                });
+                Pace.restart();
                 id = $(this).data('id');
                 $.ajax({
                     headers: {
@@ -122,6 +126,7 @@ $(document).ready(function () {
                         url: '/admin/lk_3/' + id + '/pdf'
                     },
                     success: function (reponse) {
+                        Pace.stop();
                         console.log(reponse);
                         table.draw();
                         Swal.fire(

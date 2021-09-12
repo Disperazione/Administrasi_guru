@@ -67,7 +67,12 @@ class LembarKerjaSatu extends Controller
                 ->addColumn('kompetensi_keahlian', function($data){
                     $singkatan_badge = [];
                     foreach ($data->jurusan as $jurusan) {
+                        if($jurusan->singkatan_jurusan == "RPL"){
+                        $singkatan_badge[] .= "<span class='badge badge-pill badge-danger'>$jurusan->singkatan_jurusan</span>";
+                        }else{
                         $singkatan_badge[] .= "<span class='badge badge-pill badge-primary'>$jurusan->singkatan_jurusan</span>";
+                        }
+
                     }
                     if (empty($singkatan_badge)) {
                         return 'Jurusan koosng';

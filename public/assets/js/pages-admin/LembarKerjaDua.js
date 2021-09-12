@@ -36,7 +36,7 @@ $(document).ready(function () {
                         data: 'action',
                         name: 'action'
                     },
-                      {
+                    {
                         data: 'updated',
                         name: 'updated'
                     },
@@ -112,7 +112,12 @@ $(document).ready(function () {
             cancelButtonText: 'Tidak'
         }).then((result) => {
             if (result.value) {
+                $(document).ajaxStart(function () {
+                    NProgress.done();
+                });
                 id = $(this).data('id');
+
+                Pace.restart();
                 $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -125,6 +130,7 @@ $(document).ready(function () {
                         jenis: 'LK2',
                     },
                     success: function (reponse) {
+                        Pace.stop();
                         console.log(reponse);
                         table.draw();
                         Swal.fire(
@@ -156,9 +162,9 @@ $(document).ready(function () {
                     $('.field-lk-2').append('<li class="media">' +
                         '<div class="media-body">' +
                         '<div class="media-right"><div class="text-danger">Ditolak</div></div>' +
-                        '<div class="media-title mb-1">Admin ('+komen[i].guru.name+')</div>' +
-                        '<div class="text-time">'+response.waktu[i]+'</div>' +
-                        '<div class="media-description text-muted">'+komen[i].comment+'</div>' +
+                        '<div class="media-title mb-1">Admin (' + komen[i].guru.name + ')</div>' +
+                        '<div class="text-time">' + response.waktu[i] + '</div>' +
+                        '<div class="media-description text-muted">' + komen[i].comment + '</div>' +
                         '<div class="media-links">' +
                         ' </div>' +
                         '</li>');

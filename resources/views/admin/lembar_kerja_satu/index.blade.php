@@ -8,6 +8,7 @@
         opacity: 0;
     }
 </style>
+<link rel="stylesheet" href="{{ asset('assets/css/loading-bar.css') }}">
 @endpush
 @section('title', 'SIFOS | Table LK 1')
 @section('judul','Lembar Kerja 1')
@@ -111,5 +112,6 @@
     <span  id="data" data-role="{{ Auth::user()->role }}"></span>
 @endsection
 @push('js')
+<script data-pace-options='{ "elements": { "selectors": [".selector"] }, "startOnPageLoad": false }' src="{{ asset('assets/js/pace.js') }}"></script>
 <script src="{{ asset('assets/js/pages-admin/LembarKerjaSatu.js') }}"></script>
 @endpush

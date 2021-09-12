@@ -101,6 +101,9 @@ $(document).ready(function () {
         })
     });
     // upload file
+
+
+
     $('body').on('click', '#upload', function (e) {
         e.preventDefault();
         Swal.fire({
@@ -112,6 +115,11 @@ $(document).ready(function () {
         }).then((result) => {
             if (result.value) {
                 id = $(this).data('id');
+                // Pace.track(function () {
+                $(document).ajaxStart(function () {
+                    NProgress.done();
+                });
+                Pace.restart();
                 $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -125,6 +133,7 @@ $(document).ready(function () {
                         url: '/admin/lk_1/' + id + '/pdf'
                     },
                     success: function (response) {
+                        Pace.stop();
                         table.draw();
                         Swal.fire(
                             'success',
@@ -136,6 +145,7 @@ $(document).ready(function () {
                         console.log('Error:', data);
                     }
                 });
+                // });
             } else if (result.dismiss === Swal.DismissReason.cancel) {}
         })
     })

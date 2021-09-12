@@ -8,6 +8,7 @@
         opacity: 0;
     }
 </style>
+<link rel="stylesheet" href="{{ asset('assets/css/loading-bar.css') }}">
 @endpush
 @section('title', 'SIFOS | RPP')
 @section('judul','RPP')
@@ -113,5 +114,6 @@
     //     });
     // });
 </script>
+<script data-pace-options='{ "elements": { "selectors": [".selector"] }, "startOnPageLoad": false }' src="{{ asset('assets/js/pace.js') }}"></script>
 <script src="{{ asset('assets/js/pages-admin/rpp.js') }}"></script>
 @endpush
