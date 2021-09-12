@@ -49,9 +49,9 @@
                         <label for="">Jabatan :</label>
                         <select name="jabatan" class="form-control @error('jabatan') is-invalid @enderror" id="jabatan">
                             <option value="">-- Pilih Jabatan --</option>
-                            <option value="guru" {{ (old('jabatan', $guru->jabatan) === 'Guru') ? 'selected' : '' }}>Guru
+                            <option value="guru" {{ (old('jabatan', $guru->jabatan) === 'guru') ? 'selected' : '' }}>Guru
                             </option>
-                            <option value="admin" {{ (old('jabatan', $guru->jabatan) === 'Admin') ? 'selected' : '' }}>
+                            <option value="admin" {{ (old('jabatan', $guru->jabatan) === 'admin') ? 'selected' : '' }}>
                                 Admin</option>
                         </select>
                         {{-- @error('jabatan') --}}
@@ -64,7 +64,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="">Mengajar Jurusan :</label>
-                        <select type="text" name="id_jurusan" id="jurusan"
+                        <select type="text" name="id_jurusan[]" id="jurusan"
                             class="form-control @error('id_jurusan') is-invalid @endif" multiple="multiple" data-id="{{ $id_jurusan }}">
                             <option value="">-- Pilih Jurusan --</option>
                             @foreach ($jurusan as $key => $item)
@@ -118,6 +118,31 @@
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
+                        <label>Pokja :</label>
+                        <select class="form-control select2 pokja" id="pokja" name="pokja">
+                            <option value="">-- Pilih Pokja --</option>
+                            <option {{ $guru->pokja == "RPL" ? 'selected' : '' }} value="RPL">RPL</option>
+                            <option {{ $guru->pokja == "MM" ? 'selected' : '' }} value="MM">MM</option>
+                            <option {{ $guru->pokja == "BC" ? 'selected' : '' }} value="BC">BC</option>
+                            <option {{ $guru->pokja == "TKJ" ? 'selected' : '' }} value="TKJ">TKJ</option>
+                            <option {{ $guru->pokja == "TEI" ? 'selected' : '' }} value="TEI">TEI</option>
+                            <option {{ $guru->pokja == "b.indo" ? 'selected' : '' }} value="b.indo">B.indo</option>
+                            <option {{ $guru->pokja == "MTK" ? 'selected' : '' }} value="MTK">MTK</option>
+                            <option {{ $guru->pokja == "PPKN" ? 'selected' : '' }} value="PPKN">PKN</option>
+                            <option {{ $guru->pokja == "Agama" ? 'selected' : '' }} value="Agama">Agama</option>
+                            <option {{ $guru->pokja == "Sindo" ? 'selected' : '' }} value="Sindo">Sindo</option>
+                            <option {{ $guru->pokja == "SBK" ? 'selected' : '' }} value="SBK">SBK</option>
+                            <option {{ $guru->pokja == "B.inggris" ? 'selected' : '' }} value="B.inggris">B.inggris</option>
+                            <option {{ $guru->pokja == "BK" ? 'selected' : '' }} value="BK">BK</option>
+                        </select>
+                        <div class="invalid-feedback d-none">
+                            pokja tidak boleh kosong
+                            {{-- {{ $message  }} --}}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
                         <label for="">Email :</label>
                         <input type="text" name="email" data-id="{{ $guru->user->id }}" id="email" class="form-control @error('email') is-invalid @enderror"
                             value="{{ old('email', $guru->user->email) }}">
@@ -132,7 +157,7 @@
                     <div class="form-group">
                         <label for="">new password :</label>
                         <input type="text" name="password" class="form-control @error('password') is-invalid @enderror"
-                            value="{{ old('password') }}" id="password">
+                            value="{{ old('password') }}" id="password" placeholder="new password">
                         {{-- @error('password') --}}
                         <div class="invalid-feedback">
                            Password tidak boleh kosong
@@ -165,7 +190,7 @@
             // jika return fungtion nya mkaa akan menampilan validasi
             // jika funtion validation nya tidak kosong maka akan submit form nya
             if (!validate_nik() && !validate_name() && !validate_jabatan() && !
-                validate_jurusan() && !validate_fax() && !validate_alamat() && !validate_no_telp() && !validate_password() && !validate_email()) {
+                validate_jurusan() && !validate_fax() && !validate_alamat() && !validate_no_telp() && !validate_password() && !validate_email() && !validated_pokja()) {
                 $('#form').submit();
             } else { // jika kosoong ambil erornya
                 validate_mapel();
@@ -178,6 +203,7 @@
                 validate_no_telp();
                 validate_password();
                 validate_email();
+                validated_pokja();
             }
         })
 
@@ -293,6 +319,24 @@
             // console.log(count_erorr.length);
             return count_erorr.length;
         }
+
+          function validated_pokja() {
+            arr_validated = [];
+            pokja = $('#pokja').val();
+            if (!pokja) {
+                pokja = $('#pokja');
+                pokja.addClass('is-invalid');
+                pokja.closest('div').find('.invalid-feedback').removeClass('d-none');
+                pokja.closest('div').find('.invalid-feedback').html('Pokja tidak boleh kosong');
+                arr_validated += 1;
+            } else {
+                pokja = $('#pokja');
+                pokja.removeClass('is-invalid');
+                pokja.closest('div').find('.invalid-feedback').addClass('d-none');
+            }
+            return arr_validated.length;
+        }
+
 
         function validate_nik() {
             arr_validated = []; // unutk mengimpan nomor jadi erorrnya

@@ -28,6 +28,7 @@
                 <th>Nama</th>
                 <th>jabatan</th>
                 <th>Mengajar Jurusan</th>
+                <th>pokja</th>
                 <th>No telp </th>
                 <th>action</th>
             </tr>

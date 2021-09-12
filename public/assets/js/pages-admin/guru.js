@@ -28,6 +28,7 @@ $(document).ready( function () {
         { data: 'name', name:'name'},
         { data: 'jabatan', name:'jabatan'},
         { data: 'jurusan',name:'jurusan'},
+        { data: 'pokja', name:'pokja'},
         { data: 'no_telp',name:'no_telp'},
         { data: 'action',name:'action'}
         ],

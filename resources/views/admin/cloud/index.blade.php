@@ -6,7 +6,7 @@
 @section('judul','Semua Cloud ')
 @section('breadcrump')
     <div class="breadcrumb-item active"><a href="{{ route('admin.dashboard') }}">Dashboard</a></div>
-    <div class="breadcrumb-item"></div>
+    <div class="breadcrumb-item">Cloud</div>
 @endsection
 @section('main')
 {{-- content here --}}
@@ -18,7 +18,7 @@
 
     <div class="card-body">
         <div class="row">
-            @foreach ($guru as $item)
+            @foreach ($guru->where('pokja','RPL') as $item)
                 <div class="col-lg-3 col-md-3 col-sm-12">
                 <div class="card card-statistic-2 card-primary" style="box-shadow: 0 4px 15px 0 rgba(0,0,0,0.2);">
                     <div class="card-stats">
@@ -40,7 +40,7 @@
                                 <h4>Total Cloud</h4>
                             </div>
                             <div class="card-body">
-                                {{ $item->admin_cloud()->where('status','!=','kosong')->count(); }}
+                                {{ $item->admin_cloud()->where('status','!=','kosong')->where('status','!=','tolak')->count(); }}
                             </div>
                         </a>
                     </div>
@@ -48,7 +48,7 @@
             </div>
             @endforeach
 
-            
+
 
 
 
@@ -65,7 +65,7 @@
 
     <div class="card-body">
         <div class="row">
-            @foreach ($guru as $item)
+            @foreach ($guru->where('pokja','MM') as $item)
                 <div class="col-lg-3 col-md-3 col-sm-12">
                 <div class="card card-statistic-2 card-primary" style="box-shadow: 0 4px 15px 0 rgba(0,0,0,0.2);">
                     <div class="card-stats">
@@ -87,7 +87,7 @@
                                 <h4>Total Cloud</h4>
                             </div>
                             <div class="card-body">
-                                {{ $item->admin_cloud()->where('status','!=','kosong')->count(); }}
+                                {{ $item->admin_cloud()->where('status','!=','kosong')->where('status','!=','tolak')->count(); }}
                             </div>
                         </a>
                     </div>
@@ -95,7 +95,7 @@
             </div>
             @endforeach
 
-            
+
 
 
 
@@ -112,7 +112,7 @@
 
     <div class="card-body">
         <div class="row">
-            @foreach ($guru as $item)
+            @foreach ($guru->where('pokja','BC') as $item)
                 <div class="col-lg-3 col-md-3 col-sm-12">
                 <div class="card card-statistic-2 card-primary" style="box-shadow: 0 4px 15px 0 rgba(0,0,0,0.2);">
                     <div class="card-stats">
@@ -134,7 +134,7 @@
                                 <h4>Total Cloud</h4>
                             </div>
                             <div class="card-body">
-                                {{ $item->admin_cloud()->where('status','!=','kosong')->count(); }}
+                                {{ $item->admin_cloud()->where('status','!=','kosong')->where('status','!=','tolak')->count(); }}
                             </div>
                         </a>
                     </div>
@@ -153,7 +153,7 @@
 
     <div class="card-body">
         <div class="row">
-            @foreach ($guru as $item)
+            @foreach ($guru->where('pokja','TEI') as $item)
                 <div class="col-lg-3 col-md-3 col-sm-12">
                 <div class="card card-statistic-2 card-primary" style="box-shadow: 0 4px 15px 0 rgba(0,0,0,0.2);">
                     <div class="card-stats">
@@ -175,7 +175,7 @@
                                 <h4>Total Cloud</h4>
                             </div>
                             <div class="card-body">
-                                {{ $item->admin_cloud()->where('status','!=','kosong')->count(); }}
+                                {{ $item->admin_cloud()->where('status','!=','kosong')->where('status','!=','tolak')->count(); }}
                             </div>
                         </a>
                     </div>
@@ -194,7 +194,7 @@
 
     <div class="card-body">
         <div class="row">
-            @foreach ($guru as $item)
+            @foreach ($guru->where('pokja','TKJ') as $item)
                 <div class="col-lg-3 col-md-3 col-sm-12">
                 <div class="card card-statistic-2 card-primary" style="box-shadow: 0 4px 15px 0 rgba(0,0,0,0.2);">
                     <div class="card-stats">
@@ -216,7 +216,7 @@
                                 <h4>Total Cloud</h4>
                             </div>
                             <div class="card-body">
-                                {{ $item->admin_cloud()->where('status','!=','kosong')->count(); }}
+                                {{ $item->admin_cloud()->where('status','!=','kosong')->where('status','!=','tolak')->count(); }}
                             </div>
                         </a>
                     </div>
@@ -235,7 +235,7 @@
 
     <div class="card-body">
         <div class="row">
-            @foreach ($guru as $item)
+        @foreach ($guru->where('pokja','b.indo') as $item)
                 <div class="col-lg-3 col-md-3 col-sm-12">
                 <div class="card card-statistic-2 card-primary" style="box-shadow: 0 4px 15px 0 rgba(0,0,0,0.2);">
                     <div class="card-stats">
@@ -257,7 +257,7 @@
                                 <h4>Total Cloud</h4>
                             </div>
                             <div class="card-body">
-                                {{ $item->admin_cloud()->where('status','!=','kosong')->count(); }}
+                                {{ $item->admin_cloud()->where('status','!=','kosong')->where('status','!=','tolak')->count(); }}
                             </div>
                         </a>
                     </div>
@@ -275,7 +275,7 @@
 
     <div class="card-body">
         <div class="row">
-            @foreach ($guru as $item)
+            @foreach ($guru->where('pokja','MTK') as $item)
                 <div class="col-lg-3 col-md-3 col-sm-12">
                 <div class="card card-statistic-2 card-primary" style="box-shadow: 0 4px 15px 0 rgba(0,0,0,0.2);">
                     <div class="card-stats">
@@ -297,7 +297,7 @@
                                 <h4>Total Cloud</h4>
                             </div>
                             <div class="card-body">
-                                {{ $item->admin_cloud()->where('status','!=','kosong')->count(); }}
+                                {{ $item->admin_cloud()->where('status','!=','kosong')->where('status','!=','tolak')->count(); }}
                             </div>
                         </a>
                     </div>
@@ -316,7 +316,7 @@
 
     <div class="card-body">
         <div class="row">
-            @foreach ($guru as $item)
+            @foreach ($guru->where('pokja','PPKN') as $item)
                 <div class="col-lg-3 col-md-3 col-sm-12">
                 <div class="card card-statistic-2 card-primary" style="box-shadow: 0 4px 15px 0 rgba(0,0,0,0.2);">
                     <div class="card-stats">
@@ -338,7 +338,7 @@
                                 <h4>Total Cloud</h4>
                             </div>
                             <div class="card-body">
-                                {{ $item->admin_cloud()->where('status','!=','kosong')->count(); }}
+                                {{ $item->admin_cloud()->where('status','!=','kosong')->where('status','!=','tolak')->count(); }}
                             </div>
                         </a>
                     </div>
@@ -357,7 +357,7 @@
 
     <div class="card-body">
         <div class="row">
-            @foreach ($guru as $item)
+            @foreach ($guru->where('pokja','Agama') as $item)
                 <div class="col-lg-3 col-md-3 col-sm-12">
                 <div class="card card-statistic-2 card-primary" style="box-shadow: 0 4px 15px 0 rgba(0,0,0,0.2);">
                     <div class="card-stats">
@@ -379,7 +379,7 @@
                                 <h4>Total Cloud</h4>
                             </div>
                             <div class="card-body">
-                                {{ $item->admin_cloud()->where('status','!=','kosong')->count(); }}
+                                {{ $item->admin_cloud()->where('status','!=','kosong')->where('status','!=','tolak')->count(); }}
                             </div>
                         </a>
                     </div>
@@ -398,7 +398,7 @@
 
     <div class="card-body">
         <div class="row">
-            @foreach ($guru as $item)
+            @foreach ($guru->where('pokja','Sindo') as $item)
                 <div class="col-lg-3 col-md-3 col-sm-12">
                 <div class="card card-statistic-2 card-primary" style="box-shadow: 0 4px 15px 0 rgba(0,0,0,0.2);">
                     <div class="card-stats">
@@ -420,7 +420,7 @@
                                 <h4>Total Cloud</h4>
                             </div>
                             <div class="card-body">
-                                {{ $item->admin_cloud()->where('status','!=','kosong')->count(); }}
+                                {{ $item->admin_cloud()->where('status','!=','kosong')->where('status','!=','tolak')->count(); }}
                             </div>
                         </a>
                     </div>
@@ -439,7 +439,7 @@
 
     <div class="card-body">
         <div class="row">
-            @foreach ($guru as $item)
+            @foreach ($guru->where('pokja','SBK') as $item)
                 <div class="col-lg-3 col-md-3 col-sm-12">
                 <div class="card card-statistic-2 card-primary" style="box-shadow: 0 4px 15px 0 rgba(0,0,0,0.2);">
                     <div class="card-stats">
@@ -461,7 +461,7 @@
                                 <h4>Total Cloud</h4>
                             </div>
                             <div class="card-body">
-                                {{ $item->admin_cloud()->where('status','!=','kosong')->count(); }}
+                                {{ $item->admin_cloud()->where('status','!=','kosong')->where('status','!=','tolak')->count(); }}
                             </div>
                         </a>
                     </div>
@@ -478,10 +478,10 @@
         <h4>Cloud Bahasa Inggris</h4>
     </div>
 
-    
+
     <div class="card-body">
         <div class="row">
-            @foreach ($guru as $item)
+            @foreach ($guru->where('pokja','B.inggris') as $item)
                 <div class="col-lg-3 col-md-3 col-sm-12">
                 <div class="card card-statistic-2 card-primary" style="box-shadow: 0 4px 15px 0 rgba(0,0,0,0.2);">
                     <div class="card-stats">
@@ -503,7 +503,7 @@
                                 <h4>Total Cloud</h4>
                             </div>
                             <div class="card-body">
-                                {{ $item->admin_cloud()->where('status','!=','kosong')->count(); }}
+                                {{ $item->admin_cloud()->where('status','!=','kosong')->where('status','!=','tolak')->count(); }}
                             </div>
                         </a>
                     </div>
@@ -523,7 +523,7 @@
 
     <div class="card-body">
         <div class="row">
-            @foreach ($guru as $item)
+            @foreach ($guru->where('pokja','BK') as $item)
                 <div class="col-lg-3 col-md-3 col-sm-12">
                 <div class="card card-statistic-2 card-primary" style="box-shadow: 0 4px 15px 0 rgba(0,0,0,0.2);">
                     <div class="card-stats">
@@ -545,7 +545,7 @@
                                 <h4>Total Cloud</h4>
                             </div>
                             <div class="card-body">
-                                {{ $item->admin_cloud()->where('status','!=','kosong')->count(); }}
+                                {{ $item->admin_cloud()->where('status','!=','kosong')->where('status','!=','tolak')->count(); }}
                             </div>
                         </a>
                     </div>
@@ -566,7 +566,7 @@
     //     processing: true,
     //     ajax : {
     //         url: '/admin/dashboard/admin_cloud/view',
-    //         methods: 'get',
+    //         methods: '->where('status','!=','tolak')get',
     //     },
     //     columns: [
     //     {name: 'DT_RowIndex',data:'DT_RowIndex'},

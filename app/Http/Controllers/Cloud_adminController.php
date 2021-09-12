@@ -16,6 +16,7 @@ class Cloud_adminController extends Controller
     public function cloud_admin()
     {
         $guru = Guru::where('jabatan','guru')->get();
+        $uniq_pokja = Guru::where('jabatan','guru')->distinct()->select('pokja')->get();
         return view('admin.cloud.index', compact('guru'));
     }
 

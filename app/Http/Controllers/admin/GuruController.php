@@ -117,6 +117,7 @@ class GuruController extends Controller
             'jabatan' => $request->jabatan,
             'alamat' => $request->alamat,
             'fax' => $request->fax,
+            'pokja' => $request->pokja,
             'no_telp' => $request->no_telp,
             'id_user' => $user->id
         ]);
@@ -217,6 +218,7 @@ class GuruController extends Controller
                 'jabatan' => $request->jabatan,
                 'alamat' => $request->alamat,
                 'fax' => $request->fax,
+                'pokja' => $request->pokja,
                 'no_telp' => $request->no_telp,
             ]);
 
@@ -238,6 +240,7 @@ class GuruController extends Controller
                 'jabatan' => $request->jabatan,
                 'alamat' => $request->alamat,
                 'fax' => $request->fax,
+                'pokja' => $request->pokja,
                 'no_telp' => $request->no_telp,
             ]);
 

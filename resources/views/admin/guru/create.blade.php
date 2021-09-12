@@ -65,13 +65,14 @@
                     </div>
                 </div>
 
-                
+
 
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="">Mengajar Jurusan :</label>
                         <select type="text" name="id_jurusan[]"
-                            class=" jurusan form-control @error('id_jurusan') is-invalid @endif" id="jurusan" multiple="multiple">
+                            class=" jurusan form-control @error('id_jurusan') is-invalid @endif" id="jurusan"
+                            multiple="multiple">
                             <option value="">-- Pilih Jurusan --</option>
                             @foreach ($jurusan as $item)
                             <option value="{{ $item->id }}" {{ (old('id_jurusan') == $item->id) ? 'selected' : '' }}>
@@ -119,8 +120,8 @@
                         {{-- @enderror --}}
                     </div>
                 </div>
-                
-               
+
+
             </div>
 
             <div class="row">
@@ -141,23 +142,27 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label>Pokja :</label>
-                        <select class="form-control select2">
-                          <option>-- Pilih Pokja --</option>
-                          <option>RPL</option>
-                          <option>MM</option>
-                          <option>BC</option>
-                          <option>TKJ</option>
-                          <option>TEI</option>
-                          <option>B.indo</option>
-                          <option>MTK</option>
-                          <option>PKN</option>
-                          <option>Agama</option>
-                          <option>Sindo</option>
-                          <option>SBK</option>
-                          <option>B.inggris</option>
-                          <option>BK</option>
+                        <select class="form-control select2 pokja" id="pokja" name="pokja">
+                            <option value="">-- Pilih Pokja --</option>
+                            <option value="RPL">RPL</option>
+                            <option value="MM">MM</option>
+                            <option value="BC">BC</option>
+                            <option value="TKJ">TKJ</option>
+                            <option value="TEI">TEI</option>
+                            <option value="b.indo">B.indo</option>
+                            <option value="MTK">MTK</option>
+                            <option value="PPKN">PKN</option>
+                            <option value="Agama">Agama</option>
+                            <option value="Sindo">Sindo</option>
+                            <option value="SBK">SBK</option>
+                            <option value="B.inggris">B.inggris</option>
+                            <option value="BK">BK</option>
                         </select>
-                      </div>
+                        <div class="invalid-feedback d-none">
+                            pokja tidak boleh kosong
+                            {{-- {{ $message  }} --}}
+                        </div>
+                    </div>
                 </div>
 
 
@@ -177,8 +182,9 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="">password :</label>
-                        <input type="password" name="password" class="form-control @error('password') is-invalid @enderror"
-                            value="{{ old('password') }}" id="password">
+                        <input type="password" name="password"
+                            class="form-control @error('password') is-invalid @enderror" value="{{ old('password') }}"
+                            id="password">
                         {{-- @error('password') --}}
                         <div class="invalid-feedback d-none">
                             Password tidak boleh kosong
@@ -188,9 +194,9 @@
                     </div>
                 </div>
 
-                
-                
-                
+
+
+
 
                 <button class="btn btn-success ml-auto mr-2 mt-5 mb-5" id="buttonSubmit" type="submit">Submit</button>
                 <a href="{{ route('admin.guru.index') }}" class="btn btn-danger mr-4 mt-5 mb-5">Cancel</a>
@@ -198,7 +204,7 @@
             </div>
 
 
-            
+
 
         </form>
     </div>
@@ -218,7 +224,7 @@
             // jika funtion validation nya tidak kosong maka akan submit form nya
             if (!validate_nik() && !validate_name() && !validate_jabatan() && !
                 validate_jurusan() && !validate_fax() && !validate_alamat() && !validate_no_telp() && !
-                validate_password() && !validate_email()) {
+                validate_password() && !validate_email() && !validated_pokja()) {
                 $('#form').submit();
             } else { // jika kosoong ambil erornya
                 validate_nik();
@@ -230,6 +236,7 @@
                 validate_no_telp();
                 validate_password();
                 validate_email();
+                validated_pokja()
             }
         })
 
@@ -399,6 +406,23 @@
                 });
             }
             return arr_validated.length // return panjang dari array nya
+        }
+
+        function validated_pokja() {
+            arr_validated = [];
+            pokja = $('#pokja').val();
+            if (!pokja) {
+                pokja = $('#pokja');
+                pokja.addClass('is-invalid');
+                pokja.closest('div').find('.invalid-feedback').removeClass('d-none');
+                pokja.closest('div').find('.invalid-feedback').html('Pokja tidak boleh kosong');
+                arr_validated += 1;
+            } else {
+                pokja = $('#pokja');
+                pokja.removeClass('is-invalid');
+                pokja.closest('div').find('.invalid-feedback').addClass('d-none');
+            }
+            return arr_validated.length;
         }
 
         function validate_email() {
