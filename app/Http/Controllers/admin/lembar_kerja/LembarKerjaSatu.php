@@ -68,9 +68,15 @@ class LembarKerjaSatu extends Controller
                     $singkatan_badge = [];
                     foreach ($data->jurusan as $jurusan) {
                         if($jurusan->singkatan_jurusan == "RPL"){
-                        $singkatan_badge[] .= "<span class='badge badge-pill badge-danger'>$jurusan->singkatan_jurusan</span>";
-                        }else{
                         $singkatan_badge[] .= "<span class='badge badge-pill badge-primary'>$jurusan->singkatan_jurusan</span>";
+                        }if($jurusan->singkatan_jurusan == "MM"){
+                        $singkatan_badge[] .= "<span class='badge badge-pill badge-success'>$jurusan->singkatan_jurusan</span>";
+                        }if($jurusan->singkatan_jurusan == "BC"){
+                            $singkatan_badge[] .= "<span class='badge badge-pill badge-secondary'>$jurusan->singkatan_jurusan</span>";
+                        }if($jurusan->singkatan_jurusan == "TKJ"){
+                            $singkatan_badge[] .= "<span class='badge badge-pill badge-warning'>$jurusan->singkatan_jurusan</span>";
+                        }if($jurusan->singkatan_jurusan == "TEI"){
+                            $singkatan_badge[] .= "<span class='badge badge-pill badge-light'>$jurusan->singkatan_jurusan</span>";
                         }
 
                     }
