@@ -38,6 +38,7 @@
                 <th>status</th>
 
                 <th style="width: 200px;">Action</th>
+                <th>Terakhir di ubah</th>
             </tr>
         </thead>
         <tbody>

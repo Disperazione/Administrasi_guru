@@ -8,13 +8,37 @@ $(document).ready(function () {
     function column(role) {
         switch (role) {
             case 'guru':
-                return [{data: 'DT_RowIndex', name: 'DT_RowIndex'},
-                    { data: 'mapel',name:'mapel'},
-                    { data: 'bidang_studi', name:'bidang_studi'},
-                    { data: 'kompetensi_keahlian', name:'kompetensi_keahlian'},
-                    { data: 'status', name:'status'},
+                return [{
+                        data: 'DT_RowIndex',
+                        name: 'DT_RowIndex'
+                    },
+                    {
+                        data: 'mapel',
+                        name: 'mapel'
+                    },
+                    {
+                        data: 'bidang_studi',
+                        name: 'bidang_studi'
+                    },
+                    {
+                        data: 'kompetensi_keahlian',
+                        name: 'kompetensi_keahlian'
+                    },
+                    {
+                        data: 'status',
+                        name: 'status'
+                    },
                     // { data: 'btn_upload', name:'btn_upload'},
-                    { data: 'action',name:'action'}];
+                    {
+                        data: 'action',
+                        name: 'action'
+                    },
+                    {
+                        data: 'updated',
+                        name: 'updated'
+                    },
+                ];
+
                 break;
         }
     }
@@ -114,7 +138,7 @@ $(document).ready(function () {
         })
     })
 
-     // view komentar
+    // view komentar
     $('body').on('click', '.badge-tolak', function () {
         id = $(this).data('id');
         console.log(id);
@@ -130,9 +154,9 @@ $(document).ready(function () {
                     $('.field-lk-3').append('<li class="media">' +
                         '<div class="media-body">' +
                         '<div class="media-right"><div class="text-danger">Ditolak</div></div>' +
-                        '<div class="media-title mb-1">Admin ('+komen[i].guru.name+')</div>' +
-                        '<div class="text-time">'+response.waktu[i]+'</div>' +
-                        '<div class="media-description text-muted">'+komen[i].comment+'</div>' +
+                        '<div class="media-title mb-1">Admin (' + komen[i].guru.name + ')</div>' +
+                        '<div class="text-time">' + response.waktu[i] + '</div>' +
+                        '<div class="media-description text-muted">' + komen[i].comment + '</div>' +
                         '<div class="media-links">' +
                         ' </div>' +
                         '</li>');

@@ -35,7 +35,11 @@ $(document).ready(function () {
                     {
                         data: 'action',
                         name: 'action'
-                    }
+                    },
+                      {
+                        data: 'updated',
+                        name: 'updated'
+                    },
                 ];
                 break;
         }

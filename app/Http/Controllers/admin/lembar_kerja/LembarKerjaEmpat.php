@@ -13,6 +13,7 @@ use App\Models\Lembar_kerja;
 use App\Models\Mapel;
 use App\Models\Materi_bahan_ajar;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class LembarKerjaEmpat extends Controller
 {
@@ -112,6 +113,14 @@ class LembarKerjaEmpat extends Controller
                     $button .= '&nbsp';
                     $button .= '<button type="button" name="delete" id="hapus" data-id="' . $data->id . '" class="delete btn btn-danger btn-sm mt-1"><i class="fas fa-trash"></i></button>';
                     return $button;
+                })
+                ->addColumn('updated', function ($data) {
+                    return !empty($data->target_pembelajaran->updated_at) ? $data->target_pembelajaran->updated_at->Isoformat('D MMMM Y') : 'Belum di update';
+                })
+                ->addColumn('updated', function ($data) {
+                    $id_bidang = [];
+                    $kom = $data->kompetensi_dasar()->has('materi_bahan_ajar')->first();
+                    return !empty($kom->materi_bahan_ajar->updated_at) ? $kom->materi_bahan_ajar->updated_at->Isoformat('D MMMM Y') : 'Belum di update';
                 })
                 ->rawColumns(['action', 'kompetensi_keahlian','status','btn_upload'])
                 ->addIndexColumn()->make(true);
@@ -309,6 +318,7 @@ class LembarKerjaEmpat extends Controller
                     'deskripsi_bahan_ajar' => $request->deskripsi_bahan[$i],
                     'keterangan' => $request->keterangan[$i],
                     'id_kompetensi_dasar' => $request->id_kd[$i],
+                    'updated_at' => Carbon::now()->format('Y-m-d'),
                 ]);
             }
         }

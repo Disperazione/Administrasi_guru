@@ -27,15 +27,19 @@ $(document).ready(function () {
                         data: 'status',
                         name: 'status'
                     },
-                    // {data: 'btn_upload', name:'btn_upload'},
+
                     // { data: 'kelas', name:'kelas'},
                     // { data: 'jam_pelajaran', name:'jam_pelajaran'},
                     // { data: 'total_waktu_jam_pelajaran',name:'total_waktu_jam_pelajaran'},
                     {
                         data: 'action',
                         name: 'action'
-                    }
-                ];
+                    },
+                    {
+                        data: 'updated',
+                        name: 'updated'
+                    },
+                ]
                 break;
         }
     }
@@ -121,12 +125,12 @@ $(document).ready(function () {
                         url: '/admin/lk_1/' + id + '/pdf'
                     },
                     success: function (response) {
-                            table.draw();
-                            Swal.fire(
-                                'success',
-                                'Data anda berhasil di upload.',
-                                'success'
-                            )
+                        table.draw();
+                        Swal.fire(
+                            'success',
+                            'Data anda berhasil di upload.',
+                            'success'
+                        )
                     },
                     error: function (data) {
                         console.log('Error:', data);

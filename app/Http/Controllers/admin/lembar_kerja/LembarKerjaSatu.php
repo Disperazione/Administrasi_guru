@@ -106,6 +106,9 @@ class LembarKerjaSatu extends Controller
                     $button .= '<button type="button" name="delete" id="hapus" data-id="' . $data->id . '" class="delete btn btn-danger btn-sm mt-1"><i class="fas fa-trash"></i></button>';
                     return $button;
                 })
+                ->addColumn('updated', function($data){
+                    return !empty($data->target_pembelajaran->updated_at) ? $data->target_pembelajaran->updated_at->Isoformat('D MMMM Y') : 'Belum di update';
+                })
                 ->rawColumns(['status','action', 'kompetensi_keahlian', 'btn_upload'])
                 ->addIndexColumn()->make(true);
         }

@@ -110,6 +110,11 @@ class LembarKerjaDua extends Controller
                     $button .= '<button type="button" name="delete" id="hapus" data-id="' . $data->id . '" class="delete btn btn-danger btn-sm mt-1"><i class="fas fa-trash"></i></button>';
                     return $button;
                 })
+                ->addColumn('updated', function ($data) {
+                    $id_bidang = [];
+                    $kom = $data->kompetensi_dasar()->has('strategi_pembelajaran')->first();
+                    return !empty($kom->strategi_pemeblajaran->updated_at) ? $kom->strategi_pemeblajaran->updated_at->Isoformat('D MMMM Y') : 'Belum di update';
+                })
                 ->rawColumns(['action','kompetensi_keahlian', 'status', 'btn_upload'])
                 ->addIndexColumn()->make(true);
         }

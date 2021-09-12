@@ -338,6 +338,7 @@
           // bidang + status
         // $('#mapel').change(function () {
             id = $('#mapel').val(); // mengambil value
+            console.log(id);
             $('#total_jp').val('')
             $('#jp').val('');
             $('#kelas').val('');
@@ -476,7 +477,10 @@
                         e.preventDefault();
                         $(this).parent('div').parent('div').parent('div').parent(
                             'div').parent('div').remove();
-                            count--; // 1 - i
+                            if (count > 0) {
+                                count--; // 1 - i
+                            }
+
                     })
                     // });
 

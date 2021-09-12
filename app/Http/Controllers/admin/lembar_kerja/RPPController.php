@@ -106,6 +106,11 @@ class RPPController extends Controller
                     $button .= '<button type="button" name="delete" id="hapus" data-id="' . $data->id . '" class="delete btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>';
                     return $button;
                 })
+                ->addColumn('updated', function ($data) {
+                    $id_bidang = [];
+                    $kom = $data->has('rencana_pelaksanaan_pembelajaran')->first();
+                    return !empty($kom->rencana_pelaksanaan_pembelajaran->updated_at) ? $kom->rencana_pelaksanaan_pembelajaran->updated_at->Isoformat('D MMMM Y') : 'Belum di update';
+                })
                 ->rawColumns(['action','status','btn_upload', 'kompetensi_keahlian'])
                 ->addIndexColumn()->make(true);
         }

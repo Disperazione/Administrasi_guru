@@ -13,7 +13,7 @@ $(document).ready(function () {
                         data: 'DT_RowIndex',
                         name: 'DT_RowIndex'
                     },
-                      {
+                    {
                         data: 'mapel',
                         name: 'mapel'
                     },
@@ -29,11 +29,18 @@ $(document).ready(function () {
                         data: 'kd_pengetahuan',
                         name: 'kd_pengetahuan'
                     },
-                    { data: 'status', name:'status'},
+                    {
+                        data: 'status',
+                        name: 'status'
+                    },
 
                     {
                         data: 'action',
                         name: 'action'
+                    },
+                    {
+                        data: 'updated',
+                        name: 'updated'
                     }
 
                 ];
@@ -62,8 +69,7 @@ $(document).ready(function () {
         columns: column(role),
     });
     $('.btn-table').append('<a href="' + root + '/admin/RPP/create" class="btn btn-primary">Tambah Data +</a>');
-      $('#table-1_filter').prepend('<a href="'+root+'/admin/export/excel/kompetensi_dasar"class="btn btn-success mr-3  ml-2"> Excel <i class="fas fa-cloud-download-alt"></i></button></a>'
-    );
+    $('#table-1_filter').prepend('<a href="' + root + '/admin/export/excel/kompetensi_dasar"class="btn btn-success mr-3  ml-2"> Excel <i class="fas fa-cloud-download-alt"></i></button></a>');
     $('body').on('click', '#hapus', function () {
         // sweet alert
         Swal.fire({
@@ -98,7 +104,7 @@ $(document).ready(function () {
             } else if (result.dismiss === Swal.DismissReason.cancel) {}
         })
     });
-    $("body").on('click','#upload',function(){
+    $("body").on('click', '#upload', function () {
         Swal.fire({
             title: 'Apa anda yakin untuk upload file ini?',
             icon: 'warning',
@@ -113,9 +119,14 @@ $(document).ready(function () {
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
-                    url: root+"/admin/upload/cloud",
+                    url: root + "/admin/upload/cloud",
                     type: "POST",
-                    data: { name: 'RPP' ,id_bidang:id , jenis:tittle ,url:'/admin/lk_1/'+id+'/pdf'},
+                    data: {
+                        name: 'RPP',
+                        id_bidang: id,
+                        jenis: tittle,
+                        url: '/admin/lk_1/' + id + '/pdf'
+                    },
                     success: function (reponse) {
                         console.log(reponse);
                         table.draw();
@@ -128,12 +139,12 @@ $(document).ready(function () {
                     error: function (data) {
                         console.log('Error:', data);
                     }
-            });
+                });
             } else if (result.dismiss === Swal.DismissReason.cancel) {}
         })
     });
 
-       // view komentar
+    // view komentar
     $('body').on('click', '.badge-tolak', function () {
         id = $(this).data('id');
         $('.id_cloud').val(id);
@@ -148,9 +159,9 @@ $(document).ready(function () {
                     $('.rpp').append('<li class="media">' +
                         '<div class="media-body">' +
                         '<div class="media-right"><div class="text-danger">Ditolak</div></div>' +
-                        '<div class="media-title mb-1">Admin ('+komen[i].guru.name+')</div>' +
-                        '<div class="text-time">'+response.waktu[i]+'</div>' +
-                        '<div class="media-description text-muted">'+komen[i].comment+'</div>' +
+                        '<div class="media-title mb-1">Admin (' + komen[i].guru.name + ')</div>' +
+                        '<div class="text-time">' + response.waktu[i] + '</div>' +
+                        '<div class="media-description text-muted">' + komen[i].comment + '</div>' +
                         '<div class="media-links">' +
                         ' </div>' +
                         '</li>');

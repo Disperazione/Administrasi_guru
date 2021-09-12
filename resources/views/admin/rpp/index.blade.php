@@ -37,8 +37,8 @@
                 <th>kd pengetahuan</th>
                 <th>kd krampilan</th>
                 <th>status</th>
-
                 <th>action</th>
+                <th>Terakhir di ubah</th>
             </tr>
         </thead>
         <tbody>

@@ -106,6 +106,11 @@ class LembarKerjaTiga extends Controller
                     $button .= '<button type="button" name="delete" id="hapus" data-id="' . $data->id . '" class="delete btn btn-danger btn-sm mt-1"><i class="fas fa-trash"></i></button>';
                     return $button;
                 })
+                ->addColumn('updated', function ($data) {
+                    $id_bidang = [];
+                    $kom = $data->kompetensi_dasar()->has('indikator_ketercapaian')->first();
+                    return !empty($kom->indikator_ketercapaian->updated_at) ? $kom->indikator_ketercapaian->updated_at->Isoformat('D MMMM Y') : 'Belum di update';
+                })
                 ->rawColumns(['action', 'kompetensi_keahlian','status','btn_upload'])
                 ->addIndexColumn()->make(true);
         }
