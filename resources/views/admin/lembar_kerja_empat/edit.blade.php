@@ -86,11 +86,12 @@
                                 </div> --}}
                                 <select class="form-control" name="mapel" id="mapel" disabled>
                                     <option value="">Lihat Lebih Lanjut</option>
-                                    @foreach(Auth::user()->guru->bidang_keahlian()->where('id_jurusan',$bidang_main->id_jurusan)->get()
+                                    {{-- @foreach(Auth::user()->guru->bidang_keahlian()->where('id_jurusan',$bidang_main->id_jurusan)->get()
                                     as $item)
                                     <option value="{{ $item->id }}" {{ ($item->id == $bidang_main->id) ? 'selected' : '' }}>
                                         {{ $item->mapel }}</option>
-                                    @endforeach
+                                    @endforeach --}}
+                                    <option value="{{ $bidang_main->id }}" selected>{{ $bidang_main->mapel }}</option>
                                 </select>
                                 <div class="invalid-feedback">
                                     Mapel tidak boleh koosng

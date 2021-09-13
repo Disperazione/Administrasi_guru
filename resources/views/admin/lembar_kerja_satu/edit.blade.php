@@ -85,11 +85,12 @@
                                 </div> --}}
                                 <select class="form-control" name="mapel" id="mapel" readonly>
                                     <option value="">Lihat Lebih Lanjut</option>
-                                    @foreach(Auth::user()->guru->bidang_keahlian()->where('id_jurusan',$target->id_jurusan)->get()
+                                    {{-- @foreach(Auth::user()->guru->bidang_keahlian()->where('id_jurusan',$target->jurusan)->get()
                                     as $item)
                                     <option value="{{ $item->id }}" {{ ($item->id == $target->id) ? 'selected' : '' }}>
                                         {{ $item->mapel }}</option>
-                                    @endforeach
+                                    @endforeach --}}
+                                    <option value="{{ $target->id }}" selected>{{ $target->mapel }}</option>
                                 </select>
                                 <div class="invalid-feedback">
                                     Mapel tidak boleh koosng
@@ -201,9 +202,9 @@
                                 </tr> --}}
                             </thead>
                             <tbody class="fields_multiple_semester_ganjil" data-target="{{ $target->id }}">
-                                @foreach ($s_ganjil as $item)
+                                @foreach ($s_ganjil as $key => $item)
                                 <tr>
-                                    <td scope="row">1</td>
+                                    <td scope="row" id="index_ganjil" class="index_ganjil" data-key="{{ $key + 1 }}">{{ $key + 1 }}</td>
                                     <td>
                                         <select name="kd_ganjil[]" id="" style="width:100%;heigth:100%"
                                             class="form-control s_ganjil">
@@ -239,9 +240,9 @@
                                 </tr>
                             </thead>
                             <tbody class="fields_multiple_semester_genap" data-target="{{ $target->id }}">
-                                @foreach ($s_genap as $item)
+                                @foreach ($s_genap as $key => $item)
                                 <tr>
-                                    <td scope="row">1</td>
+                                    <td scope="row"  id="index_genap" data-key="{{ $key + 1 }}">{{ $key + 1 }}</td>
                                     <td>
                                         <select name="kd_genap[]" id="" style="width:100%;heigth:100%"
                                             class="form-control">
@@ -894,13 +895,15 @@
 
         // bidang + status
         function multiple_semester_ganjil() {
-            counter = 0;
+            incrmeent = $('#index_ganjil').data('key'); // ngambil key dari loop foreach
+            console.log(incrmeent);
+            counter = incrmeent;
             $('.addbtn_multiple_semester_ganjil').click(function (e) {
                 e.preventDefault();
                 counter++;
                 $('.fields_multiple_semester_ganjil').append(
                     ' <tr>' +
-                    ' <td scope="row">1</td>' +
+                    ' <td scope="row">'+counter+'</td>' +
                     '<td>' +
                     '<select name="kd_ganjil[]" id="" style="width:100%;heigth:100%" class="form-control s_ganjil">' +
                     '</select>' +

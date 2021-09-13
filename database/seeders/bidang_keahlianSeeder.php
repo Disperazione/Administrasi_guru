@@ -23,7 +23,7 @@ class bidang_keahlianSeeder extends Seeder
             'kelas' => 'X',
             'jam_pelajaran' => '128 JP',
             'total_waktu_jam_pelajaran' => '48 Menit',
-            'id_jurusan' => 1,
+            // 'id_jurusan' => 1,
             'id_guru' => 1
         ]);
     }

@@ -183,8 +183,8 @@
     $(document).ready(function () {
         $('#jurusan').select2();
         id_jurusan = $('#jurusan').data('id'); // ambil data id dari jurusan
-        $('#jurusan').val(id_jurusan).trigger("change");
-        $('#jabatan').select2();
+        $('#jurusan').val(id_jurusan).trigger("change"); // untuk menambah value di multiple select
+        $('#jabatan').select2(); 
         $('#buttonSubmit').click(function (e) {
             e.preventDefault();
             // jika return fungtion nya mkaa akan menampilan validasi

@@ -116,9 +116,7 @@ $(document).ready(function () {
             if (result.value) {
                 id = $(this).data('id');
                 // Pace.track(function () {
-                $(document).ajaxStart(function () {
-                    NProgress.done();
-                });
+              
                 Pace.restart();
                 $.ajax({
                     headers: {

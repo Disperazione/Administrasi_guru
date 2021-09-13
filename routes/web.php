@@ -1,7 +1,7 @@
 <?php
 
+use App\Http\Controllers\admin\Cloud_adminController;
 use App\Http\Controllers\admin\CloudController;
-use App\Http\Controllers\Cloud_adminController;
 use App\Http\Controllers\komentarController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\admin\GuruController;

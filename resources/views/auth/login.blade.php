@@ -163,7 +163,7 @@
 
                 <form action="{{ route('api.login') }}" class="form" method="POST">
                     @csrf
-                    <img src="{{url('images/tb.png')}}" alt="" style="width: 200px; margin-left: 100px;">
+                    <img src="{{asset('images/tb.png')}}" alt="" style="width: 200px; margin-left: 100px;">
                     <h1 class="form__title" style="margin-left: 100px;">SIFOS | LOGIN</h1>
                     @if ($errors->has('name') || $errors->has('password'))
                         <div class="alert">

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\admin;
 
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
@@ -9,14 +9,15 @@ use Illuminate\Support\Facades\Storage;
 use App\Models\Guru;
 use App\Models\Admin_cloud;
 use Carbon\Carbon;
+use App\Http\Controllers\Controller;
 
 class Cloud_adminController extends Controller
 {
     //
     public function cloud_admin()
     {
-        $guru = Guru::where('jabatan','guru')->get();
-        $uniq_pokja = Guru::where('jabatan','guru')->distinct()->select('pokja')->get();
+        $guru = Guru::where('jabatan','guru')->get(); // nyari guru yang jabatanya guru
+        $uniq_pokja = Guru::where('jabatan','guru')->distinct()->select('pokja')->get(); // select uniqe pokja
         return view('admin.cloud.index', compact('guru'));
     }
 

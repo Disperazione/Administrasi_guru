@@ -32,14 +32,29 @@ class GuruController extends Controller
             // yajra data table
             return datatables()->of($guru)
                 ->editColumn('jurusan', function ($data) {
-                    $singkatan_badge = [];
-                    foreach ($data->jurusan as $jurusan) {
+                // })
+                $singkatan_badge = [];
+                foreach ($data->jurusan as $jurusan) {
+                    if ($jurusan->singkatan_jurusan == "RPL") {
                         $singkatan_badge[] .= "<span class='badge badge-pill badge-primary'>$jurusan->singkatan_jurusan</span>";
                     }
-                    if (empty($singkatan_badge)) {
-                        return 'Jurusan koosng';
+                    if ($jurusan->singkatan_jurusan == "MM") {
+                        $singkatan_badge[] .= "<span class='badge badge-pill badge-success'>$jurusan->singkatan_jurusan</span>";
                     }
-                    return implode(' ', $singkatan_badge);
+                    if ($jurusan->singkatan_jurusan == "BC") {
+                        $singkatan_badge[] .= "<span class='badge badge-pill badge-secondary'>$jurusan->singkatan_jurusan</span>";
+                    }
+                    if ($jurusan->singkatan_jurusan == "TKJ") {
+                        $singkatan_badge[] .= "<span class='badge badge-pill badge-warning'>$jurusan->singkatan_jurusan</span>";
+                    }
+                    if ($jurusan->singkatan_jurusan == "TEI") {
+                        $singkatan_badge[] .= "<span class='badge badge-pill badge-light'>$jurusan->singkatan_jurusan</span>";
+                    }
+                }
+                if (empty($singkatan_badge)) {
+                    return 'Jurusan koosng';
+                }
+                return implode(' ', $singkatan_badge);
                 })
                 ->addColumn('action', function ($data) {
                     $button = '<a  href="/admin/guru/' . $data->id . '/edit" id="edit" data-toggle="tooltip"  data-id="' . $data->id . '" data-original-title="Edit" class="edit btn btn-warning btn-sm edit-post"><i class="fas fa-pencil-alt"></i></a>';
@@ -202,7 +217,8 @@ class GuruController extends Controller
         $guru = Guru::where('id', $id)->first();
         $user = User::where('id', $guru->id_user)->first(); // 2x cek guru
 
-        // jika usernnya kosong
+
+        // jika usernnya tidak  kosong
         if (!empty($user))  {
             // update
             $user = User::where('id', $guru->id_user)->update([
@@ -259,12 +275,12 @@ class GuruController extends Controller
      */
     public function destroy($id)
     {
-        $guru = Guru::where('id', $id)->first();
-        if ($guru->id === Auth::user()->guru->id) {
-            Auth::logout();
+        $guru = Guru::where('id', $id)->first(); // cari guru
+        if ($guru->id === Auth::user()->guru->id) { //jika guru id == id guru yang sedang login
+            Auth::logout(); // logout
         }
-        $guru->user->delete;
-        $guru->delete();
+        $guru->user->delete; // hapus user guru
+        $guru->delete(); // hapus guru
         return response()->json(['data' => 'data anda berhasil di hapus']);
     }
 

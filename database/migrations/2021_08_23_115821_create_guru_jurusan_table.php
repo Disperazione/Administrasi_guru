@@ -28,6 +28,6 @@ class CreateGuruJurusanTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('guru_jurusan');
+        Schema::dropIfExists('MorphJurusans');
     }
 }

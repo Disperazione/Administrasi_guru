@@ -170,24 +170,26 @@ class LembarKerjaSatu extends Controller
         // target pembelajaran
         $target = Target_pembelajaran::create(['id_bidang_keahlian' => $request->mapel]);
         $bidang = Bidang_keahlian::where('id', $request->mapel)->first();
-
+        // jika bidang studi koson
         if (empty($request->bidang_studi)) {
-           $bin = 'TEHNOLOGI INFORMASI DAN KOMUKNIKASI';
+           $bin = 'TEHNOLOGI INFORMASI DAN KOMUKNIKASI'; // bin = default
         }else{
-            $bin = $request->bidang_studi;
+            $bin = $request->bidang_studi; // jika tidak bin = bidang_studi
         }
+        // jika lembar kerjanya kosong
         if (empty($bidang->lembar_kerja)) {
-            // lembar kerja
+            // buka lembar kerja baru di table lembar kerja
             Lembar_kerja::create([
                 'Lk_1' => $bin,
                 'id_bidang_keahlian' => $request->mapel
             ]);
-        }else{
+        }else{ // jika tidak update
             Lembar_kerja::where('id_bidang_keahlian', $request->mapel)->update(['Lk_1' => $bin]);
         }
 
+        // jika kd kandil kosong
         if (empty($request->kd_ganjil)) {
-        } else {
+        } else { // jika tidak membuat kd pembelajaran
             // kompetensi_dasar
             for ($i = 0; $i < count($request->kd_ganjil); $i++) {
                 Kd_target_pembelajaran::create([
@@ -282,8 +284,8 @@ class LembarKerjaSatu extends Controller
         $guru = Guru::all();
         $bidang = Bidang_keahlian::doesnthave('target_pembelajaran')->get();
         $target = Bidang_keahlian::has('target_pembelajaran')->with('target_pembelajaran')->where([['id_guru', Auth()->id()], ['id', $id]])->first(); // target untuk nyari bidang yang id = id
-        $s_genap = Kompetensi_dasar::has('kd_target_pemebelajaran')->where('semester','Genap')->get();
-        $s_ganjil = Kompetensi_dasar::has('kd_target_pemebelajaran')->where('semester', 'Ganjil')->get();
+        $s_genap = Kompetensi_dasar::has('kd_target_pemebelajaran')->where('semester','Genap')->where('id_bidang_keahlian',$id)->get();
+        $s_ganjil = Kompetensi_dasar::has('kd_target_pemebelajaran')->where('semester', 'Ganjil')->where('id_bidang_keahlian', $id)->get();
 
         $jurusan = Jurusan::all();
         $arr_jurusan = [];
@@ -291,6 +293,7 @@ class LembarKerjaSatu extends Controller
 
             $arr_jurusan[] .= $value->id; // id dari jurusan;
         }
+
         $id_jurusan = collect($arr_jurusan);
         return view('admin.lembar_kerja_satu.edit', compact('target','guru','bidang','s_genap','s_ganjil', 'id_jurusan','jurusan'));
     }

@@ -742,7 +742,7 @@
             var x = 1; //initlal text box count
             $(add_button).click(function (e) { //on add input button click
                 e.preventDefault();
-                if (x < max_fields) { //max input box allowed
+                if (x < max_fields) { // batesin box nya hanya 9 mulai dari 0
                     x++; //text box increment
                     $(wrapper).append('<tr>' +
                         '<th scope="row">' + x + '</th>' +
@@ -768,8 +768,8 @@
 
             $(wrapper).on("click", ".removebtn_multiple_kompetensi", function (e) { //user click on remove text
                 e.preventDefault();
-                $(this).parent('td').parent('tr').remove();
-                x--;
+                $(this).parent('td').parent('tr').remove(); // hapus parent nya
+                x--; // x - 1
             });
         }
         // auto complete mapel
@@ -834,7 +834,7 @@
 
                 function s_ganjil_multiple_input() {
                      counter = 0; // buat nentuin index aarray
-                    for (let i = 0; i <= counter; i++) {
+                    for (let i = 0; i <= counter; i++) { // loop table sesuai index nya jika counter / index di tambah maka table nya juga bertambah
                         // append table
                         $('.fields_multiple_semester_ganjil').append(' <tr>' +
                             ' <td scope="row">#</td>' +
@@ -847,12 +847,12 @@
                             '<button class="btn btn-danger x_s_ganjil" id="x_s_ganjil">X</button>' +
                             '</td>' +
                             '</tr>')
-                        select();
+                        select(); // memanggil funtion select untuk value select & fuction remove tr untuk hapus table / index yang tidak perlu
                         remove_tr();
 
                         $('.addbtn_multiple_semester_ganjil').click(function (e) {
                             e.preventDefault();
-                            counter++;
+                            counter++; // counter + 1 atau tambah index nya + 1
                             $('.fields_multiple_semester_ganjil').append(' <tr>' +
                                 ' <td scope="row">1</td>' +
                                 '<td>' +
@@ -864,33 +864,25 @@
                                 '<button class="btn btn-danger x_s_ganjil" id="x_s_ganjil">X</button>' +
                                 '</td>' +
                                 '</tr>')
-                            select();
-
-                            //apus apeend dalem
-                            $('.x_s_ganjil').click(function (e) {
-                            e.preventDefault();
-                            console.log('clicked');
-                            $(this).parent('td').parent('tr').remove();
-                            counter--;
-                        })
+                            select(); // memanggil metod select
                         })
 
                         // rmeove table
                         function remove_tr()
                         {
-                            $('#x_s_ganjil').click(function (e) {
+                            $('body').on('click','#x_s_ganjil',function (e) {
                             e.preventDefault();
-                            $(this).parent('td').parent('tr').remove();
-                            counter--;
+                            $(this).parent('td').parent('tr').remove(); // mengahpus 2x parent nya
+                            counter--; // kurangi index nya
                         })
                         }
                          // select
                         function select() {
                             // $('.s_ganjil').empty();
-                            response.s_ganjil.forEach(element => {
+                            response.s_ganjil.forEach(element => { // ini foreach elemnt ganjijl
                                 $('.s_ganjil').last().append('<option value="' + element
                                     .id + '"> KD ' + element.kd_pengetahuan +
-                                    ' ' + element.keterangan_pengetahuan +
+                                    ' ' + element.keterangan_pengetahuan + // mengambil elemnt dari foreach
                                     ' & KD ' +
                                     element.kd_ketrampilan + ' ' + element
                                     .keterangan_ketrampilan + ' </option>')
@@ -933,19 +925,12 @@
                                 '</tr>')
                             select();
 
-                            //apus apeend dalem
-                            $('.x_s_genap').click(function (e) {
-                            e.preventDefault();
-                            console.log('clicked');
-                            $(this).parent('td').parent('tr').remove();
-                            counter--;
-                        })
                         })
 
                         // rmeove table
                         function remove_tr()
                         {
-                            $('#x_s_genap').click(function (e) {
+                            $('body').on('click','#x_s_genap',function (e) {
                             e.preventDefault();
                             $(this).parent('td').parent('tr').remove();
                             counter--;
@@ -953,11 +938,11 @@
                         }
                          // select
                         function select() {
-                            response.s_genap.forEach(element => {
+                            response.s_genap.forEach(element => { // loop response s genap
                                 // $('.s_genap').empty();
                                 $('.s_genap').last().append('<option value="' + element
                                     .id + '"> KD ' + element.kd_pengetahuan +
-                                    ' ' + element.keterangan_pengetahuan +
+                                    ' ' + element.keterangan_pengetahuan + // mengambil element nya
                                     ' & KD ' +
                                     element.kd_ketrampilan + ' ' + element
                                     .keterangan_ketrampilan + ' </option>')
@@ -973,7 +958,7 @@
         });
 
             $('.addbtn_multiple_semester_ganjil').click(function (e) {
-                            e.preventDefault();
+                            e.preventDefault(); // jika kosong / mapel nya belum di sleect maka di prevent default
             })
 
             $('.addbtn_multiple_semester_genap').click(function (e) {
@@ -1046,12 +1031,13 @@
                     $('#mapel').closest('div').find('.invalid-feedback').removeClass(
                         'd-none'
                     ); // cari div terdekat dan cari class nya find = cari lalu REMOVE class d-none
-                    count_erorr += 1
+                    count_erorr += 1 // menambah aray + 1
                 } else {
                     $('#mapel').removeClass('is-invalid').removeClass('is-invalid');
                     $('#mapel').closest('div').find('.invalid-feedback').addClass(
                         'd-none'
                     ); // cari div terdekat dan cari class nya find = cari lalu add class d-none
+                    // jika tidak maka tidak di tambah  length nya undified
                 }
                 // return panjang dari collection atau array
                 return count_erorr.length;
@@ -1111,6 +1097,7 @@
                     // jika elemnt nya kosong
                     if (!element.value) {
                         // lalu add class
+                        // element / isi adalah elemnt dari query selector all
                         $(element).addClass('is-invalid');
                         $(element).closest('div').find('.invalid_keterangan_target_mapel')
                             .removeClass(

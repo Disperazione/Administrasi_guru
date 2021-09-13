@@ -107,7 +107,7 @@
                 <div class="card-stats-items mt-4">
                     <div class="card-stats-item col-3">
                         <a href="/admin/Lembar-kerja-1" class="text-decoration-none">
-                            <div class="card-stats-item-count">{{ $lk_1 }}</div>
+                            <div class="card-stats-item-count">{{ $lk_1 }}</div>    
                             <div class="card-stats-item-label">LK 1</div>
                         </a>
                     </div>

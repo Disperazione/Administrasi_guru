@@ -18,7 +18,7 @@ class CreateBidangKeahlianTable extends Migration
             //$table->string('bidang_studi'); <- table lembar kerja
             $table->string('mapel'); // mapel
             //$table->string('kompetensi_keahlian');
-            $table->foreignId('id_jurusan')->constrained('jurusan')->onDelete('cascade')->onUpdate('cascade');
+            //$table->foreignId('id_jurusan')->constrained('jurusan')->onDelete('cascade')->onUpdate('cascade');
             $table->string('kelas');
             $table->string('jam_pelajaran');
             $table->string('total_waktu_jam_pelajaran');
