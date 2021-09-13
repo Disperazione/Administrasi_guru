@@ -66,7 +66,7 @@ class RPPController extends Controller
                 })
                 ->addColumn('kompetensi_keahlian', function ($data) {
                     $singkatan_badge = [];
-                    foreach ($data->jurusan as $jurusan) {
+                    foreach ($data->bidang_keahlian->jurusan as $jurusan) {
                         if($jurusan->singkatan_jurusan == "RPL"){
                         $singkatan_badge[] .= "<span class='badge badge-pill badge-primary'>$jurusan->singkatan_jurusan</span>";
                         }if($jurusan->singkatan_jurusan == "MM"){
