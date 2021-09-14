@@ -119,7 +119,7 @@ $(document).ready(function () {
                 id = $(this).data('id');
                 Pace.restart();
                 id = $(this).data('id');
-                tittle = $('#upload').data('tittle');
+                tittle = $(this).data('tittle');
                 $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

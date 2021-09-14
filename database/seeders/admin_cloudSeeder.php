@@ -40,7 +40,7 @@ class admin_cloudSeeder extends Seeder
         }
 
         DB::table('admin_cloud')->insert([
-            'nama' => "RPP kd 3.01 & kd 4.01",
+            'nama' => "RPP",
             'jenis' => "RPP kd 3.01 & kd 4.01",
             'status' => 'kosong',
             'path' => 'file/surat/RPP.pdf',

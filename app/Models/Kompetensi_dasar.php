@@ -37,6 +37,6 @@ class Kompetensi_dasar extends Model
     }
     public function ipk_kompetensi_dasar()
     {
-        return $this->hasOne(Ipk_kompetensi_dasar::class, 'id_kompetensi_dasar', 'id');
+        return $this->hasMany(Ipk_kompetensi_dasar::class, 'id_kompetensi_dasar', 'id');
     }
 }

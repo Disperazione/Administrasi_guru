@@ -179,11 +179,11 @@
                     $('#total_waktu').val(response.bidang.total_waktu_jam_pelajaran);
                     console.log(response.bidang);
                     // apeend kd
-                    response.bidang.kompetensi_dasar.forEach(element =>{
+                    response.kd.forEach(element =>{
                         $('.kd_pengetahuan').append('<option value="'+element.id+'">KD '+element.kd_pengetahuan+' '+element.keterangan_pengetahuan+'</option>');
                     });
                     
-                    response.bidang.kompetensi_dasar.forEach(element =>{
+                    response.kd.forEach(element =>{
                         $('.kd_ketrampilan').append('<option value="'+element.id+'" >KD '+element.kd_ketrampilan+' '+element.keterangan_ketrampilan+'</option>');
                     });
 
