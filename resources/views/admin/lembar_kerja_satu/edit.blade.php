@@ -158,7 +158,7 @@
                                     </div>
                                 </div>
                                 <input type="text" id="jp" class="form-control" disabled
-                                    value="{{ $target->jam_pelajaran }}">
+                                    value="{{ $target->total_jam_pelajaran }}">
                             </div>
                         </div>
                         <div class="form-group">

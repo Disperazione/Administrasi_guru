@@ -6,7 +6,11 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\Admin_cloud;
 use App\Models\Bidang_keahlian;
+use App\Models\Ipk_kompetensi_dasar;
+use App\Models\Jurusan;
 use App\Models\Kompetensi_dasar;
+use App\Models\Pertemuan_rpp;
+use App\Models\Rencana_pelaksanaan_pembelajaran;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Builder;
 
@@ -135,9 +139,21 @@ class RPPController extends Controller
      */
     public function create()
     {
-        return view('admin.rpp.tambah');
+
+        $bidang = Bidang_keahlian::all();
+        $jurusan = Jurusan::all();
+        return view('admin.rpp.tambah', ['bidang' => $bidang,'jurusan'=>$jurusan]);
     }
 
+    public function option_mapel($id){
+        $bid = Bidang_keahlian::where('id',$id)->with('kompetensi_dasar')->first(); // mendapatkan bidang yang pertama
+        $id_jurusan = []; // membuat array jurusan
+        foreach ($bid->jurusan as $key => $value) { // loop bidan yang berelasi dengan jurusan belongstomany / morhpmany
+            $id_jurusan[] .= $value->id;
+        }
+
+        return response()->json(['bidang'=>$bid,'id_jurusan'=> collect($id_jurusan)]);
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -146,7 +162,37 @@ class RPPController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request->all());
+        // masukin id kd ke rpp
+        $kd = Kompetensi_dasar::where('id', $request->id_kd_pengethuan)->first(); // nyari kompetensi dasar yang id = id pengetahuan 
+        $rpp = Rencana_pelaksanaan_pembelajaran::create(['id_kompetensi_dasar'=>$request->id_kd_pengethuan,'alokasi_waktu'=> $kd->jam_pertemuan]);
+         for($i = 0 ; $i < count($request->pertemuan); $i++){ // loop pertemuan lalu ambil index nya buat di create satu2
+            Pertemuan_rpp::create(['id_rencana_pelaksanaan_pembelajaran' => $rpp->id,'pertemuan'=> $request->pertemuan[$i]]); // create pertemuan
+        }
+         // input ipk
+        if (count($request->ipk_ketrampilan) > count($request->ipk_pengetahuan) ) { // jika jumlah ipk ketampilan > ipk pengetahuan
+            $count = count($request->ipk_ketrampilan); // jumlah ketrampilam untuk loop array nya
+        }else{ 
+            $count = count($request->ipk_pengetahuan); // jik tidak jumlah pengetahuan yang jadi arraynya
+        }
+
+        for ($i=0; $i < $count ; $i++) {  // ipk kompetensi dasar
+            Ipk_kompetensi_dasar::create([
+                'id_kompetensi_dasar' => $request->id_kd_pengethuan ,
+                'ipk_kd_pengetahuan' => !empty($request->ipk_pengetahuan[$i]) ? $request->ipk_pengetahuan[$i] : null, // jika ipk_pengetahuan[1] == kosong maka di siinya null 
+                'ipk_kd_pengetahuan' => !empty($request->ipk_ketrampilan[$i]) ? $request->ipk_ketrampilan[$i] : null,
+            ]);
+        }
+       
+        Admin_cloud::create([ // membuat cloud sattus kosong
+            'id_bidang_keahlian' => $kd->id_bidang_keahlian ,
+            'nama' => "RPP",
+            'jenis' => "RPP kd $kd->kd_pengetahuan & kd $kd->kd_ketrampilan",
+            'status' => "kosong",
+            'path' => '',
+            'id_guru' => Auth::user()->guru->id
+        ]);
+        return redirect()->route('admin.RPP.index');
     }
 
     /**

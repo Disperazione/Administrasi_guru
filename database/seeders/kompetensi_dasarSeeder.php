@@ -43,6 +43,7 @@ class kompetensi_dasarSeeder extends Seeder
                 ',
                 'durasi' => 8 ,
                 'pertemuan' => '1-4',
+                'jam_pertemuan' => 8,
                 'semester' => 'Ganjil',
                 'semester_kd' => 2,
                 'id_bidang_keahlian' => 1
@@ -77,6 +78,7 @@ class kompetensi_dasarSeeder extends Seeder
                 ',
                 'durasi' => 8,
                 'pertemuan' => '1-4',
+                'jam_pertemuan' => 8,
                 'semester' => 'Genap',
                 'semester_kd' => 2,
                 'id_bidang_keahlian' => 1

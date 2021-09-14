@@ -376,7 +376,7 @@
                     $('.fields_multiple_semester_genap').empty();
                     console.log(response.mapel);
                     $('#total_jp').val(response.mapel.total_waktu_jam_pelajaran)
-                    $('#jp').val(response.mapel.jam_pelajaran);
+                    $('#jp').val(response.mapel.total_jam_pelajaran);
                     $('#kelas').val(response.mapel.kelas);
                     $('.fields_indikmapel').empty();
                     $('#jurusan').val(response.id_jurusan).trigger("change");

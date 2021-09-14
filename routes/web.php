@@ -88,7 +88,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth','roles:guru'])->group
     Route::get('/option/jurusan/{id}', [LK1::class, 'option_jurusan']);
     Route::get('/option/mapel/{id}', [LK1::class, 'option_mapel']);
     Route::get('/option/mapel/{id}/edit', [LK1::class, 'option_mapel_edit']);
-
+    Route::get('/option_mapel_rpp/{id}',[RPP::class,'option_mapel'])->name('rpp_option_mapel');
     // Route::get('/lk4/option/guru/{id}', [LK4::class, 'option_guru']);
     // Route::get('/lk4/option/mapel/{id}', [LK4::class, 'option_mapel']);
     // Route::get('/lk4/option/bidang_studi/{id}', [LK4::class, 'option_bidang']);

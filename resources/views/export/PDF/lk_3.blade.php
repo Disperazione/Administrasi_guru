@@ -100,7 +100,7 @@
                     <tr>
                         <td>Jam Pelajaran</td>
                         <td> :</td>
-                        <td>{{ $target->total_waktu_jam_pelajaran .'{'.$target->jam_pelajaran.'}' }}</td>
+                        <td>{{ $target->total_waktu_jam_pelajaran .'{'.$target->total_jam_pelajaran.'}' }}</td>
                     </tr>
                 </tbody>
             </table>

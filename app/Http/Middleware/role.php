@@ -17,7 +17,7 @@ class role
      */
     public function handle(Request $request, Closure $next, ...$roles)
     {
-        if (in_array($request->user()->role, $roles)) {
+        if (in_array($request->user()->role, $roles)) { // jika role == role
             if ($request->session()->has('locale')) { // jika 
                 App::setLocale($request->session()->get('locale'));
                 Config::set('app.locale', session('locale'));

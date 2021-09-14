@@ -20,7 +20,7 @@ class CreateBidangKeahlianTable extends Migration
             //$table->string('kompetensi_keahlian');
             //$table->foreignId('id_jurusan')->constrained('jurusan')->onDelete('cascade')->onUpdate('cascade');
             $table->string('kelas');
-            $table->string('jam_pelajaran');
+            $table->string('total_jam_pelajaran');
             $table->string('total_waktu_jam_pelajaran');
             $table->foreignId('id_guru')->constrained('guru')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();

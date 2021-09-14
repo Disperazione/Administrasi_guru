@@ -22,6 +22,7 @@ class CreateKompetensiDasarTable extends Migration
             $table->longText('materi_inti');
             $table->string('durasi');
             $table->string('pertemuan');
+            $table->integer('jam_pertemuan');
             $table->enum('semester', ['Ganjil', 'Genap']);
             $table->integer('semester_kd');
             $table->foreignId('id_bidang_keahlian')->constrained('bidang_keahlian')->onDelete('cascade')->onUpdate('cascade');
