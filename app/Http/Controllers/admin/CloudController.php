@@ -11,6 +11,7 @@ use App\Models\Kompetensi_dasar;
 use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\Facades\DataTables;
+use App\Models\Rencana_pelaksanaan_pembelajaran;
 
 class CloudController extends Controller
 {
@@ -74,7 +75,11 @@ class CloudController extends Controller
             $pdf = PDF::loadView('export.PDF.lk_4', compact('target', 's_ganjil', 's_genap', 'm_bahan_ajar', 'jurusan'));
             Storage::put($url, $pdf->output('LK.04 Materi Bahan Ajar'));
         }else {
-            $url = "";
+            $url = "/pdf/$request->jenis " . time() . ".pdf";
+            $kompetensi_dasar = kompetensi_dasar::where('id',$request->id_kd)->first();
+            $rpp = Rencana_pelaksanaan_pembelajaran::where('id_kompetensi_dasar',$request->id_kd)->first();
+            $pdf = PDF::loadView('export.PDF.rpp', compact('rpp','kompetensi_dasar'));
+            Storage::put($url, $pdf->output('RPP'));
         }
         // mencari cloud yaung sudah tersedia
         $admin = Admin_cloud::where('id_bidang_keahlian', $request->id_bidang)->where('jenis', $request->jenis)->first();

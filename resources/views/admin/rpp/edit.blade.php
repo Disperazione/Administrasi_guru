@@ -187,7 +187,7 @@
                             @foreach ($rpp->pertemuan_rpp as $key => $item)
                             @if ($key < 1)
                             <span class="w-100 ml-3">
-                                <input type="text" class="form-control d-inline pertemuan" style="width: 85%" name="pertemuan[]" value="{{ $rpp->pertemuan_rpp[$key]->pertemuan }}">
+                                <input type="text" class="form-control d-inline pertemuan" style="width: 85%" name="pertemuan[]" value="{{ $rpp->pertemuan_rpp[$key]->pertemuan }}" placeholder="Pertemuan ke-1 : Lorem ipsum..">
                                 <button type="button" class="btn btn-success w-10 d-inline ml-3"
                                     id="add_pertemuan">+</button>
                                 <div class="invalid-feedback d-none">Pertemuan tidak boleh kosong</div>
@@ -195,7 +195,8 @@
                             @endif
                             @if ($key >= 1)
                             <span class="w-100 ml-3 mt-2">
-                                <input type="text" class="form-control d-inline pertemuan" style="width: 85%" name="pertemuan[]" value="{{ $rpp->pertemuan_rpp[$key]->pertemuan }}">
+                                <input type="text" class="form-control d-inline pertemuan" style="width: 85%" name="pertemuan[]" value="{{ $rpp->pertemuan_rpp[$key]->pertemuan }}"
+                                placeholder="Pertemuan ke-1 : Lorem ipsum..">
                                 <button type="button" class="btn btn-success w-10 d-inline ml-3 mr-2"
                                     id="add_pertemuan">+</button>
                                 <button type="button" class="btn btn-danger w-10 d-inline"
@@ -340,7 +341,7 @@
                 e.preventDefault();
                 i++;
                 $('#field_pertemuan').append('<span class="w-100 ml-3 mt-2">' +
-                    '  <input type="text" class="form-control d-inline pertemuan" style="width: 85%" name="pertemuan[]">' +
+                    '  <input type="text" class="form-control d-inline pertemuan" style="width: 85%" name="pertemuan[]" placeholder="Pertemuan ke-1 : Lorem ipsum..">' +
                     ' <button class="btn btn-success w-10 d-inline ml-2" id="add_pertemuan">+</button>' +
                     ' <button class="btn btn-danger w-10 d-inline ml-3" id="remove_pertemuan">-</button>' +
                       '<div class="invalid-feedback d-none">Pertemuan tidak boleh kosong</div>'+

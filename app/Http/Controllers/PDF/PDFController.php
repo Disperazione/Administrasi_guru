@@ -8,6 +8,7 @@ use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Bidang_keahlian;
 use App\Models\Kompetensi_dasar;
+use App\Models\Rencana_pelaksanaan_pembelajaran;
 class PDFController extends Controller
 {
     public function LK_1($id)
@@ -72,9 +73,11 @@ class PDFController extends Controller
         return $pdf->stream('LK4.PDF');
     }
 
-    public function rpp()
+    public function rpp($id)
     {
-        $pdf = PDF::loadView('export.PDF.rpp');
+        $kompetensi_dasar = kompetensi_dasar::where('id',$id)->first();
+        $rpp = Rencana_pelaksanaan_pembelajaran::where('id_kompetensi_dasar',$id)->first();
+        $pdf = PDF::loadView('export.PDF.rpp', compact('rpp','kompetensi_dasar'));
         return $pdf->stream('RPP.PDF');
     }
 }
