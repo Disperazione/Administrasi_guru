@@ -194,7 +194,7 @@ class RPPController extends Controller
             'path' => '',
             'id_guru' => Auth::user()->guru->id
         ]);
-        return redirect()->route('admin.RPP.index');
+        return redirect()->route('admin.RPP.index')->with('berhasil','Data anda berhasil di tambahkan');
     }
 
     /**
@@ -285,7 +285,7 @@ class RPPController extends Controller
             ]);
         }
 
-        return redirect()->route('admin.RPP.index');
+        return redirect()->route('admin.RPP.index')->with('berhasil','Data anda berhasil di update');
     }
 
     /**

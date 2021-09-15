@@ -1072,7 +1072,7 @@
                     if (!element.value) {
                         // lalu add class
                         $(element).addClass('is-invalid'); // Ad class is-invalid
-                        $(element).closest('div').find('.invalid_target_mapel').removeClass(
+                        $(element).closest('div').find('.invalid_target_mapel').addClass(
                             'd-none'
                         ); // cari div terdekat dan cari class nya find = cari lalu REMOVE class d-none
                         // jika koosng maka masukin array nya 1 ( buat di itung panjang array nya )
