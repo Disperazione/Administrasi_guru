@@ -41,7 +41,7 @@ class RPPController extends Controller
                 ->addColumn('status', function ($data) {
                 $get_mapel = $data->bidang_keahlian->mapel;
                                         // ini ngambil dari hasmany 1:3 bidang -> cloud
-                    $jenis = $data->bidang_keahlian->admin_cloud()->where('jenis', "RPP kd $data->kd_pengetahuan & kd $data->kd_ketrampilan")->first();
+                    $jenis = $data->bidang_keahlian->admin_cloud()->where('jenis', "RPP kd $data->kd_pengetahuan & kd $data->kd_ketrampilan id=$data->id")->first();
                     switch ($jenis->status) {
                         case 'pending':
                             return "<span class='badge badge-pill badge-primary'>$jenis->status</span>";
@@ -92,22 +92,27 @@ class RPPController extends Controller
                 })
                 ->addColumn('action', function ($data) {
                     $get_mapel = $data->bidang_keahlian->mapel;
-                    $jenis =  $data->bidang_keahlian->admin_cloud()->where('jenis', "RPP kd $data->kd_pengetahuan & kd $data->kd_ketrampilan")->first();
+                    $jenis =  $data->bidang_keahlian->admin_cloud()->where('jenis', "RPP kd $data->kd_pengetahuan & kd $data->kd_ketrampilan id=$data->id")->first();
                 switch ($jenis->status) {
                     case 'pending':
-                        $button = '<a type="button" id="upload"   data-id="' . $data->bidang_keahlian->id . ' data-kd="'.$data->id.'" data-tittle="RPP kd '.$data->kd_pengetahuan.' & kd '. $data->kd_ketrampilan.'" class="btn btn-success text-white btn-sm disabled"><i class="fas fa-cloud-upload-alt"></i></i></a>';
+                        $button = '<a type="button" id="upload"   data-id="' . $data->bidang_keahlian->id . '" data-kd="' . $data->id . '"
+                        data-tittle="RPP kd '.$data->kd_pengetahuan.' & kd '. $data->kd_ketrampilan.' id='.$data->id.'" class="btn btn-success text-white btn-sm disabled"><i class="fas fa-cloud-upload-alt"></i></i></a>';
                         break;
                     case 'acc':
-                        $button = '<a type="button" id="upload"   data-id="' . $data->bidang_keahlian->id . '"  data-kd="'.$data->id.'" data-tittle="RPP kd '.$data->kd_pengetahuan.' & kd '. $data-> kd_ketrampilan.'" class="btn btn-success text-white btn-sm disabled" ><i class="fas fa-cloud-upload-alt"></i></a>';
+                        $button = '<a type="button" id="upload"   data-id="' . $data->bidang_keahlian->id . '" data-kd="' . $data->id . '"
+                        data-tittle="RPP kd '.$data->kd_pengetahuan.' & kd '. $data-> kd_ketrampilan. ' id=' . $data->id .'" class="btn btn-success text-white btn-sm disabled" ><i class="fas fa-cloud-upload-alt"></i></a>';
                         break;
                     case 'tolak':
-                        $button = '<a type="button" id="upload"   data-id="' . $data->bidang_keahlian->id . '"  data-kd="'.$data->id.'" data-tittle="RPP kd '.$data->kd_pengetahuan.' & kd '. $data-> kd_ketrampilan.'" class="btn btn-success text-white btn-sm badge-tolak"><i class="fas fa-cloud-upload-alt"></i></a>';
+                        $button = '<a type="button" id="upload"   data-id="' . $data->bidang_keahlian->id . '" data-kd="' . $data->id . '"
+                        data-tittle="RPP kd '.$data->kd_pengetahuan.' & kd '. $data-> kd_ketrampilan.' id='.$data->id.'" class="btn btn-success text-white btn-sm badge-tolak"><i class="fas fa-cloud-upload-alt"></i></a>';
                         break;
                     case 'pending_2':
-                        $button = '<a type="button" id="upload"   data-id="' . $data->bidang_keahlian->id . '"  data-kd="'.$data->id.'" data-tittle="RPP kd '.$data->kd_pengetahuan.' & kd '. $data-> kd_ketrampilan.'" class="btn btn-success text-white btn-sm disabled" ><i class="fas fa-cloud-upload-alt"></i></a>';
+                        $button = '<a type="button" id="upload"   data-id="' . $data->bidang_keahlian->id . '" data-kd="' . $data->id . '"
+                        data-tittle="RPP kd '.$data->kd_pengetahuan.' & kd '. $data-> kd_ketrampilan.' id='.$data->id.'" class="btn btn-success text-white btn-sm disabled" ><i class="fas fa-cloud-upload-alt"></i></a>';
                         break;
                     case 'kosong':
-                        $button = '<a type="button" id="upload"   data-id="' . $data->bidang_keahlian->id . '"  data-kd="'.$data->id.'" data-tittle="RPP kd '.$data->kd_pengetahuan.' & kd '. $data-> kd_ketrampilan.'" class="btn btn-success text-white btn-sm ml-1 data-toggle="tooltip" data-placement="bottom"><i class="fas fa-cloud-upload-alt"></i></a>';
+                        $button = '<a type="button" id="upload"   data-id="' . $data->bidang_keahlian->id . '" data-kd="' . $data->id . '"
+                        data-tittle="RPP kd '.$data->kd_pengetahuan.' & kd '. $data-> kd_ketrampilan.' id='.$data->id.'" class="btn btn-success text-white btn-sm ml-1 data-toggle="tooltip" data-placement="bottom"><i class="fas fa-cloud-upload-alt"></i></a>';
                         break;
                 }
 
@@ -125,8 +130,7 @@ class RPPController extends Controller
                 })
                 ->addColumn('updated', function ($data) {
                     $id_bidang = [];
-                    $kom = $data->has('rencana_pelaksanaan_pembelajaran')->first();
-                    return !empty($kom->rencana_pelaksanaan_pembelajaran->updated_at) ? $kom->rencana_pelaksanaan_pembelajaran->updated_at->Isoformat('D MMMM Y') : 'Belum di update';
+                    return !empty($data->rencana_pelaksanaan_pembelajaran->updated_at) ? $data->rencana_pelaksanaan_pembelajaran->updated_at->Isoformat('D MMMM Y') : 'Belum di update';
                 })
                 ->rawColumns(['action','status','btn_upload', 'kompetensi_keahlian'])
                 ->addIndexColumn()->make(true);
@@ -167,7 +171,7 @@ class RPPController extends Controller
     {
         // masukin id kd ke rpp
         $kd = Kompetensi_dasar::where('id', $request->id_kd_pengethuan)->first(); // nyari kompetensi dasar yang id = id pengetahuan
-        $rpp = Rencana_pelaksanaan_pembelajaran::create(['id_kompetensi_dasar'=>$request->id_kd_pengethuan,'alokasi_waktu'=> $kd->jam_pertemuan]);
+        $rpp = Rencana_pelaksanaan_pembelajaran::create(['id_kompetensi_dasar'=>$request->id_kd_pengethuan,'alokasi_waktu'=> $kd->jam_pertemuan,'created_at'=>Carbon::now()->format('Y-m-d'), 'updated_at' => null]);
          for($i = 0 ; $i < count($request->pertemuan); $i++){ // loop pertemuan lalu ambil index nya buat di create satu2
             Pertemuan_rpp::create(['id_rencana_pelaksanaan_pembelajaran' => $rpp->id,'pertemuan'=> $request->pertemuan[$i]]); // create pertemuan
         }
@@ -189,7 +193,7 @@ class RPPController extends Controller
         Admin_cloud::create([ // membuat cloud sattus kosong dengan jenis yang unique
             'id_bidang_keahlian' => $kd->id_bidang_keahlian ,
             'nama' => "RPP",
-            'jenis' => "RPP kd $kd->kd_pengetahuan & kd $kd->kd_ketrampilan",
+            'jenis' => "RPP kd $kd->kd_pengetahuan & kd $kd->kd_ketrampilan id=$kd->id",
             'status' => "kosong",
             'path' => '',
             'id_guru' => Auth::user()->guru->id
@@ -250,14 +254,14 @@ class RPPController extends Controller
     public function update(Request $request, $id)
     {
         $rpp = Rencana_pelaksanaan_pembelajaran::where('id',$id)->first(); // mencari rpp
-        $kd = Kompetensi_dasar::where('id', $request->id_kd_pengethuan)->first(); // nyari kompetensi dasar yang id = id pengetahuan
+        $kd = Kompetensi_dasar::where('id', $request->id_kd_pengethuan)->first(); // nyari kompetensi dasar lama yang id = id pengetahuan
         // mencari admin cloud lama
-        $old_admin = Admin_cloud::where('jenis', 'RPP kd ' . $rpp->kompetensi_dasar->kd_pengetahuan . ' & kd ' . $rpp->kompetensi_dasar->kd_ketrampilan)->first();
+        $old_admin = Admin_cloud::where('jenis', 'RPP kd ' . $rpp->kompetensi_dasar->kd_pengetahuan . ' & kd ' . $rpp->kompetensi_dasar->kd_ketrampilan.' id='.$kd->id)->first();
         // update cloud
         Admin_cloud::where('jenis', 'RPP kd ' . $rpp->kompetensi_dasar->kd_pengetahuan . ' & kd ' . $rpp->kompetensi_dasar->kd_ketrampilan)->update([ // membuat cloud sattus kosong
             'id_bidang_keahlian' => $kd->id_bidang_keahlian,
             'nama' => "RPP",
-            'jenis' => "RPP kd $kd->kd_pengetahuan & kd $kd->kd_ketrampilan",
+            'jenis' => "RPP kd $kd->kd_pengetahuan & kd $kd->kd_ketrampilan id=$kd->id",
             'status' => $old_admin->status, // mengambil status dari admin lama
             'path' => $old_admin->path, // pengambil path dari adminn lama
             'id_guru' => Auth::user()->guru->id
@@ -267,7 +271,7 @@ class RPPController extends Controller
         $rpp->delete(); // hapus rpp yang sudah di panggil tadi
 
         // buat baru ngambil kd yang di atas
-        $rpp = Rencana_pelaksanaan_pembelajaran::create(['id_kompetensi_dasar' => $request->id_kd_pengethuan, 'alokasi_waktu' => $kd->jam_pertemuan,'updated_at'=>Carbon::now()->format('Y-m-d')]);
+        $rpp = Rencana_pelaksanaan_pembelajaran::create(['id_kompetensi_dasar' => $request->id_kd_pengethuan, 'alokasi_waktu' => $kd->jam_pertemuan, 'created_at' => Carbon::noe()->format('Y-m-d'),'updated_at'=>Carbon::now()->format('Y-m-d')]);
         for ($i = 0; $i < count($request->pertemuan); $i++) { // loop pertemuan lalu ambil index nya buat di create satu2
             Pertemuan_rpp::create(['id_rencana_pelaksanaan_pembelajaran' => $rpp->id, 'pertemuan' => $request->pertemuan[$i]]); // create pertemuan
         }

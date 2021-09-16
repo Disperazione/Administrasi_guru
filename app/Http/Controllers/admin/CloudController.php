@@ -81,6 +81,7 @@ class CloudController extends Controller
             $pdf = PDF::loadView('export.PDF.rpp', compact('rpp','kompetensi_dasar'));
             Storage::put($url, $pdf->output('RPP'));
         }
+
         // mencari cloud yaung sudah tersedia
         $admin = Admin_cloud::where('id_bidang_keahlian', $request->id_bidang)->where('jenis', $request->jenis)->first();
         if (!empty($admin)) { // jika sudah ada / tidak kosong
@@ -90,7 +91,7 @@ class CloudController extends Controller
                     "status" => 'pending_2',
                     "jenis" => $request->jenis,
                     "path" => $url,
-                    "id_guru" => Auth::user()->guru->id,
+                    //"id_guru" => Auth::user()->guru->id,
                 ]);
             }else{
                 $admin->update([ // update
@@ -98,7 +99,7 @@ class CloudController extends Controller
                     "status" => 'pending',
                     "jenis" => $request->jenis,
                     "path" => $url,
-                    "id_guru" => Auth::user()->guru->id,
+                    //"id_guru" => Auth::user()->guru->id,
                 ]);
             }
         }else{ // jika tidak membuat baru

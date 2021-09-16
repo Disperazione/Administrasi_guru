@@ -41,7 +41,7 @@ class admin_cloudSeeder extends Seeder
 
         DB::table('admin_cloud')->insert([
             'nama' => "RPP",
-            'jenis' => "RPP kd 3.01 & kd 4.01",
+            'jenis' => "RPP kd 3.01 & kd 4.01 id=1",
             'status' => 'kosong',
             'path' => 'file/surat/RPP.pdf',
             'id_guru' => 2,
