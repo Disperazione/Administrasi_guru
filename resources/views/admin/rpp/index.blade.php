@@ -58,7 +58,7 @@
                 <h5 class="modal-title" id="exampleModalLabel">Comments</h5>
             </div>
             <div class="modal-body">
-                <div class="col-12 col-sm-12 col-lg-12">
+                <div class="col-12 col-sm-12 col-lg-12"> 
                     <div class="card">
                       <div class="card-body">
                         <ul class="list-unstyled list-unstyled-border list-unstyled-noborder rpp">
