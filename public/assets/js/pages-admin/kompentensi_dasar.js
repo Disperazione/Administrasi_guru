@@ -16,7 +16,7 @@ $(document).ready(function () {
                     { data: 'mapel',name:'mapel'},
                      { data: 'kompetensi_keahlian',name:'kompetensi_keahlian'},
                     { data: 'kelas', kelas:'kelas'},
-                    { data: 'jam_pelajaran', name:'jam_pelajaran'},
+                    // { data: 'jam_pelajaran', name:'jam_pelajaran'},
                     { data: 'total_waktu_jam_pelajaran',name:'total_waktu_jam_pelajaran'},
                     { data: 'action',name:'action'}
                 ];
@@ -26,7 +26,7 @@ $(document).ready(function () {
                         {data:'guru', name: 'guru'},
                         { data: 'bidang_studi', name:'bidang_studi'},
                         { data: 'kelas', kelas:'kelas'},
-                        { data: 'jam_pelajaran', name:'jam_pelajaran'},
+                        // { data: 'jam_pelajaran', name:'jam_pelajaran'},
                         { data: 'mapel',name:'mapel'},
                         { data: 'total_waktu_jam_pelajaran',name:'total_waktu_jam_pelajaran'},
                         { data: 'action',name:'action'}

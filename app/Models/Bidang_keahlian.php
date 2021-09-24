@@ -19,7 +19,7 @@ class Bidang_keahlian extends Model
     // {
     //     return $this->belongsTo(Jurusan::class,'id_jurusan'); //foreign key
     // }
-
+    
     public function jurusan()
     {
         return $this->morphToMany(Jurusan::class, 'MorphJurusan'); // morph many to many yang ada dari bidang ke jurusan untuk mengambungkan seperti pivot tapi ini morph

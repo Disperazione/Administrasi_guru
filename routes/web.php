@@ -97,6 +97,17 @@ Route::prefix('admin')->name('admin.')->middleware(['auth','roles:guru'])->group
     Route::get('/lk4/option/mapel/{id}', [LK4::class, 'option_mapel']);
     Route::get('/lk4/option/mapel/{id}/edit', [LK4::class, 'option_mapel_edit']);
 
+
+
+        
+    Route::get('/lk2/option/jurusan/{id}', [LK2::class, 'option_jurusan']);
+    Route::get('/lk2/option/mapel/{id}', [LK2::class, 'option_mapel']);
+    Route::get('/lk2/option/mapel/{id}/edit', [LK2::class, 'option_mapel_edit']);
+    
+    Route::get('/lk3/option/jurusan/{id}', [LK3::class, 'option_jurusan']);
+    Route::get('/lk3/option/mapel/{id}', [LK3::class, 'option_mapel']);
+    Route::get('/lk3/option/mapel/{id}/edit', [LK3::class, 'option_mapel_edit']);
+
     // route for pdf here
     Route::get('/lk_1/{id}/pdf',[PDFController::class,'LK_1'])->name('pdf.lk_1');
     Route::get('/lk_2/{id}/pdf', [PDFController::class, 'LK_2'])->name('pdf.lk_2');

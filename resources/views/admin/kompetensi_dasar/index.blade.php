@@ -27,7 +27,7 @@
                 <th>Mata Pelajaran</th>
                 <th>Kompetensi keahlian</th>
                     <th>Kelas</th>
-                <th>jam pelajaran</th>
+                {{-- <th>jam pelajaran</th> --}}
                 <th>Total Jam</th>
                 <th>action</th>
             </tr>

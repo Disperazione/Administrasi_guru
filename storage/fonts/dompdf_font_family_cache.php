@@ -94,7 +94,7 @@
     'normal' => $fontDir . '/bowlby_one_sc_normal_63514c6cffbc4a6bb8d153ff440a688e',
   ),
   'noto sans' => array(
-    'normal' => $fontDir . '/noto_sans_normal_49f9f1ee5e981e148cda8e4a27738478',
+    'normal' => $fontDir . '/noto_sans_normal_52d81cbc7088bde03262c00cb7e7a08a',
   ),
   'martel' => array(
     '300' => $fontDir . '/martel_300_6863b4d3282070a73bbe56153a3e5544',
