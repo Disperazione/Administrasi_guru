@@ -75,11 +75,11 @@
             <thead>
                 <tr style="font-size: 14px;">
                     <th colspan="" style="padding: 7px;">Kelas/Semester</th>
-                    <td colspan="2" style="padding: 7px;">X/I Gasal (GASAL)</td>
+                    <td colspan="2" style="padding: 7px;">{{ $kompetensi_dasar->bidang_keahlian->kelas }} / {{ $kompetensi_dasar->semester_kd .' ('.$kompetensi_dasar->semester.')' }}</td>
                 </tr>
                 <tr style="font-size: 14px;">
                     <th colspan="" style="width: 150px; padding: 7px;">Alokasi Waktu</th>
-                    <td colspan="2" style="padding: 7px;">4 JP</td>
+                    <td colspan="2" style="padding: 7px;">{{ $kompetensi_dasar->jam_pertemuan.' JP' }}</td>
                 </tr>
             </thead>
             <tbody style="">
@@ -95,8 +95,8 @@
                     <td style="text-align: center; font-weight:bold;">KD Keterampilan</td>
                 </tr>
                 <tr style="font-size: 10px;">
-                    <td style="padding-left: 20px;">3.1. Menerapkan dasar dasar thread</td>
-                    <td style="padding-left: 20px;">4.1 Membuat instruksi -instruksi thread</td>
+                    <td style="padding-left: 20px;">{{$kompetensi_dasar->kd_pengetahuan}} {{ $kompetensi_dasar->keterangan_pengetahuan }}</td>
+                    <td style="padding-left: 20px;">{{$kompetensi_dasar->kd_ketrampilan}} {{ $kompetensi_dasar->keterangan_ketrampilan }}</td>
                 </tr>
                 <tr style="font-size: 10px;">
                     <td style="text-align: center; font-weight:bold;">IPK KD Pengetahuan</td>
@@ -104,23 +104,32 @@
                 </tr>
                 <tr style="font-size: 10px;">
                     <td style="padding: 10px;">
-                        1.	Menjelaskan konsep dasar instruksi thread dalam pemrograman aplikasi berorientasi obyek. <br>
-                        2.	Menjelaskan prosedur instruksi thread  dalam pemrograman aplikasi berorientasi obyek. <br>
-                        3.	Menjelaskan prosedur instruksi thread  dalam pemrograman aplikasi berorientasi obyek.
+                    @foreach ($kompetensi_dasar->ipk_kompetensi_dasar as $key => $item)
+                        @if (empty($item->ipk_kd_pengetahuan))
+                        @else 
+                        {{-- {{ ($key + 1) .'. '.$item->ipk_kd_pengetahuan }}  <br> --}}
+                        {{ $item->ipk_kd_pengetahuan }}  <br>
+                        @endif
+                    @endforeach
                     </td>
                     <td style="padding: 10px;">
-                        1.	Menerapkan instruksi thread dalam pemrograman aplikasi berorientasi obyek. <br>
-                        2.	Merancang program aplikasi berorientasi obyek dengan penerapan instruksi thread. <br>
-                        3.	Membuat kode program aplikasi berorientasi obyek yang menerapkan instruksi thread. <br>
-                        4.	Menguji program aplikasi berorientasi obyek yang menerapkan instruksi thread.
+                    @foreach ($kompetensi_dasar->ipk_kompetensi_dasar as $key => $item)
+                        @if (empty($item->ipk_kd_ketrampilan))
+                        @else 
+                        {{ $item->ipk_kd_ketrampilan }}  <br>
+                        @endif
+                    @endforeach
                     </td>
                 </tr>
                 <tr style="font-size: 10px;">
                     <td style="font-weight: bold; padding: 10px">Materi Pembelajaran</td>
                     <td colspan="2" style="padding: 10px;">
-                        Pertemuan ke-1 : Konsep dasar thread dalam oop. <br>
+                    @foreach ($rpp->pertemuan_rpp as $item)
+                        {{$item->pertemuan}} <br>
+                    @endforeach
+                        {{-- Pertemuan ke-1 : Konsep dasar thread dalam oop. <br>
                         Pertemuan ke-2 : Prosedur penggunaan thread dalam oop <br>
-                        Pertemuan ke-3 : Membuat program oop menerapkan thread.
+                        Pertemuan ke-3 : Membuat program oop menerapkan thread. --}}
                     </td>
                 </tr>
                 <tr style="font-size: 10px;">

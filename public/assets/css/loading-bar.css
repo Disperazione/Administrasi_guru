@@ -28,11 +28,11 @@
 	z-index: 2000;
 	position: fixed;
 	margin: auto;
-	top: 12px;
+	top: 5px;
 	left: 0;
 	right: 0;
 	bottom: 0;
-	width: 200px;
+	width: 500px;
 	height: 50px;
 	overflow: hidden;
 }
@@ -59,14 +59,15 @@
 	position: absolute;
 	right: 100%;
 	margin-right: -7px;
-	width: 93%;
+	width: 95%;
 	top: 7px;
 	height: 14px;
 	font-size: 12px;
-	background: #29d;
-	color: #29d;
+	background: #79D70F;
+	color: #4D4646;
 	line-height: 60px;
 	font-weight: bold;
+	
 	font-family: Helvetica, Arial, "Lucida Grande", sans-serif;
 
 	-webkit-box-shadow: 120px 0 #fff, 240px 0 #fff;
@@ -193,8 +194,8 @@
 	width: 100%;
 	height: 28px;
 	z-index: 2001;
-	box-shadow: inset 0 0 0 2px #29d, inset 0 0 0 7px #FFF;
-	border-radius: 10px;
+	box-shadow: inset 0 0 0 2px #2B580C, inset 0 0 0 7px #FFF;
+	border-radius: 20px;
 }
 
 .pace.pace-inactive {

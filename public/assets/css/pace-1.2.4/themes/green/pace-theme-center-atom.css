@@ -36,7 +36,7 @@
 .pace .pace-progress:before {
   content: attr(data-progress-text);
   text-align: center;
-  color: #fff;
+  color: black;
   background: #22df80;
   border-radius: 50%;
   font-family: "Helvetica Neue", sans-serif;

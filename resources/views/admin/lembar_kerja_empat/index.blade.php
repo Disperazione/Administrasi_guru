@@ -8,7 +8,7 @@
         opacity: 0;
     }
 </style>
-<link rel="stylesheet" href="{{ asset('assets/css/loading-bar.css') }}">
+<link rel="stylesheet" href="{{ asset('assets/css/pace-1.2.4/themes/green/pace-theme-material.css') }}">
 @endpush
 @section('title', 'SIFOS | Table LK 4')
 @section('judul','Lembar Kerja 4')

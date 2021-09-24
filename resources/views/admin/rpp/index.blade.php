@@ -8,7 +8,7 @@
         opacity: 0;
     }
 </style>
-<link rel="stylesheet" href="{{ asset('assets/css/loading-bar.css') }}">
+<link rel="stylesheet" href="{{ asset('assets/css/pace-1.2.4/themes/green/pace-theme-material.css') }}">
 @endpush
 @section('title', 'SIFOS | RPP')
 @section('judul','RPP')
@@ -58,7 +58,7 @@
                 <h5 class="modal-title" id="exampleModalLabel">Comments</h5>
             </div>
             <div class="modal-body">
-                <div class="col-12 col-sm-12 col-lg-12">
+                <div class="col-12 col-sm-12 col-lg-12"> 
                     <div class="card">
                       <div class="card-body">
                         <ul class="list-unstyled list-unstyled-border list-unstyled-noborder rpp">

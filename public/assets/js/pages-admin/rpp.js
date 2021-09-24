@@ -21,13 +21,13 @@ $(document).ready(function () {
                         data: 'kompetensi_keahlian',
                         name: 'kompetensi_keahlian'
                     },
+                     {
+                        data: 'kd_pengetahuan',
+                        name: 'kd_pengetahuan'
+                    },
                     {
                         data: 'kd_ketrampilan',
                         name: 'kd_ketrampilan'
-                    },
-                    {
-                        data: 'kd_pengetahuan',
-                        name: 'kd_pengetahuan'
                     },
                     {
                         data: 'status',
@@ -119,7 +119,8 @@ $(document).ready(function () {
                 id = $(this).data('id');
                 Pace.restart();
                 id = $(this).data('id');
-                tittle = $('#upload').data('tittle');
+                      kd = $(this).data('kd');
+                tittle = $(this).data('tittle');
                 $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -129,6 +130,7 @@ $(document).ready(function () {
                     data: {
                         name: 'RPP',
                         id_bidang: id,
+                        id_kd: kd,
                         jenis: tittle,
                         url: '/admin/lk_1/' + id + '/pdf'
                     },

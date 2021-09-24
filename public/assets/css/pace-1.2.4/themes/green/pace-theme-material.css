@@ -7,7 +7,7 @@
   -moz-user-select: none;
   -ms-user-select: none;
       user-select: none;
-  color: #22df80;
+  color: #81B214;
 }
 
 .pace-progress {
@@ -15,7 +15,7 @@
   z-index: 2000;
   top: 50%;
   left: 50%;
-  margin-left: -2.5rem;
+  margin-left: 10px;
   margin-top: -2.5rem;
   height: 5rem;
   width: 5rem;
@@ -67,7 +67,7 @@
   left: -2.5rem;
   top: 0;
   box-sizing: border-box;
-  border: 1px solid;
+  border: 10px solid;
   border-radius: 5rem;
 }
 .pace-progress .pace-progress-inner:before {
