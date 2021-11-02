@@ -50,24 +50,6 @@ You can now access the server at http://localhost:8000
     php artisan migrate
     php artisan serve
     
-## role & account
-** Account login info in this table**
-
-
-| #  |  **role**           | **username**      | **password** |
-| :- |:--------------- |:------------- | :------- |
-| 1  | admin           | Admin         | password |
-| 2  | kepala sekolah   | KepalaSekolah | password |
-| 3  | litbang         | Litbang       | password |
-| 4  | tata usaha / tu | BidangTU      | password |
-| 5  | kepala program / Kaprog        | BidangKaprog  | password |
-| 6  | bkk             | BidangBkk     | password |
-| 7  | hubin           | Hubin   | password |
-| 8  | kurikulum       | Kurikulum     | password |
-| 9  | Sarpras       | Sarpras     | password |
-| 10  | kesiswaan       | Kesiswaan     | password |
-| 11 | Guru             | guru          | password |
-| 11  | siswa       | Siswa 1 - 5     | password |
 
 ## credit
 - [Stisla Template](https://getstisla.com/)
