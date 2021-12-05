@@ -15,7 +15,7 @@
 
     <!-- CSS Libraries -->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap4.min.css">
-    <link rel="stylesheet" href="https://unpkg.com/nprogress@0.2.0/nprogress.css">
+    {{-- <link rel="stylesheet" href="https://unpkg.com/nprogress@0.2.0/nprogress.css"> --}}
 
 
     @stack('css')
@@ -89,8 +89,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/5.9.1/tinymce.min.js"
         integrity="sha512-wL4f713UTdXFhzoGj57R7cKAwWMp48nzQ4Z/OLy7r8Hrqsa53x3y9Wl1N27hNktcmmHUABHuIX5xQazAl0VMRg=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://unpkg.com/nprogress@0.2.0/nprogress.js"></script>
-    <script src="{{ asset('assets/js/auth/loading-ajax.js') }}"></script>
+    {{-- <script src="https://unpkg.com/nprogress@0.2.0/nprogress.js"></script>
+    <script src="{{ asset('assets/js/auth/loading-ajax.js') }}"></script> --}}
 
     <!-- Template JS File -->
     <script src="{{ asset('/assets/js/scripts.js') }}"></script>

@@ -113,8 +113,8 @@ class LembarKerjaDua extends Controller
 
 
                     $button .= '<a href="/admin/lk_2/' . $data->id . '/pdf" class="edit btn btn-danger text-white btn-sm ml-1"><i class="fas fa-file-pdf"></i></a>';
-                    $button .= '&nbsp';
-                    $button .= '<a href="/admin/Lembar-kerja-2/{Lembar_kerja_2}' . $data->id . '"   id="' . $data->id . '" class="edit btn btn-primary btn-sm"><i class="fas fa-search"></i></a>';
+                    // $button .= '&nbsp';
+                    // $button .= '<a href="/admin/Lembar-kerja-2/{Lembar_kerja_2}' . $data->id . '"   id="' . $data->id . '" class="edit btn btn-primary btn-sm"><i class="fas fa-search"></i></a>';
                     $button .= '&nbsp';
                     $button .= '<a  href="/admin/Lembar-kerja-2/' . $data->id . '/edit" id="edit" data-toggle="tooltip"  data-id="' . $data->id . '" data-original-title="Edit" class="edit btn btn-warning btn-sm edit-post"><i class="fas fa-pencil-alt"></i></a>';
                     $button .= '&nbsp';

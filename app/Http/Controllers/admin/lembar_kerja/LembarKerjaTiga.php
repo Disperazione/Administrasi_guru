@@ -113,8 +113,8 @@ class LembarKerjaTiga extends Controller
 
 
                     $button .= '<a href="/admin/lk_3/' . $data->id . '/pdf" class="edit btn btn-danger text-white btn-sm ml-1" data-toggle="tooltip" data-placement="bottom" title="download pdf"><i class="fas fa-file-pdf"></i></a>';
-                    $button .= '&nbsp';
-                    $button .= '<a href="/admin/Lembar-kerja-3/' . $data->id . '"   id="' . $data->id . '" class="edit btn btn-primary btn-sm" data-toggle="tooltip" data-placement="bottom" title="Detail PDF"><i class="fas fa-search"></i></a>';
+                    // $button .= '&nbsp';
+                    // $button .= '<a href="/admin/Lembar-kerja-3/' . $data->id . '"   id="' . $data->id . '" class="edit btn btn-primary btn-sm" data-toggle="tooltip" data-placement="bottom" title="Detail PDF"><i class="fas fa-search"></i></a>';
                     $button .= '&nbsp';
                     $button .= '<a  href="/admin/Lembar-kerja-3/' . $data->id . '/edit" id="edit" data-toggle="tooltip"  data-id="' . $data->id . '" data-original-title="Edit" class="edit btn btn-warning btn-sm edit-post"><i class="fas fa-pencil-alt"></i></a>';
                     $button .= '&nbsp';

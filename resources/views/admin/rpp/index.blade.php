@@ -8,7 +8,7 @@
         opacity: 0;
     }
 </style>
-<link rel="stylesheet" href="{{ asset('assets/css/pace-1.2.4/themes/green/pace-theme-material.css') }}">
+{{-- <link rel="stylesheet" href="{{ asset('assets/css/pace-1.2.4/themes/green/pace-theme-material.css') }}"> --}}
 @endpush
 @section('title', 'SIFOS | RPP')
 @section('judul','RPP')
@@ -114,6 +114,6 @@
     //     });
     // });
 </script>
-<script data-pace-options='{ "elements": { "selectors": [".selector"] }, "startOnPageLoad": false }' src="{{ asset('assets/js/pace.js') }}"></script>
+{{-- <script data-pace-options='{ "elements": { "selectors": [".selector"] }, "startOnPageLoad": false }' src="{{ asset('assets/js/pace.js') }}"></script> --}}
 <script src="{{ asset('assets/js/pages-admin/rpp.js') }}"></script>
 @endpush
